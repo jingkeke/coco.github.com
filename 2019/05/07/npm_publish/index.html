@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="Coco is Programmer">
 <meta property="og:description" content="npm 发布ps 最近看了个结合Bit.dev复用组件的文章学习函数式编程,用的是ramda函数库,然后之前做项目都是把自己写的ramda的utils复制一份.近期总结时候发现,每个项目用到的函数都不一样,这么来回拷贝还挺麻烦的..就想到把自己的给发布出去,写项目的时候引用一下,就能保证是最新的了.稍微查了一下资料,还挺简单,步骤如下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-07T04:42:42.846Z">
+<meta property="og:updated_time" content="2020-03-05T04:03:27.186Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://jingkeke.github.io/2019/05/07/npm_publish/">
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-07 12:42:42" itemprop="dateModified" datetime="2019-12-07T12:42:42+08:00">2019-12-07</time>
+                <time title="修改时间：2020-03-05 12:03:27" itemprop="dateModified" datetime="2020-03-05T12:03:27+08:00">2020-03-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,7 +255,7 @@
 </li>
 <li><p>项目架构</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tree -a -I <span class="string">"dist|node_modules|.git"</span> -L  2 12</span><br><span class="line">ramda_util</span><br><span class="line">├── .babelrc</span><br><span class="line">├── .gitignore</span><br><span class="line">├── .npmignore</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── lib                <span class="comment"># 打包目录</span></span><br><span class="line">├── package.json</span><br><span class="line">├── src                  <span class="comment">#我的代码</span></span><br><span class="line">│   ├── ArrayUtils.js</span><br><span class="line">│   ├── ObjUtils.js</span><br><span class="line">│   ├── domOper.js</span><br><span class="line">│   └── index.js</span><br></pre></td></tr></table></figure></li>
-<li><p>package.json</p>
+<li><p>package.json<br>需要注意 尽量把依赖写在devdependies 里面,要不容易造成依赖两份,如react,导致错误.比如用户是react15,你用了react16里面的特性,那用户就启动不了了.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"compile"</span>: <span class="string">"babel -d lib/ src/"</span>,</span><br><span class="line">  "prepublish": "npm run compile",       ## 发布之前执行一下?</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
 <li><p>npm 添加用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure></li>
@@ -271,7 +271,12 @@
 <h3 id="我的工具"><a href="#我的工具" class="headerlink" title="我的工具"></a>我的工具</h3><p><a href="https://github.com/jingkeke/ramda_utils" target="_blank" rel="noopener">github地址</a></p>
 <ul>
 <li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &apos;ramda_util/lib&apos;</span><br><span class="line">const result = ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(` $&#123;JSON.stringify(result,null,4)&#125;`)</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a><br><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a><br><a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">结合Bit.dev复用vue组件</a><br><a href="https://www.jianshu.com/p/db6113c94dbc" target="_blank" rel="noopener">如何创建一个前端 React 组件并发布到 NPM</a><br><a href="https://www.jianshu.com/p/aa4d99d76245" target="_blank" rel="noopener">发布react组件到npm总结</a></li>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3></li>
+<li><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a></li>
+<li><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a></li>
+<li><a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">结合Bit.dev复用vue组件</a></li>
+<li><a href="https://www.jianshu.com/p/db6113c94dbc" target="_blank" rel="noopener">如何创建一个前端 React 组件并发布到 NPM</a></li>
+<li><a href="https://www.jianshu.com/p/aa4d99d76245" target="_blank" rel="noopener">发布react组件到npm总结</a></li>
 </ul>
 
     </div>
@@ -355,13 +360,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -399,13 +404,11 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备18002249号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18002249" rel="noopener" target="_blank">null </a>
-  </div>
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>
