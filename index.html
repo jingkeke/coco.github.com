@@ -498,7 +498,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/djangoreact/">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/egitEclipseSpring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -512,7 +512,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/25/djangoreact/" class="post-title-link" itemprop="url">如何结合Django,React搭建前后台框架</a>
+            <a href="/2019/10/25/egitEclipseSpring/" class="post-title-link" itemprop="url">eclipse 使用 egit 版本控制 spring项目</a>
         </h1>
 
         <div class="post-meta">
@@ -530,14 +530,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/django/" itemprop="url" rel="index">
-                    <span itemprop="name">django</span>
+                  <a href="/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">版本控制</span>
                   </a>
                 </span>
             </span>
@@ -553,33 +553,112 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol>
-<li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
-<ul>
-<li>作者推荐,</li>
+          <ol>
+<li>搭建git 服务器<ul>
+<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01/12/16 16:48:52 adduser git</span><br><span class="line">384  01/12/16 16:50:52 cd /home/git/</span><br><span class="line">388  01/12/16 16:51:05 mkdir wolife</span><br><span class="line">389  01/12/16 16:51:06 cd wolife/</span><br><span class="line">394  01/12/16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01/12/16 16:52:01 chown -R git:git wolife.git/</span><br><span class="line">397  01/12/16 16:52:07 vim /etc/passwd  //这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01/12/16 16:53:40 su  - git  //设置一下 ssh-keygen 在/home/git/.ssh/ 下  vim authorized_keys</span><br><span class="line">406  01/12/16 17:10:22 cd /home/git/wolife</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p>
-<ul>
-<li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p>
-<ul>
-<li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li>
-<li>感觉这个挺好的,然后集合了下面的用户请求,</li>
+<li>本机eclipse egit 同步 <ul>
+<li>Team -&gt; share  然后做设置。</li>
+<li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li>
+<li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li>
+<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn/</span><br><span class="line">              work/</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes/</span><br><span class="line">              class/</span><br><span class="line">              bin/</span><br><span class="line"> //.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~/.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile = c:/Users/你的账户文件夹/.gitignore_global</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ul>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p>
-<blockquote>
-<p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p>
-<ul>
-<li>不推荐对新手</li>
-</ul>
-</li>
+<li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术
+</a></li>
 </ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/25/egitEclipseSpring/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coco is Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">umi适配华为自带浏览器和QQ浏览器</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-25 15:17:04" itemprop="dateCreated datePublished" datetime="2019-10-25T15:17:04+08:00">2019-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/umi/" itemprop="url" rel="index">
+                    <span itemprop="name">umi</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/umi/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -688,7 +767,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -702,7 +781,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">umi适配华为自带浏览器和QQ浏览器</a>
+            <a href="/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
         </h1>
 
         <div class="post-meta">
@@ -720,14 +799,20 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/" itemprop="url" rel="index">
-                    <span itemprop="name">umi</span>
+                  <a href="/categories/win10/" itemprop="url" rel="index">
+                    <span itemprop="name">win10</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
+                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
                   </a>
                 </span>
             </span>
@@ -743,97 +828,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p>
+          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
+<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/codewar-Scramblies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coco is Programmer">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/25/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-25 15:17:04" itemprop="dateCreated datePublished" datetime="2019-10-25T15:17:04+08:00">2019-10-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/codewar/" itemprop="url" rel="index">
-                    <span itemprop="name">codewar</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul>
-<li>要求<blockquote>
-<p>前者是否包含后者的每个字符,</p>
-</blockquote>
-</li>
-<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
-<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
       
     </div>
 
@@ -939,7 +945,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/egitEclipseSpring/">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2019/10/25/codewar-Scramblies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -953,7 +959,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/25/egitEclipseSpring/" class="post-title-link" itemprop="url">eclipse 使用 egit 版本控制 spring项目</a>
+            <a href="/2019/10/25/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
         </h1>
 
         <div class="post-meta">
@@ -971,14 +977,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">版本控制</span>
+                  <a href="/categories/python/codewar/" itemprop="url" rel="index">
+                    <span itemprop="name">codewar</span>
                   </a>
                 </span>
             </span>
@@ -994,30 +1000,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>搭建git 服务器<ul>
-<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01/12/16 16:48:52 adduser git</span><br><span class="line">384  01/12/16 16:50:52 cd /home/git/</span><br><span class="line">388  01/12/16 16:51:05 mkdir wolife</span><br><span class="line">389  01/12/16 16:51:06 cd wolife/</span><br><span class="line">394  01/12/16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01/12/16 16:52:01 chown -R git:git wolife.git/</span><br><span class="line">397  01/12/16 16:52:07 vim /etc/passwd  //这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01/12/16 16:53:40 su  - git  //设置一下 ssh-keygen 在/home/git/.ssh/ 下  vim authorized_keys</span><br><span class="line">406  01/12/16 17:10:22 cd /home/git/wolife</span><br></pre></td></tr></table></figure></li>
-</ul>
+          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul>
+<li>要求<blockquote>
+<p>前者是否包含后者的每个字符,</p>
+</blockquote>
 </li>
-<li>本机eclipse egit 同步 <ul>
-<li>Team -&gt; share  然后做设置。</li>
-<li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li>
-<li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li>
-<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn/</span><br><span class="line">              work/</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes/</span><br><span class="line">              class/</span><br><span class="line">              bin/</span><br><span class="line"> //.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~/.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile = c:/Users/你的账户文件夹/.gitignore_global</span><br></pre></td></tr></table></figure></li>
-<li></li>
-</ul>
+<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
+<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
 </li>
-<li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术
-</a></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/egitEclipseSpring/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+</ul>
       
     </div>
 
@@ -1126,8 +1117,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a>
-      <img src="http://beian.miit.gov.cn" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=undefined" rel="noopener" target="_blank">undefined </a>
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">undefined </a>
   </div>
 
 <div class="copyright">

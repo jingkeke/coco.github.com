@@ -104,27 +104,56 @@
     
     
     <entry>
-      <title>如何结合Django,React搭建前后台框架</title>
-      <link href="/2019/10/25/djangoreact/"/>
-      <url>/2019/10/25/djangoreact/</url>
+      <title>eclipse 使用 egit 版本控制 spring项目</title>
+      <link href="/2019/10/25/egitEclipseSpring/"/>
+      <url>/2019/10/25/egitEclipseSpring/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
+        <content type="html"><![CDATA[<ol><li>搭建git 服务器<ul><li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01/12/16 16:48:52 adduser git</span><br><span class="line">384  01/12/16 16:50:52 cd /home/git/</span><br><span class="line">388  01/12/16 16:51:05 mkdir wolife</span><br><span class="line">389  01/12/16 16:51:06 cd wolife/</span><br><span class="line">394  01/12/16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01/12/16 16:52:01 chown -R git:git wolife.git/</span><br><span class="line">397  01/12/16 16:52:07 vim /etc/passwd  //这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01/12/16 16:53:40 su  - git  //设置一下 ssh-keygen 在/home/git/.ssh/ 下  vim authorized_keys</span><br><span class="line">406  01/12/16 17:10:22 cd /home/git/wolife</span><br></pre></td></tr></table></figure></li></ul></li><li>本机eclipse egit 同步 <ul><li>Team -&gt; share  然后做设置。</li><li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li><li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li><li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn/</span><br><span class="line">              work/</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes/</span><br><span class="line">              class/</span><br><span class="line">              bin/</span><br><span class="line"> //.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~/.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile = c:/Users/你的账户文件夹/.gitignore_global</span><br></pre></td></tr></table></figure></li><li></li></ul></li><li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术</a></li></ol><a id="more"></a><p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p><h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>]]></content>
       
       
       <categories>
           
-          <category> React </category>
+          <category> git </category>
           
-          <category> django </category>
+          <category> 版本控制 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Django </tag>
+            <tag> git </tag>
             
-            <tag> React </tag>
+            <tag> eclipse </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>umi适配华为自带浏览器和QQ浏览器</title>
+      <link href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+      <url>/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><a id="more"></a><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> umi </category>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> h5 </tag>
             
         </tags>
       
@@ -162,54 +191,27 @@
     
     
     <entry>
-      <title>umi适配华为自带浏览器和QQ浏览器</title>
-      <link href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-      <url>/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      <title>win10Linux子系统</title>
+      <link href="/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
       
-        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><a id="more"></a><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><a id="more"></a><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
       
       
       <categories>
           
-          <category> umi </category>
+          <category> win10 </category>
           
-          <category> android </category>
+          <category> ubuntu </category>
+          
+          <category> tools </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> h5 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>codewar-Scramblies</title>
-      <link href="/2019/10/25/codewar-Scramblies/"/>
-      <url>/2019/10/25/codewar-Scramblies/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> python </category>
-          
-          <category> codewar </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> 刷题 </tag>
+            <tag> win10 </tag>
             
         </tags>
       
@@ -243,29 +245,27 @@
     
     
     <entry>
-      <title>eclipse 使用 egit 版本控制 spring项目</title>
-      <link href="/2019/10/25/egitEclipseSpring/"/>
-      <url>/2019/10/25/egitEclipseSpring/</url>
+      <title>codewar-Scramblies</title>
+      <link href="/2019/10/25/codewar-Scramblies/"/>
+      <url>/2019/10/25/codewar-Scramblies/</url>
       
-        <content type="html"><![CDATA[<ol><li>搭建git 服务器<ul><li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01/12/16 16:48:52 adduser git</span><br><span class="line">384  01/12/16 16:50:52 cd /home/git/</span><br><span class="line">388  01/12/16 16:51:05 mkdir wolife</span><br><span class="line">389  01/12/16 16:51:06 cd wolife/</span><br><span class="line">394  01/12/16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01/12/16 16:52:01 chown -R git:git wolife.git/</span><br><span class="line">397  01/12/16 16:52:07 vim /etc/passwd  //这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01/12/16 16:53:40 su  - git  //设置一下 ssh-keygen 在/home/git/.ssh/ 下  vim authorized_keys</span><br><span class="line">406  01/12/16 17:10:22 cd /home/git/wolife</span><br></pre></td></tr></table></figure></li></ul></li><li>本机eclipse egit 同步 <ul><li>Team -&gt; share  然后做设置。</li><li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li><li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li><li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn/</span><br><span class="line">              work/</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes/</span><br><span class="line">              class/</span><br><span class="line">              bin/</span><br><span class="line"> //.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~/.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile = c:/Users/你的账户文件夹/.gitignore_global</span><br></pre></td></tr></table></figure></li><li></li></ul></li><li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术</a></li></ol><a id="more"></a><p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p><h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
       
       
       <categories>
           
-          <category> git </category>
+          <category> python </category>
           
-          <category> 版本控制 </category>
+          <category> codewar </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> git </tag>
+            <tag> python </tag>
             
-            <tag> eclipse </tag>
-            
-            <tag> spring </tag>
+            <tag> 刷题 </tag>
             
         </tags>
       
@@ -328,6 +328,33 @@
     
     
     <entry>
+      <title>利用 socket.io 实现消息实时推送</title>
+      <link href="/2019/10/25/socket-io/"/>
+      <url>/2019/10/25/socket-io/</url>
+      
+        <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><a id="more"></a><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+          <category> socket-io </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 通信 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单点登陆方案</title>
       <link href="/2019/10/25/sso/"/>
       <url>/2019/10/25/sso/</url>
@@ -359,54 +386,27 @@
     
     
     <entry>
-      <title>利用 socket.io 实现消息实时推送</title>
-      <link href="/2019/10/25/socket-io/"/>
-      <url>/2019/10/25/socket-io/</url>
+      <title>如何结合Django,React搭建前后台框架</title>
+      <link href="/2019/10/25/djangoreact/"/>
+      <url>/2019/10/25/djangoreact/</url>
       
-        <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><a id="more"></a><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
       
       
       <categories>
           
-          <category> Mac </category>
+          <category> React </category>
           
-          <category> socket-io </category>
+          <category> django </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 通信 </tag>
+            <tag> Django </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>win10Linux子系统</title>
-      <link href="/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
-      <url>/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
-      
-        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><a id="more"></a><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> win10 </category>
-          
-          <category> ubuntu </category>
-          
-          <category> tools </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> win10 </tag>
+            <tag> React </tag>
             
         </tags>
       
