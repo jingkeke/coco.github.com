@@ -15,40 +15,10 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Coco is Programmer">
@@ -64,17 +34,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false
   };
 </script>
 
   <title>Coco is Programmer</title>
   
-
-
 
 
 
@@ -113,6 +79,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -124,11 +98,8 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -215,15 +186,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react-native/" itemprop="url" rel="index">
-                    <span itemprop="name">react-native</span>
-                  </a>
+                  <a href="/categories/react-native/" itemprop="url" rel="index"><span itemprop="name">react-native</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react-native/theme/" itemprop="url" rel="index">
-                    <span itemprop="name">theme</span>
-                  </a>
+                  <a href="/categories/react-native/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
                 </span>
             </span>
 
@@ -238,15 +205,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/NativeBase_theme/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p>
+<h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p>
+<h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p>
+<blockquote>
+<p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p>
+</blockquote>
+<blockquote>
+<p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p>
+</blockquote>
+<blockquote>
+<p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p>
+</blockquote>
+<h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p>
+<h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul>
+<li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -297,15 +278,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/" itemprop="url" rel="index">
-                    <span itemprop="name">dva</span>
-                  </a>
+                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/generator/" itemprop="url" rel="index">
-                    <span itemprop="name">generator</span>
-                  </a>
+                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
                 </span>
             </span>
 
@@ -320,15 +297,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/redux-sega/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
+<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
+<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
+<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
+<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
+<li>产生原因改进最早的: 最早的地域回调写法</li>
+<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value = yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最新的是 async await</li>
+</ol>
+<ul>
+<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
+</ul>
+<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
+<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
+</ul>
+
       
     </div>
 
@@ -379,15 +364,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac</span>
-                  </a>
+                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index">
-                    <span itemprop="name">socket-io</span>
-                  </a>
+                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index"><span itemprop="name">socket-io</span></a>
                 </span>
             </span>
 
@@ -402,7 +383,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
+          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
 <li><p>后台Node.js</p>
 <h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li>
 <li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p>
@@ -412,14 +394,32 @@
 <li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p>
 </li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/socket-io/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure>
+<p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p>
+<p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p>
+<p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其它的引入方式:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure>
+<p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果监听本地：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p>
+<p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure>
+<h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p>
+<pre><code>##demo
+[demo博文原文](https://segmentfault.com/a/1190000010974426)
+[demo](https://github.com/noiron/socket-message-push)
+##资料
+[socket-io官网](https://socket.io/get-started/chat/)</code></pre>
       
     </div>
 
@@ -470,27 +470,19 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/" itemprop="url" rel="index">
-                    <span itemprop="name">sso</span>
-                  </a>
+                  <a href="/categories/sso/" itemprop="url" rel="index"><span itemprop="name">sso</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/" itemprop="url" rel="index">
-                    <span itemprop="name">cas</span>
-                  </a>
+                  <a href="/categories/sso/cas/" itemprop="url" rel="index"><span itemprop="name">cas</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index">
-                    <span itemprop="name">django</span>
-                  </a>
+                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index">
-                    <span itemprop="name">drf</span>
-                  </a>
+                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index"><span itemprop="name">drf</span></a>
                 </span>
             </span>
 
@@ -516,14 +508,48 @@
 </ul>
 </li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/sso/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<hr>
+<p><strong>注意以下实现主要是基于python django drf.</strong></p>
+<h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul>
+<li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul>
+<li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul>
+<li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li>
+</ul>
+<h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul>
+<li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li>
+<li>测试<br>官方代码自己集成了swagger测试</li>
+</ul>
+<h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul>
+<li>测试<br>参考官网</li>
+<li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span>
+<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token
+urlpatterns = [
+url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
+<span class="string">]</span>
+<span class="string"># utils.py</span>
+<span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span>
+<span class="string">"""</span>
+<span class="string">自定义jwt认证成功返回数据</span>
+<span class="string">"""</span>
+<span class="string">return {</span>
+<span class="string">'</span>token<span class="string">': token,</span>
+<span class="string">'</span>user_id<span class="string">': user.id,</span>
+<span class="string">'</span>username<span class="string">': user.username</span>
+<span class="string">}</span>
+<span class="string"># 修改配置 # JWT</span>
+<span class="string">JWT_AUTH = {</span>
+<span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span>
+<span class="string">}</span></code></pre>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li>
+</ul>
+
       
     </div>
 
@@ -574,15 +600,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
+                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/django/" itemprop="url" rel="index">
-                    <span itemprop="name">django</span>
-                  </a>
+                  <a href="/categories/React/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
                 </span>
             </span>
 
@@ -597,7 +619,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol>
+          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p>
+<p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p>
+<ol>
 <li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
 <ul>
 <li>作者推荐,</li>
@@ -624,6 +648,7 @@
 </ul>
 </li>
 </ol>
+
       
     </div>
 
@@ -681,9 +706,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
+                  <a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
                 </span>
             </span>
 
@@ -698,19 +721,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fabric3</span><br></pre></td></tr></table></figure><p>写在了pythonlearn里</p><blockquote>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fabric3</span><br></pre></td></tr></table></figure>
+<p>写在了pythonlearn里</p>
+<blockquote>
 <p>fabic 这个包主要是用在服务器交互里面,比如发布项目到git后,本机运行一个脚本,会连接服务器执行一堆下载,编译的事情</p>
-</blockquote><h3 id="写了一个方便写模板的fabric"><a href="#写了一个方便写模板的fabric" class="headerlink" title="写了一个方便写模板的fabric"></a>写了一个方便写模板的fabric</h3><ul>
+</blockquote>
+<h3 id="写了一个方便写模板的fabric"><a href="#写了一个方便写模板的fabric" class="headerlink" title="写了一个方便写模板的fabric"></a>写了一个方便写模板的fabric</h3><ul>
 <li>场景<br>  敲一个 fab new:test  生成一个test.md 的文件 ,并把hexo模板写入进去,模板把文件名”test”<br>写入到模板里面.</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/07/fabric/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># will generate a test.md  file</span><br><span class="line">fab new:test</span><br></pre></td></tr></table></figure>
+<ul>
+<li>config file<br>fabfile.py</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">自动化添加文件头</span></span><br><span class="line"><span class="string">参考  https://www.solarck.com/using-netlify-auto-deployed-pelican.html</span></span><br><span class="line"><span class="string">- 新建</span></span><br><span class="line"><span class="string">fab new:test,tag</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> fabric.contrib.console <span class="keyword">import</span> confirm</span><br><span class="line"><span class="keyword">from</span> fabric.utils <span class="keyword">import</span> abort</span><br><span class="line"><span class="keyword">from</span> fabric.colors <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">env.hosts = [<span class="string">''</span>]</span><br><span class="line">env.port = <span class="number">22</span></span><br><span class="line">env.user = <span class="string">''</span></span><br><span class="line">env.password = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local path configuration (can be absolute or relative to fabfile)</span></span><br><span class="line">env.deploy_path = <span class="string">'./'</span></span><br><span class="line">env.content_path = <span class="string">'./'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">META = <span class="string">"""---</span></span><br><span class="line"><span class="string">title: &#123;:20&#125;</span></span><br><span class="line"><span class="string">Date: &#123;:%Y-%m-%d %H:%M&#125;</span></span><br><span class="line"><span class="string">categories: # 这里写的分类会自动汇集到 categories 页面上，分类可以多级</span></span><br><span class="line"><span class="string">- mac</span></span><br><span class="line"><span class="string">tags:</span></span><br><span class="line"><span class="string">- &#123;:10&#125;</span></span><br><span class="line"><span class="string">Authors: Jingzy</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(title=<span class="string">'new'</span>,tag=<span class="string">''</span>)</span>:</span></span><br><span class="line">    os.chdir(env.content_path)</span><br><span class="line">    file_name=title+<span class="string">'.md'</span></span><br><span class="line">    <span class="keyword">with</span> open(file_name, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(META.format(title,datetime.now(),tag))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preview</span><span class="params">()</span>:</span></span><br><span class="line">    local(<span class="string">'pelican -d -s pelicanconf.py'</span>)</span><br><span class="line">    os.chdir(env.deploy_path)</span><br><span class="line">    local(<span class="string">'python -m http.server 8000 -b 127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">github</span><span class="params">(comMsg =<span class="string">''</span> )</span>:</span></span><br><span class="line">    local(<span class="string">'git add --all'</span>)</span><br><span class="line">    local(<span class="string">'git commit -m "&#123;&#125;  update at &#123;:%Y-%m-%d %H:%M&#125;"'</span>.format(comMsg,datetime.now()))</span><br><span class="line">    local(<span class="string">'git push origin master'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  fab  hexo_deploy</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_deploy</span><span class="params">()</span>:</span></span><br><span class="line">	run(<span class="string">'jg posthexo'</span>)</span><br><span class="line">	<span class="comment"># run("git pull origin master")</span></span><br><span class="line">	result =run(<span class="string">"pwd"</span>)</span><br><span class="line">	<span class="keyword">with</span> cd(<span class="string">'/home/_posts'</span>):</span><br><span class="line">		run(<span class="string">'pwd'</span>)  <span class="comment"># /tmp</span></span><br><span class="line">		run(<span class="string">'git pull origin master '</span>)  <span class="comment"># /tmp</span></span><br><span class="line">	<span class="keyword">with</span> cd(<span class="string">'/home/hexo'</span>):</span><br><span class="line">		run(<span class="string">'pwd'</span>)</span><br><span class="line">		run(<span class="string">'hexo g'</span>)</span><br><span class="line">	run(<span class="string">'pwd'</span>)  <span class="comment"># /root</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -768,15 +792,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/npm/" itemprop="url" rel="index">
-                    <span itemprop="name">npm</span>
-                  </a>
+                  <a href="/categories/npm/" itemprop="url" rel="index"><span itemprop="name">npm</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/npm/package/" itemprop="url" rel="index">
-                    <span itemprop="name">package</span>
-                  </a>
+                  <a href="/categories/npm/package/" itemprop="url" rel="index"><span itemprop="name">package</span></a>
                 </span>
             </span>
 
@@ -792,14 +812,36 @@
 
       
           <h3 id="npm-发布"><a href="#npm-发布" class="headerlink" title="npm 发布"></a>npm 发布</h3><p>ps <a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">最近看了个结合Bit.dev复用组件的文章</a><br>学习函数式编程,用的是<a href="https://adispring.coding.me/2017/10/21/What-Function-Should-I-Use/" target="_blank" rel="noopener">ramda函数库</a>,然后之前做项目都是把自己写的ramda的utils复制一份.近期总结时候发现,每个项目用到的函数都不一样,这么来回拷贝还挺麻烦的..就想到把自己的给发布出去,写项目的时候引用一下,就能保证是最新的了.稍微查了一下资料,还挺简单,步骤如下</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/07/npm_publish/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<ul>
+<li><p>初始化<br>因为可能要用到ES6,<code>npm init</code>后,需要填入babel包.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">yarn add babel-cli babel-core babel-preset-es2015  ramda</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目架构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tree -a -I <span class="string">"dist|node_modules|.git"</span> -L  2 12</span><br><span class="line">ramda_util</span><br><span class="line">├── .babelrc</span><br><span class="line">├── .gitignore</span><br><span class="line">├── .npmignore</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── lib                <span class="comment"># 打包目录</span></span><br><span class="line">├── package.json</span><br><span class="line">├── src                  <span class="comment">#我的代码</span></span><br><span class="line">│   ├── ArrayUtils.js</span><br><span class="line">│   ├── ObjUtils.js</span><br><span class="line">│   ├── domOper.js</span><br><span class="line">│   └── index.js</span><br></pre></td></tr></table></figure></li>
+<li><p>package.json<br>需要注意 尽量把依赖写在devdependies 里面,要不容易造成依赖两份,如react,导致错误.比如用户是react15,你用了react16里面的特性,那用户就启动不了了.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"compile"</span>: <span class="string">"babel -d lib/ src/"</span>,</span><br><span class="line">  "prepublish": "npm run compile",       ## 发布之前执行一下?</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>npm 添加用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure></li>
+<li><p>发布</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure></li>
+<li><p>验证<br>打包组件，只需要运行 npm run build 就可以了。<br>接下来可以通过 npm link 把打包之后的组件引入到 global node_modules 中，然后在验证 demo 中再通过 npm link react-tiny-autosuggest 引入这个组件，并验证是否符合预期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// At development directory</span><br><span class="line">npm run build</span><br><span class="line">npm link</span><br><span class="line"></span><br><span class="line">cd [test project folder]</span><br><span class="line">npm link react-tiny-autosuggest</span><br></pre></td></tr></table></figure>
+<p>接下下 demo 里面就可以直接 import AutoSuggest from ‘react-tiny-autosuggest’ 了。</p>
+</li>
+<li><p>技巧<br>修改代码和readme.md后,执行 <code>npm  version patch</code> 就不用手工改版本号了.</p>
+</li>
+</ul>
+<h3 id="我的工具"><a href="#我的工具" class="headerlink" title="我的工具"></a>我的工具</h3><p><a href="https://github.com/jingkeke/ramda_utils" target="_blank" rel="noopener">github地址</a></p>
+<ul>
+<li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &apos;ramda_util/lib&apos;</span><br><span class="line">const result = ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(` $&#123;JSON.stringify(result,null,4)&#125;`)</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3></li>
+<li><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a></li>
+<li><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a></li>
+<li><a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">结合Bit.dev复用vue组件</a></li>
+<li><a href="https://www.jianshu.com/p/db6113c94dbc" target="_blank" rel="noopener">如何创建一个前端 React 组件并发布到 NPM</a></li>
+<li><a href="https://www.jianshu.com/p/aa4d99d76245" target="_blank" rel="noopener">发布react组件到npm总结</a></li>
+</ul>
+
       
     </div>
 
@@ -857,15 +899,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
-                  </a>
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
+                  <a href="/categories/typescript/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
                 </span>
             </span>
 
@@ -880,15 +918,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>看<a href="https://github.com/ProtoTeam/blog/blob/master/201805/4.md" target="_blank" rel="noopener">ts 2.8下React组件模式</a>,结合typesscript 和react.这个看了好几遍,感觉挺经典,之前ts不熟,做下笔记.</p><h5 id="知识点一-泛型的默认值"><a href="#知识点一-泛型的默认值" class="headerlink" title="知识点一 泛型的默认值"></a>知识点一 泛型的默认值</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> ToggleableComponentProps&lt;P <span class="keyword">extends</span> object = &#123;<span class="string">'length'</span>:<span class="built_in">number</span> &#125;&gt; = &#123;</span><br><span class="line">  show: <span class="built_in">string</span></span><br><span class="line">  toggle: <span class="built_in">string</span></span><br><span class="line">&#125; &amp; P</span><br><span class="line"><span class="keyword">const</span> he = &#123; name: <span class="string">'jing'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> aaa: ToggleableComponentProps = &#123;</span><br><span class="line">  show: <span class="string">'ff'</span>,</span><br><span class="line">  toggle: <span class="string">'length'</span>,</span><br><span class="line">  length: <span class="number">12</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/02/07/react_ts/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>看<a href="https://github.com/ProtoTeam/blog/blob/master/201805/4.md" target="_blank" rel="noopener">ts 2.8下React组件模式</a>,结合typesscript 和react.这个看了好几遍,感觉挺经典,之前ts不熟,做下笔记.</p>
+<h5 id="知识点一-泛型的默认值"><a href="#知识点一-泛型的默认值" class="headerlink" title="知识点一 泛型的默认值"></a>知识点一 泛型的默认值</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> ToggleableComponentProps&lt;P <span class="keyword">extends</span> object = &#123;<span class="string">'length'</span>:<span class="built_in">number</span> &#125;&gt; = &#123;</span><br><span class="line">  show: <span class="built_in">string</span></span><br><span class="line">  toggle: <span class="built_in">string</span></span><br><span class="line">&#125; &amp; P</span><br><span class="line"><span class="keyword">const</span> he = &#123; name: <span class="string">'jing'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> aaa: ToggleableComponentProps = &#123;</span><br><span class="line">  show: <span class="string">'ff'</span>,</span><br><span class="line">  toggle: <span class="string">'length'</span>,</span><br><span class="line">  length: <span class="number">12</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><P extends object =object > 这块后面的object=object 是什么意思?</strong><br><code>P extends object</code> 连在一起读，P 必须是继承自 object 的泛型。后面的等于号，例如 interface Example&lt; T&gt; ，在使用时如果编译器没办法根据上下文推测 T，就必须手动指定，例如 <code>class MyClass implement Example&lt;string&gt;</code> ，等于号在这里的作用和ES6 的默认值是一样的用法，例如 T = number 如果外界没有指定泛型，编译器又无法根据上下文推测出结果时，就会采用这个默认类型 {‘length’:12 }</p>
+<h5 id="知识点二-高阶组件包裹的话-static属性会消失"><a href="#知识点二-高阶组件包裹的话-static属性会消失" class="headerlink" title="知识点二 高阶组件包裹的话,static属性会消失"></a>知识点二 高阶组件包裹的话,static属性会消失</h5><ul>
+<li><a href="https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over" target="_blank" rel="noopener">官网解释</a></li>
+<li>解决方案<ul>
+<li><a href="https://www.npmjs.com/package/hoist-non-react-statics" target="_blank" rel="noopener">hoist-non-react-statics </a></li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -946,9 +986,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
                 </span>
             </span>
 
@@ -1029,9 +1067,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
                 </span>
             </span>
 
@@ -1096,6 +1132,28 @@
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
           
   
@@ -1124,8 +1182,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Jing"
-    src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Jing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -1153,13 +1209,13 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/jingkeke" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:zhengyi.jing@163.com" title="E-Mail &amp;rarr; mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/jingzhengyi" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
       </span>
   </div>
 
@@ -1190,7 +1246,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jing</span>
 </div>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -1202,11 +1258,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -1239,14 +1290,19 @@
 
 
 
-
-
-
   
 
   
-
-  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://jingkeke.github.io/page/2/',]
+      });
+      });
+  </script>
 
 
 </body>

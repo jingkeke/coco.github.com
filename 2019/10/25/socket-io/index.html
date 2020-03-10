@@ -15,48 +15,18 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="场景当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。实现方式 后台Node.js 后端推送消息的处理流程 在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。  当 Java 后台存在需要推送的消息时，会向 Nod">
+  <meta name="description" content="场景当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。 实现方式 后台Node.js 后端推送消息的处理流程 在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。  当 Java 后台存在需要推送的消息时，会向 No">
 <meta name="keywords" content="通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用 socket.io 实现消息实时推送">
 <meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2019&#x2F;10&#x2F;25&#x2F;socket-io&#x2F;index.html">
 <meta property="og:site_name" content="Coco is Programmer">
-<meta property="og:description" content="场景当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。实现方式 后台Node.js 后端推送消息的处理流程 在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。  当 Java 后台存在需要推送的消息时，会向 Nod">
+<meta property="og:description" content="场景当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。 实现方式 后台Node.js 后端推送消息的处理流程 在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。  当 Java 后台存在需要推送的消息时，会向 No">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-25T07:17:04.776Z">
 <meta name="twitter:card" content="summary">
@@ -68,17 +38,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
   <title>利用 socket.io 实现消息实时推送 | Coco is Programmer</title>
   
-
-
 
 
 
@@ -117,6 +83,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -128,11 +102,8 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -218,15 +189,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac</span>
-                  </a>
+                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index">
-                    <span itemprop="name">socket-io</span>
-                  </a>
+                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index"><span itemprop="name">socket-io</span></a>
                 </span>
             </span>
 
@@ -241,7 +208,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
+        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
 <li><p>后台Node.js</p>
 <h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li>
 <li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p>
@@ -250,8 +218,7 @@
 </li>
 <li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p>
 </li>
-</ul><a id="more"></a>
-
+</ul>
 <h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure>
 <p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p>
@@ -291,21 +258,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/25/sso/" rel="next" title="单点登陆方案">
-                  <i class="fa fa-chevron-left"></i> 单点登陆方案
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/10/25/redux-sega/" rel="prev" title="redux-sega">
-                  redux-sega <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/25/sso/" rel="prev" title="单点登陆方案">
+      <i class="fa fa-chevron-left"></i> 单点登陆方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/25/redux-sega/" rel="next" title="redux-sega">
+      redux-sega <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -319,6 +283,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -349,8 +335,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Jing"
-    src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Jing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -378,13 +362,13 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/jingkeke" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:zhengyi.jing@163.com" title="E-Mail &amp;rarr; mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/jingzhengyi" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
       </span>
   </div>
 
@@ -415,7 +399,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jing</span>
 </div>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -427,11 +411,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -464,11 +443,6 @@
 
 
 
-
-
-
-  
-
   
 
   
@@ -476,19 +450,21 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: '3fd3324f8518ce5ba445',
+      clientID    : '3fd3324f8518ce5ba445',
       clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
-      repo: 'jingkeke.github.io',
-      owner: 'jingkeke',
-      admin: ['jingkeke'],
-      id: '6820858c4609d850430f2426c8f6f1e1',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : '6820858c4609d850430f2426c8f6f1e1',
         language: 'zh-CN',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
 </body>

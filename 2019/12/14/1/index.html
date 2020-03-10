@@ -15,48 +15,18 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件. 这里主要讲一下折腾了半天才弄明天的键位配置. vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:">
+  <meta name="description" content="最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件. 这里主要讲一下折腾了半天才弄明天的键位配置. vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:  代表Escape键: 代表Enter键；">
 <meta name="keywords" content="vim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim键位配置">
 <meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;1&#x2F;index.html">
 <meta property="og:site_name" content="Coco is Programmer">
-<meta property="og:description" content="最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件. 这里主要讲一下折腾了半天才弄明天的键位配置. vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:">
+<meta property="og:description" content="最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件. 这里主要讲一下折腾了半天才弄明天的键位配置. vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:  代表Escape键: 代表Enter键；">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-14T10:55:37.520Z">
 <meta name="twitter:card" content="summary">
@@ -68,17 +38,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
   <title>vim键位配置 | Coco is Programmer</title>
   
-
-
 
 
 
@@ -117,6 +83,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -128,11 +102,8 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -219,9 +190,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim-mac/" itemprop="url" rel="index">
-                    <span itemprop="name">vim mac</span>
-                  </a>
+                  <a href="/categories/vim-mac/" itemprop="url" rel="index"><span itemprop="name">vim mac</span></a>
                 </span>
             </span>
 
@@ -236,14 +205,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p><a id="more"></a>
+        <p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p>
 <ul>
-<li><esc>代表Escape键:</esc></li>
-<li><cr>代表Enter键；</cr></li>
-<li><d>代表Command键。</d></li>
-<li>Alt键可以使用<m-key>或<a-key>来表示。</a-key></m-key></li>
-<li><c>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c = nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure>
-</c></li>
+<li><Esc>代表Escape键:</li>
+<li><CR>代表Enter键；</li>
+<li><D>代表Command键。</li>
+<li>Alt键可以使用<M-key>或<A-key>来表示。</li>
+<li><C>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c = nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
@@ -259,21 +228,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/07/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/" rel="next" title="阿里云ECS免密码登陆">
-                  <i class="fa fa-chevron-left"></i> 阿里云ECS免密码登陆
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2020/03/05/tailwindcss/" rel="prev" title="tailwindcss">
-                  tailwindcss <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/" rel="prev" title="阿里云ECS免密码登陆">
+      <i class="fa fa-chevron-left"></i> 阿里云ECS免密码登陆
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/05/tailwindcss/" rel="next" title="tailwindcss">
+      tailwindcss <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -287,6 +253,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -316,8 +304,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Jing"
-    src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Jing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -345,13 +331,13 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/jingkeke" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:zhengyi.jing@163.com" title="E-Mail &amp;rarr; mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/jingzhengyi" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
       </span>
   </div>
 
@@ -382,7 +368,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jing</span>
 </div>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -394,11 +380,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -431,11 +412,6 @@
 
 
 
-
-
-
-  
-
   
 
   
@@ -443,19 +419,21 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: '3fd3324f8518ce5ba445',
+      clientID    : '3fd3324f8518ce5ba445',
       clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
-      repo: 'jingkeke.github.io',
-      owner: 'jingkeke',
-      admin: ['jingkeke'],
-      id: 'df8ef66000498ccf126bf7f0b5be75ae',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : 'df8ef66000498ccf126bf7f0b5be75ae',
         language: 'zh-CN',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
 </body>

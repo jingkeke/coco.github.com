@@ -15,48 +15,18 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="看的这篇文章，感觉有效果的是下面几个。帮你保持历史操作，跳回到你经常使用的目录。下面是我的配置文件里脚本：123456789101112131415161718192021222324252627282930313233343536373839404142# USAGE:# s bookmarkname - saves the curr dir as bookmarkname# g bookmar">
+  <meta name="description" content="看的这篇文章，感觉有效果的是下面几个。 帮你保持历史操作，跳回到你经常使用的目录。下面是我的配置文件里脚本： 123456789101112131415161718192021222324252627282930313233343536373839404142# USAGE:# s bookmarkname - saves the curr dir as bookmarkname# g bookm">
 <meta name="keywords" content="linux,bash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提高Linux工作效率的bash技巧">
 <meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2016&#x2F;11&#x2F;24&#x2F;%E6%8F%90%E9%AB%98Linux%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87%E7%9A%84bash%E6%8A%80%E5%B7%A7&#x2F;index.html">
 <meta property="og:site_name" content="Coco is Programmer">
-<meta property="og:description" content="看的这篇文章，感觉有效果的是下面几个。帮你保持历史操作，跳回到你经常使用的目录。下面是我的配置文件里脚本：123456789101112131415161718192021222324252627282930313233343536373839404142# USAGE:# s bookmarkname - saves the curr dir as bookmarkname# g bookmar">
+<meta property="og:description" content="看的这篇文章，感觉有效果的是下面几个。 帮你保持历史操作，跳回到你经常使用的目录。下面是我的配置文件里脚本： 123456789101112131415161718192021222324252627282930313233343536373839404142# USAGE:# s bookmarkname - saves the curr dir as bookmarkname# g bookm">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-25T07:17:04.776Z">
 <meta name="twitter:card" content="summary">
@@ -68,17 +38,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
   <title>提高Linux工作效率的bash技巧 | Coco is Programmer</title>
   
-
-
 
 
 
@@ -117,6 +83,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -128,11 +102,8 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -231,9 +202,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>看的<a href="https://www.shiyanlou.com/questions/4297" target="_blank" rel="noopener">这篇文章</a>，感觉有效果的是下面几个。</p><h2 id="帮你保持历史操作，跳回到你经常使用的目录。"><a href="#帮你保持历史操作，跳回到你经常使用的目录。" class="headerlink" title="帮你保持历史操作，跳回到你经常使用的目录。"></a>帮你保持历史操作，跳回到你经常使用的目录。</h2><p>下面是我的配置文件里脚本：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># USAGE:</span><br><span class="line"># s bookmarkname - saves the curr dir as bookmarkname</span><br><span class="line"># g bookmarkname - jumps to the that bookmark</span><br><span class="line"># g b[TAB] - tab completion is available</span><br><span class="line"># l - list all bookmarks</span><br><span class="line"></span><br><span class="line"># save current directory to bookmarks</span><br><span class="line">touch ~/.sdirs</span><br><span class="line">function s &#123;</span><br><span class="line">  cat ~/.sdirs | grep -v &quot;export DIR_$1=&quot; &gt; ~/.sdirs1</span><br><span class="line">  mv ~/.sdirs1 ~/.sdirs</span><br><span class="line">  echo &quot;export DIR_$1=$PWD&quot; &gt;&gt; ~/.sdirs</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># jump to bookmark</span><br><span class="line">function g &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  cd $(eval $(echo echo $(echo \$DIR_$1)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># list bookmarks with dirnam</span><br><span class="line">function l &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*=&quot;</span><br><span class="line">&#125;</span><br><span class="line"># list bookmarks without dirname</span><br><span class="line">function _l &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*=&quot; | cut -f1 -d &quot;=&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># completion command for g</span><br><span class="line">function _gcomp &#123;</span><br><span class="line">    local curw</span><br><span class="line">    COMPREPLY=()</span><br><span class="line">    curw=$&#123;COMP_WORDS[COMP_CWORD]&#125;</span><br><span class="line">    COMPREPLY=($(compgen -W &apos;`_l`&apos; -- $curw))</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># bind completion command for g to _gcomp</span><br><span class="line">complete -F _gcomp g</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
+        <p>看的<a href="https://www.shiyanlou.com/questions/4297" target="_blank" rel="noopener">这篇文章</a>，感觉有效果的是下面几个。</p>
+<h2 id="帮你保持历史操作，跳回到你经常使用的目录。"><a href="#帮你保持历史操作，跳回到你经常使用的目录。" class="headerlink" title="帮你保持历史操作，跳回到你经常使用的目录。"></a>帮你保持历史操作，跳回到你经常使用的目录。</h2><p>下面是我的配置文件里脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># USAGE:</span><br><span class="line"># s bookmarkname - saves the curr dir as bookmarkname</span><br><span class="line"># g bookmarkname - jumps to the that bookmark</span><br><span class="line"># g b[TAB] - tab completion is available</span><br><span class="line"># l - list all bookmarks</span><br><span class="line"></span><br><span class="line"># save current directory to bookmarks</span><br><span class="line">touch ~/.sdirs</span><br><span class="line">function s &#123;</span><br><span class="line">  cat ~/.sdirs | grep -v &quot;export DIR_$1=&quot; &gt; ~/.sdirs1</span><br><span class="line">  mv ~/.sdirs1 ~/.sdirs</span><br><span class="line">  echo &quot;export DIR_$1=$PWD&quot; &gt;&gt; ~/.sdirs</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># jump to bookmark</span><br><span class="line">function g &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  cd $(eval $(echo echo $(echo \$DIR_$1)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># list bookmarks with dirnam</span><br><span class="line">function l &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*=&quot;</span><br><span class="line">&#125;</span><br><span class="line"># list bookmarks without dirname</span><br><span class="line">function _l &#123;</span><br><span class="line">  source ~/.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*=&quot; | cut -f1 -d &quot;=&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># completion command for g</span><br><span class="line">function _gcomp &#123;</span><br><span class="line">    local curw</span><br><span class="line">    COMPREPLY=()</span><br><span class="line">    curw=$&#123;COMP_WORDS[COMP_CWORD]&#125;</span><br><span class="line">    COMPREPLY=($(compgen -W &apos;`_l`&apos; -- $curw))</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># bind completion command for g to _gcomp</span><br><span class="line">complete -F _gcomp g</span><br></pre></td></tr></table></figure>
 
 <p>##创建自己的命令包.<br>通过脚本，我可以将ssh key拷贝到任何网站服务器——只需要键入dur keyuser@somehost.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">function dur &#123;</span><br><span class="line">  case $1 in</span><br><span class="line">  clone|cl)</span><br><span class="line">    git clone git@bitbucket.org:nicolapaolucci/$2.git</span><br><span class="line">    ;;</span><br><span class="line">  move|mv)</span><br><span class="line">    git remote add bitbucket git@bitbucket.org:nicolapaolucci/$(basename $(pwd)).git</span><br><span class="line">    git push --all bitbucket</span><br><span class="line">    ;;</span><br><span class="line">  trackall|tr)</span><br><span class="line">    #track all remote branches of a project</span><br><span class="line">    for remote in $(git branch -r | grep -v master ); do git checkout --track $remote ; done</span><br><span class="line">    ;;</span><br><span class="line">  key|k)</span><br><span class="line">    #track all remote branches of a project</span><br><span class="line">    ssh $2 &apos;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&apos; &lt; ~/.ssh/id_rsa.pub</span><br><span class="line">    ;;</span><br><span class="line">  fun|f)</span><br><span class="line">    #list all custom bash functions defined</span><br><span class="line">    typeset -F | col 3 | grep -v _ | xargs | fold -sw 60</span><br><span class="line">    ;;</span><br><span class="line">  def|d)</span><br><span class="line">    #show definition of function $1</span><br><span class="line">    typeset -f $2</span><br><span class="line">    ;;</span><br><span class="line">  help|h|*)</span><br><span class="line">    echo &quot;[dur]dn shell automation tools&quot;</span><br><span class="line">    echo &quot;commands available:&quot;</span><br><span class="line">    echo &quot; [cl]one, [mv|move]&quot;</span><br><span class="line">    echo &quot; [f]fun lists all bash functions defined in .bashrc&quot;</span><br><span class="line">    echo &quot; [def] &lt;fun&gt; lists definition of function defined in .bashrc&quot;</span><br><span class="line">    echo &quot; [k]ey &lt;host&gt; copies ssh key to target host&quot;</span><br><span class="line">    echo &quot; [tr]ackall], [h]elp&quot;</span><br><span class="line">    ;;</span><br><span class="line">  esac</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -252,18 +223,15 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2016/11/26/puzzle_HTML5%E5%AE%9E%E7%8E%B0%EF%BC%8C%E4%B8%8A%E6%89%8B%E8%B6%85%E8%B5%9E%E7%BB%83%E4%B9%A0/" rel="prev" title="puzzle HTML5实现，上手超赞练习">
-                  puzzle HTML5实现，上手超赞练习 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2016/11/26/puzzle_HTML5%E5%AE%9E%E7%8E%B0%EF%BC%8C%E4%B8%8A%E6%89%8B%E8%B6%85%E8%B5%9E%E7%BB%83%E4%B9%A0/" rel="next" title="puzzle HTML5实现，上手超赞练习">
+      puzzle HTML5实现，上手超赞练习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -277,6 +245,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -307,8 +297,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Jing"
-    src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Jing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -336,13 +324,13 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/jingkeke" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:zhengyi.jing@163.com" title="E-Mail &amp;rarr; mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/jingzhengyi" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
       </span>
   </div>
 
@@ -373,7 +361,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jing</span>
 </div>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -385,11 +373,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -422,11 +405,6 @@
 
 
 
-
-
-
-  
-
   
 
   
@@ -434,19 +412,21 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: '3fd3324f8518ce5ba445',
+      clientID    : '3fd3324f8518ce5ba445',
       clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
-      repo: 'jingkeke.github.io',
-      owner: 'jingkeke',
-      admin: ['jingkeke'],
-      id: '7c13175876786cdae9ca56e86ef32e68',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : 'f5b92064a1e6c5780d64977a6d3dd4ef',
         language: 'zh-CN',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
 </body>

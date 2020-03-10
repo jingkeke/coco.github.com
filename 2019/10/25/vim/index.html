@@ -15,48 +15,18 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-  <meta name="description" content="https:&#x2F;&#x2F;github.com&#x2F;VSCodeVim&#x2F;Vim#mac快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。 vim-easymotion 设置”vim.easymotion”: true 开启这个模式。&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt; t&#x2F;T">
+  <meta name="description" content="https:&#x2F;&#x2F;github.com&#x2F;VSCodeVim&#x2F;Vim#mac 快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。  vim-easymotion  设置”vim.easymotion”: true 开启这个模式。&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt; t">
 <meta name="keywords" content="vim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vsCodeVim插件">
 <meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2019&#x2F;10&#x2F;25&#x2F;vim&#x2F;index.html">
 <meta property="og:site_name" content="Coco is Programmer">
-<meta property="og:description" content="https:&#x2F;&#x2F;github.com&#x2F;VSCodeVim&#x2F;Vim#mac快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。 vim-easymotion 设置”vim.easymotion”: true 开启这个模式。&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt; t&#x2F;T">
+<meta property="og:description" content="https:&#x2F;&#x2F;github.com&#x2F;VSCodeVim&#x2F;Vim#mac 快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。  vim-easymotion  设置”vim.easymotion”: true 开启这个模式。&amp;lt;leader&amp;gt;&amp;lt;leader&amp;gt; t">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-25T07:17:04.776Z">
 <meta name="twitter:card" content="summary">
@@ -68,17 +38,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true
   };
 </script>
 
   <title>vsCodeVim插件 | Coco is Programmer</title>
   
-
-
 
 
 
@@ -117,6 +83,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -128,11 +102,8 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
   </div>
 </div>
@@ -218,21 +189,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
+                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
+                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index">
-                    <span itemprop="name">vsCode</span>
-                  </a>
+                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
                 </span>
             </span>
 
@@ -247,16 +212,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p><p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p><ol>
+        <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
+<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
+<ol>
 <li>vim-easymotion</li>
-</ol><p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</char></p><a id="more"></a>
-
-
-
+</ol>
+<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
 <ol start="2">
 <li>vim-sneak</li>
 </ol>
-<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</char></char></char></char></p>
+<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
 <p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
 <p>3.vim-surround   </p>
 <p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
@@ -322,21 +287,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" rel="next" title="win10Linux子系统">
-                  <i class="fa fa-chevron-left"></i> win10Linux子系统
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="prev" title="umi适配华为自带浏览器和QQ浏览器">
-                  umi适配华为自带浏览器和QQ浏览器 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/25/codewar-Scramblies/" rel="prev" title="codewar-Scramblies">
+      <i class="fa fa-chevron-left"></i> codewar-Scramblies
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="next" title="umi适配华为自带浏览器和QQ浏览器">
+      umi适配华为自带浏览器和QQ浏览器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -350,6 +312,28 @@
           </div>
           
     <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -380,8 +364,6 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Jing"
-    src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Jing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -409,13 +391,13 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/jingkeke" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:zhengyi.jing@163.com" title="E-Mail &amp;rarr; mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/jingzhengyi" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
       </span>
   </div>
 
@@ -446,7 +428,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jing</span>
 </div>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -458,11 +440,6 @@
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
@@ -495,11 +472,6 @@
 
 
 
-
-
-
-  
-
   
 
   
@@ -507,19 +479,21 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: '3fd3324f8518ce5ba445',
+      clientID    : '3fd3324f8518ce5ba445',
       clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
-      repo: 'jingkeke.github.io',
-      owner: 'jingkeke',
-      admin: ['jingkeke'],
-      id: 'f6fd424b6521e02b3e0a730267a1a225',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : 'f6fd424b6521e02b3e0a730267a1a225',
         language: 'zh-CN',
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
 </script>
 
 </body>
