@@ -4,27 +4,27 @@
   
     
     <entry>
-      <title>阿里云ECS免密码登陆</title>
-      <link href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
-      <url>/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</url>
+      <title>vsCodeVim插件</title>
+      <link href="/2021/01/22/vim/"/>
+      <url>/2021/01/22/vim/</url>
       
-        <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p><p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p><ol><li>vim-easymotion</li></ol><p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p><ol start="2"><li>vim-sneak</li></ol><p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p><p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p><p>3.vim-surround   </p><p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p><table><thead><tr><th>Setting</th><th>Description</th><th>Type</th><th>Default Value</th></tr></thead><tbody><tr><td>vim.surround</td><td>Enable/disable vim-surround</td><td>Boolean</td><td>true</td></tr></tbody></table><p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p><table><thead><tr><th>Surround Command</th><th>Description</th></tr></thead><tbody><tr><td><code>d s &lt;existing char&gt;</code></td><td>Delete existing surround</td></tr><tr><td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td><td>Change surround existing to desired</td></tr><tr><td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td><td>Surround something with something using motion (as in “you surround”)</td></tr><tr><td><code>S &lt;desired char&gt;</code></td><td>Surround when in visual modes (surrounds full selection)</td></tr></tbody></table><p>Some examples:</p><ul><li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li><li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li><li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li></ul><h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> Mac </category>
+          <category> vim </category>
           
-          <category> ECS </category>
+          <category> tools </category>
           
-          <category> SSH </category>
+          <category> vsCode </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SSH </tag>
+            <tag> vim </tag>
             
         </tags>
       
@@ -62,27 +62,54 @@
     
     
     <entry>
-      <title>vsCodeVim插件</title>
-      <link href="/2021/01/22/vim/"/>
-      <url>/2021/01/22/vim/</url>
+      <title>阿里云ECS免密码登陆</title>
+      <link href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
+      <url>/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p><p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p><ol><li>vim-easymotion</li></ol><p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p><ol start="2"><li>vim-sneak</li></ol><p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p><p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p><p>3.vim-surround   </p><p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p><table><thead><tr><th>Setting</th><th>Description</th><th>Type</th><th>Default Value</th></tr></thead><tbody><tr><td>vim.surround</td><td>Enable/disable vim-surround</td><td>Boolean</td><td>true</td></tr></tbody></table><p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p><table><thead><tr><th>Surround Command</th><th>Description</th></tr></thead><tbody><tr><td><code>d s &lt;existing char&gt;</code></td><td>Delete existing surround</td></tr><tr><td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td><td>Change surround existing to desired</td></tr><tr><td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td><td>Surround something with something using motion (as in “you surround”)</td></tr><tr><td><code>S &lt;desired char&gt;</code></td><td>Surround when in visual modes (surrounds full selection)</td></tr></tbody></table><p>Some examples:</p><ul><li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li><li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li><li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li></ul><h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> vim </category>
+          <category> Mac </category>
           
-          <category> tools </category>
+          <category> ECS </category>
           
-          <category> vsCode </category>
+          <category> SSH </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> vim </tag>
+            <tag> SSH </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>umi适配华为自带浏览器和QQ浏览器</title>
+      <link href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+      <url>/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> umi </category>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> h5 </tag>
             
         </tags>
       
@@ -168,50 +195,27 @@
     
     
     <entry>
-      <title>umi适配华为自带浏览器和QQ浏览器</title>
-      <link href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-      <url>/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      <title>如何结合Django,React搭建前后台框架</title>
+      <link href="/2021/01/22/djangoreact/"/>
+      <url>/2021/01/22/djangoreact/</url>
       
-        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
       
       
       <categories>
           
-          <category> umi </category>
+          <category> React </category>
           
-          <category> android </category>
+          <category> django </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> h5 </tag>
+            <tag> Django </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Tampermonkey</title>
-      <link href="/2021/01/22/Tampermonkey/"/>
-      <url>/2021/01/22/Tampermonkey/</url>
-      
-        <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> mac </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> plugin </tag>
+            <tag> React </tag>
             
         </tags>
       
@@ -247,56 +251,23 @@
     
     
     <entry>
-      <title>codewar-Scramblies</title>
-      <link href="/2021/01/22/codewar-Scramblies/"/>
-      <url>/2021/01/22/codewar-Scramblies/</url>
+      <title>Tampermonkey</title>
+      <link href="/2021/01/22/Tampermonkey/"/>
+      <url>/2021/01/22/Tampermonkey/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
       
       
       <categories>
           
-          <category> python </category>
-          
-          <category> codewar </category>
+          <category> mac </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> python </tag>
-            
-            <tag> 刷题 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>如何结合Django,React搭建前后台框架</title>
-      <link href="/2021/01/22/djangoreact/"/>
-      <url>/2021/01/22/djangoreact/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> React </category>
-          
-          <category> django </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Django </tag>
-            
-            <tag> React </tag>
+            <tag> plugin </tag>
             
         </tags>
       
@@ -332,23 +303,29 @@
     
     
     <entry>
-      <title>计算机教育中缺失的一课</title>
-      <link href="/2021/01/22/mit-missing-semater/"/>
-      <url>/2021/01/22/mit-missing-semater/</url>
+      <title>codewar-Scramblies</title>
+      <link href="/2021/01/22/codewar-Scramblies/"/>
+      <url>/2021/01/22/codewar-Scramblies/</url>
       
-        <content type="html"><![CDATA[<h3 id="MIT-课程"><a href="#MIT-课程" class="headerlink" title="MIT 课程"></a>MIT 课程</h3><p>最近看的一个 MIT 学生给学生开的课 <a href="%https://missing-semester-cn.github.io/%">missing semester</a> ,有中文翻译,感觉开发了好几年,还是能学到很多东西,其中 vim 我花了半天时间去按照他的配置,感觉终于能够可以替代 vscode 真正用用了.. 有对应的课程录屏.<br>主要讲了: - Shell 工具和脚本 - 编辑器 (Vim) - 数据整理 - 命令行环境 - 版本控制(Git) - 调试及性能分析 - 元编程 - 安全和密码学 - 大杂烩 - 提问&amp;回答</p><h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>这块我花费了最多时间 ,课程里提供的几份配置里,我选的 joe 的 dotfile 里的配置,他的 dotfile 有好多东西,然后是通 stow 做软连接连接到他的配置里的.反正一开始有点蒙.想全盘拷贝他的时候,出了好些问题…..然后仔细看了看才搞好.不过最终效果还是挺满意的.</p><h5 id="nvim"><a href="#nvim" class="headerlink" title="nvim"></a>nvim</h5><p>joe 其实是用的 nvim ,感觉这个挺牛逼,效果还不错,然后作者主要是配置了 python 相关的,如 lint, 然后用的 Plug 作为插件管理,其实 vim8 可以完全抛弃插(~/.vim/pack/vendor/start/) ,但是 nvim 其实是重新实现了一遍 vim .有几个地方不兼容. 然后.vimrc 里面有自定义的快捷键.</p><p>几个好用的插件:</p><ul><li>coc.vim 自动补全,代码高亮,还有些导航之类的功能</li><li>ale.vim 导航</li><li>fzf.vim 模糊查询</li></ul><h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><p>有几个点 感觉以前不知道 ,– -</p><ul><li>.aliases 有些 aliase 还挺好玩的感觉,比如 mac 里的 ls 之类的其实是 BSD 版本,然后 aliase 里有个如何替换,这样换平台就不会不一样了.</li></ul><h4 id="mac-工具"><a href="#mac-工具" class="headerlink" title="mac 工具"></a>mac 工具</h4><ul><li>hammperspoon 可以做写自动化的事情,通过写 lua 小脚本</li><li>yabai 平铺式的窗口管理,感觉好几个屏幕,或者大屏的挺好用的</li></ul><h4 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h4><ul><li>ocr 这个 ocr hammperspoon 里配置一下就可以截屏然后拷贝文字,不过大部分时候对着视频里文字出错挺高,不过还是有点用</li></ul><h4 id="git"><a href="#git" class="headerlink" title="git"></a>git</h4><p>这个先从 git 数据模型讲,感觉还是学到好些.</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
       
       
       <categories>
           
-          <category> vim </category>
+          <category> python </category>
           
-          <category> shell </category>
-          
-          <category> git </category>
+          <category> codewar </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 刷题 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -438,31 +415,6 @@
     
     
     <entry>
-      <title>fabric</title>
-      <link href="/2019/06/07/fabric/"/>
-      <url>/2019/06/07/fabric/</url>
-      
-        <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fabric3</span><br></pre></td></tr></table></figure><p>写在了pythonlearn里</p><blockquote><p>fabic 这个包主要是用在服务器交互里面,比如发布项目到git后,本机运行一个脚本,会连接服务器执行一堆下载,编译的事情</p></blockquote><h3 id="写了一个方便写模板的fabric"><a href="#写了一个方便写模板的fabric" class="headerlink" title="写了一个方便写模板的fabric"></a>写了一个方便写模板的fabric</h3><ul><li>场景<br>  敲一个 fab new:test  生成一个test.md 的文件 ,并把hexo模板写入进去,模板把文件名”test”<br>写入到模板里面.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># will generate a test.md  file</span><br><span class="line">fab new:test</span><br></pre></td></tr></table></figure><ul><li>config file<br>fabfile.py</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">自动化添加文件头</span></span><br><span class="line"><span class="string">参考  https://www.solarck.com/using-netlify-auto-deployed-pelican.html</span></span><br><span class="line"><span class="string">- 新建</span></span><br><span class="line"><span class="string">fab new:test,tag</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> fabric.contrib.console <span class="keyword">import</span> confirm</span><br><span class="line"><span class="keyword">from</span> fabric.utils <span class="keyword">import</span> abort</span><br><span class="line"><span class="keyword">from</span> fabric.colors <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">env.hosts = [<span class="string">''</span>]</span><br><span class="line">env.port = <span class="number">22</span></span><br><span class="line">env.user = <span class="string">''</span></span><br><span class="line">env.password = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local path configuration (can be absolute or relative to fabfile)</span></span><br><span class="line">env.deploy_path = <span class="string">'./'</span></span><br><span class="line">env.content_path = <span class="string">'./'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">META = <span class="string">"""---</span></span><br><span class="line"><span class="string">title: &#123;:20&#125;</span></span><br><span class="line"><span class="string">Date: &#123;:%Y-%m-%d %H:%M&#125;</span></span><br><span class="line"><span class="string">categories: # 这里写的分类会自动汇集到 categories 页面上，分类可以多级</span></span><br><span class="line"><span class="string">- mac</span></span><br><span class="line"><span class="string">tags:</span></span><br><span class="line"><span class="string">- &#123;:10&#125;</span></span><br><span class="line"><span class="string">Authors: Jingzy</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(title=<span class="string">'new'</span>,tag=<span class="string">''</span>)</span>:</span></span><br><span class="line">    os.chdir(env.content_path)</span><br><span class="line">    file_name=title+<span class="string">'.md'</span></span><br><span class="line">    <span class="keyword">with</span> open(file_name, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(META.format(title,datetime.now(),tag))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preview</span><span class="params">()</span>:</span></span><br><span class="line">    local(<span class="string">'pelican -d -s pelicanconf.py'</span>)</span><br><span class="line">    os.chdir(env.deploy_path)</span><br><span class="line">    local(<span class="string">'python -m http.server 8000 -b 127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">github</span><span class="params">(comMsg =<span class="string">''</span> )</span>:</span></span><br><span class="line">    local(<span class="string">'git add --all'</span>)</span><br><span class="line">    local(<span class="string">'git commit -m "&#123;&#125;  update at &#123;:%Y-%m-%d %H:%M&#125;"'</span>.format(comMsg,datetime.now()))</span><br><span class="line">    local(<span class="string">'git push origin master'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  fab  hexo_deploy</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_deploy</span><span class="params">()</span>:</span></span><br><span class="line">run(<span class="string">'jg posthexo'</span>)</span><br><span class="line"><span class="comment"># run("git pull origin master")</span></span><br><span class="line">result =run(<span class="string">"pwd"</span>)</span><br><span class="line"><span class="keyword">with</span> cd(<span class="string">'/home/_posts'</span>):</span><br><span class="line">run(<span class="string">'pwd'</span>)  <span class="comment"># /tmp</span></span><br><span class="line">run(<span class="string">'git pull origin master '</span>)  <span class="comment"># /tmp</span></span><br><span class="line"><span class="keyword">with</span> cd(<span class="string">'/home/hexo'</span>):</span><br><span class="line">run(<span class="string">'pwd'</span>)</span><br><span class="line">run(<span class="string">'hexo g'</span>)</span><br><span class="line">run(<span class="string">'pwd'</span>)  <span class="comment"># /root</span></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> mac </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>npm发布自己的ramda工具包</title>
       <link href="/2019/05/07/npm_publish/"/>
       <url>/2019/05/07/npm_publish/</url>
@@ -521,7 +473,7 @@
       <link href="/2017/10/07/hexo/"/>
       <url>/2017/10/07/hexo/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.jingzy.top:3001/" target="_blank" rel="noopener">coco的hexo博客</a>:这个是我的个人博客，自己有个服务器，就放在了服务器上一份。下面是我参考的文章，如果踩过坑，说明了一下。</p><a id="more"></a><h3 id="next主题"><a href="#next主题" class="headerlink" title="next主题"></a>next主题</h3><ul><li><del><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next主题官网</a></del><ul><li>2019年看现在开始用<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next迁移的新库</a></li></ul></li><li><a href="https://123sunxiaolin.github.io/2016/08/27/%E5%BE%92%E6%89%8B%E6%95%99%E4%BD%A0%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考这篇文章搭建的next 主题</a></li><li><a href="https://gitalk.github.io" target="_blank" rel="noopener">参考这篇文章为Next主题添加Gitalk</a><ul><li><a href="https://www.wenjunjiang.win/2017/07/02/gitment%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%85%A5hexo/" target="_blank" rel="noopener">gitment评论</a>,这个主要是觉得创意好,借用githhub的评论;用的是这个<a href="https://github.com/imsun/gitment/issues/170#issuecomment-450138213" target="_blank" rel="noopener">链接</a>解决现在的bug ,object ProgressEvent错误 感觉这个有点坑,也明白<strong>免费的东东是最贵的</strong>道理,人家说不维护就不维护,然后自己要花好长时间去查资料,一个劲怀疑人生一边浪费生命,所以说人生苦短,我用python…O(∩_∩)O哈哈哈~.<ul><li>报错弹窗[object ProgressEvent],基本就是有个请求无法访问了,可以参考上面地址好心人提供的gitment.js 替换成那个.我的是个用的next主题,所以需要修改./themes/next/layout/_third-party/comments/gitment.swig 这个模板文件里的js.</li></ul></li></ul></li><li><a href="http://www.jianshu.com/p/78c218f9d1e7" target="_blank" rel="noopener">参考这篇文章设置首页只显示索引，显得紧凑美观</a><ul><li>显示效果：<br><img src="http://upload-images.jianshu.io/upload_images/1178954-837f49ef756944e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li></ul></li></ul><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul><li><p>摘要<br>建议使用 &lt; !– more –&gt;（即第一种方式），除了可以精确控制需要显示的摘录内容以外， 这种方式也可以让 Hexo 中的插件更好的识别。<br>自动形成摘要，在主题配置文件中添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure></li><li><p>创建 “关于我” 页面<br>新建一个 about 页面：<br><code>hexo new page &quot;about&quot;</code><br>菜单显示 about 链接，在主题的 _configy.yml 设置中将 menu 中 about 前面的注释去掉即可。</p><p>menu:<br>  home: /<br>  archives: /archives<br>  tags: /tags<br>  about: /about</p></li><li><p><a href="https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2" target="_blank" rel="noopener">创建分类页面</a></p></li><li><p>一键生成md头格式<br>首先在/scaffolds/post.md文件中添加：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">copyright: true</span><br><span class="line">permalink: 01</span><br><span class="line">top: 0</span><br><span class="line">---</span><br></pre></td></tr></table></figure><p>然后使用 hexo new就可以一键生成新文章的头格式了，不用手动去搬运或者书写。相当方便。</p></li><li><p>设定置顶/顺序<br><code>vim node_modules/hexo-generator-index/lib/generator.js</code> 改成下面</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;;</span><br><span class="line">var pagination &#x3D; require(&#39;hexo-pagination&#39;);</span><br><span class="line">module.exports &#x3D; function(locals)&#123;</span><br><span class="line">  var config &#x3D; this.config;</span><br><span class="line">  var posts &#x3D; locals.posts;</span><br><span class="line">    posts.data &#x3D; posts.data.sort(function(a, b) &#123;</span><br><span class="line">        if(a.top &amp;&amp; b.top) &#123; &#x2F;&#x2F; 两篇文章top都有定义</span><br><span class="line">            if(a.top &#x3D;&#x3D; b.top) return b.date - a.date; &#x2F;&#x2F; 若top值一样则按照文章日期降序排</span><br><span class="line">            else return b.top - a.top; &#x2F;&#x2F; 否则按照top值降序排</span><br><span class="line">        &#125;</span><br><span class="line">        else if(a.top &amp;&amp; !b.top) &#123; &#x2F;&#x2F; 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(!a.top &amp;&amp; b.top) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        else return b.date - a.date; &#x2F;&#x2F; 都没定义按照文章日期降序排</span><br><span class="line">    &#125;);</span><br><span class="line">  var paginationDir &#x3D; config.pagination_dir || &#39;page&#39;;</span><br><span class="line">  return pagination(&#39;&#39;, posts, &#123;</span><br><span class="line">    perPage: config.index_generator.per_page,</span><br><span class="line">    layout: [&#39;index&#39;, &#39;archive&#39;],</span><br><span class="line">    format: paginationDir + &#39;&#x2F;%d&#x2F;&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      __index: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>在文章中添加 top 值，数值越大文章越靠前（默认是0，按时间排序），如</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 解决Charles乱码问题</span><br><span class="line">date: 2017-05-22 22:45:48</span><br><span class="line">tags: 技巧</span><br><span class="line">categories: 技巧</span><br><span class="line">copyright: true</span><br><span class="line">top: 100</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.jingzy.top:3001/" target="_blank" rel="noopener">coco的hexo博客</a>:这个是我的个人博客，自己有个服务器，就放在了服务器上一份。下面是我参考的文章，如果踩过坑，说明了一下。</p><a id="more"></a><h3 id="next主题"><a href="#next主题" class="headerlink" title="next主题"></a>next主题</h3><ul><li>~~<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next主题官网</a>~~<ul><li>2019年看现在开始用<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next迁移的新库</a></li></ul></li><li><a href="https://123sunxiaolin.github.io/2016/08/27/%E5%BE%92%E6%89%8B%E6%95%99%E4%BD%A0%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考这篇文章搭建的next 主题</a></li><li><a href="https://gitalk.github.io" target="_blank" rel="noopener">参考这篇文章为Next主题添加Gitalk</a><ul><li><a href="%3Chttps://www.wenjunjiang.win/2017/07/02/gitment%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%85%A5hexo/%3E">gitment评论</a>,这个主要是觉得创意好,借用githhub的评论;用的是这个<a href="%3Chttps://github.com/imsun/gitment/issues/170#issuecomment-450138213%3E">链接</a>解决现在的bug ,object ProgressEvent错误 感觉这个有点坑,也明白<strong>免费的东东是最贵的</strong>道理,人家说不维护就不维护,然后自己要花好长时间去查资料,一个劲怀疑人生一边浪费生命,所以说人生苦短,我用python…O(∩_∩)O哈哈哈~.<ul><li>报错弹窗[object ProgressEvent],基本就是有个请求无法访问了,可以参考上面地址好心人提供的gitment.js 替换成那个.我的是个用的next主题,所以需要修改./themes/next/layout/_third-party/comments/gitment.swig 这个模板文件里的js.</li></ul></li></ul></li><li><a href="http://www.jianshu.com/p/78c218f9d1e7" target="_blank" rel="noopener">参考这篇文章设置首页只显示索引，显得紧凑美观</a><ul><li>显示效果：<br><img src="http://upload-images.jianshu.io/upload_images/1178954-837f49ef756944e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste\_Image.png"></li></ul></li></ul><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul><li><p>摘要<br>建议使用 &lt; !– more –&gt;（即第一种方式），除了可以精确控制需要显示的摘录内容以外， 这种方式也可以让 Hexo 中的插件更好的识别。<br>自动形成摘要，在主题配置文件中添加<br>  auto_excerpt:</p><pre><code>enable: truelength: 150</code></pre></li><li><p>创建 “关于我” 页面<br>新建一个 about 页面：<br><code>hexo new page &quot;about&quot;</code><br>菜单显示 about 链接，在主题的 _configy.yml 设置中将 menu 中 about 前面的注释去掉即可。</p><p>menu:<br>  home: /<br>  archives: /archives<br>  tags: /tags<br>  about: /about</p></li><li><p><a href="https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2" target="_blank" rel="noopener">创建分类页面</a></p></li><li><p>一键生成md头格式<br>首先在/scaffolds/post.md文件中添加：</p><pre><code>---title: {{ title }}date: {{ date }}tags:categories:copyright: truepermalink: 01top: 0---</code></pre><p>然后使用 hexo new就可以一键生成新文章的头格式了，不用手动去搬运或者书写。相当方便。</p></li><li><p>设定置顶/顺序<br><code>vim node_modules/hexo-generator-index/lib/generator.js</code> 改成下面</p><pre><code>&apos;use strict&apos;;var pagination = require(&apos;hexo-pagination&apos;);module.exports = function(locals){  var config = this.config;  var posts = locals.posts;    posts.data = posts.data.sort(function(a, b) {        if(a.top &amp;&amp; b.top) { // 两篇文章top都有定义            if(a.top == b.top) return b.date - a.date; // 若top值一样则按照文章日期降序排            else return b.top - a.top; // 否则按照top值降序排        }        else if(a.top &amp;&amp; !b.top) { // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）            return -1;        }        else if(!a.top &amp;&amp; b.top) {            return 1;        }        else return b.date - a.date; // 都没定义按照文章日期降序排    });  var paginationDir = config.pagination_dir || &apos;page&apos;;  return pagination(&apos;&apos;, posts, {    perPage: config.index_generator.per_page,    layout: [&apos;index&apos;, &apos;archive&apos;],    format: paginationDir + &apos;/%d/&apos;,    data: {      __index: true    }  });};</code></pre><p>在文章中添加 top 值，数值越大文章越靠前（默认是0，按时间排序），如</p><pre><code>---title: 解决Charles乱码问题date: 2017-05-22 22:45:48tags: 技巧categories: 技巧copyright: truetop: 100---</code></pre></li></ul>]]></content>
       
       
       <categories>
@@ -530,6 +482,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
       
     </entry>
     
