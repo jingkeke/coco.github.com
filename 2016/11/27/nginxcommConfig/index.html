@@ -24,15 +24,15 @@
 <meta name="keywords" content="linux,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7：nginx的常用配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2016&#x2F;11&#x2F;27&#x2F;nginxcommConfig&#x2F;index.html">
-<meta property="og:site_name" content="Coco is Programmer">
+<meta property="og:url" content="http://jingkeke.github.io/2016/11/27/nginxcommConfig/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
 <meta property="og:description" content="场景一：服务器放一些视频，可以查看视频列表，你只希望有权限的人可以看。 开启Nginx的目录文件列表功能效果截图：  nginx实现访问网站或目录密码认证保护 效果截图：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1178954-adb7c3208f5371b8.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1178954-d7f911f2b6fcf555.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1178954-adb7c3208f5371b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1178954-d7f911f2b6fcf555.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2019-12-07T04:36:42.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1178954-adb7c3208f5371b8.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1178954-adb7c3208f5371b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 <link rel="canonical" href="http://jingkeke.github.io/2016/11/27/nginxcommConfig/">
 
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>centos7：nginx的常用配置 | Coco is Programmer</title>
+  <title>centos7：nginx的常用配置 | 个人代码知识记录</title>
   
 
 
@@ -77,7 +77,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Coco is Programmer" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -99,7 +99,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Coco is Programmer</span>
+        <span class="site-title">个人代码知识记录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -170,7 +170,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coco is Programmer">
+      <meta itemprop="name" content="个人代码知识记录">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -224,7 +224,7 @@
 <li><p>配置</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1，生成密码文件：</span><br><span class="line"> sudo htpasswd  -c -d /etc/nginx/pass_file  guest</span><br><span class="line">2，修改 /etc/nginx/conf.d/default.conf：</span><br><span class="line">     ## 视频地址加权限  </span><br><span class="line">      location ~ /video &#123;</span><br><span class="line">        auth_basic &quot;Restricted&quot;;</span><br><span class="line">        auth_basic_user_file /etc/nginx/pass_filecoco;  ##请使用绝对路径</span><br><span class="line">        root   /usr/share/nginx/html;   ##host 地址，不然认证通过之后，找不到对应的文件</span><br><span class="line">           </span><br><span class="line">           autoindex on;##自动显示目录</span><br><span class="line">           autoindex_exact_size off;##人性化方式显示文件大小否则以byte显示</span><br><span class="line">           autoindex_localtime on;##按服务器时间显示，否则以gmt时间显示</span><br><span class="line">           &#125; </span><br><span class="line">3， 验证配置是否正确</span><br><span class="line"> sudo  /usr/sbin/nginx -t -c /etc/nginx/nginx.conf</span><br><span class="line">4， 重启nginx</span><br><span class="line">sudo systemctl  restart nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1，生成密码文件：</span><br><span class="line"> sudo htpasswd  -c -d &#x2F;etc&#x2F;nginx&#x2F;pass_file  guest</span><br><span class="line">2，修改 &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf：</span><br><span class="line">     ## 视频地址加权限  </span><br><span class="line">      location ~ &#x2F;video &#123;</span><br><span class="line">        auth_basic &quot;Restricted&quot;;</span><br><span class="line">        auth_basic_user_file &#x2F;etc&#x2F;nginx&#x2F;pass_filecoco;  ##请使用绝对路径</span><br><span class="line">        root   &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;   ##host 地址，不然认证通过之后，找不到对应的文件</span><br><span class="line">           </span><br><span class="line">           autoindex on;##自动显示目录</span><br><span class="line">           autoindex_exact_size off;##人性化方式显示文件大小否则以byte显示</span><br><span class="line">           autoindex_localtime on;##按服务器时间显示，否则以gmt时间显示</span><br><span class="line">           &#125; </span><br><span class="line">3， 验证配置是否正确</span><br><span class="line"> sudo  &#x2F;usr&#x2F;sbin&#x2F;nginx -t -c &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">4， 重启nginx</span><br><span class="line">sudo systemctl  restart nginx</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="http://www.cnblogs.com/siqi/archive/2012/10/07/2713732.html" target="_blank" rel="noopener">开启Nginx的目录文件列表功能</a></li>
@@ -330,13 +330,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -374,13 +374,13 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
   </div>
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>

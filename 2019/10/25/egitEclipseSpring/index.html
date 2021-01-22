@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="搭建git 服务器 不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考搭建Git服务器123456789 382  01&#x2F;12&#x2F;16 16:48:52 adduser git384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;388  01&#x2F;12&#x2F;16 16:51">
+  <meta name="description" content="搭建git 服务器 不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考搭建Git服务器123456789 382  01&amp;#x2F;12&amp;#x2F;16 16:48:52 adduser git384  01&amp;#x2F;12&amp;#x2F;16 16:50:52 cd &amp;#x2F;hom">
 <meta name="keywords" content="git,eclipse,spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="eclipse 使用 egit 版本控制 spring项目">
-<meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2019&#x2F;10&#x2F;25&#x2F;egitEclipseSpring&#x2F;index.html">
-<meta property="og:site_name" content="Coco is Programmer">
-<meta property="og:description" content="搭建git 服务器 不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考搭建Git服务器123456789 382  01&#x2F;12&#x2F;16 16:48:52 adduser git384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;388  01&#x2F;12&#x2F;16 16:51">
+<meta property="og:url" content="http://jingkeke.github.io/2019/10/25/egitEclipseSpring/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
+<meta property="og:description" content="搭建git 服务器 不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考搭建Git服务器123456789 382  01&amp;#x2F;12&amp;#x2F;16 16:48:52 adduser git384  01&amp;#x2F;12&amp;#x2F;16 16:50:52 cd &amp;#x2F;hom">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1178954-edcf9ff8dc35e5df.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2019-10-25T07:17:04.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;1178954-edcf9ff8dc35e5df.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 <link rel="canonical" href="http://jingkeke.github.io/2019/10/25/egitEclipseSpring/">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>eclipse 使用 egit 版本控制 spring项目 | Coco is Programmer</title>
+  <title>eclipse 使用 egit 版本控制 spring项目 | 个人代码知识记录</title>
   
 
 
@@ -76,7 +76,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Coco is Programmer" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -98,7 +98,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Coco is Programmer</span>
+        <span class="site-title">个人代码知识记录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -169,7 +169,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coco is Programmer">
+      <meta itemprop="name" content="个人代码知识记录">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -212,14 +212,14 @@
       
         <ol>
 <li>搭建git 服务器<ul>
-<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01/12/16 16:48:52 adduser git</span><br><span class="line">384  01/12/16 16:50:52 cd /home/git/</span><br><span class="line">388  01/12/16 16:51:05 mkdir wolife</span><br><span class="line">389  01/12/16 16:51:06 cd wolife/</span><br><span class="line">394  01/12/16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01/12/16 16:52:01 chown -R git:git wolife.git/</span><br><span class="line">397  01/12/16 16:52:07 vim /etc/passwd  //这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01/12/16 16:53:40 su  - git  //设置一下 ssh-keygen 在/home/git/.ssh/ 下  vim authorized_keys</span><br><span class="line">406  01/12/16 17:10:22 cd /home/git/wolife</span><br></pre></td></tr></table></figure></li>
+<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01&#x2F;12&#x2F;16 16:48:52 adduser git</span><br><span class="line">384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;</span><br><span class="line">388  01&#x2F;12&#x2F;16 16:51:05 mkdir wolife</span><br><span class="line">389  01&#x2F;12&#x2F;16 16:51:06 cd wolife&#x2F;</span><br><span class="line">394  01&#x2F;12&#x2F;16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01&#x2F;12&#x2F;16 16:52:01 chown -R git:git wolife.git&#x2F;</span><br><span class="line">397  01&#x2F;12&#x2F;16 16:52:07 vim &#x2F;etc&#x2F;passwd  &#x2F;&#x2F;这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01&#x2F;12&#x2F;16 16:53:40 su  - git  &#x2F;&#x2F;设置一下 ssh-keygen 在&#x2F;home&#x2F;git&#x2F;.ssh&#x2F; 下  vim authorized_keys</span><br><span class="line">406  01&#x2F;12&#x2F;16 17:10:22 cd &#x2F;home&#x2F;git&#x2F;wolife</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>本机eclipse egit 同步 <ul>
 <li>Team -&gt; share  然后做设置。</li>
 <li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li>
 <li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li>
-<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn/</span><br><span class="line">              work/</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes/</span><br><span class="line">              class/</span><br><span class="line">              bin/</span><br><span class="line"> //.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~/.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile = c:/Users/你的账户文件夹/.gitignore_global</span><br></pre></td></tr></table></figure></li>
+<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn&#x2F;</span><br><span class="line">              work&#x2F;</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes&#x2F;</span><br><span class="line">              class&#x2F;</span><br><span class="line">              bin&#x2F;</span><br><span class="line"> &#x2F;&#x2F;.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~&#x2F;.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile &#x3D; c:&#x2F;Users&#x2F;你的账户文件夹&#x2F;.gitignore_global</span><br></pre></td></tr></table></figure></li>
 <li></li>
 </ul>
 </li>
@@ -248,8 +248,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="prev" title="umi适配华为自带浏览器和QQ浏览器">
-      <i class="fa fa-chevron-left"></i> umi适配华为自带浏览器和QQ浏览器
+    <a href="/2019/10/25/NativeBase_theme/" rel="prev" title="NativeBase 主题配置">
+      <i class="fa fa-chevron-left"></i> NativeBase 主题配置
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/12/06/yourName/" rel="next" title="新海诚电影 你的名字">
@@ -329,13 +329,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -373,13 +373,13 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
   </div>
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>

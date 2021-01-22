@@ -24,8 +24,8 @@
 <meta name="keywords" content="npm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="npm发布自己的ramda工具包">
-<meta property="og:url" content="http:&#x2F;&#x2F;jingkeke.github.io&#x2F;2019&#x2F;05&#x2F;07&#x2F;npm_publish&#x2F;index.html">
-<meta property="og:site_name" content="Coco is Programmer">
+<meta property="og:url" content="http://jingkeke.github.io/2019/05/07/npm_publish/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
 <meta property="og:description" content="npm 发布ps 最近看了个结合Bit.dev复用组件的文章学习函数式编程,用的是ramda函数库,然后之前做项目都是把自己写的ramda的utils复制一份.近期总结时候发现,每个项目用到的函数都不一样,这么来回拷贝还挺麻烦的..就想到把自己的给发布出去,写项目的时候引用一下,就能保证是最新的了.稍微查了一下资料,还挺简单,步骤如下  初始化因为可能要用到ES6,npm init后,需要填入ba">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-05T04:03:27.186Z">
@@ -43,7 +43,7 @@
   };
 </script>
 
-  <title>npm发布自己的ramda工具包 | Coco is Programmer</title>
+  <title>npm发布自己的ramda工具包 | 个人代码知识记录</title>
   
 
 
@@ -74,7 +74,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Coco is Programmer" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -96,7 +96,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Coco is Programmer</span>
+        <span class="site-title">个人代码知识记录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -167,7 +167,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coco is Programmer">
+      <meta itemprop="name" content="个人代码知识记录">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -229,7 +229,7 @@
 <li><p>发布</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure></li>
 <li><p>验证<br>打包组件，只需要运行 npm run build 就可以了。<br>接下来可以通过 npm link 把打包之后的组件引入到 global node_modules 中，然后在验证 demo 中再通过 npm link react-tiny-autosuggest 引入这个组件，并验证是否符合预期。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// At development directory</span><br><span class="line">npm run build</span><br><span class="line">npm link</span><br><span class="line"></span><br><span class="line">cd [test project folder]</span><br><span class="line">npm link react-tiny-autosuggest</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; At development directory</span><br><span class="line">npm run build</span><br><span class="line">npm link</span><br><span class="line"></span><br><span class="line">cd [test project folder]</span><br><span class="line">npm link react-tiny-autosuggest</span><br></pre></td></tr></table></figure>
 <p>接下下 demo 里面就可以直接 import AutoSuggest from ‘react-tiny-autosuggest’ 了。</p>
 </li>
 <li><p>技巧<br>修改代码和readme.md后,执行 <code>npm  version patch</code> 就不用手工改版本号了.</p>
@@ -237,7 +237,7 @@
 </ul>
 <h3 id="我的工具"><a href="#我的工具" class="headerlink" title="我的工具"></a>我的工具</h3><p><a href="https://github.com/jingkeke/ramda_utils" target="_blank" rel="noopener">github地址</a></p>
 <ul>
-<li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &apos;ramda_util/lib&apos;</span><br><span class="line">const result = ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(` $&#123;JSON.stringify(result,null,4)&#125;`)</span><br></pre></td></tr></table></figure>
+<li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &#39;ramda_util&#x2F;lib&#39;</span><br><span class="line">const result &#x3D; ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(&#96; $&#123;JSON.stringify(result,null,4)&#125;&#96;)</span><br></pre></td></tr></table></figure>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3></li>
 <li><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a></li>
 <li><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a></li>
@@ -344,13 +344,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -388,13 +388,13 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
   </div>
 
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>
