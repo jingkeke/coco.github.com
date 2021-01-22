@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jingkeke.github.io/"/>
-  <updated>2021-01-22T02:04:40.489Z</updated>
+  <updated>2021-01-22T02:05:48.755Z</updated>
   <id>http://jingkeke.github.io/</id>
   
   <author>
@@ -17,89 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>计算机教育中缺失的一课</title>
-    <link href="http://jingkeke.github.io/2021/01/22/mit-missing-semater/"/>
-    <id>http://jingkeke.github.io/2021/01/22/mit-missing-semater/</id>
-    <published>2021-01-22T02:04:40.489Z</published>
-    <updated>2021-01-22T02:04:40.489Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="MIT-课程"><a href="#MIT-课程" class="headerlink" title="MIT 课程"></a>MIT 课程</h3><p>最近看的一个 MIT 学生给学生开的课 <a href="%https://missing-semester-cn.github.io/%">missing semester</a> ,有中文翻译,感觉开发了好几年,还是能学到很多东西,其中 vim 我花了半天时间去按照他的配置,感觉终于能够可以替代 vscode 真正用用了.. 有对应的课程录屏.<br>主要讲了: - Shell 工具和脚本 - 编辑器 (Vim) - 数据整理 - 命令行环境 - 版本控制(Git) - 调试及性能分析 - 元编程 - 安全和密码学 - 大杂烩 - 提问&amp;回答</p><h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>这块我花费了最多时间 ,课程里提供的几份配置里,我选的 joe 的 dotfile 里的配置,他的 dotfile 有好多东西,然后是通 stow 做软连接连接到他的配置里的.反正一开始有点蒙.想全盘拷贝他的时候,出了好些问题…..然后仔细看了看才搞好.不过最终效果还是挺满意的.</p><h5 id="nvim"><a href="#nvim" class="headerlink" title="nvim"></a>nvim</h5><p>joe 其实是用的 nvim ,感觉这个挺牛逼,效果还不错,然后作者主要是配置了 python 相关的,如 lint, 然后用的 Plug 作为插件管理,其实 vim8 可以完全抛弃插(~/.vim/pack/vendor/start/) ,但是 nvim 其实是重新实现了一遍 vim .有几个地方不兼容. 然后.vimrc 里面有自定义的快捷键.</p><p>几个好用的插件:</p><ul><li>coc.vim 自动补全,代码高亮,还有些导航之类的功能</li><li>ale.vim 导航</li><li>fzf.vim 模糊查询</li></ul><h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><p>有几个点 感觉以前不知道 ,– -</p><ul><li>.aliases 有些 aliase 还挺好玩的感觉,比如 mac 里的 ls 之类的其实是 BSD 版本,然后 aliase 里有个如何替换,这样换平台就不会不一样了.</li></ul><h4 id="mac-工具"><a href="#mac-工具" class="headerlink" title="mac 工具"></a>mac 工具</h4><ul><li>hammperspoon 可以做写自动化的事情,通过写 lua 小脚本</li><li>yabai 平铺式的窗口管理,感觉好几个屏幕,或者大屏的挺好用的</li></ul><h4 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h4><ul><li>ocr 这个 ocr hammperspoon 里配置一下就可以截屏然后拷贝文字,不过大部分时候对着视频里文字出错挺高,不过还是有点用</li></ul><h4 id="git"><a href="#git" class="headerlink" title="git"></a>git</h4><p>这个先从 git 数据模型讲,感觉还是学到好些.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;MIT-课程&quot;&gt;&lt;a href=&quot;#MIT-课程&quot; class=&quot;headerlink&quot; title=&quot;MIT 课程&quot;&gt;&lt;/a&gt;MIT 课程&lt;/h3&gt;&lt;p&gt;最近看的一个 MIT 学生给学生开的课 &lt;a href=&quot;%https://missing-semester
-      
-    
-    </summary>
-    
-    
-      <category term="vim" scheme="http://jingkeke.github.io/categories/vim/"/>
-    
-      <category term="shell" scheme="http://jingkeke.github.io/categories/vim/shell/"/>
-    
-      <category term="git" scheme="http://jingkeke.github.io/categories/vim/shell/git/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>tailwindcss</title>
-    <link href="http://jingkeke.github.io/2020/03/05/tailwindcss/"/>
-    <id>http://jingkeke.github.io/2020/03/05/tailwindcss/</id>
-    <published>2020-03-05T04:03:27.186Z</published>
-    <updated>2020-03-05T04:03:27.186Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
-      
-    
-    </summary>
-    
-    
-      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vim键位配置</title>
-    <link href="http://jingkeke.github.io/2019/12/14/1/"/>
-    <id>http://jingkeke.github.io/2019/12/14/1/</id>
-    <published>2019-12-14T10:05:49.000Z</published>
-    <updated>2019-12-14T10:55:37.520Z</updated>
-    
-    <content type="html"><![CDATA[<p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p><ul><li><Esc>代表Escape键:</li><li><CR>代表Enter键；</li><li><D>代表Command键。</li><li>Alt键可以使用<M-key>或<A-key>来表示。</li><li><C>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;7501092&#x2F;can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c &#x3D; nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt; 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.&lt;br&gt; 这里主要讲一下折腾了半天才弄明天的键位配置.&lt;br&gt; 
-      
-    
-    </summary>
-    
-    
-      <category term="vim mac" scheme="http://jingkeke.github.io/categories/vim-mac/"/>
-    
-    
-      <category term="vim" scheme="http://jingkeke.github.io/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
     <title>阿里云ECS免密码登陆</title>
-    <link href="http://jingkeke.github.io/2019/12/07/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
-    <id>http://jingkeke.github.io/2019/12/07/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
-    <published>2019-12-07T04:30:41.249Z</published>
-    <updated>2019-12-07T04:30:41.249Z</updated>
+    <link href="http://jingkeke.github.io/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
+    <id>http://jingkeke.github.io/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
+    <published>2021-01-22T02:05:48.755Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
     
     <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -125,189 +47,11 @@
   </entry>
   
   <entry>
-    <title>新海诚电影 你的名字</title>
-    <link href="http://jingkeke.github.io/2019/12/06/yourName/"/>
-    <id>http://jingkeke.github.io/2019/12/06/yourName/</id>
-    <published>2019-12-06T08:04:47.300Z</published>
-    <updated>2019-12-06T08:04:47.293Z</updated>
-    
-    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
-      
-    
-    </summary>
-    
-    
-      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
-    
-      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>eclipse 使用 egit 版本控制 spring项目</title>
-    <link href="http://jingkeke.github.io/2019/10/25/egitEclipseSpring/"/>
-    <id>http://jingkeke.github.io/2019/10/25/egitEclipseSpring/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>搭建git 服务器<ul><li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01&#x2F;12&#x2F;16 16:48:52 adduser git</span><br><span class="line">384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;</span><br><span class="line">388  01&#x2F;12&#x2F;16 16:51:05 mkdir wolife</span><br><span class="line">389  01&#x2F;12&#x2F;16 16:51:06 cd wolife&#x2F;</span><br><span class="line">394  01&#x2F;12&#x2F;16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01&#x2F;12&#x2F;16 16:52:01 chown -R git:git wolife.git&#x2F;</span><br><span class="line">397  01&#x2F;12&#x2F;16 16:52:07 vim &#x2F;etc&#x2F;passwd  &#x2F;&#x2F;这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01&#x2F;12&#x2F;16 16:53:40 su  - git  &#x2F;&#x2F;设置一下 ssh-keygen 在&#x2F;home&#x2F;git&#x2F;.ssh&#x2F; 下  vim authorized_keys</span><br><span class="line">406  01&#x2F;12&#x2F;16 17:10:22 cd &#x2F;home&#x2F;git&#x2F;wolife</span><br></pre></td></tr></table></figure></li></ul></li><li>本机eclipse egit 同步 <ul><li>Team -&gt; share  然后做设置。</li><li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li><li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li><li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn&#x2F;</span><br><span class="line">              work&#x2F;</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes&#x2F;</span><br><span class="line">              class&#x2F;</span><br><span class="line">              bin&#x2F;</span><br><span class="line"> &#x2F;&#x2F;.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~&#x2F;.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile &#x3D; c:&#x2F;Users&#x2F;你的账户文件夹&#x2F;.gitignore_global</span><br></pre></td></tr></table></figure></li><li></li></ul></li><li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术</a></li></ol><p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p><h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;搭建git 服务器&lt;ul&gt;
-&lt;li&gt;不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考&lt;a href=&quot;http://www.liaoxuefeng
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://jingkeke.github.io/categories/git/"/>
-    
-      <category term="版本控制" scheme="http://jingkeke.github.io/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
-    
-    
-      <category term="git" scheme="http://jingkeke.github.io/tags/git/"/>
-    
-      <category term="eclipse" scheme="http://jingkeke.github.io/tags/eclipse/"/>
-    
-      <category term="spring" scheme="http://jingkeke.github.io/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NativeBase 主题配置</title>
-    <link href="http://jingkeke.github.io/2019/10/25/NativeBase_theme/"/>
-    <id>http://jingkeke.github.io/2019/10/25/NativeBase_theme/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://docs.nativebase.io/Components.html#toast-with-duration-headref&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;NativeBase&lt;/a&gt; 个人感觉资料等在开源
-      
-    
-    </summary>
-    
-    
-      <category term="react-native" scheme="http://jingkeke.github.io/categories/react-native/"/>
-    
-      <category term="theme" scheme="http://jingkeke.github.io/categories/react-native/theme/"/>
-    
-    
-      <category term="react-native" scheme="http://jingkeke.github.io/tags/react-native/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>win10Linux子系统</title>
-    <link href="http://jingkeke.github.io/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://jingkeke.github.io/2019/10/25/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天在配置&lt;a href=&quot;https://github.com/zeit/hyper&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hyper&lt;/a&gt;的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版prev
-      
-    
-    </summary>
-    
-    
-      <category term="win10" scheme="http://jingkeke.github.io/categories/win10/"/>
-    
-      <category term="ubuntu" scheme="http://jingkeke.github.io/categories/win10/ubuntu/"/>
-    
-      <category term="tools" scheme="http://jingkeke.github.io/categories/win10/ubuntu/tools/"/>
-    
-    
-      <category term="win10" scheme="http://jingkeke.github.io/tags/win10/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何结合Django,React搭建前后台框架</title>
-    <link href="http://jingkeke.github.io/2019/10/25/djangoreact/"/>
-    <id>http://jingkeke.github.io/2019/10/25/djangoreact/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
-      
-    
-    </summary>
-    
-    
-      <category term="React" scheme="http://jingkeke.github.io/categories/React/"/>
-    
-      <category term="django" scheme="http://jingkeke.github.io/categories/React/django/"/>
-    
-    
-      <category term="Django" scheme="http://jingkeke.github.io/tags/Django/"/>
-    
-      <category term="React" scheme="http://jingkeke.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>umi适配华为自带浏览器和QQ浏览器</title>
-    <link href="http://jingkeke.github.io/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    <id>http://jingkeke.github.io/2019/10/25/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
-      
-    
-    </summary>
-    
-    
-      <category term="umi" scheme="http://jingkeke.github.io/categories/umi/"/>
-    
-      <category term="android" scheme="http://jingkeke.github.io/categories/umi/android/"/>
-    
-    
-      <category term="h5" scheme="http://jingkeke.github.io/tags/h5/"/>
-    
-  </entry>
-  
-  <entry>
     <title>vsCodeVim插件</title>
-    <link href="http://jingkeke.github.io/2019/10/25/vim/"/>
-    <id>http://jingkeke.github.io/2019/10/25/vim/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
+    <link href="http://jingkeke.github.io/2021/01/22/vim/"/>
+    <id>http://jingkeke.github.io/2021/01/22/vim/</id>
+    <published>2021-01-22T02:05:48.755Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p><p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p><ol><li>vim-easymotion</li></ol><p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p><ol start="2"><li>vim-sneak</li></ol><p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p><p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p><p>3.vim-surround   </p><p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p><table><thead><tr><th>Setting</th><th>Description</th><th>Type</th><th>Default Value</th></tr></thead><tbody><tr><td>vim.surround</td><td>Enable/disable vim-surround</td><td>Boolean</td><td>true</td></tr></tbody></table><p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p><table><thead><tr><th>Surround Command</th><th>Description</th></tr></thead><tbody><tr><td><code>d s &lt;existing char&gt;</code></td><td>Delete existing surround</td></tr><tr><td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td><td>Change surround existing to desired</td></tr><tr><td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td><td>Surround something with something using motion (as in “you surround”)</td></tr><tr><td><code>S &lt;desired char&gt;</code></td><td>Surround when in visual modes (surrounds full selection)</td></tr></tbody></table><p>Some examples:</p><ul><li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li><li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li><li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li></ul><h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -334,127 +78,65 @@
   </entry>
   
   <entry>
-    <title>codewar-Scramblies</title>
-    <link href="http://jingkeke.github.io/2019/10/25/codewar-Scramblies/"/>
-    <id>http://jingkeke.github.io/2019/10/25/codewar-Scramblies/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
+    <title>win10Linux子系统</title>
+    <link href="http://jingkeke.github.io/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://jingkeke.github.io/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
+    <published>2021-01-22T02:05:48.755Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Scramblies&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-
+        &lt;p&gt;今天在配置&lt;a href=&quot;https://github.com/zeit/hyper&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hyper&lt;/a&gt;的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版prev
       
     
     </summary>
     
     
-      <category term="python" scheme="http://jingkeke.github.io/categories/python/"/>
+      <category term="win10" scheme="http://jingkeke.github.io/categories/win10/"/>
     
-      <category term="codewar" scheme="http://jingkeke.github.io/categories/python/codewar/"/>
+      <category term="ubuntu" scheme="http://jingkeke.github.io/categories/win10/ubuntu/"/>
+    
+      <category term="tools" scheme="http://jingkeke.github.io/categories/win10/ubuntu/tools/"/>
     
     
-      <category term="python" scheme="http://jingkeke.github.io/tags/python/"/>
-    
-      <category term="刷题" scheme="http://jingkeke.github.io/tags/%E5%88%B7%E9%A2%98/"/>
+      <category term="win10" scheme="http://jingkeke.github.io/tags/win10/"/>
     
   </entry>
   
   <entry>
-    <title>Tampermonkey</title>
-    <link href="http://jingkeke.github.io/2019/10/25/Tampermonkey/"/>
-    <id>http://jingkeke.github.io/2019/10/25/Tampermonkey/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
+    <title>tailwindcss</title>
+    <link href="http://jingkeke.github.io/2021/01/22/tailwindcss/"/>
+    <id>http://jingkeke.github.io/2021/01/22/tailwindcss/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
     
-    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
-&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
-      
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="http://jingkeke.github.io/categories/mac/"/>
-    
-    
-      <category term="plugin" scheme="http://jingkeke.github.io/tags/plugin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redux-sega</title>
-    <link href="http://jingkeke.github.io/2019/10/25/redux-sega/"/>
-    <id>http://jingkeke.github.io/2019/10/25/redux-sega/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
+        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
       
     
     </summary>
     
     
-      <category term="dva" scheme="http://jingkeke.github.io/categories/dva/"/>
+      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
     
-      <category term="generator" scheme="http://jingkeke.github.io/categories/dva/generator/"/>
-    
-    
-      <category term="generator" scheme="http://jingkeke.github.io/tags/generator/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用 socket.io 实现消息实时推送</title>
-    <link href="http://jingkeke.github.io/2019/10/25/socket-io/"/>
-    <id>http://jingkeke.github.io/2019/10/25/socket-io/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot; title=&quot;场景&quot;&gt;&lt;/a&gt;场景&lt;/h2&gt;&lt;p&gt;当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。&lt;/p&gt;
-&lt;h2 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现
-      
-    
-    </summary>
-    
-    
-      <category term="Mac" scheme="http://jingkeke.github.io/categories/Mac/"/>
-    
-      <category term="socket-io" scheme="http://jingkeke.github.io/categories/Mac/socket-io/"/>
-    
-    
-      <category term="通信" scheme="http://jingkeke.github.io/tags/%E9%80%9A%E4%BF%A1/"/>
     
   </entry>
   
   <entry>
     <title>单点登陆方案</title>
-    <link href="http://jingkeke.github.io/2019/10/25/sso/"/>
-    <id>http://jingkeke.github.io/2019/10/25/sso/</id>
-    <published>2019-10-25T07:17:04.776Z</published>
-    <updated>2019-10-25T07:17:04.776Z</updated>
+    <link href="http://jingkeke.github.io/2021/01/22/sso/"/>
+    <id>http://jingkeke.github.io/2021/01/22/sso/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
     
     <content type="html"><![CDATA[<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul><li>CAS<ul><li>多个应用共用一个登陆设置.</li><li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li></ul></li><li>手机端不适合基于session的场景,看了jwt方案.<ul><li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li></ul></li></ul><hr><p><strong>注意以下实现主要是基于python django drf.</strong></p><h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul><li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul><li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li></ul></li></ul><h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul><li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li></ul><h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul><li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li><li>测试<br>官方代码自己集成了swagger测试</li></ul><h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul><li>测试<br>参考官网</li><li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span><span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_tokenurlpatterns = [url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span><span class="string">]</span><span class="string"># utils.py</span><span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span><span class="string">"""</span><span class="string">自定义jwt认证成功返回数据</span><span class="string">"""</span><span class="string">return {</span><span class="string">'</span>token<span class="string">': token,</span><span class="string">'</span>user_id<span class="string">': user.id,</span><span class="string">'</span>username<span class="string">': user.username</span><span class="string">}</span><span class="string"># 修改配置 # JWT</span><span class="string">JWT_AUTH = {</span><span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span><span class="string">}</span></code></pre></li></ul><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul><li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li></ul>]]></content>
     
@@ -485,11 +167,329 @@
   </entry>
   
   <entry>
+    <title>利用 socket.io 实现消息实时推送</title>
+    <link href="http://jingkeke.github.io/2021/01/22/socket-io/"/>
+    <id>http://jingkeke.github.io/2021/01/22/socket-io/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot; title=&quot;场景&quot;&gt;&lt;/a&gt;场景&lt;/h2&gt;&lt;p&gt;当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。&lt;/p&gt;
+&lt;h2 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现
+      
+    
+    </summary>
+    
+    
+      <category term="Mac" scheme="http://jingkeke.github.io/categories/Mac/"/>
+    
+      <category term="socket-io" scheme="http://jingkeke.github.io/categories/Mac/socket-io/"/>
+    
+    
+      <category term="通信" scheme="http://jingkeke.github.io/tags/%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>umi适配华为自带浏览器和QQ浏览器</title>
+    <link href="http://jingkeke.github.io/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    <id>http://jingkeke.github.io/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
+      
+    
+    </summary>
+    
+    
+      <category term="umi" scheme="http://jingkeke.github.io/categories/umi/"/>
+    
+      <category term="android" scheme="http://jingkeke.github.io/categories/umi/android/"/>
+    
+    
+      <category term="h5" scheme="http://jingkeke.github.io/tags/h5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>codewar-Scramblies</title>
+    <link href="http://jingkeke.github.io/2021/01/22/codewar-Scramblies/"/>
+    <id>http://jingkeke.github.io/2021/01/22/codewar-Scramblies/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p><ul><li>要求<blockquote><p>前者是否包含后者的每个字符,</p></blockquote></li><li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li><li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Scramblies&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://jingkeke.github.io/categories/python/"/>
+    
+      <category term="codewar" scheme="http://jingkeke.github.io/categories/python/codewar/"/>
+    
+    
+      <category term="python" scheme="http://jingkeke.github.io/tags/python/"/>
+    
+      <category term="刷题" scheme="http://jingkeke.github.io/tags/%E5%88%B7%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tampermonkey</title>
+    <link href="http://jingkeke.github.io/2021/01/22/Tampermonkey/"/>
+    <id>http://jingkeke.github.io/2021/01/22/Tampermonkey/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
+&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://jingkeke.github.io/categories/mac/"/>
+    
+    
+      <category term="plugin" scheme="http://jingkeke.github.io/tags/plugin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何结合Django,React搭建前后台框架</title>
+    <link href="http://jingkeke.github.io/2021/01/22/djangoreact/"/>
+    <id>http://jingkeke.github.io/2021/01/22/djangoreact/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
+      
+    
+    </summary>
+    
+    
+      <category term="React" scheme="http://jingkeke.github.io/categories/React/"/>
+    
+      <category term="django" scheme="http://jingkeke.github.io/categories/React/django/"/>
+    
+    
+      <category term="Django" scheme="http://jingkeke.github.io/tags/Django/"/>
+    
+      <category term="React" scheme="http://jingkeke.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NativeBase 主题配置</title>
+    <link href="http://jingkeke.github.io/2021/01/22/NativeBase_theme/"/>
+    <id>http://jingkeke.github.io/2021/01/22/NativeBase_theme/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://docs.nativebase.io/Components.html#toast-with-duration-headref&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;NativeBase&lt;/a&gt; 个人感觉资料等在开源
+      
+    
+    </summary>
+    
+    
+      <category term="react-native" scheme="http://jingkeke.github.io/categories/react-native/"/>
+    
+      <category term="theme" scheme="http://jingkeke.github.io/categories/react-native/theme/"/>
+    
+    
+      <category term="react-native" scheme="http://jingkeke.github.io/tags/react-native/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redux-sega</title>
+    <link href="http://jingkeke.github.io/2021/01/22/redux-sega/"/>
+    <id>http://jingkeke.github.io/2021/01/22/redux-sega/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="dva" scheme="http://jingkeke.github.io/categories/dva/"/>
+    
+      <category term="generator" scheme="http://jingkeke.github.io/categories/dva/generator/"/>
+    
+    
+      <category term="generator" scheme="http://jingkeke.github.io/tags/generator/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机教育中缺失的一课</title>
+    <link href="http://jingkeke.github.io/2021/01/22/mit-missing-semater/"/>
+    <id>http://jingkeke.github.io/2021/01/22/mit-missing-semater/</id>
+    <published>2021-01-22T02:04:40.489Z</published>
+    <updated>2021-01-22T02:04:40.489Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="MIT-课程"><a href="#MIT-课程" class="headerlink" title="MIT 课程"></a>MIT 课程</h3><p>最近看的一个 MIT 学生给学生开的课 <a href="%https://missing-semester-cn.github.io/%">missing semester</a> ,有中文翻译,感觉开发了好几年,还是能学到很多东西,其中 vim 我花了半天时间去按照他的配置,感觉终于能够可以替代 vscode 真正用用了.. 有对应的课程录屏.<br>主要讲了: - Shell 工具和脚本 - 编辑器 (Vim) - 数据整理 - 命令行环境 - 版本控制(Git) - 调试及性能分析 - 元编程 - 安全和密码学 - 大杂烩 - 提问&amp;回答</p><h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>这块我花费了最多时间 ,课程里提供的几份配置里,我选的 joe 的 dotfile 里的配置,他的 dotfile 有好多东西,然后是通 stow 做软连接连接到他的配置里的.反正一开始有点蒙.想全盘拷贝他的时候,出了好些问题…..然后仔细看了看才搞好.不过最终效果还是挺满意的.</p><h5 id="nvim"><a href="#nvim" class="headerlink" title="nvim"></a>nvim</h5><p>joe 其实是用的 nvim ,感觉这个挺牛逼,效果还不错,然后作者主要是配置了 python 相关的,如 lint, 然后用的 Plug 作为插件管理,其实 vim8 可以完全抛弃插(~/.vim/pack/vendor/start/) ,但是 nvim 其实是重新实现了一遍 vim .有几个地方不兼容. 然后.vimrc 里面有自定义的快捷键.</p><p>几个好用的插件:</p><ul><li>coc.vim 自动补全,代码高亮,还有些导航之类的功能</li><li>ale.vim 导航</li><li>fzf.vim 模糊查询</li></ul><h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><p>有几个点 感觉以前不知道 ,– -</p><ul><li>.aliases 有些 aliase 还挺好玩的感觉,比如 mac 里的 ls 之类的其实是 BSD 版本,然后 aliase 里有个如何替换,这样换平台就不会不一样了.</li></ul><h4 id="mac-工具"><a href="#mac-工具" class="headerlink" title="mac 工具"></a>mac 工具</h4><ul><li>hammperspoon 可以做写自动化的事情,通过写 lua 小脚本</li><li>yabai 平铺式的窗口管理,感觉好几个屏幕,或者大屏的挺好用的</li></ul><h4 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h4><ul><li>ocr 这个 ocr hammperspoon 里配置一下就可以截屏然后拷贝文字,不过大部分时候对着视频里文字出错挺高,不过还是有点用</li></ul><h4 id="git"><a href="#git" class="headerlink" title="git"></a>git</h4><p>这个先从 git 数据模型讲,感觉还是学到好些.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;MIT-课程&quot;&gt;&lt;a href=&quot;#MIT-课程&quot; class=&quot;headerlink&quot; title=&quot;MIT 课程&quot;&gt;&lt;/a&gt;MIT 课程&lt;/h3&gt;&lt;p&gt;最近看的一个 MIT 学生给学生开的课 &lt;a href=&quot;%https://missing-semester
+      
+    
+    </summary>
+    
+    
+      <category term="vim" scheme="http://jingkeke.github.io/categories/vim/"/>
+    
+      <category term="shell" scheme="http://jingkeke.github.io/categories/vim/shell/"/>
+    
+      <category term="git" scheme="http://jingkeke.github.io/categories/vim/shell/git/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>新海诚电影 你的名字</title>
+    <link href="http://jingkeke.github.io/2020/09/22/yourName/"/>
+    <id>http://jingkeke.github.io/2020/09/22/yourName/</id>
+    <published>2020-09-22T08:30:10.277Z</published>
+    <updated>2019-12-06T08:04:47.293Z</updated>
+    
+    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
+      
+    
+    </summary>
+    
+    
+      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
+    
+      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>eclipse 使用 egit 版本控制 spring项目</title>
+    <link href="http://jingkeke.github.io/2020/09/22/egitEclipseSpring/"/>
+    <id>http://jingkeke.github.io/2020/09/22/egitEclipseSpring/</id>
+    <published>2020-09-22T08:30:10.277Z</published>
+    <updated>2019-10-25T07:17:04.776Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>搭建git 服务器<ul><li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01&#x2F;12&#x2F;16 16:48:52 adduser git</span><br><span class="line">384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;</span><br><span class="line">388  01&#x2F;12&#x2F;16 16:51:05 mkdir wolife</span><br><span class="line">389  01&#x2F;12&#x2F;16 16:51:06 cd wolife&#x2F;</span><br><span class="line">394  01&#x2F;12&#x2F;16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01&#x2F;12&#x2F;16 16:52:01 chown -R git:git wolife.git&#x2F;</span><br><span class="line">397  01&#x2F;12&#x2F;16 16:52:07 vim &#x2F;etc&#x2F;passwd  &#x2F;&#x2F;这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01&#x2F;12&#x2F;16 16:53:40 su  - git  &#x2F;&#x2F;设置一下 ssh-keygen 在&#x2F;home&#x2F;git&#x2F;.ssh&#x2F; 下  vim authorized_keys</span><br><span class="line">406  01&#x2F;12&#x2F;16 17:10:22 cd &#x2F;home&#x2F;git&#x2F;wolife</span><br></pre></td></tr></table></figure></li></ul></li><li>本机eclipse egit 同步 <ul><li>Team -&gt; share  然后做设置。</li><li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li><li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li><li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn&#x2F;</span><br><span class="line">              work&#x2F;</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes&#x2F;</span><br><span class="line">              class&#x2F;</span><br><span class="line">              bin&#x2F;</span><br><span class="line"> &#x2F;&#x2F;.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~&#x2F;.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile &#x3D; c:&#x2F;Users&#x2F;你的账户文件夹&#x2F;.gitignore_global</span><br></pre></td></tr></table></figure></li><li></li></ul></li><li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术</a></li></ol><p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p><h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;搭建git 服务器&lt;ul&gt;
+&lt;li&gt;不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考&lt;a href=&quot;http://www.liaoxuefeng
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://jingkeke.github.io/categories/git/"/>
+    
+      <category term="版本控制" scheme="http://jingkeke.github.io/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    
+    
+      <category term="git" scheme="http://jingkeke.github.io/tags/git/"/>
+    
+      <category term="eclipse" scheme="http://jingkeke.github.io/tags/eclipse/"/>
+    
+      <category term="spring" scheme="http://jingkeke.github.io/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim键位配置</title>
+    <link href="http://jingkeke.github.io/2019/12/14/1/"/>
+    <id>http://jingkeke.github.io/2019/12/14/1/</id>
+    <published>2019-12-14T10:05:49.000Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
+    
+    <content type="html"><![CDATA[<p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p><ul><li><Esc>代表Escape键:</li><li><CR>代表Enter键；</li><li><D>代表Command键。</li><li>Alt键可以使用<M-key>或<A-key>来表示。</li><li><C>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;7501092&#x2F;can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c &#x3D; nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt; 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.&lt;br&gt; 这里主要讲一下折腾了半天才弄明天的键位配置.&lt;br&gt; 
+      
+    
+    </summary>
+    
+    
+      <category term="vim mac" scheme="http://jingkeke.github.io/categories/vim-mac/"/>
+    
+    
+      <category term="vim" scheme="http://jingkeke.github.io/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
     <title>fabric</title>
     <link href="http://jingkeke.github.io/2019/06/07/fabric/"/>
     <id>http://jingkeke.github.io/2019/06/07/fabric/</id>
     <published>2019-06-07T04:32:05.000Z</published>
-    <updated>2019-12-07T04:42:42.846Z</updated>
+    <updated>2021-01-22T02:05:48.753Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fabric3</span><br></pre></td></tr></table></figure><p>写在了pythonlearn里</p><blockquote><p>fabic 这个包主要是用在服务器交互里面,比如发布项目到git后,本机运行一个脚本,会连接服务器执行一堆下载,编译的事情</p></blockquote><h3 id="写了一个方便写模板的fabric"><a href="#写了一个方便写模板的fabric" class="headerlink" title="写了一个方便写模板的fabric"></a>写了一个方便写模板的fabric</h3><ul><li>场景<br>  敲一个 fab new:test  生成一个test.md 的文件 ,并把hexo模板写入进去,模板把文件名”test”<br>写入到模板里面.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># will generate a test.md  file</span><br><span class="line">fab new:test</span><br></pre></td></tr></table></figure><ul><li>config file<br>fabfile.py</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">自动化添加文件头</span></span><br><span class="line"><span class="string">参考  https://www.solarck.com/using-netlify-auto-deployed-pelican.html</span></span><br><span class="line"><span class="string">- 新建</span></span><br><span class="line"><span class="string">fab new:test,tag</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> fabric.contrib.console <span class="keyword">import</span> confirm</span><br><span class="line"><span class="keyword">from</span> fabric.utils <span class="keyword">import</span> abort</span><br><span class="line"><span class="keyword">from</span> fabric.colors <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">env.hosts = [<span class="string">''</span>]</span><br><span class="line">env.port = <span class="number">22</span></span><br><span class="line">env.user = <span class="string">''</span></span><br><span class="line">env.password = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local path configuration (can be absolute or relative to fabfile)</span></span><br><span class="line">env.deploy_path = <span class="string">'./'</span></span><br><span class="line">env.content_path = <span class="string">'./'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">META = <span class="string">"""---</span></span><br><span class="line"><span class="string">title: &#123;:20&#125;</span></span><br><span class="line"><span class="string">Date: &#123;:%Y-%m-%d %H:%M&#125;</span></span><br><span class="line"><span class="string">categories: # 这里写的分类会自动汇集到 categories 页面上，分类可以多级</span></span><br><span class="line"><span class="string">- mac</span></span><br><span class="line"><span class="string">tags:</span></span><br><span class="line"><span class="string">- &#123;:10&#125;</span></span><br><span class="line"><span class="string">Authors: Jingzy</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(title=<span class="string">'new'</span>,tag=<span class="string">''</span>)</span>:</span></span><br><span class="line">    os.chdir(env.content_path)</span><br><span class="line">    file_name=title+<span class="string">'.md'</span></span><br><span class="line">    <span class="keyword">with</span> open(file_name, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(META.format(title,datetime.now(),tag))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preview</span><span class="params">()</span>:</span></span><br><span class="line">    local(<span class="string">'pelican -d -s pelicanconf.py'</span>)</span><br><span class="line">    os.chdir(env.deploy_path)</span><br><span class="line">    local(<span class="string">'python -m http.server 8000 -b 127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">github</span><span class="params">(comMsg =<span class="string">''</span> )</span>:</span></span><br><span class="line">    local(<span class="string">'git add --all'</span>)</span><br><span class="line">    local(<span class="string">'git commit -m "&#123;&#125;  update at &#123;:%Y-%m-%d %H:%M&#125;"'</span>.format(comMsg,datetime.now()))</span><br><span class="line">    local(<span class="string">'git push origin master'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  fab  hexo_deploy</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_deploy</span><span class="params">()</span>:</span></span><br><span class="line">run(<span class="string">'jg posthexo'</span>)</span><br><span class="line"><span class="comment"># run("git pull origin master")</span></span><br><span class="line">result =run(<span class="string">"pwd"</span>)</span><br><span class="line"><span class="keyword">with</span> cd(<span class="string">'/home/_posts'</span>):</span><br><span class="line">run(<span class="string">'pwd'</span>)  <span class="comment"># /tmp</span></span><br><span class="line">run(<span class="string">'git pull origin master '</span>)  <span class="comment"># /tmp</span></span><br><span class="line"><span class="keyword">with</span> cd(<span class="string">'/home/hexo'</span>):</span><br><span class="line">run(<span class="string">'pwd'</span>)</span><br><span class="line">run(<span class="string">'hexo g'</span>)</span><br><span class="line">run(<span class="string">'pwd'</span>)  <span class="comment"># /root</span></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -515,7 +515,7 @@
     <link href="http://jingkeke.github.io/2019/05/07/npm_publish/"/>
     <id>http://jingkeke.github.io/2019/05/07/npm_publish/</id>
     <published>2019-05-07T04:32:05.000Z</published>
-    <updated>2020-03-05T04:03:27.186Z</updated>
+    <updated>2021-01-22T02:05:48.753Z</updated>
     
     <content type="html"><![CDATA[<h3 id="npm-发布"><a href="#npm-发布" class="headerlink" title="npm 发布"></a>npm 发布</h3><p>ps <a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">最近看了个结合Bit.dev复用组件的文章</a><br>学习函数式编程,用的是<a href="https://adispring.coding.me/2017/10/21/What-Function-Should-I-Use/" target="_blank" rel="noopener">ramda函数库</a>,然后之前做项目都是把自己写的ramda的utils复制一份.近期总结时候发现,每个项目用到的函数都不一样,这么来回拷贝还挺麻烦的..就想到把自己的给发布出去,写项目的时候引用一下,就能保证是最新的了.稍微查了一下资料,还挺简单,步骤如下</p><ul><li><p>初始化<br>因为可能要用到ES6,<code>npm init</code>后,需要填入babel包.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">yarn add babel-cli babel-core babel-preset-es2015  ramda</span><br></pre></td></tr></table></figure></li><li><p>项目架构</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tree -a -I <span class="string">"dist|node_modules|.git"</span> -L  2 12</span><br><span class="line">ramda_util</span><br><span class="line">├── .babelrc</span><br><span class="line">├── .gitignore</span><br><span class="line">├── .npmignore</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── lib                <span class="comment"># 打包目录</span></span><br><span class="line">├── package.json</span><br><span class="line">├── src                  <span class="comment">#我的代码</span></span><br><span class="line">│   ├── ArrayUtils.js</span><br><span class="line">│   ├── ObjUtils.js</span><br><span class="line">│   ├── domOper.js</span><br><span class="line">│   └── index.js</span><br></pre></td></tr></table></figure></li><li><p>package.json<br>需要注意 尽量把依赖写在devdependies 里面,要不容易造成依赖两份,如react,导致错误.比如用户是react15,你用了react16里面的特性,那用户就启动不了了.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"compile"</span>: <span class="string">"babel -d lib/ src/"</span>,</span><br><span class="line">  "prepublish": "npm run compile",       ## 发布之前执行一下?</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li><li><p>npm 添加用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure></li><li><p>发布</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure></li><li><p>验证<br>打包组件，只需要运行 npm run build 就可以了。<br>接下来可以通过 npm link 把打包之后的组件引入到 global node_modules 中，然后在验证 demo 中再通过 npm link react-tiny-autosuggest 引入这个组件，并验证是否符合预期。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; At development directory</span><br><span class="line">npm run build</span><br><span class="line">npm link</span><br><span class="line"></span><br><span class="line">cd [test project folder]</span><br><span class="line">npm link react-tiny-autosuggest</span><br></pre></td></tr></table></figure><p>接下下 demo 里面就可以直接 import AutoSuggest from ‘react-tiny-autosuggest’ 了。</p></li><li><p>技巧<br>修改代码和readme.md后,执行 <code>npm  version patch</code> 就不用手工改版本号了.</p></li></ul><h3 id="我的工具"><a href="#我的工具" class="headerlink" title="我的工具"></a>我的工具</h3><p><a href="https://github.com/jingkeke/ramda_utils" target="_blank" rel="noopener">github地址</a></p><ul><li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &#39;ramda_util&#x2F;lib&#39;</span><br><span class="line">const result &#x3D; ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(&#96; $&#123;JSON.stringify(result,null,4)&#125;&#96;)</span><br></pre></td></tr></table></figure><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3></li><li><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a></li><li><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a></li><li><a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">结合Bit.dev复用vue组件</a></li><li><a href="https://www.jianshu.com/p/db6113c94dbc" target="_blank" rel="noopener">如何创建一个前端 React 组件并发布到 NPM</a></li><li><a href="https://www.jianshu.com/p/aa4d99d76245" target="_blank" rel="noopener">发布react组件到npm总结</a></li></ul>]]></content>
     
@@ -543,7 +543,7 @@
     <link href="http://jingkeke.github.io/2019/02/07/react_ts/"/>
     <id>http://jingkeke.github.io/2019/02/07/react_ts/</id>
     <published>2019-02-07T07:32:05.000Z</published>
-    <updated>2019-12-07T04:36:42.771Z</updated>
+    <updated>2021-01-22T02:05:48.753Z</updated>
     
     <content type="html"><![CDATA[<p>看<a href="https://github.com/ProtoTeam/blog/blob/master/201805/4.md" target="_blank" rel="noopener">ts 2.8下React组件模式</a>,结合typesscript 和react.这个看了好几遍,感觉挺经典,之前ts不熟,做下笔记.</p><h5 id="知识点一-泛型的默认值"><a href="#知识点一-泛型的默认值" class="headerlink" title="知识点一 泛型的默认值"></a>知识点一 泛型的默认值</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> ToggleableComponentProps&lt;P <span class="keyword">extends</span> object = &#123;<span class="string">'length'</span>:<span class="built_in">number</span> &#125;&gt; = &#123;</span><br><span class="line">  show: <span class="built_in">string</span></span><br><span class="line">  toggle: <span class="built_in">string</span></span><br><span class="line">&#125; &amp; P</span><br><span class="line"><span class="keyword">const</span> he = &#123; name: <span class="string">'jing'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> aaa: ToggleableComponentProps = &#123;</span><br><span class="line">  show: <span class="string">'ff'</span>,</span><br><span class="line">  toggle: <span class="string">'length'</span>,</span><br><span class="line">  length: <span class="number">12</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong><P extends object =object > 这块后面的object=object 是什么意思?</strong><br><code>P extends object</code> 连在一起读，P 必须是继承自 object 的泛型。后面的等于号，例如 interface Example&lt; T&gt; ，在使用时如果编译器没办法根据上下文推测 T，就必须手动指定，例如 <code>class MyClass implement Example&lt;string&gt;</code> ，等于号在这里的作用和ES6 的默认值是一样的用法，例如 T = number 如果外界没有指定泛型，编译器又无法根据上下文推测出结果时，就会采用这个默认类型 {‘length’:12 }</p><h5 id="知识点二-高阶组件包裹的话-static属性会消失"><a href="#知识点二-高阶组件包裹的话-static属性会消失" class="headerlink" title="知识点二 高阶组件包裹的话,static属性会消失"></a>知识点二 高阶组件包裹的话,static属性会消失</h5><ul><li><a href="https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over" target="_blank" rel="noopener">官网解释</a></li><li>解决方案<ul><li><a href="https://www.npmjs.com/package/hoist-non-react-statics" target="_blank" rel="noopener">hoist-non-react-statics </a></li></ul></li></ul>]]></content>
     
