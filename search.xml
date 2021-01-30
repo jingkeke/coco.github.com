@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>思考一下前端</title>
+      <link href="/2021/01/30/frontend-think/"/>
+      <url>/2021/01/30/frontend-think/</url>
+      
+        <content type="html"><![CDATA[<pre><code>最近工作上老有种感觉后端压着前端的感觉,老感觉刚毕业的后端也觉得自己挺厉害,感觉没法商量.但是感觉自己其实花费了好多时间去学习...可能也算是人生误区吧,最近就开始多看一些算法相关的了又.然后说最好的学习是写下来,然后给别人讲明白.然后又开始写写博客了.虽然只是只言片语吧....给自己立的目标的一部分.(用todo软件 写的 每周得写点啥目标.)今年自己的目标老是想找到一个自己架构一个系统的方式,然后去年是找到了**jhipster**这个springweb,### 今年因为看了很长时间frontendMaster课程,然后划时间看graphql 这个架构.实际动手是:- 在一个原有项目(小度鱼社区)上改过- 看frontendmasters课 关于 gatby 的框架的(快速搭建官网,博客之类的网站)- 各种中断的续看资料.### django框架的这个是自己前年做过一个demo性质的...然后年底时候听播客,说graphql 不火了.....不过我还是想坚持自己实现一把吧.看到的其他言论是 用go去搭建基础框架......这个感觉自己比较缺的是信念去学习.PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(www.jingzhengyi.top)......这个网站又要成为历史了........</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> mac </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机教育中缺失的一课</title>
       <link href="/2021/01/22/mit-missing-semater/"/>
       <url>/2021/01/22/mit-missing-semater/</url>
@@ -21,35 +40,6 @@
           
       </categories>
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>win10Linux子系统</title>
-      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
-      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
-      
-        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> win10 </category>
-          
-          <category> ubuntu </category>
-          
-          <category> tools </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> win10 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -85,6 +75,35 @@
     
     
     <entry>
+      <title>win10Linux子系统</title>
+      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> win10 </category>
+          
+          <category> ubuntu </category>
+          
+          <category> tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> win10 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vsCodeVim插件</title>
       <link href="/2021/01/22/vim/"/>
       <url>/2021/01/22/vim/</url>
@@ -106,6 +125,33 @@
         <tags>
             
             <tag> vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>利用 socket.io 实现消息实时推送</title>
+      <link href="/2021/01/22/socket-io/"/>
+      <url>/2021/01/22/socket-io/</url>
+      
+        <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+          <category> socket-io </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 通信 </tag>
             
         </tags>
       
@@ -160,33 +206,6 @@
     
     
     <entry>
-      <title>利用 socket.io 实现消息实时推送</title>
-      <link href="/2021/01/22/socket-io/"/>
-      <url>/2021/01/22/socket-io/</url>
-      
-        <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Mac </category>
-          
-          <category> socket-io </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 通信 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>单点登陆方案</title>
       <link href="/2021/01/22/sso/"/>
       <url>/2021/01/22/sso/</url>
@@ -210,60 +229,6 @@
         <tags>
             
             <tag> sso </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>redux-sega</title>
-      <link href="/2021/01/22/redux-sega/"/>
-      <url>/2021/01/22/redux-sega/</url>
-      
-        <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> dva </category>
-          
-          <category> generator </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> generator </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>NativeBase 主题配置</title>
-      <link href="/2021/01/22/NativeBase_theme/"/>
-      <url>/2021/01/22/NativeBase_theme/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> react-native </category>
-          
-          <category> theme </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> react-native </tag>
             
         </tags>
       
@@ -326,6 +291,33 @@
     
     
     <entry>
+      <title>NativeBase 主题配置</title>
+      <link href="/2021/01/22/NativeBase_theme/"/>
+      <url>/2021/01/22/NativeBase_theme/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> react-native </category>
+          
+          <category> theme </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> react-native </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>codewar-Scramblies</title>
       <link href="/2021/01/22/codewar-Scramblies/"/>
       <url>/2021/01/22/codewar-Scramblies/</url>
@@ -347,6 +339,33 @@
             <tag> python </tag>
             
             <tag> 刷题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redux-sega</title>
+      <link href="/2021/01/22/redux-sega/"/>
+      <url>/2021/01/22/redux-sega/</url>
+      
+        <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> dva </category>
+          
+          <category> generator </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> generator </tag>
             
         </tags>
       

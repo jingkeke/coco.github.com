@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jingkeke.github.io/"/>
-  <updated>2021-01-22T02:38:32.295Z</updated>
+  <updated>2021-01-30T07:44:05.928Z</updated>
   <id>http://jingkeke.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>思考一下前端</title>
+    <link href="http://jingkeke.github.io/2021/01/30/frontend-think/"/>
+    <id>http://jingkeke.github.io/2021/01/30/frontend-think/</id>
+    <published>2021-01-30T07:23:00.000Z</published>
+    <updated>2021-01-30T07:44:05.928Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>最近工作上老有种感觉后端压着前端的感觉,老感觉刚毕业的后端也觉得自己挺厉害,感觉没法商量.但是感觉自己其实花费了好多时间去学习...可能也算是人生误区吧,最近就开始多看一些算法相关的了又.然后说最好的学习是写下来,然后给别人讲明白.然后又开始写写博客了.虽然只是只言片语吧....给自己立的目标的一部分.(用todo软件 写的 每周得写点啥目标.)今年自己的目标老是想找到一个自己架构一个系统的方式,然后去年是找到了**jhipster**这个springweb,### 今年因为看了很长时间frontendMaster课程,然后划时间看graphql 这个架构.实际动手是:- 在一个原有项目(小度鱼社区)上改过- 看frontendmasters课 关于 gatby 的框架的(快速搭建官网,博客之类的网站)- 各种中断的续看资料.### django框架的这个是自己前年做过一个demo性质的...然后年底时候听播客,说graphql 不火了.....不过我还是想坚持自己实现一把吧.看到的其他言论是 用go去搭建基础框架......这个感觉自己比较缺的是信念去学习.PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(www.jingzhengyi.top)......这个网站又要成为历史了........</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;最近工作上老有种感觉后端压着前端的感觉,老感觉刚毕业的后端也觉得自己挺厉害,感觉没法商量.但是感觉自己其实花费了好多时间去学习...
+
+
+可能也算是人生误区吧,最近就开始多看一些算法相关的了又.然后说最好的学习是写下来,然后给别人讲明白.然后又开始写写博客了
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://jingkeke.github.io/categories/mac/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>计算机教育中缺失的一课</title>
@@ -136,6 +163,35 @@
   </entry>
   
   <entry>
+    <title>利用 socket.io 实现消息实时推送</title>
+    <link href="http://jingkeke.github.io/2021/01/22/socket-io/"/>
+    <id>http://jingkeke.github.io/2021/01/22/socket-io/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot; title=&quot;场景&quot;&gt;&lt;/a&gt;场景&lt;/h2&gt;&lt;p&gt;当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。&lt;/p&gt;
+&lt;h2 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现
+      
+    
+    </summary>
+    
+    
+      <category term="Mac" scheme="http://jingkeke.github.io/categories/Mac/"/>
+    
+      <category term="socket-io" scheme="http://jingkeke.github.io/categories/Mac/socket-io/"/>
+    
+    
+      <category term="通信" scheme="http://jingkeke.github.io/tags/%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>umi适配华为自带浏览器和QQ浏览器</title>
     <link href="http://jingkeke.github.io/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     <id>http://jingkeke.github.io/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
@@ -164,31 +220,26 @@
   </entry>
   
   <entry>
-    <title>利用 socket.io 实现消息实时推送</title>
-    <link href="http://jingkeke.github.io/2021/01/22/socket-io/"/>
-    <id>http://jingkeke.github.io/2021/01/22/socket-io/</id>
+    <title>tailwindcss</title>
+    <link href="http://jingkeke.github.io/2021/01/22/tailwindcss/"/>
+    <id>http://jingkeke.github.io/2021/01/22/tailwindcss/</id>
     <published>2021-01-22T02:05:48.754Z</published>
     <updated>2021-01-22T02:05:48.754Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul><li><p>后台Node.js</p><h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li><li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p></li><li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p></li><li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p></li></ul><h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure><p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p><p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p><p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>其它的引入方式:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure><p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>如果监听本地：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure><p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p><p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure><h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p><pre><code>##demo[demo博文原文](https://segmentfault.com/a/1190000010974426)[demo](https://github.com/noiron/socket-message-push)##资料[socket-io官网](https://socket.io/get-started/chat/)</code></pre>]]></content>
+    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot; title=&quot;场景&quot;&gt;&lt;/a&gt;场景&lt;/h2&gt;&lt;p&gt;当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。&lt;/p&gt;
-&lt;h2 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现
+        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
       
     
     </summary>
     
     
-      <category term="Mac" scheme="http://jingkeke.github.io/categories/Mac/"/>
+      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
     
-      <category term="socket-io" scheme="http://jingkeke.github.io/categories/Mac/socket-io/"/>
-    
-    
-      <category term="通信" scheme="http://jingkeke.github.io/tags/%E9%80%9A%E4%BF%A1/"/>
     
   </entry>
   
@@ -228,26 +279,59 @@
   </entry>
   
   <entry>
-    <title>tailwindcss</title>
-    <link href="http://jingkeke.github.io/2021/01/22/tailwindcss/"/>
-    <id>http://jingkeke.github.io/2021/01/22/tailwindcss/</id>
-    <published>2021-01-22T02:05:48.754Z</published>
-    <updated>2021-01-22T02:05:48.754Z</updated>
+    <title>如何结合Django,React搭建前后台框架</title>
+    <link href="http://jingkeke.github.io/2021/01/22/djangoreact/"/>
+    <id>http://jingkeke.github.io/2021/01/22/djangoreact/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
+        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
       
     
     </summary>
     
     
-      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
+      <category term="React" scheme="http://jingkeke.github.io/categories/React/"/>
     
+      <category term="django" scheme="http://jingkeke.github.io/categories/React/django/"/>
+    
+    
+      <category term="Django" scheme="http://jingkeke.github.io/tags/Django/"/>
+    
+      <category term="React" scheme="http://jingkeke.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tampermonkey</title>
+    <link href="http://jingkeke.github.io/2021/01/22/Tampermonkey/"/>
+    <id>http://jingkeke.github.io/2021/01/22/Tampermonkey/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
+&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://jingkeke.github.io/categories/mac/"/>
+    
+    
+      <category term="plugin" scheme="http://jingkeke.github.io/tags/plugin/"/>
     
   </entry>
   
@@ -276,36 +360,6 @@
     
     
       <category term="react-native" scheme="http://jingkeke.github.io/tags/react-native/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何结合Django,React搭建前后台框架</title>
-    <link href="http://jingkeke.github.io/2021/01/22/djangoreact/"/>
-    <id>http://jingkeke.github.io/2021/01/22/djangoreact/</id>
-    <published>2021-01-22T02:05:48.753Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
-      
-    
-    </summary>
-    
-    
-      <category term="React" scheme="http://jingkeke.github.io/categories/React/"/>
-    
-      <category term="django" scheme="http://jingkeke.github.io/categories/React/django/"/>
-    
-    
-      <category term="Django" scheme="http://jingkeke.github.io/tags/Django/"/>
-    
-      <category term="React" scheme="http://jingkeke.github.io/tags/React/"/>
     
   </entry>
   
@@ -342,33 +396,6 @@
   </entry>
   
   <entry>
-    <title>Tampermonkey</title>
-    <link href="http://jingkeke.github.io/2021/01/22/Tampermonkey/"/>
-    <id>http://jingkeke.github.io/2021/01/22/Tampermonkey/</id>
-    <published>2021-01-22T02:05:48.753Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
-&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
-      
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="http://jingkeke.github.io/categories/mac/"/>
-    
-    
-      <category term="plugin" scheme="http://jingkeke.github.io/tags/plugin/"/>
-    
-  </entry>
-  
-  <entry>
     <title>redux-sega</title>
     <link href="http://jingkeke.github.io/2021/01/22/redux-sega/"/>
     <id>http://jingkeke.github.io/2021/01/22/redux-sega/</id>
@@ -393,6 +420,34 @@
     
     
       <category term="generator" scheme="http://jingkeke.github.io/tags/generator/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新海诚电影 你的名字</title>
+    <link href="http://jingkeke.github.io/2020/09/22/yourName/"/>
+    <id>http://jingkeke.github.io/2020/09/22/yourName/</id>
+    <published>2020-09-22T08:30:10.277Z</published>
+    <updated>2019-12-06T08:04:47.293Z</updated>
+    
+    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
+      
+    
+    </summary>
+    
+    
+      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
+    
+      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
     
   </entry>
   
@@ -427,34 +482,6 @@
       <category term="eclipse" scheme="http://jingkeke.github.io/tags/eclipse/"/>
     
       <category term="spring" scheme="http://jingkeke.github.io/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新海诚电影 你的名字</title>
-    <link href="http://jingkeke.github.io/2020/09/22/yourName/"/>
-    <id>http://jingkeke.github.io/2020/09/22/yourName/</id>
-    <published>2020-09-22T08:30:10.277Z</published>
-    <updated>2019-12-06T08:04:47.293Z</updated>
-    
-    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
-      
-    
-    </summary>
-    
-    
-      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
-    
-      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
     
   </entry>
   
@@ -560,44 +587,6 @@
     
     
       <category term="hexo" scheme="http://jingkeke.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016总结.md</title>
-    <link href="http://jingkeke.github.io/2017/01/07/2016summary/"/>
-    <id>http://jingkeke.github.io/2017/01/07/2016summary/</id>
-    <published>2017-01-07T04:32:05.000Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>项目<br>1月从北京项目回来做购物网站,5月开始是wolife，8月半路做了些微信企业号。之后是wolife全面维护。</p></li><li><p>知识</p><ul><li>springMVC</li><li>maven</li><li>hbuilder  app</li><li>git</li></ul></li><li><p>生活</p><ul><li>加了一群飞鱼人，生活从空间到微信。</li><li>整天在等公交车时候用印象笔记写日记。</li><li>用黑莓看订阅邮件，学到了不少东西。<a id="more"></a></li></ul></li><li><p>读书基本都是通过kindle看的。公交车上看半天。12月之后又很少看了。</p><ul><li>买了kindle 书《<a href="https://www.amazon.cn/gp/product/B01J9MZPPO/ref=oh_aui_d_detailpage_o01_?ie=UTF8&psc=1" target="_blank" rel="noopener">软技能 代码之外的生存指南</a>》。讲一个美国it 男35岁之前退休。写博客 ，健身，投资买房（买了十几套。。。最后就靠这个退休的。。。。）</li><li>基本东野奎吾的书，都挺好看的。《解忧杂货铺》《嫌疑人X的献身》</li><li>《偷影子的人》 非常好看，开头像是给小孩看的，后面完全就没这种感觉了。</li><li>我的阿勒泰 ，作者写得很清新，有双善于发现的眼睛。</li><li>又看了几本哈利波特。</li><li>看了《安伯志》10册中3册半。</li><li>天才在左疯子在右。当时夜深人静看的，很有感觉。</li><li>Spring技术内幕：深入解析​Spring架构与设计原理（第​2版） (揭秘系列丛书)</li><li>人月神话(二十周年纪念版)  忍着看完了，感觉吧。。。。看的网络版，感觉有点排版不好，好些没法理解，正版要100多还没有kindle版。人月的意思是将工作换算成xx人月的工作量。</li><li>微信公众号推送，最主要的比如杜蕾斯邀请名人回答问题。很有意思。是通过小飞关注的。</li><li>有个飞鱼也开通了公众号，每篇都跟她聊几句。</li></ul></li><li><p>娱乐</p><ul><li>现在综艺只追 天天向上。天天兄弟换血了。大老师加盟，别的综艺大老师穿着花哨，但是天天向上穿得还是很正常的。挺不错。</li><li>fate 超级好看。</li><li><a href="http://www.bilibili.com/video/av4475874" target="_blank" rel="noopener">【合集】全金属狂潮</a></li><li>年底 新海诚你的名字。先是9月看的网上版本的。然后12月3号去电影院看的。</li><li>汪涵的 火星情报局，火了薛之谦。</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;项目&lt;br&gt;1月从北京项目回来做购物网站,5月开始是wolife，8月半路做了些微信企业号。之后是wolife全面维护。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;知识&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;springMVC&lt;/li&gt;
-&lt;li&gt;maven&lt;/li&gt;
-&lt;li&gt;hbuilder  app&lt;/li&gt;
-&lt;li&gt;git&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;生活&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;加了一群飞鱼人，生活从空间到微信。&lt;/li&gt;
-&lt;li&gt;整天在等公交车时候用印象笔记写日记。&lt;/li&gt;
-&lt;li&gt;用黑莓看订阅邮件，学到了不少东西。
-    
-    </summary>
-    
-    
-      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="生活" scheme="http://jingkeke.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
