@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/NativeBase_theme/">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/tailwindcss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/NativeBase_theme/" class="post-title-link" itemprop="url">NativeBase 主题配置</a>
+            <a href="/2021/01/22/tailwindcss/" class="post-title-link" itemprop="url">tailwindcss</a>
         </h1>
 
         <div class="post-meta">
@@ -186,11 +186,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react-native/" itemprop="url" rel="index"><span itemprop="name">react-native</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react-native/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
                 </span>
             </span>
 
@@ -205,28 +201,113 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p>
-<h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p>
-<h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p>
-<blockquote>
-<p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p>
-</blockquote>
-<blockquote>
-<p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p>
-</blockquote>
-<blockquote>
-<p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p>
-</blockquote>
-<h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p>
-<h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul>
-<li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p>
+<h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/Tampermonkey/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/Tampermonkey/" class="post-title-link" itemprop="url">Tampermonkey</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p>
+<h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p>
+<ul>
+<li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li>
+<li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li>
+<li>脚本站点（论坛）：<ul>
+<li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li>
+<li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li>
+<li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li>
+</ul>
+</li>
+<li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li>
+<li>没有找到好的教程…</li>
+</ul>
+<h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p>
+<ul>
+<li>依赖 <ul>
+<li>iframejs  向iframe里面注入内如</li>
+</ul>
 </li>
 </ul>
-<h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">	ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本地调试vue组件.<blockquote>
+<p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p>
+</blockquote>
+</li>
+</ul>
+<p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
+<p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p>
+<ul>
+<li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li>
+</ul>
+<h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p>
+<p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>
 
       
     </div>
@@ -326,6 +407,98 @@
 </ul>
 </li>
 </ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/NativeBase_theme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/NativeBase_theme/" class="post-title-link" itemprop="url">NativeBase 主题配置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/" itemprop="url" rel="index"><span itemprop="name">react-native</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p>
+<h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p>
+<h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p>
+<blockquote>
+<p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p>
+</blockquote>
+<blockquote>
+<p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p>
+</blockquote>
+<blockquote>
+<p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p>
+</blockquote>
+<h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p>
+<h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul>
+<li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -511,7 +684,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/Tampermonkey/">
+    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2020/09/22/egitEclipseSpring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -525,7 +698,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/Tampermonkey/" class="post-title-link" itemprop="url">Tampermonkey</a>
+            <a href="/2020/09/22/egitEclipseSpring/" class="post-title-link" itemprop="url">eclipse 使用 egit 版本控制 spring项目</a>
         </h1>
 
         <div class="post-meta">
@@ -535,15 +708,26 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-25 15:17:04" itemprop="dateModified" datetime="2019-10-25T15:17:04+08:00">2019-10-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">版本控制</span></a>
                 </span>
             </span>
 
@@ -558,45 +742,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p>
-<h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p>
-<ul>
-<li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li>
-<li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li>
-<li>脚本站点（论坛）：<ul>
-<li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li>
-<li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li>
-<li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li>
+          <ol>
+<li>搭建git 服务器<ul>
+<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01&#x2F;12&#x2F;16 16:48:52 adduser git</span><br><span class="line">384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;</span><br><span class="line">388  01&#x2F;12&#x2F;16 16:51:05 mkdir wolife</span><br><span class="line">389  01&#x2F;12&#x2F;16 16:51:06 cd wolife&#x2F;</span><br><span class="line">394  01&#x2F;12&#x2F;16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01&#x2F;12&#x2F;16 16:52:01 chown -R git:git wolife.git&#x2F;</span><br><span class="line">397  01&#x2F;12&#x2F;16 16:52:07 vim &#x2F;etc&#x2F;passwd  &#x2F;&#x2F;这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01&#x2F;12&#x2F;16 16:53:40 su  - git  &#x2F;&#x2F;设置一下 ssh-keygen 在&#x2F;home&#x2F;git&#x2F;.ssh&#x2F; 下  vim authorized_keys</span><br><span class="line">406  01&#x2F;12&#x2F;16 17:10:22 cd &#x2F;home&#x2F;git&#x2F;wolife</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li>
-<li>没有找到好的教程…</li>
-</ul>
-<h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p>
-<ul>
-<li>依赖 <ul>
-<li>iframejs  向iframe里面注入内如</li>
+<li>本机eclipse egit 同步 <ul>
+<li>Team -&gt; share  然后做设置。</li>
+<li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li>
+<li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li>
+<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn&#x2F;</span><br><span class="line">              work&#x2F;</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes&#x2F;</span><br><span class="line">              class&#x2F;</span><br><span class="line">              bin&#x2F;</span><br><span class="line"> &#x2F;&#x2F;.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~&#x2F;.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile &#x3D; c:&#x2F;Users&#x2F;你的账户文件夹&#x2F;.gitignore_global</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ul>
 </li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">	ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>本地调试vue组件.<blockquote>
-<p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p>
-</blockquote>
-</li>
-</ul>
-<p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
-<p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p>
-<ul>
-<li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li>
-</ul>
-<h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p>
-<p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>
+<li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术
+</a></li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>
 
       
     </div>
@@ -675,101 +838,6 @@
 
       
           <p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2020/09/22/egitEclipseSpring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/22/egitEclipseSpring/" class="post-title-link" itemprop="url">eclipse 使用 egit 版本控制 spring项目</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-25 15:17:04" itemprop="dateModified" datetime="2019-10-25T15:17:04+08:00">2019-10-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">版本控制</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>搭建git 服务器<ul>
-<li>不想共享出去代码（这个念头其实最好不要觉得自己代码真有多大价值。。。我是有台阿里ECS服务器，想着实践下,宽带1M,上传贼拉快，下载就100多K）。其实很简单。参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="noopener">搭建Git服务器</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 382  01&#x2F;12&#x2F;16 16:48:52 adduser git</span><br><span class="line">384  01&#x2F;12&#x2F;16 16:50:52 cd &#x2F;home&#x2F;git&#x2F;</span><br><span class="line">388  01&#x2F;12&#x2F;16 16:51:05 mkdir wolife</span><br><span class="line">389  01&#x2F;12&#x2F;16 16:51:06 cd wolife&#x2F;</span><br><span class="line">394  01&#x2F;12&#x2F;16 16:51:38 git init --bare wolife.git</span><br><span class="line">396  01&#x2F;12&#x2F;16 16:52:01 chown -R git:git wolife.git&#x2F;</span><br><span class="line">397  01&#x2F;12&#x2F;16 16:52:07 vim &#x2F;etc&#x2F;passwd  &#x2F;&#x2F;这个是为了安全 设置除去远程登陆 。</span><br><span class="line">400  01&#x2F;12&#x2F;16 16:53:40 su  - git  &#x2F;&#x2F;设置一下 ssh-keygen 在&#x2F;home&#x2F;git&#x2F;.ssh&#x2F; 下  vim authorized_keys</span><br><span class="line">406  01&#x2F;12&#x2F;16 17:10:22 cd &#x2F;home&#x2F;git&#x2F;wolife</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>本机eclipse egit 同步 <ul>
-<li>Team -&gt; share  然后做设置。</li>
-<li>egit 一定要升级到最新版本，要不出一些莫名其妙的错误。</li>
-<li><a href="http://www.jianshu.com/p/5a94ff737650" target="_blank" rel="noopener">主要是参考这个跟这个的配置做的，但是觉得有点老。。用来整理思路还是很好的</a></li>
-<li>设置忽略文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;编写.gitignore文件</span><br><span class="line">             *.class</span><br><span class="line">              *.a</span><br><span class="line">              *.log</span><br><span class="line">              .svn&#x2F;</span><br><span class="line">              work&#x2F;</span><br><span class="line">              config.json</span><br><span class="line">              system.js</span><br><span class="line">              classes&#x2F;</span><br><span class="line">              class&#x2F;</span><br><span class="line">              bin&#x2F;</span><br><span class="line"> &#x2F;&#x2F;.gitignore为全局的方法</span><br><span class="line">在Git的命令行里输入： $ git config --global core.excludesfile ~&#x2F;.gitignore_global   输入完成后，可打开.gitconfig文件，会发现里面自动添加了 [plain]   </span><br><span class="line">      [core]  </span><br><span class="line">      excludesfile &#x3D; c:&#x2F;Users&#x2F;你的账户文件夹&#x2F;.gitignore_global</span><br></pre></td></tr></table></figure></li>
-<li></li>
-</ul>
-</li>
-<li>使用Git Flow实现git最优开发实践<br>感觉就是帮助用户简化git开发流。具体在连接有讲实践思路<a href="http://roclinux.cn/?p=2129" target="_blank" rel="noopener">GIT分支管理是一门艺术
-</a></li>
-</ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
-<h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>
 
       
     </div>
@@ -954,87 +1022,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2017/10/07/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/07/hexo/" class="post-title-link" itemprop="url">hexo博客搭建,我的参考资料及说明</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-07 18:32:05" itemprop="dateCreated datePublished" datetime="2017-10-07T18:32:05+08:00">2017-10-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:27:18" itemprop="dateModified" datetime="2021-01-22T10:27:18+08:00">2021-01-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://www.jingzy.top:3001/" target="_blank" rel="noopener">coco的hexo博客</a>:这个是我的个人博客，自己有个服务器，就放在了服务器上一份。下面是我参考的文章，如果踩过坑，说明了一下。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/10/07/hexo/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1105,13 +1092,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1149,7 +1136,7 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-1 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-2 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
   </div>
 
 <div class="copyright">

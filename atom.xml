@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jingkeke.github.io/"/>
-  <updated>2021-01-30T08:38:31.861Z</updated>
+  <updated>2021-02-06T10:49:50.862Z</updated>
   <id>http://jingkeke.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端-相关技能点我了解的</title>
+    <link href="http://jingkeke.github.io/2021/02/06/frontend-what-i-leaned/"/>
+    <id>http://jingkeke.github.io/2021/02/06/frontend-what-i-leaned/</id>
+    <published>2021-02-06T10:30:00.000Z</published>
+    <updated>2021-02-06T10:49:50.862Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="js该学点啥"><a href="#js该学点啥" class="headerlink" title="js该学点啥"></a>js该学点啥</h1><p>“没有人因为java而失业” 对于该如何选择开发语言,我个人还是很喜欢javascript.但是也感觉挺痛苦的,对于一个跟着别人学的人来说.学过了vue,react各种框架,感觉其实基本就是一个功能学了不同的实现方式,现在想想感觉还是挺没啥成就感的.<br>总结一下我现在的感觉的js相关的技能点</p><h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>这个是在我学习redux时候接触的.然后最近看过了json的作者的在frontendmaster的课程,然后他总结99%的js开发者不知道js其实还可以这么写….感觉老爷子都胡子花白,虽然他的课程是16年的,而且长达10小时,但是感觉还是值得一看的.作为入门.</p><ul><li>最近想用jupyter把学习的做成js笔记,有运行结果,一目了然.这个就涉及如何做笔记的话题,我现在react是用mdx,反正就是那种可以运行看看效果的那种.</li></ul><h3 id="deno"><a href="#deno" class="headerlink" title="deno"></a>deno</h3><p>最近在了解的,其实我列出来,主要是想说一下node的作者在推出这个的时候说自己后悔node的几个点,那个视频在youtube上有,而且还是有专门的中文翻译,感觉可能是推广需要,但是感觉node 的作者还很年轻感觉:</p><ul><li>前端发展好快,他是用rust开发的,rust是火狐的公司M开发的…..最近看资料好多人想学一下这个语言…..</li><li>他说的一些如何编译node ,如何平台适应,如何通过v8优化性能,感觉自己都没怎么接触过….所以多看看感觉还是很能开阔自己眼界….提醒自己多学多看,周末出去找个咖啡馆学习多么重要……..<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3>这个主要是我有几个框架想学习……涉及graphql的……感觉自己做过几个demo,但是还是没有串联起来……….</li></ul><h3 id="parcel"><a href="#parcel" class="headerlink" title="parcel"></a>parcel</h3><p>这个就是感觉学过react,vue 老感觉虽然花了很多时间,但是感觉没啥成就感,就是感觉老是新瓶装旧酒…..技能老是提高不了…….关于如何作出一个东西的方式…….</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;js该学点啥&quot;&gt;&lt;a href=&quot;#js该学点啥&quot; class=&quot;headerlink&quot; title=&quot;js该学点啥&quot;&gt;&lt;/a&gt;js该学点啥&lt;/h1&gt;&lt;p&gt;“没有人因为java而失业” 对于该如何选择开发语言,我个人还是很喜欢javascript.但是也感觉挺痛苦
+      
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://jingkeke.github.io/categories/javascript/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>思考一下前端</title>
@@ -189,6 +213,30 @@
   </entry>
   
   <entry>
+    <title>tailwindcss</title>
+    <link href="http://jingkeke.github.io/2021/01/22/tailwindcss/"/>
+    <id>http://jingkeke.github.io/2021/01/22/tailwindcss/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
+      
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>利用 socket.io 实现消息实时推送</title>
     <link href="http://jingkeke.github.io/2021/01/22/socket-io/"/>
     <id>http://jingkeke.github.io/2021/01/22/socket-io/</id>
@@ -253,26 +301,30 @@
   </entry>
   
   <entry>
-    <title>tailwindcss</title>
-    <link href="http://jingkeke.github.io/2021/01/22/tailwindcss/"/>
-    <id>http://jingkeke.github.io/2021/01/22/tailwindcss/</id>
-    <published>2021-01-22T02:05:48.754Z</published>
-    <updated>2021-01-22T02:05:48.754Z</updated>
+    <title>redux-sega</title>
+    <link href="http://jingkeke.github.io/2021/01/22/redux-sega/"/>
+    <id>http://jingkeke.github.io/2021/01/22/redux-sega/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
+    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
+        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
       
     
     </summary>
     
     
-      <category term="css" scheme="http://jingkeke.github.io/categories/css/"/>
+      <category term="dva" scheme="http://jingkeke.github.io/categories/dva/"/>
     
+      <category term="generator" scheme="http://jingkeke.github.io/categories/dva/generator/"/>
+    
+    
+      <category term="generator" scheme="http://jingkeke.github.io/tags/generator/"/>
     
   </entry>
   
@@ -394,30 +446,30 @@
   </entry>
   
   <entry>
-    <title>redux-sega</title>
-    <link href="http://jingkeke.github.io/2021/01/22/redux-sega/"/>
-    <id>http://jingkeke.github.io/2021/01/22/redux-sega/</id>
-    <published>2021-01-22T02:05:48.753Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
+    <title>新海诚电影 你的名字</title>
+    <link href="http://jingkeke.github.io/2020/09/22/yourName/"/>
+    <id>http://jingkeke.github.io/2020/09/22/yourName/</id>
+    <published>2020-09-22T08:30:10.277Z</published>
+    <updated>2019-12-06T08:04:47.293Z</updated>
     
-    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
+        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
       
     
     </summary>
     
     
-      <category term="dva" scheme="http://jingkeke.github.io/categories/dva/"/>
+      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
     
-      <category term="generator" scheme="http://jingkeke.github.io/categories/dva/generator/"/>
+      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="generator" scheme="http://jingkeke.github.io/tags/generator/"/>
+      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
     
   </entry>
   
@@ -452,34 +504,6 @@
       <category term="eclipse" scheme="http://jingkeke.github.io/tags/eclipse/"/>
     
       <category term="spring" scheme="http://jingkeke.github.io/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新海诚电影 你的名字</title>
-    <link href="http://jingkeke.github.io/2020/09/22/yourName/"/>
-    <id>http://jingkeke.github.io/2020/09/22/yourName/</id>
-    <published>2020-09-22T08:30:10.277Z</published>
-    <updated>2019-12-06T08:04:47.293Z</updated>
-    
-    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
-      
-    
-    </summary>
-    
-    
-      <category term="电影" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/"/>
-    
-      <category term="生活" scheme="http://jingkeke.github.io/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="你的名字" scheme="http://jingkeke.github.io/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
     
   </entry>
   
@@ -562,29 +586,6 @@
     
     
       <category term="typescript" scheme="http://jingkeke.github.io/tags/typescript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客搭建,我的参考资料及说明</title>
-    <link href="http://jingkeke.github.io/2017/10/07/hexo/"/>
-    <id>http://jingkeke.github.io/2017/10/07/hexo/</id>
-    <published>2017-10-07T10:32:05.000Z</published>
-    <updated>2021-01-22T02:27:18.038Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.jingzy.top:3001/" target="_blank" rel="noopener">coco的hexo博客</a>:这个是我的个人博客，自己有个服务器，就放在了服务器上一份。下面是我参考的文章，如果踩过坑，说明了一下。</p><a id="more"></a><h3 id="next主题"><a href="#next主题" class="headerlink" title="next主题"></a>next主题</h3><ul><li>~~<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next主题官网</a>~~<ul><li>2019年看现在开始用<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next迁移的新库</a></li></ul></li><li><a href="https://123sunxiaolin.github.io/2016/08/27/%E5%BE%92%E6%89%8B%E6%95%99%E4%BD%A0%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考这篇文章搭建的next 主题</a></li><li><a href="https://gitalk.github.io" target="_blank" rel="noopener">参考这篇文章为Next主题添加Gitalk</a><ul><li><a href="%3Chttps://www.wenjunjiang.win/2017/07/02/gitment%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%85%A5hexo/%3E">gitment评论</a>,这个主要是觉得创意好,借用githhub的评论;用的是这个<a href="%3Chttps://github.com/imsun/gitment/issues/170#issuecomment-450138213%3E">链接</a>解决现在的bug ,object ProgressEvent错误 感觉这个有点坑,也明白<strong>免费的东东是最贵的</strong>道理,人家说不维护就不维护,然后自己要花好长时间去查资料,一个劲怀疑人生一边浪费生命,所以说人生苦短,我用python…O(∩_∩)O哈哈哈~.<ul><li>报错弹窗[object ProgressEvent],基本就是有个请求无法访问了,可以参考上面地址好心人提供的gitment.js 替换成那个.我的是个用的next主题,所以需要修改./themes/next/layout/_third-party/comments/gitment.swig 这个模板文件里的js.</li></ul></li></ul></li><li><a href="http://www.jianshu.com/p/78c218f9d1e7" target="_blank" rel="noopener">参考这篇文章设置首页只显示索引，显得紧凑美观</a><ul><li>显示效果：<br><img src="http://upload-images.jianshu.io/upload_images/1178954-837f49ef756944e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste\_Image.png"></li></ul></li></ul><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul><li><p>摘要<br>建议使用 &lt; !– more –&gt;（即第一种方式），除了可以精确控制需要显示的摘录内容以外， 这种方式也可以让 Hexo 中的插件更好的识别。<br>自动形成摘要，在主题配置文件中添加<br>  auto_excerpt:</p><pre><code>enable: truelength: 150</code></pre></li><li><p>创建 “关于我” 页面<br>新建一个 about 页面：<br><code>hexo new page &quot;about&quot;</code><br>菜单显示 about 链接，在主题的 _configy.yml 设置中将 menu 中 about 前面的注释去掉即可。</p><p>menu:<br>  home: /<br>  archives: /archives<br>  tags: /tags<br>  about: /about</p></li><li><p><a href="https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2" target="_blank" rel="noopener">创建分类页面</a></p></li><li><p>一键生成md头格式<br>首先在/scaffolds/post.md文件中添加：</p><pre><code>---title: {{ title }}date: {{ date }}tags:categories:copyright: truepermalink: 01top: 0---</code></pre><p>然后使用 hexo new就可以一键生成新文章的头格式了，不用手动去搬运或者书写。相当方便。</p></li><li><p>设定置顶/顺序<br><code>vim node_modules/hexo-generator-index/lib/generator.js</code> 改成下面</p><pre><code>&apos;use strict&apos;;var pagination = require(&apos;hexo-pagination&apos;);module.exports = function(locals){  var config = this.config;  var posts = locals.posts;    posts.data = posts.data.sort(function(a, b) {        if(a.top &amp;&amp; b.top) { // 两篇文章top都有定义            if(a.top == b.top) return b.date - a.date; // 若top值一样则按照文章日期降序排            else return b.top - a.top; // 否则按照top值降序排        }        else if(a.top &amp;&amp; !b.top) { // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）            return -1;        }        else if(!a.top &amp;&amp; b.top) {            return 1;        }        else return b.date - a.date; // 都没定义按照文章日期降序排    });  var paginationDir = config.pagination_dir || &apos;page&apos;;  return pagination(&apos;&apos;, posts, {    perPage: config.index_generator.per_page,    layout: [&apos;index&apos;, &apos;archive&apos;],    format: paginationDir + &apos;/%d/&apos;,    data: {      __index: true    }  });};</code></pre><p>在文章中添加 top 值，数值越大文章越靠前（默认是0，按时间排序），如</p><pre><code>---title: 解决Charles乱码问题date: 2017-05-22 22:45:48tags: 技巧categories: 技巧copyright: truetop: 100---</code></pre></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://www.jingzy.top:3001/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;coco的hexo博客&lt;/a&gt;:这个是我的个人博客，自己有个服务器，就放在了服务器上一份。下面是我参考的文章，如果踩过坑，说明了一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://jingkeke.github.io/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://jingkeke.github.io/tags/hexo/"/>
     
   </entry>
   
