@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>vue3 typescript config</title>
+      <link href="/2021/03/08/vue3_ts/"/>
+      <url>/2021/03/08/vue3_ts/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vue3-typescript"><a href="#vue3-typescript" class="headerlink" title="vue3 typescript"></a>vue3 typescript</h1><p>Vue Mastery 现时免费相关课程 <a href="(https://www.vuemastery.com/courses/vue3-typescript/creating-components-with-typescript)">Vue 3 + TypeScript course</a> 到20213月9号,然后自己看了一遍,总结了一下发出来.</p><h2 id="init-with-vuecli"><a href="#init-with-vuecli" class="headerlink" title="init with vuecli"></a>init with vuecli</h2><p>用工具初始化,会有提示是否用ts.</p><h2 id="create-components-with-ts"><a href="#create-components-with-ts" class="headerlink" title="create components with ts"></a>create components with ts</h2><p>对应代码看 <a href="(https://github.com/Code-Pop/Real-World-Vue-3-TypeScript)">Real World Vue 3 TypeScript GitHub Repo</a></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lant=<span class="string">"ts"</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123;defineComponent &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> EVentCard <span class="keyword">from</span> <span class="string">'../components/EventCard.vue'</span></span><br><span class="line"><span class="keyword">import</span> EventService <span class="keyword">from</span> <span class="string">'../services/EventService'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponnets(&#123;</span><br><span class="line">    name:<span class="string">'EventList'</span>,</span><br><span class="line">    components:&#123;EventCard&#125;,</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="attr">events</span>:<span class="literal">null</span>&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;</span><br><span class="line">      EventService.getEvents().</span><br><span class="line">        then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">         ...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">....</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><h2 id="VueDX"><a href="#VueDX" class="headerlink" title="VueDX"></a>VueDX</h2><p>ide 支持是用的[VueDX][ref3]这个工具</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> TodoItem&#123;</span><br><span class="line">   label:<span class="built_in">string</span></span><br><span class="line">   complete:<span class="built_in">boolean</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureTodoItem =&#123;&#125; <span class="keyword">as</span> TOdoItem</span><br></pre></td></tr></table></figure><h2 id="Props-with-Types"><a href="#Props-with-Types" class="headerlink" title="Props with Types"></a>Props with Types</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;defineComponent ,PropType &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line">exprt <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line"></span><br><span class="line">    props :&#123;</span><br><span class="line">        event: &#123;</span><br><span class="line">            <span class="keyword">type</span>: <span class="built_in">Object</span> <span class="keyword">as</span> PropType&lt;EventItem&gt;,</span><br><span class="line">            <span class="built_in">require</span>:<span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">....</span><br></pre></td></tr></table></figure><h2 id="Computed-amp-Methods-with-Custom-Types"><a href="#Computed-amp-Methods-with-Custom-Types" class="headerlink" title="Computed &amp; Methods with Custom Types"></a>Computed &amp; Methods with Custom Types</h2><p>重点在想返回什么</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.....</span><br><span class="line">computed:&#123;</span><br><span class="line">  firstEvent():EventItem&#123;</span><br><span class="line">      ....</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h2 id="others-扩充资料"><a href="#others-扩充资料" class="headerlink" title="others 扩充资料"></a>others 扩充资料</h2><ul><li>The official Vue docs that now has a dedicated TypeScript section that will continue to grow as the ecosystem matures.<ul><li><a href="https://v3.vuejs.org/guide/typescript-support.html#typescript-support" target="_blank" rel="noopener">https://v3.vuejs.org/guide/typescript-support.html#typescript-support</a></li></ul></li><li>And of course, the official TypeScript docs site for an in-depth look at TypeScript<ul><li><a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">https://www.typescriptlang.org/docs/</a></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue3 </category>
+          
+          <category> typescript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> typescript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>理解 React Native Bridge 的概念</title>
       <link href="/2021/02/28/ReactNativeBridge/"/>
       <url>/2021/02/28/ReactNativeBridge/</url>
@@ -113,35 +140,6 @@
     
     
     <entry>
-      <title>win10Linux子系统</title>
-      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
-      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
-      
-        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> win10 </category>
-          
-          <category> ubuntu </category>
-          
-          <category> tools </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> win10 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>阿里云ECS免密码登陆</title>
       <link href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
       <url>/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</url>
@@ -171,19 +169,56 @@
     
     
     <entry>
-      <title>tailwindcss</title>
-      <link href="/2021/01/22/tailwindcss/"/>
-      <url>/2021/01/22/tailwindcss/</url>
+      <title>win10Linux子系统</title>
+      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
       
-        <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
+        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
       
       
       <categories>
           
-          <category> css </category>
+          <category> win10 </category>
+          
+          <category> ubuntu </category>
+          
+          <category> tools </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> win10 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>umi适配华为自带浏览器和QQ浏览器</title>
+      <link href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+      <url>/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> umi </category>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> h5 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -221,33 +256,6 @@
     
     
     <entry>
-      <title>umi适配华为自带浏览器和QQ浏览器</title>
-      <link href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-      <url>/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
-      
-        <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> umi </category>
-          
-          <category> android </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> h5 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>利用 socket.io 实现消息实时推送</title>
       <link href="/2021/01/22/socket-io/"/>
       <url>/2021/01/22/socket-io/</url>
@@ -275,27 +283,19 @@
     
     
     <entry>
-      <title>redux-sega</title>
-      <link href="/2021/01/22/redux-sega/"/>
-      <url>/2021/01/22/redux-sega/</url>
+      <title>tailwindcss</title>
+      <link href="/2021/01/22/tailwindcss/"/>
+      <url>/2021/01/22/tailwindcss/</url>
       
-        <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
       
       
       <categories>
           
-          <category> dva </category>
-          
-          <category> generator </category>
+          <category> css </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> generator </tag>
-            
-        </tags>
       
     </entry>
     
@@ -323,6 +323,33 @@
             <tag> Django </tag>
             
             <tag> React </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redux-sega</title>
+      <link href="/2021/01/22/redux-sega/"/>
+      <url>/2021/01/22/redux-sega/</url>
+      
+        <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> dva </category>
+          
+          <category> generator </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> generator </tag>
             
         </tags>
       
@@ -412,33 +439,6 @@
     
     
     <entry>
-      <title>新海诚电影 你的名字</title>
-      <link href="/2020/09/22/yourName/"/>
-      <url>/2020/09/22/yourName/</url>
-      
-        <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 电影 </category>
-          
-          <category> 生活 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 你的名字 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>eclipse 使用 egit 版本控制 spring项目</title>
       <link href="/2020/09/22/egitEclipseSpring/"/>
       <url>/2020/09/22/egitEclipseSpring/</url>
@@ -462,6 +462,33 @@
             <tag> eclipse </tag>
             
             <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>新海诚电影 你的名字</title>
+      <link href="/2020/09/22/yourName/"/>
+      <url>/2020/09/22/yourName/</url>
+      
+        <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 电影 </category>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 你的名字 </tag>
             
         </tags>
       

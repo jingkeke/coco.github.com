@@ -17,21 +17,21 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"jingkeke.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.jingzhengyi.top","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="今天在配置hyper的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。 WSL wsl linux子系统和wind互通。。官网好些例子123456789C:\temp&amp;gt; wsl&#x2F;mnt&#x2F;c&#x2F;temp&#x2F;$ cd ~">
 <meta name="keywords" content="win10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="win10Linux子系统">
-<meta property="og:url" content="http://jingkeke.github.io/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:url" content="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="个人代码知识记录">
 <meta property="og:description" content="今天在配置hyper的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。 WSL wsl linux子系统和wind互通。。官网好些例子123456789C:\temp&amp;gt; wsl&#x2F;mnt&#x2F;c&#x2F;temp&#x2F;$ cd ~">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-01-22T02:05:48.755Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://jingkeke.github.io/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+<link rel="canonical" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
 
 
 <script id="page-configurations">
@@ -45,6 +45,15 @@
 
   <title>win10Linux子系统 | 个人代码知识记录</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88049197-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88049197-1');
+      }
+    </script>
 
 
 
@@ -158,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://jingkeke.github.io/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -245,12 +254,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/22/socket-io/" rel="prev" title="利用 socket.io 实现消息实时推送">
-      <i class="fa fa-chevron-left"></i> 利用 socket.io 实现消息实时推送
+    <a href="/2021/01/22/vim/" rel="prev" title="vsCodeVim插件">
+      <i class="fa fa-chevron-left"></i> vsCodeVim插件
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/22/vim/" rel="next" title="vsCodeVim插件">
-      vsCodeVim插件 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/" rel="next" title="阿里云ECS免密码登陆">
+      阿里云ECS免密码登陆 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -326,13 +335,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
