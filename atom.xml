@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.jingzhengyi.top/"/>
-  <updated>2021-03-08T02:14:34.216Z</updated>
+  <updated>2021-03-14T11:30:28.369Z</updated>
   <id>https://blog.jingzhengyi.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js里的this</title>
+    <link href="https://blog.jingzhengyi.top/2021/03/14/js_this/"/>
+    <id>https://blog.jingzhengyi.top/2021/03/14/js_this/</id>
+    <published>2021-03-14T10:54:00.000Z</published>
+    <updated>2021-03-14T11:30:28.369Z</updated>
+    
+    <content type="html"><![CDATA[<p>这周逛 v2 由看到有人发 js 的 this 的题目,然后说能做出来的都得算多少年薪……..个人感觉这种知识大部分都是为了应付面试,而且道格拉斯克罗克福特 说过 js 是最好的语言,但是你要用它 good part.<br>不过周末正好看到 相关的一篇<a href="https://web.dev/javascript-this/" target="_blank" rel="noopener" title="JavaScript: What is the meaning of this?">文章</a>,发出来,比如有时候为什么调用要加 that =this 避免找不到 还是有点作用的毕竟.</p><h2 id="If-the-function-is-defined-as-an-arrow-function"><a href="#If-the-function-is-defined-as-an-arrow-function" class="headerlink" title="If the function is defined as an arrow function"></a>If the function is defined as an arrow function</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const arrwoFunction &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>this 和父级 this 是一样.</p><ul><li>call or apply 不能改变 箭头函数 的 this</li></ul><h2 id="Otherwise-if-the-function-class-is-called-with-new"><a href="#Otherwise-if-the-function-class-is-called-with-new" class="headerlink" title="Otherwise, if the function/class is called with new"></a>Otherwise, if the function/class is called with new</h2><p>this 被设置成 Object.create(….prototype)的返回值<br><code>js class MyClass{ constructor(){ console.log( this.constructor === Object.create(MyClass.prototype).constructor } // Logs true new MyClass()</code></p><h2 id="Otherwise-if-the-function-has-a-‘bound’-this-value"><a href="#Otherwise-if-the-function-has-a-‘bound’-this-value" class="headerlink" title="Otherwise, if the function has a ‘bound’ this value"></a>Otherwise, if the function has a ‘bound’ this value</h2><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boundObject = &#123;<span class="attr">hellp</span>:<span class="string">'world'</span>&#125;</span><br><span class="line"><span class="keyword">const</span> boundFunction = someFunction.bind(boundObject)</span><br></pre></td></tr></table></figure></code></pre><p>当 boundFuncton 被调用,this 指向 boundObject<br><code>js // false console.log(someFunction() === boundObject) //n true console.log(boundFunction() === boundObject)</code></p><h2 id="Otherwise-if-this-is-set-at-call-time"><a href="#Otherwise-if-this-is-set-at-call-time" class="headerlink" title="Otherwise, if this is set at call-time"></a>Otherwise, if this is set at call-time</h2><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> someObject= &#123;<span class="attr">hellp</span>:<span class="string">'world'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(someFunction.call(someObject) === someObject)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(someFunction.apply(someObject) === someObject)</span><br><span class="line"></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="Otherwise-if-the-function-is-called-via-a-parent-object"><a href="#Otherwise-if-the-function-is-called-via-a-parent-object" class="headerlink" title="Otherwise, if the function is called via a parent object"></a>Otherwise, if the function is called via a parent object</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">obj.someMethod() === obj;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure><p>in this case the function is called as a member of obj, so this will be obj,the link is broken if the function is called without its object</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; someMethod &#125; = obj;</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line">someMethod() === obj;</span><br></pre></td></tr></table></figure><h2 id="Otherwise-if-the-function-or-parent-scope-is-in-strict-mode"><a href="#Otherwise-if-the-function-or-parent-scope-is-in-strict-mode" class="headerlink" title="Otherwise, if the function or parent scope is in strict mode"></a>Otherwise, if the function or parent scope is in strict mode</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">someFunction() === <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure><p>如果父级是严格模式,不写’use strict’ 结果也是一样的</p><h2 id="Otherwise"><a href="#Otherwise" class="headerlink" title="Otherwise"></a>Otherwise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">someFunction() === globalThis;</span><br></pre></td></tr></table></figure><p>this 指向全局 this</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这周逛 v2 由看到有人发 js 的 this 的题目,然后说能做出来的都得算多少年薪……..个人感觉这种知识大部分都是为了应付面试,而且道格拉斯克罗克福特 说过 js 是最好的语言,但是你要用它 good part.&lt;br&gt;不过周末正好看到 相关的一篇&lt;a href=&quot;h
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="https://blog.jingzhengyi.top/categories/js/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>vue3 typescript config</title>
@@ -148,36 +172,6 @@
   </entry>
   
   <entry>
-    <title>阿里云ECS免密码登陆</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
-    <published>2021-01-22T02:05:48.755Z</published>
-    <updated>2021-01-22T02:05:48.755Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;a href=&quot;#使用SSH密钥对连接Linux实例&quot; class=&quot;headerlink&quot; title=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;/a&gt;使用SSH密钥对连接Linux实例&lt;/h2&gt;&lt;p&gt;阿里云ESC远程登陆
-      
-    
-    </summary>
-    
-    
-      <category term="Mac" scheme="https://blog.jingzhengyi.top/categories/Mac/"/>
-    
-      <category term="ECS" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/"/>
-    
-      <category term="SSH" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/SSH/"/>
-    
-    
-      <category term="SSH" scheme="https://blog.jingzhengyi.top/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
     <title>win10Linux子系统</title>
     <link href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
     <id>https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
@@ -204,6 +198,36 @@
     
     
       <category term="win10" scheme="https://blog.jingzhengyi.top/tags/win10/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里云ECS免密码登陆</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
+    <published>2021-01-22T02:05:48.755Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;a href=&quot;#使用SSH密钥对连接Linux实例&quot; class=&quot;headerlink&quot; title=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;/a&gt;使用SSH密钥对连接Linux实例&lt;/h2&gt;&lt;p&gt;阿里云ESC远程登陆
+      
+    
+    </summary>
+    
+    
+      <category term="Mac" scheme="https://blog.jingzhengyi.top/categories/Mac/"/>
+    
+      <category term="ECS" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/"/>
+    
+      <category term="SSH" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/SSH/"/>
+    
+    
+      <category term="SSH" scheme="https://blog.jingzhengyi.top/tags/SSH/"/>
     
   </entry>
   
@@ -268,6 +292,34 @@
   </entry>
   
   <entry>
+    <title>umi适配华为自带浏览器和QQ浏览器</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
+    <published>2021-01-22T02:05:48.754Z</published>
+    <updated>2021-01-22T02:05:48.754Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
+      
+    
+    </summary>
+    
+    
+      <category term="umi" scheme="https://blog.jingzhengyi.top/categories/umi/"/>
+    
+      <category term="android" scheme="https://blog.jingzhengyi.top/categories/umi/android/"/>
+    
+    
+      <category term="h5" scheme="https://blog.jingzhengyi.top/tags/h5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>单点登陆方案</title>
     <link href="https://blog.jingzhengyi.top/2021/01/22/sso/"/>
     <id>https://blog.jingzhengyi.top/2021/01/22/sso/</id>
@@ -327,115 +379,30 @@
   </entry>
   
   <entry>
-    <title>umi适配华为自带浏览器和QQ浏览器</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
-    <published>2021-01-22T02:05:48.754Z</published>
-    <updated>2021-01-22T02:05:48.754Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
-      
-    
-    </summary>
-    
-    
-      <category term="umi" scheme="https://blog.jingzhengyi.top/categories/umi/"/>
-    
-      <category term="android" scheme="https://blog.jingzhengyi.top/categories/umi/android/"/>
-    
-    
-      <category term="h5" scheme="https://blog.jingzhengyi.top/tags/h5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tampermonkey</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/</id>
+    <title>redux-sega</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/redux-sega/</id>
     <published>2021-01-22T02:05:48.753Z</published>
     <updated>2021-01-22T02:05:48.753Z</updated>
     
-    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
+    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
-&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
+        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
       
     
     </summary>
     
     
-      <category term="mac" scheme="https://blog.jingzhengyi.top/categories/mac/"/>
+      <category term="dva" scheme="https://blog.jingzhengyi.top/categories/dva/"/>
+    
+      <category term="generator" scheme="https://blog.jingzhengyi.top/categories/dva/generator/"/>
     
     
-      <category term="plugin" scheme="https://blog.jingzhengyi.top/tags/plugin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何结合Django,React搭建前后台框架</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/djangoreact/</id>
-    <published>2021-01-22T02:05:48.753Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
-      
-    
-    </summary>
-    
-    
-      <category term="React" scheme="https://blog.jingzhengyi.top/categories/React/"/>
-    
-      <category term="django" scheme="https://blog.jingzhengyi.top/categories/React/django/"/>
-    
-    
-      <category term="Django" scheme="https://blog.jingzhengyi.top/tags/Django/"/>
-    
-      <category term="React" scheme="https://blog.jingzhengyi.top/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NativeBase 主题配置</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/</id>
-    <published>2021-01-22T02:05:48.753Z</published>
-    <updated>2021-01-22T02:05:48.753Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://docs.nativebase.io/Components.html#toast-with-duration-headref&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;NativeBase&lt;/a&gt; 个人感觉资料等在开源
-      
-    
-    </summary>
-    
-    
-      <category term="react-native" scheme="https://blog.jingzhengyi.top/categories/react-native/"/>
-    
-      <category term="theme" scheme="https://blog.jingzhengyi.top/categories/react-native/theme/"/>
-    
-    
-      <category term="react-native" scheme="https://blog.jingzhengyi.top/tags/react-native/"/>
+      <category term="generator" scheme="https://blog.jingzhengyi.top/tags/generator/"/>
     
   </entry>
   
@@ -472,30 +439,115 @@
   </entry>
   
   <entry>
-    <title>redux-sega</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/redux-sega/</id>
+    <title>NativeBase 主题配置</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/</id>
     <published>2021-01-22T02:05:48.753Z</published>
     <updated>2021-01-22T02:05:48.753Z</updated>
     
-    <content type="html"><![CDATA[<p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p><h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p><h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p><h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p><h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol><li>产生原因改进最早的: 最早的地域回调写法</li><li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最新的是 async await</li></ol><ul><li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li></ul><h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul><li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li><li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p><h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p><h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p><blockquote><p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p></blockquote><blockquote><p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p></blockquote><blockquote><p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p></blockquote><h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul><li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.&lt;/
+        &lt;p&gt;&lt;a href=&quot;https://docs.nativebase.io/Components.html#toast-with-duration-headref&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;NativeBase&lt;/a&gt; 个人感觉资料等在开源
       
     
     </summary>
     
     
-      <category term="dva" scheme="https://blog.jingzhengyi.top/categories/dva/"/>
+      <category term="react-native" scheme="https://blog.jingzhengyi.top/categories/react-native/"/>
     
-      <category term="generator" scheme="https://blog.jingzhengyi.top/categories/dva/generator/"/>
+      <category term="theme" scheme="https://blog.jingzhengyi.top/categories/react-native/theme/"/>
     
     
-      <category term="generator" scheme="https://blog.jingzhengyi.top/tags/generator/"/>
+      <category term="react-native" scheme="https://blog.jingzhengyi.top/tags/react-native/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何结合Django,React搭建前后台框架</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/djangoreact/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.valentinog.com/blog/tutorial-api-django-rest-react/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;setting up a Django project with
+      
+    
+    </summary>
+    
+    
+      <category term="React" scheme="https://blog.jingzhengyi.top/categories/React/"/>
+    
+      <category term="django" scheme="https://blog.jingzhengyi.top/categories/React/django/"/>
+    
+    
+      <category term="Django" scheme="https://blog.jingzhengyi.top/tags/Django/"/>
+    
+      <category term="React" scheme="https://blog.jingzhengyi.top/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tampermonkey</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/</id>
+    <published>2021-01-22T02:05:48.753Z</published>
+    <updated>2021-01-22T02:05:48.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p><h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p><ul><li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li><li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li><li>脚本站点（论坛）：<ul><li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li><li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li><li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li></ul></li><li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li><li>没有找到好的教程…</li></ul><h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p><ul><li>依赖 <ul><li>iframejs  向iframe里面注入内如</li></ul></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure><ul><li>本地调试vue组件.<blockquote><p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p></blockquote></li></ul><p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure><p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p><ul><li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li></ul><h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p><p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.&lt;/p&gt;
+&lt;h4 id=&quot;Tampermonkey&quot;&gt;&lt;a href=&quot;#Tampermonkey&quot; class=&quot;headerlink&quot; title=&quot;Tampermonkey&quot;&gt;&lt;/a&gt;Tampermo
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="https://blog.jingzhengyi.top/categories/mac/"/>
+    
+    
+      <category term="plugin" scheme="https://blog.jingzhengyi.top/tags/plugin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新海诚电影 你的名字</title>
+    <link href="https://blog.jingzhengyi.top/2020/09/22/yourName/"/>
+    <id>https://blog.jingzhengyi.top/2020/09/22/yourName/</id>
+    <published>2020-09-22T08:30:10.277Z</published>
+    <updated>2019-12-06T08:04:47.293Z</updated>
+    
+    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
+      
+    
+    </summary>
+    
+    
+      <category term="电影" scheme="https://blog.jingzhengyi.top/categories/%E7%94%B5%E5%BD%B1/"/>
+    
+      <category term="生活" scheme="https://blog.jingzhengyi.top/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="你的名字" scheme="https://blog.jingzhengyi.top/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
     
   </entry>
   
@@ -530,60 +582,6 @@
       <category term="eclipse" scheme="https://blog.jingzhengyi.top/tags/eclipse/"/>
     
       <category term="spring" scheme="https://blog.jingzhengyi.top/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新海诚电影 你的名字</title>
-    <link href="https://blog.jingzhengyi.top/2020/09/22/yourName/"/>
-    <id>https://blog.jingzhengyi.top/2020/09/22/yourName/</id>
-    <published>2020-09-22T08:30:10.277Z</published>
-    <updated>2019-12-06T08:04:47.293Z</updated>
-    
-    <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。&lt;br&gt;  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外
-      
-    
-    </summary>
-    
-    
-      <category term="电影" scheme="https://blog.jingzhengyi.top/categories/%E7%94%B5%E5%BD%B1/"/>
-    
-      <category term="生活" scheme="https://blog.jingzhengyi.top/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="你的名字" scheme="https://blog.jingzhengyi.top/tags/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vim键位配置</title>
-    <link href="https://blog.jingzhengyi.top/2019/12/14/1/"/>
-    <id>https://blog.jingzhengyi.top/2019/12/14/1/</id>
-    <published>2019-12-14T10:05:49.000Z</published>
-    <updated>2021-01-22T02:05:48.755Z</updated>
-    
-    <content type="html"><![CDATA[<p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p><ul><li><Esc>代表Escape键:</li><li><CR>代表Enter键；</li><li><D>代表Command键。</li><li>Alt键可以使用<M-key>或<A-key>来表示。</li><li><C>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;7501092&#x2F;can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c &#x3D; nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt; 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.&lt;br&gt; 这里主要讲一下折腾了半天才弄明天的键位配置.&lt;br&gt; 
-      
-    
-    </summary>
-    
-    
-      <category term="vim mac" scheme="https://blog.jingzhengyi.top/categories/vim-mac/"/>
-    
-    
-      <category term="vim" scheme="https://blog.jingzhengyi.top/tags/vim/"/>
     
   </entry>
   

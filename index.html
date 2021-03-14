@@ -163,6 +163,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/03/14/js_this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/14/js_this/" class="post-title-link" itemprop="url">js里的this</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-14 18:54:00 / 修改时间：19:30:28" itemprop="dateCreated datePublished" datetime="2021-03-14T18:54:00+08:00">2021-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这周逛 v2 由看到有人发 js 的 this 的题目,然后说能做出来的都得算多少年薪……..个人感觉这种知识大部分都是为了应付面试,而且道格拉斯克罗克福特 说过 js 是最好的语言,但是你要用它 good part.<br>不过周末正好看到 相关的一篇<a href="https://web.dev/javascript-this/" target="_blank" rel="noopener" title="JavaScript: What is the meaning of this?">文章</a>,发出来,比如有时候为什么调用要加 that =this 避免找不到 还是有点作用的毕竟.</p>
+<h2 id="If-the-function-is-defined-as-an-arrow-function"><a href="#If-the-function-is-defined-as-an-arrow-function" class="headerlink" title="If the function is defined as an arrow function"></a>If the function is defined as an arrow function</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const arrwoFunction &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>this 和父级 this 是一样.</p>
+<ul>
+<li>call or apply 不能改变 箭头函数 的 this</li>
+</ul>
+<h2 id="Otherwise-if-the-function-class-is-called-with-new"><a href="#Otherwise-if-the-function-class-is-called-with-new" class="headerlink" title="Otherwise, if the function/class is called with new"></a>Otherwise, if the function/class is called with new</h2><p>this 被设置成 Object.create(….prototype)的返回值<br><code>js class MyClass{ constructor(){ console.log( this.constructor === Object.create(MyClass.prototype).constructor } // Logs true new MyClass()</code></p>
+<h2 id="Otherwise-if-the-function-has-a-‘bound’-this-value"><a href="#Otherwise-if-the-function-has-a-‘bound’-this-value" class="headerlink" title="Otherwise, if the function has a ‘bound’ this value"></a>Otherwise, if the function has a ‘bound’ this value</h2><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boundObject = &#123;<span class="attr">hellp</span>:<span class="string">'world'</span>&#125;</span><br><span class="line"><span class="keyword">const</span> boundFunction = someFunction.bind(boundObject)</span><br></pre></td></tr></table></figure></code></pre><p>当 boundFuncton 被调用,this 指向 boundObject<br><code>js // false console.log(someFunction() === boundObject) //n true console.log(boundFunction() === boundObject)</code></p>
+<h2 id="Otherwise-if-this-is-set-at-call-time"><a href="#Otherwise-if-this-is-set-at-call-time" class="headerlink" title="Otherwise, if this is set at call-time"></a>Otherwise, if this is set at call-time</h2><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> someObject= &#123;<span class="attr">hellp</span>:<span class="string">'world'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(someFunction.call(someObject) === someObject)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(someFunction.apply(someObject) === someObject)</span><br><span class="line"></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="Otherwise-if-the-function-is-called-via-a-parent-object"><a href="#Otherwise-if-the-function-is-called-via-a-parent-object" class="headerlink" title="Otherwise, if the function is called via a parent object"></a>Otherwise, if the function is called via a parent object</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">obj.someMethod() === obj;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<p>in this case the function is called as a member of obj, so this will be obj,the link is broken if the function is called without its object</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; someMethod &#125; = obj;</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line">someMethod() === obj;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Otherwise-if-the-function-or-parent-scope-is-in-strict-mode"><a href="#Otherwise-if-the-function-or-parent-scope-is-in-strict-mode" class="headerlink" title="Otherwise, if the function or parent scope is in strict mode"></a>Otherwise, if the function or parent scope is in strict mode</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">someFunction() === <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果父级是严格模式,不写’use strict’ 结果也是一样的</p>
+<h2 id="Otherwise"><a href="#Otherwise" class="headerlink" title="Otherwise"></a>Otherwise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">someFunction() === globalThis;</span><br></pre></td></tr></table></figure>
+
+<p>this 指向全局 this</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/03/08/vue3_ts/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -724,141 +809,6 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/vim/" class="post-title-link" itemprop="url">vsCodeVim插件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
-<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
-<ol>
-<li>vim-easymotion</li>
-</ol>
-<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
-<ol start="2">
-<li>vim-sneak</li>
-</ol>
-<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
-<p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
-<p>3.vim-surround   </p>
-<p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Description</th>
-<th>Type</th>
-<th>Default Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>vim.surround</td>
-<td>Enable/disable vim-surround</td>
-<td>Boolean</td>
-<td>true</td>
-</tr>
-</tbody></table>
-<p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p>
-<table>
-<thead>
-<tr>
-<th>Surround Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>d s &lt;existing char&gt;</code></td>
-<td>Delete existing surround</td>
-</tr>
-<tr>
-<td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td>
-<td>Change surround existing to desired</td>
-</tr>
-<tr>
-<td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td>
-<td>Surround something with something using motion (as in “you surround”)</td>
-</tr>
-<tr>
-<td><code>S &lt;desired char&gt;</code></td>
-<td>Surround when in visual modes (surrounds full selection)</td>
-</tr>
-</tbody></table>
-<p>Some examples:</p>
-<ul>
-<li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li>
-<li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li>
-<li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li>
-</ul>
-<h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1031,7 +981,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1045,7 +995,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">umi适配华为自带浏览器和QQ浏览器</a>
+            <a href="/2021/01/22/vim/" class="post-title-link" itemprop="url">vsCodeVim插件</a>
         </h1>
 
         <div class="post-meta">
@@ -1063,11 +1013,15 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/" itemprop="url" rel="index"><span itemprop="name">umi</span></a>
+                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a>
+                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
                 </span>
             </span>
 
@@ -1082,10 +1036,67 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>
+          <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
+<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
+<ol>
+<li>vim-easymotion</li>
+</ol>
+<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
+<ol start="2">
+<li>vim-sneak</li>
+</ol>
+<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
+<p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
+<p>3.vim-surround   </p>
+<p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vim.surround</td>
+<td>Enable/disable vim-surround</td>
+<td>Boolean</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Surround Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>d s &lt;existing char&gt;</code></td>
+<td>Delete existing surround</td>
+</tr>
+<tr>
+<td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td>
+<td>Change surround existing to desired</td>
+</tr>
+<tr>
+<td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td>
+<td>Surround something with something using motion (as in “you surround”)</td>
+</tr>
+<tr>
+<td><code>S &lt;desired char&gt;</code></td>
+<td>Surround when in visual modes (surrounds full selection)</td>
+</tr>
+</tbody></table>
+<p>Some examples:</p>
+<ul>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li>
+<li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li>
+</ul>
+<h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1171,13 +1182,13 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
