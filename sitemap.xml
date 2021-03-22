@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/win10Linux%25E5%25AD%2590%25E7%25B3%25BB%25E7%25BB%259F/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/vim/</loc>
     
     <lastmod>2021-01-22T02:05:48.755Z</lastmod>
     
@@ -100,23 +100,9 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/vim/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/win10Linux%25E5%25AD%2590%25E7%25B3%25BB%25E7%25BB%259F/</loc>
     
     <lastmod>2021-01-22T02:05:48.755Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/sso/</loc>
-    
-    <lastmod>2021-01-22T02:05:48.754Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/tailwindcss/</loc>
-    
-    <lastmod>2021-01-22T02:05:48.754Z</lastmod>
     
   </url>
   
@@ -135,14 +121,28 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/redux-sega/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/tailwindcss/</loc>
+    
+    <lastmod>2021-01-22T02:05:48.754Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/sso/</loc>
+    
+    <lastmod>2021-01-22T02:05:48.754Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/djangoreact/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/redux-sega/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
@@ -156,14 +156,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/</loc>
-    
-    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/djangoreact/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
@@ -171,6 +164,13 @@
   
   <url>
     <loc>https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/</loc>
+    
+    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     

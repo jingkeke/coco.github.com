@@ -1023,7 +1023,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1037,7 +1037,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
+            <a href="/2021/01/22/vim/" class="post-title-link" itemprop="url">vsCodeVim插件</a>
         </h1>
 
         <div class="post-meta">
@@ -1055,15 +1055,15 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/" itemprop="url" rel="index"><span itemprop="name">win10</span></a>
+                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
                 </span>
             </span>
 
@@ -1078,21 +1078,67 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p>
-<h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
-<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
-<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
+          <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
+<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
+<ol>
+<li>vim-easymotion</li>
+</ol>
+<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
+<ol start="2">
+<li>vim-sneak</li>
+</ol>
+<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
+<p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
+<p>3.vim-surround   </p>
+<p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vim.surround</td>
+<td>Enable/disable vim-surround</td>
+<td>Boolean</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Surround Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>d s &lt;existing char&gt;</code></td>
+<td>Delete existing surround</td>
+</tr>
+<tr>
+<td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td>
+<td>Change surround existing to desired</td>
+</tr>
+<tr>
+<td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td>
+<td>Surround something with something using motion (as in “you surround”)</td>
+</tr>
+<tr>
+<td><code>S &lt;desired char&gt;</code></td>
+<td>Surround when in visual modes (surrounds full selection)</td>
+</tr>
+</tbody></table>
+<p>Some examples:</p>
+<ul>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li>
+<li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li>
 </ul>
-<h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul>
-<li>emjo表情（升级到17<br><code>win+.</code></li>
-<li>剪贴板历史<br><code>win+v</code></li>
-<li>截图<br><code>win+shift+s</code></li>
-<li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul>
-<li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li>
-</ul>
+<h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>
 
       
     </div>
