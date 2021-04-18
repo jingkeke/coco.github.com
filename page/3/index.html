@@ -335,7 +335,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -349,7 +349,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/djangoreact/" class="post-title-link" itemprop="url">如何结合Django,React搭建前后台框架</a>
+            <a href="/2021/01/22/redux-sega/" class="post-title-link" itemprop="url">redux-sega</a>
         </h1>
 
         <div class="post-meta">
@@ -367,11 +367,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
                 </span>
             </span>
 
@@ -386,35 +386,205 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p>
-<p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p>
-<ol>
-<li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
-<ul>
-<li>作者推荐,</li>
-</ul>
-</li>
-<li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p>
-<ul>
-<li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p>
-<ul>
-<li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li>
-<li>感觉这个挺好的,然后集合了下面的用户请求,</li>
-</ul>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p>
-<blockquote>
-<p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p>
-<ul>
-<li>不推荐对新手</li>
-</ul>
-</li>
+          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
+<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
+<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
+<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
+<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
+<li>产生原因改进最早的: 最早的地域回调写法</li>
+<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最新的是 async await</li>
 </ol>
+<ul>
+<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
+</ul>
+<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
+<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/Tampermonkey/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/Tampermonkey/" class="post-title-link" itemprop="url">Tampermonkey</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近又接触了油猴,可以定制化网站.比如去掉广告啦,排版文字加空格啦.</p>
+<h4 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h4><p>类似的插件有好几个,然后其中最出名的我看的是Tampermonkey.他有几个优势.</p>
+<ul>
+<li>备份,在[实用工具]选项卡里面有几个选项,我是用的google cloud .试了一下还挺方便.不过他这个是增量的.可能需要删除一下重复,恢复的时候.</li>
+<li>firefox ,chrome 都支持.不过听说chrome以后会禁用修改网页之类的.还是有风险的.不好的油猴插件有可能监控你的行为之类的.<strong>因为油猴脚本的灵活性和无限可能，不安全的油猴脚本是很危险的。比如它可以在你登录的账号页面上搜集信息，发送到后台，甚至直接下单，修改地址等等</strong></li>
+<li>脚本站点（论坛）：<ul>
+<li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li>
+<li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li>
+<li><a href="http://userscripts-mirror.org/" target="_blank" rel="noopener">http://userscripts-mirror.org/</a><h4 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h4></li>
+</ul>
+</li>
+<li>现在想着是多看看人家怎么做的.然后就看了几个插件的源码.</li>
+<li>没有找到好的教程…</li>
+</ul>
+<h5 id="Userscript-显示当前网站所有可用的UserJS脚本-Jaeger"><a href="#Userscript-显示当前网站所有可用的UserJS脚本-Jaeger" class="headerlink" title="Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger"></a>Userscript+ : 显示当前网站所有可用的UserJS脚本 Jaeger</h5><p>我看的这个的<a href="https://github.com/jae-jae/Userscript-Plus/tree/develop" target="_blank" rel="noopener">githhub有源码</a>,</p>
+<ul>
+<li>依赖 <ul>
+<li>iframejs  向iframe里面注入内如</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载依赖js库</span></span><br><span class="line">	ljs.exec([<span class="string">'jQuery'</span>, <span class="string">'iframe'</span>, <span class="string">'psl'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fu = <span class="keyword">new</span> FetchUserjs();</span><br><span class="line">    fu.render();</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本地调试vue组件.<blockquote>
+<p>主要是想弄明白他怎么单独用vue组件的..有点理解的似是而非…….跟之前理解的单独用vue组件感觉有点不一样.这个有点高端.相等于在一个页面中注入一个vue组件使用逻辑.先在frame里面注入html框架.然后再运行打包的vue组件js.要是我自己用webpack是实现的话感觉只有抄的水平.. </p>
+</blockquote>
+</li>
+</ul>
+<p>下载代码后.启动 <code>npm run watch:ui</code> 在dist目录生成vue的打包.然后可以 用 npm 包 serve 启动静态文件服务 <code>serve -l 5000</code>.然后替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.gf.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui     https://raw.githubusercontent.com/jae-jae/Show-Site-All-UserJS/master/dist/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @resource     uiJs   http://localhost:5000/ui.js?_=1561104961645</span></span><br><span class="line"><span class="comment">// @resource     ui      http://localhost:5000/ui.html?_=1561104961645</span></span><br></pre></td></tr></table></figure>
+<p>可以加个断点之类的.这部分是调试这个插件用vue写的可选插件的table组件. 可以用vsCode 调试npm <code>npm run build --inspect-brk</code></p>
+<ul>
+<li>其他接口查询<br>其他的获取网站到底有多少可用插件之类的是在项目里面的 userscript目录里面.然后这个我看是放在插件的主入口里面.感觉有点麻烦,没细看.有时间再慢慢看看.</li>
+</ul>
+<h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p>
+<p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2020/09/22/yourName/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/22/yourName/" class="post-title-link" itemprop="url">新海诚电影 你的名字</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 16:04:47" itemprop="dateModified" datetime="2019-12-06T16:04:47+08:00">2019-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%B5%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">电影</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>
 
       
     </div>
@@ -510,84 +680,6 @@
 </ol>
 <p><img src="http://upload-images.jianshu.io/upload_images/1178954-edcf9ff8dc35e5df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
 <h2 id="TortoiseGit-海龟Git-是TortoiseSVN的Git版本"><a href="#TortoiseGit-海龟Git-是TortoiseSVN的Git版本" class="headerlink" title="TortoiseGit (海龟Git)是TortoiseSVN的Git版本"></a>TortoiseGit (海龟Git)是TortoiseSVN的Git版本</h2><p><a href="http://www.oschina.net/p/tortoisegit/" target="_blank" rel="noopener">http://www.oschina.net/p/tortoisegit/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2020/09/22/yourName/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/22/yourName/" class="post-title-link" itemprop="url">新海诚电影 你的名字</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 16:04:47" itemprop="dateModified" datetime="2019-12-06T16:04:47+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%B5%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">电影</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>
 
       
     </div>
@@ -949,90 +1041,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2016/11/27/nginxcommConfig/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/27/nginxcommConfig/" class="post-title-link" itemprop="url">centos7：nginx的常用配置</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-11-27 13:55:19" itemprop="dateCreated datePublished" datetime="2016-11-27T13:55:19+08:00">2016-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:05:48" itemprop="dateModified" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">后端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="场景一：服务器放一些视频，可以查看视频列表，你只希望有权限的人可以看。"><a href="#场景一：服务器放一些视频，可以查看视频列表，你只希望有权限的人可以看。" class="headerlink" title="场景一：服务器放一些视频，可以查看视频列表，你只希望有权限的人可以看。"></a>场景一：服务器放一些视频，可以查看视频列表，你只希望有权限的人可以看。</h3><ul>
-<li><p>开启Nginx的目录文件列表功能效果截图：<br><img src="http://upload-images.jianshu.io/upload_images/1178954-adb7c3208f5371b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
-</li>
-<li><p>nginx实现访问网站或目录密码认证保护 效果截图：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/11/27/nginxcommConfig/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1103,7 +1111,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
