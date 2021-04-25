@@ -163,6 +163,191 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/redux-sega/" class="post-title-link" itemprop="url">redux-sega</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
+<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
+<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
+<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
+<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
+<li>产生原因改进最早的: 最早的地域回调写法</li>
+<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最新的是 async await</li>
+</ol>
+<ul>
+<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
+</ul>
+<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
+<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/djangoreact/" class="post-title-link" itemprop="url">如何结合Django,React搭建前后台框架</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p>
+<p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p>
+<ol>
+<li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
+<ul>
+<li>作者推荐,</li>
+</ul>
+</li>
+<li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p>
+<ul>
+<li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p>
+<ul>
+<li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li>
+<li>感觉这个挺好的,然后集合了下面的用户请求,</li>
+</ul>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p>
+<blockquote>
+<p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p>
+<ul>
+<li>不推荐对新手</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,92 +500,6 @@
 <li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
 <li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/redux-sega/" class="post-title-link" itemprop="url">redux-sega</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
-<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
-<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
-<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
-<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
-<li>产生原因改进最早的: 最早的地域回调写法</li>
-<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>最新的是 async await</li>
-</ol>
-<ul>
-<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
-</ul>
-<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
-<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
-<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
 </ul>
 
       
@@ -945,102 +1044,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2017/01/07/2016summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/01/07/2016summary/" class="post-title-link" itemprop="url">2016总结.md</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-01-07 12:32:05" itemprop="dateCreated datePublished" datetime="2017-01-07T12:32:05+08:00">2017-01-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:05:48" itemprop="dateModified" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>项目<br>1月从北京项目回来做购物网站,5月开始是wolife，8月半路做了些微信企业号。之后是wolife全面维护。</p>
-</li>
-<li><p>知识</p>
-<ul>
-<li>springMVC</li>
-<li>maven</li>
-<li>hbuilder  app</li>
-<li>git</li>
-</ul>
-</li>
-<li><p>生活</p>
-<ul>
-<li>加了一群飞鱼人，生活从空间到微信。</li>
-<li>整天在等公交车时候用印象笔记写日记。</li>
-<li>用黑莓看订阅邮件，学到了不少东西。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/01/07/2016summary/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1111,7 +1114,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

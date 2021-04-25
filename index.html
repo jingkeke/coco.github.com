@@ -163,6 +163,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/25/d3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/25/d3/" class="post-title-link" itemprop="url">d3Js入门</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-25 10:57:00 / 修改时间：11:26:47" itemprop="dateCreated datePublished" datetime="2021-04-25T10:57:00+08:00">2021-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>chart 之类如果用别人的库 其实 最终展示的 是 svg .然后 d3Js 是一个主要基于 svg 的一个 dom 操作的库. 最近学习了一下. 因为有些需要可能:</p>
+<ul>
+<li>用别人库可能杀鸡用牛刀</li>
+<li>定制需求</li>
+<li>如果老板想要一些炫的动效,或者一些有交互的组件, 比如一个行驶的小车.这些其实用 d3 很方便.</li>
+<li>自己想折腾一下吧……..多了解一些</li>
+</ul>
+<h2 id="d3-vs-threeJs"><a href="#d3-vs-threeJs" class="headerlink" title="d3 vs threeJs"></a>d3 vs threeJs</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li>d3 主要是基于 svg 的 ,如果是操作几个 dom,形状这个合适</li>
+<li>threejs 主要是基于 webgl ,canval 的库,3d 效果的复杂的图像需求</li>
+</ul>
+<h2 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h2><p>svg 学习可以看看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial" target="_blank" rel="noopener">mdn 的官网  </a> .</p>
+<h3 id="主要的元素"><a href="#主要的元素" class="headerlink" title="主要的元素"></a>主要的元素</h3><ul>
+<li>path</li>
+<li>line</li>
+<li>rect</li>
+<li>text<br><img src="./pics/d3-svg1.png" alt="元素"></li>
+</ul>
+<h2 id="d3-学习"><a href="#d3-学习" class="headerlink" title="d3 学习"></a>d3 学习</h2><p>我主要是看了一堆 frontendMaster 的课程.</p>
+<p>个人感觉笔记难理解的是 d3 的链式调用吧.一开始 .主要就是有一些是找到 dom ,然后可以之间套用方法.</p>
+<ul>
+<li>.call 方法 参考<a href="https://stackoverflow.com/questions/12805309/javascript-library-d3-call-function" target="_blank" rel="noopener">stackoverflow d3 call function</a><br>.call()是 D3 API 函数，不要与<em>Function.prototype.call（）</em> 混淆<blockquote>
+<p>selection.call(function<a href="">, arguments…</a>)<br>完全调用一次指定的函数，并将此选择与任何可选参数一起传递。返回此选择。这等效于手动调用功能，但有助于方法链接。例如，要在可重用函数中设置几种样式：<br>现在说：<br><code>d3.selectAll(&quot;div&quot;).call(name, &quot;John&quot;, &quot;Snow&quot;);</code><br>这大致相当于：<br><code>name(d3.selectAll(&quot;div&quot;), &quot;John&quot;, &quot;Snow&quot;);</code><br>唯一的区别是 selection.call 总是返回选择内容，而不是被调用函数 name 的返回值。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cassie.codes/posts/swipey-image-grids/" target="_blank" rel="noopener">https://www.cassie.codes/posts/swipey-image-grids/</a> svg 的动效</li>
+<li><a href="https://wattenberger.com/blog/react-and-d3" target="_blank" rel="noopener">https://wattenberger.com/blog/react-and-d3</a> 感觉挺炫的,不过感觉有点代码不全</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/18/leader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1203,86 +1300,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/30/frontend-think/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/30/frontend-think/" class="post-title-link" itemprop="url">思考一下前端</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-01-30 15:23:00 / 修改时间：16:38:31" itemprop="dateCreated datePublished" datetime="2021-01-30T15:23:00+08:00">2021-01-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>最近工作上老有种感觉后端压着前端的感觉,老感觉刚毕业的后端也觉得自己挺厉害,感觉没法商量.但是感觉自己其实花费了好多时间去学习...
-
-
-可能也算是人生误区吧,最近就开始多看一些算法相关的了又.然后说最好的学习是写下来,然后给别人讲明白.然后又开始写写博客了.虽然只是只言片语吧....给自己立的目标的一部分.(用todo软件 写的 每周得写点啥目标.)
-
-今年自己的目标老是想找到一个自己架构一个系统的方式,然后去年是找到了**jhipster**这个springweb,
-
-### 今年因为看了很长时间frontendMaster课程,然后划时间看graphql 这个架构.实际动手是:
-- 在一个原有项目(小度鱼社区)上改过
-- 看frontendmasters课 关于 gatby 的框架的(快速搭建官网,博客之类的网站)
-- 各种中断的续看资料.
-
-### django框架的
-这个是自己前年做过一个demo性质的...
-
-
-
-然后年底时候听播客,说graphql 不火了.....不过我还是想坚持自己实现一把吧.
-
-
-看到的其他言论是 用go去搭建基础框架......这个感觉自己比较缺的是信念去学习.
-
-PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(www.jingzhengyi.top)......这个网站又要成为历史了........</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1353,7 +1370,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
