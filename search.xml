@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>TypeScript 结合 React.useState 正确方式</title>
+      <link href="/2021/05/02/ts-useState/"/>
+      <url>/2021/05/02/ts-useState/</url>
+      
+        <content type="html"><![CDATA[<h2 id="useDarkMode-hook"><a href="#useDarkMode-hook" class="headerlink" title="useDarkMode hook :"></a><code>useDarkMode</code> hook :</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> DarkModeState = <span class="string">"dark"</span> | <span class="string">"light"</span>;</span><br><span class="line"><span class="keyword">type</span> SetDarkModeState = React.Dispatch&lt;React.SetStateAction&lt;DarkModeState&gt;&gt;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> preferDarkQuery = <span class="string">"(prefers-color-scheme: dark)"</span>;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState&lt;DarkModeState&gt;<span class="function">(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> lsVal = <span class="built_in">window</span>.localStorage.getItem(<span class="params">"colorMode"</span>);</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (<span class="params">lsVal</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">return</span> lsVal === "dark" ? "dark" : "light";</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125; <span class="keyword">else</span> &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">return</span> <span class="built_in">window</span>.matchMedia(<span class="params">preferDarkQuery</span>).matches ? "dark" : "light";</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span>);</span></span><br><span class="line"><span class="function">  <span class="params">React</span>.<span class="params">useEffect</span>(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> mediaQuery = <span class="built_in">window</span>.matchMedia(<span class="params">preferDarkQuery</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> handleChange = (<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      setMode(<span class="params">mediaQuery.matches ? "dark" : "light"</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;;</span></span></span><br><span class="line"><span class="function"><span class="params">    mediaQuery.addEventListener(<span class="params">"change", handleChange</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> (<span class="params"></span>) =&gt; mediaQuery.removeEventListener(<span class="params">"change", handleChange</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;, []</span>);</span></span><br><span class="line"><span class="function">  <span class="params">React</span>.<span class="params">useEffect</span>(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="built_in">window</span>.localStorage.setItem(<span class="params">"colorMode", mode</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;, [mode]</span>);</span></span><br><span class="line"><span class="function">  // <span class="params">we</span>'<span class="params">re</span> <span class="params">doing</span> <span class="params">it</span> <span class="params">this</span> <span class="params">way</span> <span class="params">instead</span> <span class="params">of</span> <span class="params">as</span> <span class="params">an</span> <span class="params">effect</span> <span class="params">so</span> <span class="params">we</span> <span class="params">only</span></span></span><br><span class="line"><span class="function">  // <span class="params">set</span> <span class="params">the</span> <span class="params">localStorage</span> <span class="params">value</span> <span class="params">if</span> <span class="params">they</span> <span class="params">explicitly</span> <span class="params">change</span> <span class="params">the</span> <span class="params">default</span></span></span><br><span class="line"><span class="function">  <span class="params">return</span> [<span class="params">mode</span>, <span class="params">setMode</span>] <span class="params">as</span> <span class="params">const</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure><h2 id="A-closer-look"><a href="#A-closer-look" class="headerlink" title="A closer look"></a>A closer look</h2><p>I want to call out a few things about the hook itself that made things work well from a TypeScript perspective. First, let’s clear out all the extra stuff and just look at the important bits. We’ll even clear out the TypeScript and add it iteratively:</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"light"</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = useDarkMode();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;button onClick=&#123;<span class="function"><span class="params">()</span> =&gt;</span> setMode(mode === <span class="string">"light"</span> ? <span class="string">"dark"</span> : <span class="string">"light"</span>)&#125;&gt;</span><br><span class="line">      Toggle <span class="keyword">from</span> &#123;mode&#125;</span><br><span class="line">    &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure><p>From the get-go, we’ve got an error when calling setMode:</p><p>This expression is not callable.<br>Not all constituents of type ‘string | React.Dispatch&lt;SetStateAction<string>&gt;’ are callable.<br>Type ‘string’ has no call signatures.(2349)<br>You can read each addition of indentation as “because”, so let’s read that again:</p><blockquote><p>这个表达式不是可被调用的. <em>Because</em> not all constituents of type ‘string | React.Dispatch&lt;SetStateAction<string>&gt;’ are callable. 因为推断出有俩值,其中是 string 不可调用(2349)</p></blockquote><p>我们肉眼可见 setMode 是个函数,为啥 ts 推断它是两种类型?</p><p>我们换种写法:</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = useDarkMode();</span><br><span class="line"><span class="keyword">const</span> mode = array[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> setMode = array[<span class="number">1</span>];</span><br></pre></td></tr></table></figure><p>在这种情形下 array 有以下推断:</p><p><code>Array&lt;string | React.Dispatch&lt;React.SetStateAction&lt;string&gt;&gt;&gt;</code></p><p>TypeScript 自己推断不出来数组的先后顺序,它只知道数组返回了个 string 和 Dispatch 类型</p><p>But React’s useState hook manages to ensure when we extract values out of it. Let’s take a quick look at their type definition for useState:</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useState</span>&lt;<span class="title">S</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  initialState: S | (() =&gt; S)</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): [<span class="title">S</span>, <span class="title">Dispatch</span>&lt;<span class="title">SetStateAction</span>&lt;<span class="title">S</span>&gt;&gt;]</span>;</span><br></pre></td></tr></table></figure><p>Ah, so they have a return type that is an array with explicit types. So rather than an array of elements that can be one of two types, it’s explicitly an array with two elements where the first is the type of state and the second is a Dispatch SetStateAction for that type of state.</p><p>我们需要告诉 TypeScript 我们确保数组不会改变.</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>): [<span class="title">string</span>, <span class="title">React</span>.<span class="title">Dispatch</span>&lt;<span class="title">React</span>.<span class="title">SetStateAction</span>&lt;<span class="title">string</span>&gt;&gt;] </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Or we could make a specific type for a variable:</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">const</span> returnValue: [<span class="built_in">string</span>, React.Dispatch&lt;React.SetStateAction&lt;<span class="built_in">string</span>&gt;&gt;] = [</span><br><span class="line">    mode,</span><br><span class="line">    setMode,</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> returnValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更好的方式 是 Typescript 内建了这个能力,因为 typescript 已经知道了 array 的类型.所以我们只需要告诉 ts “返回数据是不变的” 我们指定返回值为 const</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode] <span class="keyword">as</span> <span class="keyword">const</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样我们就不需要 ts 自己判断返回类型</p><p>And we can take it a step further because with our Dark Mode functionality, the string can be either dark or light so we can do better than TypeScript’s inference and pass the possible values explicitly:</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState&lt;<span class="string">"dark"</span> | <span class="string">"light"</span>&gt;<span class="function">(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// ...</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> "light";</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span>);</span></span><br><span class="line"><span class="function">  // ...</span></span><br><span class="line"><span class="function">  <span class="params">return</span> [<span class="params">mode</span>, <span class="params">setMode</span>] <span class="params">as</span> <span class="params">const</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure><p>This will help us when we call setMode to ensure we not only call it with a string, but the right type of string. I also created type aliases for this and the dispatch function to make the prop types easier as I pass these values around my app.</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="%https://kentcdodds.com/blog/wrapping-react-use-state-with-type-script%">ref1</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> react </category>
+          
+          <category> typescript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>d3Js入门</title>
       <link href="/2021/04/25/d3/"/>
       <url>/2021/04/25/d3/</url>
@@ -252,27 +273,27 @@
     
     
     <entry>
-      <title>阿里云ECS免密码登陆</title>
-      <link href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
-      <url>/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</url>
+      <title>win10Linux子系统</title>
+      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
       
-        <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
       
       
       <categories>
           
-          <category> Mac </category>
+          <category> win10 </category>
           
-          <category> ECS </category>
+          <category> ubuntu </category>
           
-          <category> SSH </category>
+          <category> tools </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> SSH </tag>
+            <tag> win10 </tag>
             
         </tags>
       
@@ -310,27 +331,27 @@
     
     
     <entry>
-      <title>win10Linux子系统</title>
-      <link href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
-      <url>/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</url>
+      <title>阿里云ECS免密码登陆</title>
+      <link href="/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
+      <url>/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</url>
       
-        <content type="html"><![CDATA[<p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li><li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li></ul><h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul><li>emjo表情（升级到17<br><code>win+.</code></li><li>剪贴板历史<br><code>win+v</code></li><li>截图<br><code>win+shift+s</code></li><li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul><li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li><li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> win10 </category>
+          <category> Mac </category>
           
-          <category> ubuntu </category>
+          <category> ECS </category>
           
-          <category> tools </category>
+          <category> SSH </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> win10 </tag>
+            <tag> SSH </tag>
             
         </tags>
       
@@ -358,6 +379,37 @@
         <tags>
             
             <tag> 通信 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>单点登陆方案</title>
+      <link href="/2021/01/22/sso/"/>
+      <url>/2021/01/22/sso/</url>
+      
+        <content type="html"><![CDATA[<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul><li>CAS<ul><li>多个应用共用一个登陆设置.</li><li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li></ul></li><li>手机端不适合基于session的场景,看了jwt方案.<ul><li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li></ul></li></ul><hr><p><strong>注意以下实现主要是基于python django drf.</strong></p><h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul><li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul><li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li></ul></li></ul><h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul><li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li></ul><h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul><li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li><li>测试<br>官方代码自己集成了swagger测试</li></ul><h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul><li>测试<br>参考官网</li><li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span><span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_tokenurlpatterns = [url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span><span class="string">]</span><span class="string"># utils.py</span><span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span><span class="string">"""</span><span class="string">自定义jwt认证成功返回数据</span><span class="string">"""</span><span class="string">return {</span><span class="string">'</span>token<span class="string">': token,</span><span class="string">'</span>user_id<span class="string">': user.id,</span><span class="string">'</span>username<span class="string">': user.username</span><span class="string">}</span><span class="string"># 修改配置 # JWT</span><span class="string">JWT_AUTH = {</span><span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span><span class="string">}</span></code></pre></li></ul><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul><li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> sso </category>
+          
+          <category> cas </category>
+          
+          <category> django </category>
+          
+          <category> drf </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sso </tag>
             
         </tags>
       
@@ -404,66 +456,6 @@
         <tags>
             
             <tag> h5 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>单点登陆方案</title>
-      <link href="/2021/01/22/sso/"/>
-      <url>/2021/01/22/sso/</url>
-      
-        <content type="html"><![CDATA[<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul><li>CAS<ul><li>多个应用共用一个登陆设置.</li><li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li></ul></li><li>手机端不适合基于session的场景,看了jwt方案.<ul><li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li></ul></li></ul><hr><p><strong>注意以下实现主要是基于python django drf.</strong></p><h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul><li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul><li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li></ul></li></ul><h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul><li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li></ul><h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul><li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li><li>测试<br>官方代码自己集成了swagger测试</li></ul><h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul><li>测试<br>参考官网</li><li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span><span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_tokenurlpatterns = [url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span><span class="string">]</span><span class="string"># utils.py</span><span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span><span class="string">"""</span><span class="string">自定义jwt认证成功返回数据</span><span class="string">"""</span><span class="string">return {</span><span class="string">'</span>token<span class="string">': token,</span><span class="string">'</span>user_id<span class="string">': user.id,</span><span class="string">'</span>username<span class="string">': user.username</span><span class="string">}</span><span class="string"># 修改配置 # JWT</span><span class="string">JWT_AUTH = {</span><span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span><span class="string">}</span></code></pre></li></ul><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul><li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> sso </category>
-          
-          <category> cas </category>
-          
-          <category> django </category>
-          
-          <category> drf </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> sso </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>如何结合Django,React搭建前后台框架</title>
-      <link href="/2021/01/22/djangoreact/"/>
-      <url>/2021/01/22/djangoreact/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> React </category>
-          
-          <category> django </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Django </tag>
-            
-            <tag> React </tag>
             
         </tags>
       
@@ -553,6 +545,35 @@
     
     
     <entry>
+      <title>如何结合Django,React搭建前后台框架</title>
+      <link href="/2021/01/22/djangoreact/"/>
+      <url>/2021/01/22/djangoreact/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p><p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p><ol><li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p><ul><li>作者推荐,</li></ul></li><li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p><ul><li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p><ul><li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li><li>感觉这个挺好的,然后集合了下面的用户请求,</li></ul></li><li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p><blockquote><p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p><ul><li>不推荐对新手</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+          <category> django </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+            <tag> React </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redux-sega</title>
       <link href="/2021/01/22/redux-sega/"/>
       <url>/2021/01/22/redux-sega/</url>
@@ -572,6 +593,33 @@
         <tags>
             
             <tag> generator </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>新海诚电影 你的名字</title>
+      <link href="/2020/09/22/yourName/"/>
+      <url>/2020/09/22/yourName/</url>
+      
+        <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 电影 </category>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 你的名字 </tag>
             
         </tags>
       
@@ -603,33 +651,6 @@
             <tag> eclipse </tag>
             
             <tag> spring </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>新海诚电影 你的名字</title>
-      <link href="/2020/09/22/yourName/"/>
-      <url>/2020/09/22/yourName/</url>
-      
-        <content type="html"><![CDATA[<p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 电影 </category>
-          
-          <category> 生活 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 你的名字 </tag>
             
         </tags>
       

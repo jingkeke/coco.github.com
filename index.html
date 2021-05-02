@@ -163,6 +163,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/05/02/ts-useState/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/02/ts-useState/" class="post-title-link" itemprop="url">TypeScript 结合 React.useState 正确方式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-02 21:01:00 / 修改时间：21:45:39" itemprop="dateCreated datePublished" datetime="2021-05-02T21:01:00+08:00">2021-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="useDarkMode-hook"><a href="#useDarkMode-hook" class="headerlink" title="useDarkMode hook :"></a><code>useDarkMode</code> hook :</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> DarkModeState = <span class="string">"dark"</span> | <span class="string">"light"</span>;</span><br><span class="line"><span class="keyword">type</span> SetDarkModeState = React.Dispatch&lt;React.SetStateAction&lt;DarkModeState&gt;&gt;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> preferDarkQuery = <span class="string">"(prefers-color-scheme: dark)"</span>;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState&lt;DarkModeState&gt;<span class="function">(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> lsVal = <span class="built_in">window</span>.localStorage.getItem(<span class="params">"colorMode"</span>);</span></span></span><br><span class="line"><span class="function"><span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">if</span> (<span class="params">lsVal</span>) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">return</span> lsVal === "dark" ? "dark" : "light";</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125; <span class="keyword">else</span> &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">return</span> <span class="built_in">window</span>.matchMedia(<span class="params">preferDarkQuery</span>).matches ? "dark" : "light";</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span>);</span></span><br><span class="line"><span class="function">  <span class="params">React</span>.<span class="params">useEffect</span>(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> mediaQuery = <span class="built_in">window</span>.matchMedia(<span class="params">preferDarkQuery</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> handleChange = (<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      setMode(<span class="params">mediaQuery.matches ? "dark" : "light"</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;;</span></span></span><br><span class="line"><span class="function"><span class="params">    mediaQuery.addEventListener(<span class="params">"change", handleChange</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> (<span class="params"></span>) =&gt; mediaQuery.removeEventListener(<span class="params">"change", handleChange</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;, []</span>);</span></span><br><span class="line"><span class="function">  <span class="params">React</span>.<span class="params">useEffect</span>(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="built_in">window</span>.localStorage.setItem(<span class="params">"colorMode", mode</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;, [mode]</span>);</span></span><br><span class="line"><span class="function">  // <span class="params">we</span>'<span class="params">re</span> <span class="params">doing</span> <span class="params">it</span> <span class="params">this</span> <span class="params">way</span> <span class="params">instead</span> <span class="params">of</span> <span class="params">as</span> <span class="params">an</span> <span class="params">effect</span> <span class="params">so</span> <span class="params">we</span> <span class="params">only</span></span></span><br><span class="line"><span class="function">  // <span class="params">set</span> <span class="params">the</span> <span class="params">localStorage</span> <span class="params">value</span> <span class="params">if</span> <span class="params">they</span> <span class="params">explicitly</span> <span class="params">change</span> <span class="params">the</span> <span class="params">default</span></span></span><br><span class="line"><span class="function">  <span class="params">return</span> [<span class="params">mode</span>, <span class="params">setMode</span>] <span class="params">as</span> <span class="params">const</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="A-closer-look"><a href="#A-closer-look" class="headerlink" title="A closer look"></a>A closer look</h2><p>I want to call out a few things about the hook itself that made things work well from a TypeScript perspective. First, let’s clear out all the extra stuff and just look at the important bits. We’ll even clear out the TypeScript and add it iteratively:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"light"</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = useDarkMode();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;button onClick=&#123;<span class="function"><span class="params">()</span> =&gt;</span> setMode(mode === <span class="string">"light"</span> ? <span class="string">"dark"</span> : <span class="string">"light"</span>)&#125;&gt;</span><br><span class="line">      Toggle <span class="keyword">from</span> &#123;mode&#125;</span><br><span class="line">    &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>From the get-go, we’ve got an error when calling setMode:</p>
+<p>This expression is not callable.<br>Not all constituents of type ‘string | React.Dispatch&lt;SetStateAction<string>&gt;’ are callable.<br>Type ‘string’ has no call signatures.(2349)<br>You can read each addition of indentation as “because”, so let’s read that again:</p>
+<blockquote>
+<p>这个表达式不是可被调用的. <em>Because</em> not all constituents of type ‘string | React.Dispatch&lt;SetStateAction<string>&gt;’ are callable. 因为推断出有俩值,其中是 string 不可调用(2349)</p>
+</blockquote>
+<p>我们肉眼可见 setMode 是个函数,为啥 ts 推断它是两种类型?</p>
+<p>我们换种写法:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = useDarkMode();</span><br><span class="line"><span class="keyword">const</span> mode = array[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> setMode = array[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+
+<p>在这种情形下 array 有以下推断:</p>
+<p><code>Array&lt;string | React.Dispatch&lt;React.SetStateAction&lt;string&gt;&gt;&gt;</code></p>
+<p>TypeScript 自己推断不出来数组的先后顺序,它只知道数组返回了个 string 和 Dispatch 类型</p>
+<p>But React’s useState hook manages to ensure when we extract values out of it. Let’s take a quick look at their type definition for useState:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useState</span>&lt;<span class="title">S</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  initialState: S | (() =&gt; S)</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): [<span class="title">S</span>, <span class="title">Dispatch</span>&lt;<span class="title">SetStateAction</span>&lt;<span class="title">S</span>&gt;&gt;]</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Ah, so they have a return type that is an array with explicit types. So rather than an array of elements that can be one of two types, it’s explicitly an array with two elements where the first is the type of state and the second is a Dispatch SetStateAction for that type of state.</p>
+<p>我们需要告诉 TypeScript 我们确保数组不会改变.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>): [<span class="title">string</span>, <span class="title">React</span>.<span class="title">Dispatch</span>&lt;<span class="title">React</span>.<span class="title">SetStateAction</span>&lt;<span class="title">string</span>&gt;&gt;] </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Or we could make a specific type for a variable:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">const</span> returnValue: [<span class="built_in">string</span>, React.Dispatch&lt;React.SetStateAction&lt;<span class="built_in">string</span>&gt;&gt;] = [</span><br><span class="line">    mode,</span><br><span class="line">    setMode,</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> returnValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更好的方式 是 Typescript 内建了这个能力,因为 typescript 已经知道了 array 的类型.所以我们只需要告诉 ts “返回数据是不变的” 我们指定返回值为 const</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> [mode, setMode] <span class="keyword">as</span> <span class="keyword">const</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就不需要 ts 自己判断返回类型</p>
+<p>And we can take it a step further because with our Dark Mode functionality, the string can be either dark or light so we can do better than TypeScript’s inference and pass the possible values explicitly:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useDarkMode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [mode, setMode] = React.useState&lt;<span class="string">"dark"</span> | <span class="string">"light"</span>&gt;<span class="function">(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="comment">// ...</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> "light";</span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span>);</span></span><br><span class="line"><span class="function">  // ...</span></span><br><span class="line"><span class="function">  <span class="params">return</span> [<span class="params">mode</span>, <span class="params">setMode</span>] <span class="params">as</span> <span class="params">const</span>;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>This will help us when we call setMode to ensure we not only call it with a string, but the right type of string. I also created type aliases for this and the dispatch function to make the prop types easier as I pass these values around my app.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="%https://kentcdodds.com/blog/wrapping-react-use-state-with-type-script%">ref1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/25/d3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1222,84 +1329,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/02/06/frontend-what-i-leaned/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/06/frontend-what-i-leaned/" class="post-title-link" itemprop="url">前端-相关技能点我了解的</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-06 18:30:00 / 修改时间：18:49:50" itemprop="dateCreated datePublished" datetime="2021-02-06T18:30:00+08:00">2021-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="js该学点啥"><a href="#js该学点啥" class="headerlink" title="js该学点啥"></a>js该学点啥</h1><p>“没有人因为java而失业” 对于该如何选择开发语言,我个人还是很喜欢javascript.但是也感觉挺痛苦的,对于一个跟着别人学的人来说.学过了vue,react各种框架,感觉其实基本就是一个功能学了不同的实现方式,现在想想感觉还是挺没啥成就感的.<br>总结一下我现在的感觉的js相关的技能点</p>
-<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>这个是在我学习redux时候接触的.然后最近看过了json的作者的在frontendmaster的课程,然后他总结99%的js开发者不知道js其实还可以这么写….感觉老爷子都胡子花白,虽然他的课程是16年的,而且长达10小时,但是感觉还是值得一看的.作为入门.</p>
-<ul>
-<li>最近想用jupyter把学习的做成js笔记,有运行结果,一目了然.这个就涉及如何做笔记的话题,我现在react是用mdx,反正就是那种可以运行看看效果的那种.</li>
-</ul>
-<h3 id="deno"><a href="#deno" class="headerlink" title="deno"></a>deno</h3><p>最近在了解的,其实我列出来,主要是想说一下node的作者在推出这个的时候说自己后悔node的几个点,那个视频在youtube上有,而且还是有专门的中文翻译,感觉可能是推广需要,但是感觉node 的作者还很年轻感觉:</p>
-<ul>
-<li>前端发展好快,他是用rust开发的,rust是火狐的公司M开发的…..最近看资料好多人想学一下这个语言…..</li>
-<li>他说的一些如何编译node ,如何平台适应,如何通过v8优化性能,感觉自己都没怎么接触过….所以多看看感觉还是很能开阔自己眼界….提醒自己多学多看,周末出去找个咖啡馆学习多么重要……..<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3>这个主要是我有几个框架想学习……涉及graphql的……感觉自己做过几个demo,但是还是没有串联起来……….</li>
-</ul>
-<h3 id="parcel"><a href="#parcel" class="headerlink" title="parcel"></a>parcel</h3><p>这个就是感觉学过react,vue 老感觉虽然花了很多时间,但是感觉没啥成就感,就是感觉老是新瓶装旧酒…..技能老是提高不了…….关于如何作出一个东西的方式…….</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1370,13 +1399,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
