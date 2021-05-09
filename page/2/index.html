@@ -163,6 +163,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/02/28/ReactNativeBridge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/28/ReactNativeBridge/" class="post-title-link" itemprop="url">理解 React Native Bridge 的概念</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-28 18:30:00 / 修改时间：19:39:37" itemprop="dateCreated datePublished" datetime="2021-02-28T18:30:00+08:00">2021-02-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/h5/" itemprop="url" rel="index"><span itemprop="name">h5</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="理解-React-Native-Bridge-的概念"><a href="#理解-React-Native-Bridge-的概念" class="headerlink" title="理解 React Native Bridge 的概念"></a>理解 React Native Bridge 的概念</h1><blockquote>
+<p>ref <a href="https://hackernoon.com/understanding-react-native-bridge-concept-e9526066ddb8" target="_blank" rel="noopener">origin</a><br>这里有一篇由 Tadeu Zagallo 发表的很老但是很棒很深奥的文章来解释这座桥是如何在 iOS 上实现的。<br>React Native 通常被认为是一个游戏规则改变者，它允许在移动环境中运行 JavaScript 代码。它的主要优势在于它不像其他竞争对手那样依赖于网络视图(Phonegap，Ionic，Cordova…) ，而是依赖于不同平台提供的真实材料。它具有对所有本机视图和组件的内置访问权，以及对大约70个特定设备 api 的默认访问权(您可以对其进行扩展)。</p>
+</blockquote>
+<p>在编写 React Native 应用程序时，我们构建了本地 ui。这就是关键所在，我们创建 UIView 实例，就像我们创建特定于平台的语言一样:</p>
+<p>我对这个框架的第一个假设是这样的:</p>
+<blockquote>
+<p>他们可能会创建一个 <strong>AST</strong> 并将其转换为可在多个设备上运行</p>
+</blockquote>
+<p>这是有道理的，这实际上就是 Google/Flutter 在开发应用程序时所做的。但这不是RN的方式。</p>
+<p>这种方法的主要问题是，基于 JavaScript 代码的编译目标平台意味着要创建新的编译器。我不知道有哪个现有的工具接受 JavaScript 作为输入代码，能够为每个目标平台生成代码<br><img src="https://hackernoon.com/hn-images/1*bf7U0_eRo_342L3I51gyPQ.png" alt="注意: 有些人尝试过，但只是用opinionated 的方法进行mobile开发"></p>
+<p>但目前存在的是针对自己特定平台的编译器。例如，我们有接受 Java/Kotlin 代码和目标 Android 平台或 Obj-C/Swift 目标 iOS 平台的编译器。它存在许多不同语言和目标的编译器。它们之所以能够很好地完成工作，是因为它们被设计成能够为它们创造出最优化的开发语言。</p>
+<p>使用现有的编译器:<br><img src="https://hackernoon.com/hn-images/1*sucxk9LMqW9booBv4f02cg.png" alt="It’s built with a really opened architecture that allows the code to be run, not only on mobile devices, but also on other platforms:"></p>
+<p>它采用真正开放的架构，不仅可以在移动设备上运行，也可以在其他平台上运行:</p>
+<ul>
+<li>桌面应用程序</li>
+<li>虚拟现实</li>
+<li>还有更多<br>它也可以用于其他框架:</li>
+<li>Weex(deprecated )</li>
+<li>用RN 渲染器 运行angluar 应用</li>
+</ul>
+<p>那么，团队是如何通过使用现有的工具和编译器来构建这样一个与平台和框架无关的框架的呢？</p>
+<h3 id="多个领域相互作用，没有其他"><a href="#多个领域相互作用，没有其他" class="headerlink" title="多个领域相互作用，没有其他"></a><strong>多个领域相互作用，没有其他</strong></h3><p>让我们退一步，看看 React Native 的大图。</p>
+<p>React Native 处理两个领域，JavaScript 和 Native。他们都能够共享信息。他们使用“JS Bridge”进行通信，这无疑是 React Native 架构的核心，这部分提供了如此多的灵活性。</p>
+<p>JS Bridge这个概念为这两个宇宙之间的双向和异步通信提供了一种方式。这里重要的是，它们完全是用不同的技术编写的，但是它们能够通信。<br><img src="https://hackernoon.com/hn-images/1*JT_Smf1u3fJTBY8ev9WAzg.png" alt="JS threads communicates with the native ones through the bridge JS 线程通过桥接与本地线程进行通信"></p>
+<h3 id="记住你的后端"><a href="#记住你的后端" class="headerlink" title="记住你的后端"></a><strong>记住你的后端</strong></h3><p>让我们回想一下，当我们使用多服务通信编写分布式后端应用程序时。<br>我们如何管理在语言/平台级别上完全不同的两个服务之间的通信？<br>我们使用可互操作的语言，如 JSON 或 XML，并且我们依赖异步协议，如 AMQP (或任何其他协议)。<br><img src="https://hackernoon.com/hn-images/1*9PsB7QpiXxg7bnmzS1UgCg.png" alt="Bidirectional communications between heterogeneous services"></p>
+<p>如果我们希望这两个服务进行通信，我们依赖于消息队列。第一个服务将一些命令推送到队列中，另一个服务必须在可能的情况下执行这些命令。<br>React Native 的行为也是如此。JavaScript 域发送异步 JSON 消息，描述 Native 部分应该完成的操作。</p>
+<p>例如，JavaScript 端将发送有关必须由 Native 端创建的视图的信息。当 nativeside 准备好后，它将有效地创建视图:<br><img src="https://hackernoon.com/hn-images/1*UHBv6Ctmm6n6xV0iED8zqA.png" alt="JavaScript sends commands asynchronously to the Native side for view management, with JSON JavaScript"><br>JavaScript 使用 JSON 异步将命令发送到 Native 端进行视图管理<br>在 React Native 中，桥接器支持消息代理角色，处理两个不同开发语言之间的异步命令。</p>
+<p>它提供了多种可能性:</p>
+<ul>
+<li>因为它是异步的，所以它是非阻塞的，因此允许在屏幕上顺利地进行视图管理(6O fps 是 React Native 的黄金目标)</li>
+<li>因为它是解耦的，并且基于可互操作的语言，所以它对其他框架和渲染系统开放 只要他们尊重 React Native bridge 命令界面<br>JS Bridge的语言越是无处不在，越是通用，可能性就越大… … 的确如此！</li>
+</ul>
+<h3 id="桥接的实现"><a href="#桥接的实现" class="headerlink" title="桥接的实现"></a><strong>桥接的实现</strong></h3><p>网桥是用 c/c + + 构建的，因此，可以在多个平台、操作系统等上运行。</p>
+<p>它嵌入了苹果的 <em>JavaScriptCore</em> 框架，这个框架公开了 api 来访问实际的 javacripcore VM 功能。许多人在 Obj-C 和 Swift 世界中使用这些 api。但是有一个 C api，Obj-C 实际上只是一个包装器。</p>
+<p>考虑到这一点，JavaScript 代码可以在 c/c++ 程序中运行。它可以注入变量、函数和声明全局变量来增强 JavaScript 现有代码。React Native 依靠这种魔法来使 JavaScript 与本机世界通信，从而触发 c/c++ 世界中的动作。</p>
+<p>在 JavaScript 代码中注入内容也意味着函数可以由 c/c++ 代码执行。</p>
+<p>这个图很快总结了 JavaScript 世界是如何处理 c/c++ one 的:<br><img src="https://hackernoon.com/hn-images/1*a6tsmWbB6JtgnOWy7Hyx0A.png" alt="The JS code is managed by the JSCore framework \\"></p>
+<h3 id="原生的一面"><a href="#原生的一面" class="headerlink" title="原生的一面"></a>原生的一面</h3><p>原生方面的通信是“最简单的”部分。</p>
+<p>让我们从 iOS 平台开始。由于 Obj-C 是 c 语言的扩展，它可以与 c 语言进行本机通信。这样，JS Bridge 与 Swift/Obj-C 世界之间的通信就变得简单而自然。<br><img src="https://hackernoon.com/hn-images/1*OhI5FguDjCJiMHGkyRUcwg.png" alt=" JS 与 iOS 世界交互的高层示意图"></p>
+<p>在 Android 平台上，我们需要依靠 Java本地接口来与桥接器进行对话。<br><img src="https://hackernoon.com/hn-images/1*q16vcoe7CRolZLOCoG5_Pg.png" alt="JS 与 Android 世界交互的高级图表"></p>
+<p>如果您对 React Native 内部构件有进一步的问题，请告诉我。关于这个话题，我会尽量提供我所知道的一切。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/02/06/frontend-what-i-leaned/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -523,95 +631,6 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/" itemprop="url" rel="index"><span itemprop="name">win10</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p>
-<h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
-<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
-<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
-</ul>
-<h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul>
-<li>emjo表情（升级到17<br><code>win+.</code></li>
-<li>剪贴板历史<br><code>win+v</code></li>
-<li>截图<br><code>win+shift+s</code></li>
-<li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul>
-<li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -830,6 +849,95 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/" itemprop="url" rel="index"><span itemprop="name">win10</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p>
+<h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
+<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
+</ul>
+<h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul>
+<li>emjo表情（升级到17<br><code>win+.</code></li>
+<li>剪贴板历史<br><code>win+v</code></li>
+<li>截图<br><code>win+shift+s</code></li>
+<li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul>
+<li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/socket-io/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -936,7 +1044,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/tailwindcss/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/sso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -950,7 +1058,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/tailwindcss/" class="post-title-link" itemprop="url">tailwindcss</a>
+            <a href="/2021/01/22/sso/" class="post-title-link" itemprop="url">单点登陆方案</a>
         </h1>
 
         <div class="post-meta">
@@ -968,79 +1076,19 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p>
-<h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">umi适配华为自带浏览器和QQ浏览器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/" itemprop="url" rel="index"><span itemprop="name">umi</span></a>
+                  <a href="/categories/sso/" itemprop="url" rel="index"><span itemprop="name">sso</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/umi/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a>
+                  <a href="/categories/sso/cas/" itemprop="url" rel="index"><span itemprop="name">cas</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index"><span itemprop="name">drf</span></a>
                 </span>
             </span>
 
@@ -1055,10 +1103,58 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>
+          <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>CAS<ul>
+<li>多个应用共用一个登陆设置.</li>
+<li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li>
+</ul>
+</li>
+<li>手机端不适合基于session的场景,看了jwt方案.<ul>
+<li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>注意以下实现主要是基于python django drf.</strong></p>
+<h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul>
+<li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul>
+<li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul>
+<li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li>
+</ul>
+<h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul>
+<li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li>
+<li>测试<br>官方代码自己集成了swagger测试</li>
+</ul>
+<h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul>
+<li>测试<br>参考官网</li>
+<li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span>
+<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token
+urlpatterns = [
+url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
+<span class="string">]</span>
+<span class="string"># utils.py</span>
+<span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span>
+<span class="string">"""</span>
+<span class="string">自定义jwt认证成功返回数据</span>
+<span class="string">"""</span>
+<span class="string">return {</span>
+<span class="string">'</span>token<span class="string">': token,</span>
+<span class="string">'</span>user_id<span class="string">': user.id,</span>
+<span class="string">'</span>username<span class="string">': user.username</span>
+<span class="string">}</span>
+<span class="string"># 修改配置 # JWT</span>
+<span class="string">JWT_AUTH = {</span>
+<span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span>
+<span class="string">}</span></code></pre>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li>
+</ul>
 
       
     </div>
@@ -1144,19 +1240,19 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
