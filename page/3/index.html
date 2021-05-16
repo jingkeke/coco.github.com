@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/tailwindcss/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/sso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/tailwindcss/" class="post-title-link" itemprop="url">tailwindcss</a>
+            <a href="/2021/01/22/sso/" class="post-title-link" itemprop="url">单点登陆方案</a>
         </h1>
 
         <div class="post-meta">
@@ -195,7 +195,19 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                  <a href="/categories/sso/" itemprop="url" rel="index"><span itemprop="name">sso</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/" itemprop="url" rel="index"><span itemprop="name">cas</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index"><span itemprop="name">drf</span></a>
                 </span>
             </span>
 
@@ -210,9 +222,165 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p>
-<h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>
+          <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>CAS<ul>
+<li>多个应用共用一个登陆设置.</li>
+<li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li>
+</ul>
+</li>
+<li>手机端不适合基于session的场景,看了jwt方案.<ul>
+<li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>注意以下实现主要是基于python django drf.</strong></p>
+<h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul>
+<li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul>
+<li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul>
+<li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li>
+</ul>
+<h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul>
+<li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li>
+<li>测试<br>官方代码自己集成了swagger测试</li>
+</ul>
+<h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul>
+<li>测试<br>参考官网</li>
+<li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span>
+<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token
+urlpatterns = [
+url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
+<span class="string">]</span>
+<span class="string"># utils.py</span>
+<span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span>
+<span class="string">"""</span>
+<span class="string">自定义jwt认证成功返回数据</span>
+<span class="string">"""</span>
+<span class="string">return {</span>
+<span class="string">'</span>token<span class="string">': token,</span>
+<span class="string">'</span>user_id<span class="string">': user.id,</span>
+<span class="string">'</span>username<span class="string">': user.username</span>
+<span class="string">}</span>
+<span class="string"># 修改配置 # JWT</span>
+<span class="string">JWT_AUTH = {</span>
+<span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span>
+<span class="string">}</span></code></pre>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li>
+</ul>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/socket-io/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/socket-io/" class="post-title-link" itemprop="url">利用 socket.io 实现消息实时推送</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index"><span itemprop="name">socket-io</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
+<li><p>后台Node.js</p>
+<h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li>
+<li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p>
+</li>
+<li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p>
+</li>
+<li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p>
+</li>
+</ul>
+<h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure>
+<p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p>
+<p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p>
+<p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其它的引入方式:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure>
+<p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果监听本地：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p>
+<p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure>
+<h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p>
+<pre><code>##demo
+[demo博文原文](https://segmentfault.com/a/1190000010974426)
+[demo](https://github.com/noiron/socket-message-push)
+##资料
+[socket-io官网](https://socket.io/get-started/chat/)</code></pre>
       
     </div>
 
@@ -286,185 +454,6 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/codewar/" itemprop="url" rel="index"><span itemprop="name">codewar</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p>
-<ul>
-<li>要求<blockquote>
-<p>前者是否包含后者的每个字符,</p>
-</blockquote>
-</li>
-<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
-<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/djangoreact/" class="post-title-link" itemprop="url">如何结合Django,React搭建前后台框架</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p>
-<p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p>
-<ol>
-<li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
-<ul>
-<li>作者推荐,</li>
-</ul>
-</li>
-<li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p>
-<ul>
-<li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p>
-<ul>
-<li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li>
-<li>感觉这个挺好的,然后集合了下面的用户请求,</li>
-</ul>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p>
-<blockquote>
-<p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p>
-<ul>
-<li>不推荐对新手</li>
-</ul>
-</li>
-</ol>
 
       
     </div>
@@ -681,6 +670,185 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/djangoreact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/djangoreact/" class="post-title-link" itemprop="url">如何结合Django,React搭建前后台框架</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://www.valentinog.com/blog/tutorial-api-django-rest-react/" target="_blank" rel="noopener">setting up a Django project with React.</a></p>
+<p>Django,React搭建前后台框架主要有以下思路(which are common to almost every web framework):</p>
+<ol>
+<li><p>React in its own “frontend” Django app: load a single HTML template and let React manage the frontend (difficulty: medium)</p>
+<ul>
+<li>作者推荐,</li>
+</ul>
+</li>
+<li><p>Django REST as a standalone API + React as a standalone SPA (difficulty: hard, it involves JWT for authentication)<br>demo都没怎么有设置权限,,作者有给提供连接,<a href="https://docs.djangoproject.com/en/2.0/topics/auth/default/#module-django.contrib.auth.views" target="_blank" rel="noopener">Django的登陆</a>, <a href="http://drf.jiuyou.info/#/drf/authentication" target="_blank" rel="noopener">drf的权限和认证</a>,</p>
+<ul>
+<li><p><a href="https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react#toc-setting-up-the-backend" target="_blank" rel="noopener">样例1</a></p>
+<ul>
+<li>这个通过<code>CORS_ORIGIN_WHITELIST</code> 这个设置可以控制权限?要不就跨域.</li>
+<li>感觉这个挺好的,然后集合了下面的用户请求,</li>
+</ul>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/33546988" target="_blank" rel="noopener">样例2</a></p>
+<blockquote>
+<p>这个是利用framework 发送用户名密码返回token然后存储,然后之后的请求都带上这个token</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">"username=admin&amp;password=xxxx"</span> http://localhost:8000/auth</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Mix and match: mini React apps inside Django templates (difficulty: simple)</p>
+<ul>
+<li>不推荐对新手</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/codewar/" itemprop="url" rel="index"><span itemprop="name">codewar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p>
+<ul>
+<li>要求<blockquote>
+<p>前者是否包含后者的每个字符,</p>
+</blockquote>
+</li>
+<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
+<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -748,84 +916,6 @@
 <li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
 <li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2020/09/22/yourName/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/22/yourName/" class="post-title-link" itemprop="url">新海诚电影 你的名字</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 16:04:47" itemprop="dateModified" datetime="2019-12-06T16:04:47+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%B5%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">电影</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>
 
       
     </div>
@@ -940,7 +1030,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2019/12/14/1/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2020/09/22/yourName/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -954,7 +1044,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/14/1/" class="post-title-link" itemprop="url">vim键位配置</a>
+            <a href="/2020/09/22/yourName/" class="post-title-link" itemprop="url">新海诚电影 你的名字</a>
         </h1>
 
         <div class="post-meta">
@@ -964,14 +1054,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-14 18:05:49" itemprop="dateCreated datePublished" datetime="2019-12-14T18:05:49+08:00">2019-12-14</time>
+              <time title="创建时间：2020-09-22 16:30:10" itemprop="dateCreated datePublished" datetime="2020-09-22T16:30:10+08:00">2020-09-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:05:48" itemprop="dateModified" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+                <time title="修改时间：2019-12-06 16:04:47" itemprop="dateModified" datetime="2019-12-06T16:04:47+08:00">2019-12-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -979,7 +1069,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim-mac/" itemprop="url" rel="index"><span itemprop="name">vim mac</span></a>
+                  <a href="/categories/%E7%94%B5%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">电影</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%B5%E5%BD%B1/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
                 </span>
             </span>
 
@@ -994,15 +1088,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p> 最近又折腾了一下vim,主要是之前把所有的ide都设置成了vim模式,但是感觉还是没感觉出为啥这么多人喜欢用vim.然后最近就研究了一下vim的键位映射.感觉如果是原生的vim编程确实不输于ide,配置插件.<br> 这里主要讲一下折腾了半天才弄明天的键位配置.<br> vim 可以设置任意的快捷键. 参考:help key-notation 查看相关文档,举例如下:</p>
-<ul>
-<li><Esc>代表Escape键:</li>
-<li><CR>代表Enter键；</li>
-<li><D>代表Command键。</li>
-<li>Alt键可以使用<M-key>或<A-key>来表示。</li>
-<li><C>代表Ctrl.<br>其他的相关的网上文档很多,自己看看就明白.但是有一个大坑是alt键.如果是安装了插件,安装文档说明比如&lt;M -i&gt; 但是你按了alt+i组合键完全不起作用,然后你就开始各种怀疑人生.主要原因,如果你是用的macos系统.alt键是被设置成了插入功能.在term2属性里面把alt映射为ECS+ 之后还需要在.vimrc里面做如下配置:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;macos 默认alt 是插入,配置term2 把alt应设置esc+,需要把英文字符都映射一下,就是让按&lt;M -字符 为alt+字符如上,循环写法如下</span><br><span class="line">&quot; ref https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;7501092&#x2F;can-i-map-alt-key-in-vim</span><br><span class="line">for i in range(97,122)</span><br><span class="line">  let c &#x3D; nr2char(i)</span><br><span class="line">  exec &quot;map \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">  exec &quot;map! \e&quot;.c.&quot; &lt;M-&quot;.c.&quot;&gt;&quot;</span><br><span class="line">endfor</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+          <p>  昨天12月2号电影中国首映。前一天买了票，然后在朋友圈宣传了一下。去看了之后，觉得还是没有失望。挺满足的。画质好，仔细想想音乐起到的作用也很大。<br>  我是几个月前从网路上下载的资源看的第一遍，但是就觉得很合我胃口，然后按照习惯，查了半天相关资料，看消息说因为片源外泄，不准备在中国上映了，还挺失落。发朋友圈宣传并哀悼了一下，说很希望能在电影院再看一遍。然后竟然梦想成真。<br>  故事还算讲得通，称为神作主要是觉得震惊，怎么画质这么好，影片里面的苹果手机是见过的最好看的样子。比真手机好看多了。音乐代入感很强。然后默默哀悼了一下，我最喜欢的宫崎骏爷爷做不错来这种画质。。。。但是后来看知乎推送，知道其实这种看着很真实的画面有部分是照相拍摄转换的。宫崎骏爷爷那可都是手绘的。看那篇知乎我还知道做一个严谨的动画，要几百个人做几年。。。。。这够开发一个操作系统了都。。做动画竟然这么难。</p>
 
       
     </div>
@@ -1088,19 +1174,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.jingzhengyi.top","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="之前听低代码平台感觉就是个噱头,不过最近长期看的俩大佬的博客公众号 又开始鼓吹”不会前端是否能完成开发”,然后给出挺肯定的回答…感觉有点慌,不会前端工作被一群刚毕业的内卷了吧?感觉去找了相关资料看了一早上.尤其是 webflow.com 还专门注册了帐号是把 demo 走了一遍…. 省时间,先说我现在的理解:这个 no_code 更大程度使用场景受限制,可能适合那种表格,工作流那种工作.有可能还会">
+<meta name="keywords" content="tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="低代码(no code | low code)会内卷前端岗位吗?">
+<meta property="og:url" content="https://blog.jingzhengyi.top/2021/05/16/no_code/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
+<meta property="og:description" content="之前听低代码平台感觉就是个噱头,不过最近长期看的俩大佬的博客公众号 又开始鼓吹”不会前端是否能完成开发”,然后给出挺肯定的回答…感觉有点慌,不会前端工作被一群刚毕业的内卷了吧?感觉去找了相关资料看了一早上.尤其是 webflow.com 还专门注册了帐号是把 demo 走了一遍…. 省时间,先说我现在的理解:这个 no_code 更大程度使用场景受限制,可能适合那种表格,工作流那种工作.有可能还会">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-05-16T08:09:03.492Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.jingzhengyi.top/2021/05/16/no_code/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>低代码(no code | low code)会内卷前端岗位吗? | 个人代码知识记录</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88049197-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88049197-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人代码知识记录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/05/16/no_code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          低代码(no code | low code)会内卷前端岗位吗?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-16 15:45:00 / 修改时间：16:09:03" itemprop="dateCreated datePublished" datetime="2021-05-16T15:45:00+08:00">2021-05-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/front/" itemprop="url" rel="index"><span itemprop="name">front</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>之前听低代码平台感觉就是个噱头,不过最近长期看的俩大佬的博客公众号 又开始鼓吹”不会前端是否能完成开发”,然后给出挺肯定的回答…感觉有点慌,不会前端工作被一群刚毕业的内卷了吧?感觉去找了相关资料看了一早上.尤其是 webflow.com 还专门注册了帐号是把 demo 走了一遍….</p>
+<p>省时间,先说我现在的理解:这个 no_code 更大程度使用场景受限制,可能适合那种表格,工作流那种工作.有可能还会对不怎么喜欢写样式的前端有帮助作用.</p>
+<h2 id="证据一-v2-网友"><a href="#证据一-v2-网友" class="headerlink" title="证据一 v2 网友"></a>证据一 v2 网友</h2><p>看了一圈 v2 有用过这个的程序员们的言论,他们有自己用过,或在开发 nocode lowCode 平台的.总结基本就是场景受限.这种东西在 2000 年左右就有类似的东西,只是技术进步给换汤不换药的升级了一下.</p>
+<h2 id="证据二-自己体验-webflow-com"><a href="#证据二-自己体验-webflow-com" class="headerlink" title="证据二 自己体验 webflow.com"></a>证据二 自己体验 webflow.com</h2><p>用了一下网友说的比较热门的<a href="www.webflow.com">webflow</a> ,感觉这个主要是在 ui 静态页面上可以通过脱脱拽拽实现比较炫的效果.这个感觉反而是个好事,如果你觉得自己去写样式不如化时间去学习这些工具用法的前端. 但是依照我体验的 webflow 的感受,感觉学习还挺无聊的,稍微好看点的就要买这个模板,价格不菲,而且导出功能也要收费,感觉导出的还是 html,css 这种,不是 react 等框架………感觉放心了不少……哈哈……</p>
+<h2 id="证据三-自己看的公众号文章"><a href="#证据三-自己看的公众号文章" class="headerlink" title="证据三 自己看的公众号文章"></a>证据三 自己看的公众号文章</h2><p>看的比如 <a href="%https://mp.weixin.qq.com/s/Y6bsuKWkm29ibxmu7jF_hw%">如何一行代码都不写，就做出网站和应用？</a>这个虽然作者觉得 low code 挺有前途,但是他选的精评论里也说了(有一个还是我评论的,哈哈):</p>
+<pre><code>&gt; 老师，我是做市场的，表示深受其益。我司官网(framely.io)就是用 webflow 做的。在此之前试过阿里的 Landing，以及网上大家都比较推荐的 WIX。虽然都是 no code，比较不同的是，webflow 更像是在用 UI 做开发。稍微总结一下就是：
+1、需要先确定网站的框架，页面布局，内容及展示方式；
+2、抽象出可以复用的的模块；
+3、定义并规范命名（即自己能辨识的，有效展示各模块及关系的）；
+4、复用+ customize。
+
+&gt; webflow 无论是框架及样式都能复用，图形和动效可以直接定义在里面直接适配，还有内容系统（相当于内容数据库）可以获取动态内容（即定义好前端样式，以后加内容就直接加在内容系统中，不用动前端，发布也可以只发布内容系统的）。
+过去是我来做官网内容及整体框架页面规划，然后设计同学设计，前端同学实现。这里就经常出现问题，比如设计的样式前端同学无法实现、想要的动效前端同学不能以较高效的方式实现导致不得不撤掉、别的官网借鉴的效果做不出来。我和设计同学的沟通比较顺利，但沟通是需要“时间+理解+优化+复盘”的。现在等于是我一个人就可以完成所有的，还能适配各个端，还比较少有 bug。
+
+给您推荐一下，您要是没有时间试用，看了评论也能了解。个人感觉 no code 不仅仅是拖拽，应该是指用大众熟知的语言（比如 UI/图形语言）做开发，不变的是思维或思考方式。</code></pre><p>就比如用 uniapp 这用 AST 写小程序,flutter 写手机应用的一样,是你在懂原生的基础上可能有 1+1 &gt;2 的左右,要不会有很多坑.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tool/" rel="tag"># tool</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/09/rss/" rel="prev" title="rss 让自己不被社交媒体左右">
+      <i class="fa fa-chevron-left"></i> rss 让自己不被社交媒体左右
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#证据一-v2-网友"><span class="nav-number">1.</span> <span class="nav-text">证据一 v2 网友</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证据二-自己体验-webflow-com"><span class="nav-number">2.</span> <span class="nav-text">证据二 自己体验 webflow.com</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证据三-自己看的公众号文章"><span class="nav-number">3.</span> <span class="nav-text">证据三 自己看的公众号文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-2 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-jzy"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jing</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '3fd3324f8518ce5ba445',
+      clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : '23272458e15b7d0046b84a14db7fea16',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

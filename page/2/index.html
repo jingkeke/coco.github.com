@@ -163,6 +163,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/03/08/vue3_ts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/08/vue3_ts/" class="post-title-link" itemprop="url">vue3 typescript config</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-08 09:19:00 / 修改时间：10:14:34" itemprop="dateCreated datePublished" datetime="2021-03-08T09:19:00+08:00">2021-03-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue3/" itemprop="url" rel="index"><span itemprop="name">vue3</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue3/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="vue3-typescript"><a href="#vue3-typescript" class="headerlink" title="vue3 typescript"></a>vue3 typescript</h1><p>Vue Mastery 现时免费相关课程 <a href="(https://www.vuemastery.com/courses/vue3-typescript/creating-components-with-typescript)">Vue 3 + TypeScript course</a> 到20213月9号,然后自己看了一遍,总结了一下发出来.</p>
+<h2 id="init-with-vuecli"><a href="#init-with-vuecli" class="headerlink" title="init with vuecli"></a>init with vuecli</h2><p>用工具初始化,会有提示是否用ts.</p>
+<h2 id="create-components-with-ts"><a href="#create-components-with-ts" class="headerlink" title="create components with ts"></a>create components with ts</h2><p>对应代码看 <a href="(https://github.com/Code-Pop/Real-World-Vue-3-TypeScript)">Real World Vue 3 TypeScript GitHub Repo</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lant=<span class="string">"ts"</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123;defineComponent &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> EVentCard <span class="keyword">from</span> <span class="string">'../components/EventCard.vue'</span></span><br><span class="line"><span class="keyword">import</span> EventService <span class="keyword">from</span> <span class="string">'../services/EventService'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponnets(&#123;</span><br><span class="line">    name:<span class="string">'EventList'</span>,</span><br><span class="line">    components:&#123;EventCard&#125;,</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="attr">events</span>:<span class="literal">null</span>&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;</span><br><span class="line">      EventService.getEvents().</span><br><span class="line">        then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">         ...&#125;</span><br><span class="line">    &#125;</span><br><span class="line">....</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="VueDX"><a href="#VueDX" class="headerlink" title="VueDX"></a>VueDX</h2><p>ide 支持是用的[VueDX][ref3]这个工具</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> TodoItem&#123;</span><br><span class="line">   label:<span class="built_in">string</span></span><br><span class="line">   complete:<span class="built_in">boolean</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> futureTodoItem =&#123;&#125; <span class="keyword">as</span> TOdoItem</span><br></pre></td></tr></table></figure>
+<h2 id="Props-with-Types"><a href="#Props-with-Types" class="headerlink" title="Props with Types"></a>Props with Types</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;defineComponent ,PropType &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line">exprt <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line"></span><br><span class="line">    props :&#123;</span><br><span class="line">        event: &#123;</span><br><span class="line">            <span class="keyword">type</span>: <span class="built_in">Object</span> <span class="keyword">as</span> PropType&lt;EventItem&gt;,</span><br><span class="line">            <span class="built_in">require</span>:<span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<h2 id="Computed-amp-Methods-with-Custom-Types"><a href="#Computed-amp-Methods-with-Custom-Types" class="headerlink" title="Computed &amp; Methods with Custom Types"></a>Computed &amp; Methods with Custom Types</h2><p>重点在想返回什么</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.....</span><br><span class="line">computed:&#123;</span><br><span class="line">  firstEvent():EventItem&#123;</span><br><span class="line">      ....</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="others-扩充资料"><a href="#others-扩充资料" class="headerlink" title="others 扩充资料"></a>others 扩充资料</h2><ul>
+<li>The official Vue docs that now has a dedicated TypeScript section that will continue to grow as the ecosystem matures.<ul>
+<li><a href="https://v3.vuejs.org/guide/typescript-support.html#typescript-support" target="_blank" rel="noopener">https://v3.vuejs.org/guide/typescript-support.html#typescript-support</a></li>
+</ul>
+</li>
+<li>And of course, the official TypeScript docs site for an in-depth look at TypeScript<ul>
+<li><a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">https://www.typescriptlang.org/docs/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/02/28/ReactNativeBridge/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -631,6 +724,95 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/" itemprop="url" rel="index"><span itemprop="name">win10</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p>
+<h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
+<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
+</ul>
+<h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul>
+<li>emjo表情（升级到17<br><code>win+.</code></li>
+<li>剪贴板历史<br><code>win+v</code></li>
+<li>截图<br><code>win+shift+s</code></li>
+<li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul>
+<li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -849,7 +1031,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/tailwindcss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -863,7 +1045,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">win10Linux子系统</a>
+            <a href="/2021/01/22/tailwindcss/" class="post-title-link" itemprop="url">tailwindcss</a>
         </h1>
 
         <div class="post-meta">
@@ -881,15 +1063,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/" itemprop="url" rel="index"><span itemprop="name">win10</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/win10/ubuntu/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
                 </span>
             </span>
 
@@ -904,257 +1078,8 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天在配置<a href="https://github.com/zeit/hyper" target="_blank" rel="noopener">hyper</a>的时候说可以反向从linux的子系统使用win安装的命令,然后发现得需要升级内核系统，升级预览版preview后后发现win10加了好些功能，逐渐向mac系统靠拢。。。。作为个折腾党来说，虽然不怎么能用到。。。但是还是挺乐此不疲的。</p>
-<h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul>
-<li><a href="https://docs.microsoft.com/en-us/windows/wsl/interop" target="_blank" rel="noopener">wsl linux子系统和wind互通。。官网好些例子</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl</span><br><span class="line">/mnt/c/temp/$ <span class="built_in">cd</span> ~</span><br><span class="line">~$ notepad.exe foo.txt</span><br><span class="line">~$ ls | grep foo.txt</span><br><span class="line">~$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">C:\temp&gt;dir | findstr foo.txt</span><br><span class="line">09/27/2016  02:15 PM                14 foo.txt</span><br></pre></td></tr></table></figure></li>
-<li>linux 调用 win安装程序。<br>这个我没成功。。我是想试一下参考<a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a>试了一下node ，不好使。。感觉是“parmgram File” 这种带空格的路径有问题？</li>
-</ul>
-<h3 id="其他功能，感觉挺好用的几个"><a href="#其他功能，感觉挺好用的几个" class="headerlink" title="其他功能，感觉挺好用的几个"></a>其他功能，感觉挺好用的几个</h3><ul>
-<li>emjo表情（升级到17<br><code>win+.</code></li>
-<li>剪贴板历史<br><code>win+v</code></li>
-<li>截图<br><code>win+shift+s</code></li>
-<li><a href="http://www.cnblogs.com/rainman/p/3457227.html" target="_blank" rel="noopener">Dos命令查看端口占用及关闭进程</a></li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考\"></a>参考\</h3><ul>
-<li><a href="https://github.com/microsoft/Terminal" target="_blank" rel="noopener">windows Terminal</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/34667658" target="_blank" rel="noopener">混合 Windows 和 Linux 的环境</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/socket-io/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/socket-io/" class="post-title-link" itemprop="url">利用 socket.io 实现消息实时推送</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/socket-io/" itemprop="url" rel="index"><span itemprop="name">socket-io</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当发生了用户被点赞、评论、关注等操作时，需要由服务器向用户实时地推送一条消息。</p>
-<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ul>
-<li><p>后台Node.js</p>
-<h3 id="后端推送消息的处理流程"><a href="#后端推送消息的处理流程" class="headerlink" title="后端推送消息的处理流程"></a>后端推送消息的处理流程</h3></li>
-<li><p>在 Node 服务器建立一个用户信息和 socket id 的映射表，因为同一用户可能打开了多个页面，所以他的 socket id 可能存在多个值。当用户建立连接时，往其中添加值；用户断开连接后，删除相应值。</p>
-</li>
-<li><p>当 Java 后台存在需要推送的消息时，会向 Node 服务器的 /api 路径 post 一条消息，其中包括用于标识用户的 tokenId 和其它数据。</p>
-</li>
-<li><p>Node 服务器接收到 post 请求后，对请求内容进行处理。根据 tokenId 找出与该用户对应的 socket id，socket.io 会根据 id 来向用户推送消息。</p>
-</li>
-</ul>
-<h3 id="对用户信息的处理"><a href="#对用户信息的处理" class="headerlink" title="对用户信息的处理"></a>对用户信息的处理</h3><p>方便起见，这里只用一个数组保存用户信息，实际工作中可以根据需要放入数据库中保存。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.users = []; <span class="comment">// 记录下登录用户的tokenId, socketId</span></span><br></pre></td></tr></table></figure>
-<p>当用户登录时，client 会向 server 发送 user_login 事件，服务器接收到后会做如下操作：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'user_login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; tokenId, userId, socketId &#125; = info;</span><br><span class="line">    addSocketId(users, &#123; tokenId, socketId, userId &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>addSocketId() 会向 users 数组中添加用户信息，不同用户通过 tokenId 进行区分，每个用户有一个 socketIds 数组，保存可能存在的多个 socketId。该函数的具体代码可见 src/utils.js 文件。</p>
-<p>同理，还有一个 deleteSocketId() 函数用于删除用户信息，代码可见同一文件。</p>
-<p>在获取了用户的 tokenId 之后，就需要找到对应的 socketId，然后向特定用户推送消息。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只向 id = socketId 的这一连接发送消息</span></span><br><span class="line">io.sockets.to(socketId).emit(<span class="string">'receive_message'</span>, &#123;</span><br><span class="line">    entityType,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>服务器的思路大致如此，接下来介绍客户端中是如何进行相应的处理的。</p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Socket.io 的初始化<br>首先在 html 文件中引入 Socket.io 的 client 端文件，例如通过 CDN 引入：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>其它的引入方式:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io-client'</span>);</span><br><span class="line"><span class="comment">// or with import syntax</span></span><br><span class="line"><span class="keyword">import</span> io <span class="keyword">from</span> <span class="string">'socket.io-client'</span>;</span><br></pre></td></tr></table></figure>
-<p>引入 Socket.io 后就获得了 io 函数，通过它来与消息推送服务器建立连接。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设你将 Node 服务器部署后的地址为：https://www.example.com/ws</span></span><br><span class="line"><span class="comment">// 则： WS_HOST = 'https://www.example.com'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">`<span class="subst">$&#123;WS_HOST&#125;</span>`</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    path: <span class="string">'/ws/socket.io'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如果监听本地：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msgSocket = io(<span class="string">'http://localhost:4001'</span>);</span><br></pre></td></tr></table></figure>
-<p>这里如果写成 io(‘<a href="https://www.example.com/ws&#39;" target="_blank" rel="noopener">https://www.example.com/ws&#39;</a>) 会出现错误，需要将 /ws 写入path中。</p>
-<p>为了能在其它文件使用这一变量，可将 msgSocket 作为一个全局变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.msgSocket = msgSocket;</span><br></pre></td></tr></table></figure>
-<h3 id="用户建立连接"><a href="#用户建立连接" class="headerlink" title="用户建立连接"></a>用户建立连接</h3><p>// 用户登录时，向服务器发送用户的信息。服务器会在收到信息后建立 socket 与用户的映射。<br>msgSocket.emit(‘user_login’, {<br>    userId,<br>    socketId: msgSocket.id,<br>    tokenId<br>});</p>
-<pre><code>##demo
-[demo博文原文](https://segmentfault.com/a/1190000010974426)
-[demo](https://github.com/noiron/socket-message-push)
-##资料
-[socket-io官网](https://socket.io/get-started/chat/)</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/sso/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/sso/" class="post-title-link" itemprop="url">单点登陆方案</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/" itemprop="url" rel="index"><span itemprop="name">sso</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/" itemprop="url" rel="index"><span itemprop="name">cas</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index"><span itemprop="name">drf</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>CAS<ul>
-<li>多个应用共用一个登陆设置.</li>
-<li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li>
-</ul>
-</li>
-<li>手机端不适合基于session的场景,看了jwt方案.<ul>
-<li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>注意以下实现主要是基于python django drf.</strong></p>
-<h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul>
-<li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul>
-<li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul>
-<li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li>
-</ul>
-<h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul>
-<li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li>
-<li>测试<br>官方代码自己集成了swagger测试</li>
-</ul>
-<h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul>
-<li>测试<br>参考官网</li>
-<li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span>
-<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token
-urlpatterns = [
-url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
-<span class="string">]</span>
-<span class="string"># utils.py</span>
-<span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span>
-<span class="string">"""</span>
-<span class="string">自定义jwt认证成功返回数据</span>
-<span class="string">"""</span>
-<span class="string">return {</span>
-<span class="string">'</span>token<span class="string">': token,</span>
-<span class="string">'</span>user_id<span class="string">': user.id,</span>
-<span class="string">'</span>username<span class="string">': user.username</span>
-<span class="string">}</span>
-<span class="string"># 修改配置 # JWT</span>
-<span class="string">JWT_AUTH = {</span>
-<span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span>
-<span class="string">}</span></code></pre>
-</li>
-</ul>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
-<li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li>
-</ul>
+          <h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p>
+<h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>
 
       
     </div>
@@ -1240,19 +1165,19 @@ url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
