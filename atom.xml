@@ -527,26 +527,30 @@
   </entry>
   
   <entry>
-    <title>tailwindcss</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/tailwindcss/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/tailwindcss/</id>
+    <title>umi适配华为自带浏览器和QQ浏览器</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
     <published>2021-01-22T02:05:48.754Z</published>
     <updated>2021-01-22T02:05:48.754Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p><h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>]]></content>
+    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;tailWindCss&quot;&gt;&lt;a href=&quot;#tailWindCss&quot; class=&quot;headerlink&quot; title=&quot;tailWindCss&quot;&gt;&lt;/a&gt;tailWindCss&lt;/h2&gt;&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;head
+        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
       
     
     </summary>
     
     
-      <category term="css" scheme="https://blog.jingzhengyi.top/categories/css/"/>
+      <category term="umi" scheme="https://blog.jingzhengyi.top/categories/umi/"/>
     
+      <category term="android" scheme="https://blog.jingzhengyi.top/categories/umi/android/"/>
+    
+    
+      <category term="h5" scheme="https://blog.jingzhengyi.top/tags/h5/"/>
     
   </entry>
   

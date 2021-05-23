@@ -825,6 +825,141 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/vim/" class="post-title-link" itemprop="url">vsCodeVim插件</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
+<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
+<ol>
+<li>vim-easymotion</li>
+</ol>
+<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
+<ol start="2">
+<li>vim-sneak</li>
+</ol>
+<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
+<p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
+<p>3.vim-surround   </p>
+<p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vim.surround</td>
+<td>Enable/disable vim-surround</td>
+<td>Boolean</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Surround Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>d s &lt;existing char&gt;</code></td>
+<td>Delete existing surround</td>
+</tr>
+<tr>
+<td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td>
+<td>Change surround existing to desired</td>
+</tr>
+<tr>
+<td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td>
+<td>Surround something with something using motion (as in “you surround”)</td>
+</tr>
+<tr>
+<td><code>S &lt;desired char&gt;</code></td>
+<td>Surround when in visual modes (surrounds full selection)</td>
+</tr>
+</tbody></table>
+<p>Some examples:</p>
+<ul>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li>
+<li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li>
+<li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li>
+</ul>
+<h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -993,141 +1128,6 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/vim/" class="post-title-link" itemprop="url">vsCodeVim插件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/tools/vsCode/" itemprop="url" rel="index"><span itemprop="name">vsCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://github.com/VSCodeVim/Vim#mac" target="_blank" rel="noopener">https://github.com/VSCodeVim/Vim#mac</a></p>
-<p>快速移动写代码，除了输入字符之外最常用的操作就是移动光标。vim除了hjkl ctrl+u ctr+f外还有更快捷的移动方式，这里介绍2个插件都是vscode自带的。</p>
-<ol>
-<li>vim-easymotion</li>
-</ol>
-<p>设置”vim.easymotion”: true 开启这个模式。<br><code>&lt;leader&gt;&lt;leader&gt; t/T &lt;char&gt;</code> 能够向前/向后快速到达可见范围内的某字符(<char>)的位置。<br><code>&lt;leader&gt;&lt;leader&gt; w/b</code> 向前/向后到达可见范围内任何单词的开头。<br><code>&lt;leader&gt;&lt;leader&gt; e/ge</code> 向前/向后到达可见范围内任何单词的结尾。<br><code>&lt;leader&gt;&lt;leader&gt; k/j</code> 向前/向后到达可见范围内任何行的行首。</p>
-<ol start="2">
-<li>vim-sneak</li>
-</ol>
-<p>sneak模式下键入s后，再输入2个字符就可以跳转到目标位置。<br>s<char><char> 往前跳转到目标位置。<br>S<char><char> 往后跳转到目标位置。</p>
-<p>链接：<a href="https://www.jianshu.com/p/cbfa86c8d8a5" target="_blank" rel="noopener">https://www.jianshu.com/p/cbfa86c8d8a5</a></p>
-<p>3.vim-surround   </p>
-<p>Based on <a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a>, the plugin is used to work with surrounding characters like parenthesis, brackets, quotes, and XML tags.</p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Description</th>
-<th>Type</th>
-<th>Default Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>vim.surround</td>
-<td>Enable/disable vim-surround</td>
-<td>Boolean</td>
-<td>true</td>
-</tr>
-</tbody></table>
-<p><code>t</code> or <code>&lt;</code> as <code>&lt;desired char&gt;</code> or <code>&lt;existing char&gt;</code> will do tags and enter tag entry mode. Using <code>&lt;CR&gt;</code> instead of <code>&gt;</code> to finish changing a tag will preserve any existing attributes.</p>
-<table>
-<thead>
-<tr>
-<th>Surround Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>d s &lt;existing char&gt;</code></td>
-<td>Delete existing surround</td>
-</tr>
-<tr>
-<td><code>c s &lt;existing char&gt; &lt;desired char&gt;</code></td>
-<td>Change surround existing to desired</td>
-</tr>
-<tr>
-<td><code>y s &lt;motion&gt; &lt;desired char&gt;</code></td>
-<td>Surround something with something using motion (as in “you surround”)</td>
-</tr>
-<tr>
-<td><code>S &lt;desired char&gt;</code></td>
-<td>Surround when in visual modes (surrounds full selection)</td>
-</tr>
-</tbody></table>
-<p>Some examples:</p>
-<ul>
-<li><code>&quot;test&quot;</code> with cursor inside quotes type cs”‘ to end up with <code>&#39;test&#39;</code></li>
-<li><code>&quot;test&quot;</code> with cursor inside quotes type ds” to end up with <code>test</code></li>
-<li><code>test</code> with cursor on word test type ysaw) to end up with <code>(test)</code></li>
-</ul>
-<h4 id="苹果系统问题-To-enable-key-repeating"><a href="#苹果系统问题-To-enable-key-repeating" class="headerlink" title="苹果系统问题 To enable key-repeating"></a>苹果系统问题 To enable key-repeating</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For VS Code</span></span><br><span class="line">$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"><span class="comment"># For VS Code Insider</span></span><br><span class="line">$ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原设置</span></span><br><span class="line">$ defaults delete -g ApplePressAndHoldEnabled</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1198,7 +1198,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
