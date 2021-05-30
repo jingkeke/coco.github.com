@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.jingzhengyi.top/"/>
-  <updated>2021-05-23T15:45:51.689Z</updated>
+  <updated>2021-05-30T15:00:57.737Z</updated>
   <id>https://blog.jingzhengyi.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hook 规则</title>
+    <link href="https://blog.jingzhengyi.top/2021/05/30/hook/"/>
+    <id>https://blog.jingzhengyi.top/2021/05/30/hook/</id>
+    <published>2021-05-30T14:56:00.000Z</published>
+    <updated>2021-05-30T15:00:57.737Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>hook 规则官网的文档 ,以前没看,主要是用 umi 每次运行 eslint 都会改 hooks 的依赖,原来是官方的 eslint 插件 eslint-plugin-react-hooks 搞的鬼…<br>然后看了一下官网的文档 学习了一下,感觉有好些知识点<br><a href="https://zh-hans.reactjs.org/docs/hooks-rules.html" target="_blank" rel="noopener">https://zh-hans.reactjs.org/docs/hooks-rules.html</a></p></blockquote><p><em>Hook</em> 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。</p><p>Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。我们提供了一个 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener">linter 插件</a>来强制执行这些规则：</p><h3 id="只在最顶层使用-Hook"><a href="#只在最顶层使用-Hook" class="headerlink" title="只在最顶层使用 Hook"></a><strong>只在最顶层使用 Hook</strong></h3><p><strong>不要在循环，条件或嵌套函数中调用 Hook，</strong> 确保总是在你的 React 函数的最顶层以及任何 return 之前调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 <code>useState</code> 和 <code>useEffect</code> 调用之间保持 hook 状态的正确。(如果你对此感到好奇，我们在会有更深入的解释。)</p><h3 id="只在-React-函数中调用-Hook"><a href="#只在-React-函数中调用-Hook" class="headerlink" title="只在 React 函数中调用 Hook"></a>只在 React 函数中调用 Hook</h3><p><strong>不要在普通的 JavaScript 函数中调用 Hook。</strong>你可以：</p><ul><li>✅ 在 React 的函数组件中调用 Hook</li><li>✅ 在自定义 Hook 中调用其他 Hook (我们将会在, setName] = useState(‘Mary’);</li></ul><p>// 2. Use an effect for persisting the form<br>useEffect(function persistForm() {<br>localStorage.setItem(‘formData’, name);<br>});</p><p>// 3. Use the surname state variable<br>const [surname, setSurname] = useState(‘Poppins’);</p><p>// 4. Use an effect for updating the title<br>useEffect(function updateTitle() {<br>document.title = name + ‘ ‘ + surname;<br>});</p><p>// …<br>}</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">那么 React 怎么知道哪个 state 对应哪个 &#96;useState&#96;？答案是 React 靠的是 Hook 调用的顺序。因为我们的示例中，Hook 的调用顺序在每次渲染中都是相同的，所以它能够正常工作：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;jsx</span><br><span class="line">&#x2F;&#x2F; ------------</span><br><span class="line">&#x2F;&#x2F; 首次渲染</span><br><span class="line">&#x2F;&#x2F; ------------</span><br><span class="line">useState(&#39;Mary&#39;)           &#x2F;&#x2F; 1. 使用 &#39;Mary&#39; 初始化变量名为 name 的 state</span><br><span class="line">useEffect(persistForm)     &#x2F;&#x2F; 2. 添加 effect 以保存 form 操作</span><br><span class="line">useState(&#39;Poppins&#39;)        &#x2F;&#x2F; 3. 使用 &#39;Poppins&#39; 初始化变量名为 surname 的 state</span><br><span class="line">useEffect(updateTitle)     &#x2F;&#x2F; 4. 添加 effect 以更新标题</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; -------------</span><br><span class="line">&#x2F;&#x2F; 二次渲染</span><br><span class="line">&#x2F;&#x2F; -------------</span><br><span class="line">useState(&#39;Mary&#39;)           &#x2F;&#x2F; 1. 读取变量名为 name 的 state（参数被忽略）</span><br><span class="line">useEffect(persistForm)     &#x2F;&#x2F; 2. 替换保存 form 的 effect</span><br><span class="line">useState(&#39;Poppins&#39;)        &#x2F;&#x2F; 3. 读取变量名为 surname 的 state（参数被忽略）</span><br><span class="line">useEffect(updateTitle)     &#x2F;&#x2F; 4. 替换更新标题的 effect</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...</span><br></pre></td></tr></table></figure><p>只要 Hook 的调用顺序在多次渲染之间保持一致，React 就能正确地将内部 state 和对应的 Hook 进行关联。但如果我们将一个 Hook (例如 <code>persistForm</code> effect) 调用放到一个条件语句中会发生什么呢？</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 🔴 在条件语句中使用 Hook 违反第一条规则</span></span><br><span class="line"><span class="keyword">if</span> (name !== <span class="string">""</span>) &#123;</span><br><span class="line">  useEffect(<span class="function"><span class="keyword">function</span> <span class="title">persistForm</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    localStorage.setItem(<span class="string">"formData"</span>, name);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在第一次渲染中 <code>name !== &#39;&#39;</code> 这个条件值为 <code>true</code>，所以我们会执行这个 Hook。但是下一次渲染时我们可能清空了表单，表达式值变为 <code>false</code>。此时的渲染会跳过该 Hook，Hook 的调用顺序发生了改变：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useState(<span class="string">"Mary"</span>); <span class="comment">// 1. 读取变量名为 name 的 state（参数被忽略）</span></span><br><span class="line"><span class="comment">// useEffect(persistForm)  // 🔴 此 Hook 被忽略！</span></span><br><span class="line">useState(<span class="string">"Poppins"</span>); <span class="comment">// 🔴 2 （之前为 3）。读取变量名为 surname 的 state 失败</span></span><br><span class="line">useEffect(updateTitle); <span class="comment">// 🔴 3 （之前为 4）。替换更新标题的 effect 失败</span></span><br></pre></td></tr></table></figure><p>React 不知道第二个 <code>useState</code> 的 Hook 应该返回什么。React 会以为在该组件中第二个 Hook 的调用像上次的渲染一样，对应的是 <code>persistForm</code> 的 effect，但并非如此。从这里开始，后面的 Hook 调用都被提前执行，导致 bug 的产生。</p><p><strong>这就是为什么 Hook 需要在我们组件的最顶层调用。</strong>如果我们想要有条件地执行一个 effect，可以将判断放到 Hook 的<em>内部</em>：</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="keyword">function</span> <span class="title">persistForm</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 👍 将条件判断放置在 effect 中</span></span><br><span class="line">  <span class="keyword">if</span> (name !== <span class="string">""</span>) &#123;</span><br><span class="line">    localStorage.setItem(<span class="string">"formData"</span>, name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p><strong>注意：如果使用了<a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener">提供的 lint 插件</a>，就无需担心此问题。</strong> 不过你现在知道了为什么 Hook 会这样工作，也知道了这个规则是为了避免什么问题。</p><h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>最后，接下来会学习<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">如何编写自定义 Hook</a>！自定义 Hook 可以将 React 中提供的 Hook 组合到定制的 Hook 中，以复用不同组件之间常见的状态逻辑。下一页](<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">https://zh-hans.reactjs.org/docs/hooks-custom.html</a>) 中学习这个。)</p><p>遵循此规则，确保组件的状态逻辑在代码中清晰可见。</p><h2 id="ESLint-插件"><a href="#ESLint-插件" class="headerlink" title="ESLint 插件"></a>ESLint 插件</h2><p>我们发布了一个名为 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a> 的 ESLint 插件来强制执行这两条规则。如果你想尝试一下，可以将此插件添加到你的项目中：</p><p>我们打算后续版本默认添加此插件到 <a href="https://zh-hans.reactjs.org/docs/create-a-new-react-app.html#create-react-app" target="_blank" rel="noopener">Create React App</a> 及其他类似的工具包中。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint-plugin-react-hooks --save-dev</span><br></pre></td></tr></table></figure><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你的 ESLint 配置</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">"react-hooks"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"rules"</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">"react-hooks/rules-of-hooks"</span>: <span class="string">"error"</span>, <span class="comment">// 检查 Hook 的规则</span></span><br><span class="line">    <span class="string">"react-hooks/exhaustive-deps"</span>: <span class="string">"warn"</span> <span class="comment">// 检查 effect 的依赖</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>现在你可以跳转到下一章节学习如何编写<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">你自己的 Hook</a>。</strong>在本章节中，我们将继续解释这些规则背后的原因。</p><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>正如我们<a href="https://zh-hans.reactjs.org/docs/hooks-state.html#tip-using-multiple-state-variables" target="_blank" rel="noopener">之前学到</a>的，我们可以在单个组件中使用多个 State Hook 或 Effect Hook</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Form</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. Use the name state variable</span></span><br><span class="line">  <span class="keyword">const</span> [name[</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;hook 规则官网的文档 ,以前没看,主要是用 umi 每次运行 eslint 都会改 hooks 的依赖,原来是官方的 eslint 插件 eslint-plugin-react-hooks 搞的鬼…&lt;br&gt;然后看了一下官网的文档 学习了一下,感
+      
+    
+    </summary>
+    
+    
+      <category term="react" scheme="https://blog.jingzhengyi.top/categories/react/"/>
+    
+    
+      <category term="js" scheme="https://blog.jingzhengyi.top/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>websocket 一些小脚本</title>
@@ -467,36 +494,6 @@
   </entry>
   
   <entry>
-    <title>阿里云ECS免密码登陆</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
-    <published>2021-01-22T02:05:48.755Z</published>
-    <updated>2021-01-22T02:05:48.755Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;a href=&quot;#使用SSH密钥对连接Linux实例&quot; class=&quot;headerlink&quot; title=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;/a&gt;使用SSH密钥对连接Linux实例&lt;/h2&gt;&lt;p&gt;阿里云ESC远程登陆
-      
-    
-    </summary>
-    
-    
-      <category term="Mac" scheme="https://blog.jingzhengyi.top/categories/Mac/"/>
-    
-      <category term="ECS" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/"/>
-    
-      <category term="SSH" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/SSH/"/>
-    
-    
-      <category term="SSH" scheme="https://blog.jingzhengyi.top/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
     <title>win10Linux子系统</title>
     <link href="https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
     <id>https://blog.jingzhengyi.top/2021/01/22/win10Linux%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
@@ -527,30 +524,32 @@
   </entry>
   
   <entry>
-    <title>umi适配华为自带浏览器和QQ浏览器</title>
-    <link href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    <id>https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
-    <published>2021-01-22T02:05:48.754Z</published>
-    <updated>2021-01-22T02:05:48.754Z</updated>
+    <title>阿里云ECS免密码登陆</title>
+    <link href="https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/"/>
+    <id>https://blog.jingzhengyi.top/2021/01/22/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86/</id>
+    <published>2021-01-22T02:05:48.755Z</published>
+    <updated>2021-01-22T02:05:48.755Z</updated>
     
-    <content type="html"><![CDATA[<p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="使用SSH密钥对连接Linux实例"><a href="#使用SSH密钥对连接Linux实例" class="headerlink" title="使用SSH密钥对连接Linux实例"></a>使用SSH密钥对连接Linux实例</h2><p>阿里云ESC远程登陆只支持pem特定的ssh免密登陆,之前一直不知道,阿里客服打电话过来回访时候问了一下,才知道官方文档有写.</p><p><a href="https://help.aliyun.com/document_detail/51798.html?spm=a2c4g.11186623.2.12.303874f7nqJwUC#linux" target="_blank" rel="noopener">使用SSH密钥对连接Linux实例</a></p><p>配置完后,对自动下载的pem做配置.修改 ~/.ssh/config文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host ecs    &#x2F;&#x2F; 输入ECS实例的名称</span><br><span class="line">HostName 192.*.*.*   &#x2F;&#x2F; 输入ECS实例的公网IP地址</span><br><span class="line">Port 22   &#x2F;&#x2F; 输入端口号，默认为22</span><br><span class="line">User root   &#x2F;&#x2F; 输入登录账号</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;ecs.pem &#x2F;&#x2F; 输入.pem私钥文件在本机的地址</span><br></pre></td></tr></table></figure><p>重启:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd restart</span><br><span class="line">ssh ecs</span><br></pre></td></tr></table></figure><p>我自己mac电脑配置了,但是还是要输入密码,后来查是权限问题 <a href="https://learnku.com/articles/19580" target="_blank" rel="noopener">https://learnku.com/articles/19580</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#设置 authorized_keys 的读写权限，只对其所有者开放</span><br><span class="line">chmod -R 700 ~&#x2F;.ssh</span><br><span class="line">chmod 644 ~&#x2F;.ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个&lt;a href=&quot;http://www.jingzy.top:8002&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;几个页面&lt;/a&gt;,在UC,chrome浏览器
+        &lt;h2 id=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;a href=&quot;#使用SSH密钥对连接Linux实例&quot; class=&quot;headerlink&quot; title=&quot;使用SSH密钥对连接Linux实例&quot;&gt;&lt;/a&gt;使用SSH密钥对连接Linux实例&lt;/h2&gt;&lt;p&gt;阿里云ESC远程登陆
       
     
     </summary>
     
     
-      <category term="umi" scheme="https://blog.jingzhengyi.top/categories/umi/"/>
+      <category term="Mac" scheme="https://blog.jingzhengyi.top/categories/Mac/"/>
     
-      <category term="android" scheme="https://blog.jingzhengyi.top/categories/umi/android/"/>
+      <category term="ECS" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/"/>
+    
+      <category term="SSH" scheme="https://blog.jingzhengyi.top/categories/Mac/ECS/SSH/"/>
     
     
-      <category term="h5" scheme="https://blog.jingzhengyi.top/tags/h5/"/>
+      <category term="SSH" scheme="https://blog.jingzhengyi.top/tags/SSH/"/>
     
   </entry>
   

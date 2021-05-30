@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.jingzhengyi.top","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hook 规则官网的文档 ,以前没看,主要是用 umi 每次运行 eslint 都会改 hooks 的依赖,原来是官方的 eslint 插件 eslint-plugin-react-hooks 搞的鬼…然后看了一下官网的文档 学习了一下,感觉有好些知识点https:&#x2F;&#x2F;zh-hans.reactjs.org&#x2F;docs&#x2F;hooks-rules.html  Hook 是 React 16.8 的新增">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hook 规则">
+<meta property="og:url" content="https://blog.jingzhengyi.top/2021/05/30/hook/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
+<meta property="og:description" content="hook 规则官网的文档 ,以前没看,主要是用 umi 每次运行 eslint 都会改 hooks 的依赖,原来是官方的 eslint 插件 eslint-plugin-react-hooks 搞的鬼…然后看了一下官网的文档 学习了一下,感觉有好些知识点https:&#x2F;&#x2F;zh-hans.reactjs.org&#x2F;docs&#x2F;hooks-rules.html  Hook 是 React 16.8 的新增">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-05-30T15:00:57.737Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.jingzhengyi.top/2021/05/30/hook/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>hook 规则 | 个人代码知识记录</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88049197-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88049197-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人代码知识记录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/05/30/hook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hook 规则
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-30 22:56:00 / 修改时间：23:00:57" itemprop="dateCreated datePublished" datetime="2021-05-30T22:56:00+08:00">2021-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>hook 规则官网的文档 ,以前没看,主要是用 umi 每次运行 eslint 都会改 hooks 的依赖,原来是官方的 eslint 插件 eslint-plugin-react-hooks 搞的鬼…<br>然后看了一下官网的文档 学习了一下,感觉有好些知识点<br><a href="https://zh-hans.reactjs.org/docs/hooks-rules.html" target="_blank" rel="noopener">https://zh-hans.reactjs.org/docs/hooks-rules.html</a></p>
+</blockquote>
+<p><em>Hook</em> 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。</p>
+<p>Hook 本质就是 JavaScript 函数，但是在使用它时需要遵循两条规则。我们提供了一个 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener">linter 插件</a>来强制执行这些规则：</p>
+<h3 id="只在最顶层使用-Hook"><a href="#只在最顶层使用-Hook" class="headerlink" title="只在最顶层使用 Hook"></a><strong>只在最顶层使用 Hook</strong></h3><p><strong>不要在循环，条件或嵌套函数中调用 Hook，</strong> 确保总是在你的 React 函数的最顶层以及任何 return 之前调用他们。遵守这条规则，你就能确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 <code>useState</code> 和 <code>useEffect</code> 调用之间保持 hook 状态的正确。(如果你对此感到好奇，我们在会有更深入的解释。)</p>
+<h3 id="只在-React-函数中调用-Hook"><a href="#只在-React-函数中调用-Hook" class="headerlink" title="只在 React 函数中调用 Hook"></a>只在 React 函数中调用 Hook</h3><p><strong>不要在普通的 JavaScript 函数中调用 Hook。</strong>你可以：</p>
+<ul>
+<li>✅ 在 React 的函数组件中调用 Hook</li>
+<li>✅ 在自定义 Hook 中调用其他 Hook (我们将会在, setName] = useState(‘Mary’);</li>
+</ul>
+<p>// 2. Use an effect for persisting the form<br>useEffect(function persistForm() {<br>localStorage.setItem(‘formData’, name);<br>});</p>
+<p>// 3. Use the surname state variable<br>const [surname, setSurname] = useState(‘Poppins’);</p>
+<p>// 4. Use an effect for updating the title<br>useEffect(function updateTitle() {<br>document.title = name + ‘ ‘ + surname;<br>});</p>
+<p>// …<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">那么 React 怎么知道哪个 state 对应哪个 &#96;useState&#96;？答案是 React 靠的是 Hook 调用的顺序。因为我们的示例中，Hook 的调用顺序在每次渲染中都是相同的，所以它能够正常工作：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;jsx</span><br><span class="line">&#x2F;&#x2F; ------------</span><br><span class="line">&#x2F;&#x2F; 首次渲染</span><br><span class="line">&#x2F;&#x2F; ------------</span><br><span class="line">useState(&#39;Mary&#39;)           &#x2F;&#x2F; 1. 使用 &#39;Mary&#39; 初始化变量名为 name 的 state</span><br><span class="line">useEffect(persistForm)     &#x2F;&#x2F; 2. 添加 effect 以保存 form 操作</span><br><span class="line">useState(&#39;Poppins&#39;)        &#x2F;&#x2F; 3. 使用 &#39;Poppins&#39; 初始化变量名为 surname 的 state</span><br><span class="line">useEffect(updateTitle)     &#x2F;&#x2F; 4. 添加 effect 以更新标题</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; -------------</span><br><span class="line">&#x2F;&#x2F; 二次渲染</span><br><span class="line">&#x2F;&#x2F; -------------</span><br><span class="line">useState(&#39;Mary&#39;)           &#x2F;&#x2F; 1. 读取变量名为 name 的 state（参数被忽略）</span><br><span class="line">useEffect(persistForm)     &#x2F;&#x2F; 2. 替换保存 form 的 effect</span><br><span class="line">useState(&#39;Poppins&#39;)        &#x2F;&#x2F; 3. 读取变量名为 surname 的 state（参数被忽略）</span><br><span class="line">useEffect(updateTitle)     &#x2F;&#x2F; 4. 替换更新标题的 effect</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...</span><br></pre></td></tr></table></figure>
+
+<p>只要 Hook 的调用顺序在多次渲染之间保持一致，React 就能正确地将内部 state 和对应的 Hook 进行关联。但如果我们将一个 Hook (例如 <code>persistForm</code> effect) 调用放到一个条件语句中会发生什么呢？</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 🔴 在条件语句中使用 Hook 违反第一条规则</span></span><br><span class="line"><span class="keyword">if</span> (name !== <span class="string">""</span>) &#123;</span><br><span class="line">  useEffect(<span class="function"><span class="keyword">function</span> <span class="title">persistForm</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    localStorage.setItem(<span class="string">"formData"</span>, name);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在第一次渲染中 <code>name !== &#39;&#39;</code> 这个条件值为 <code>true</code>，所以我们会执行这个 Hook。但是下一次渲染时我们可能清空了表单，表达式值变为 <code>false</code>。此时的渲染会跳过该 Hook，Hook 的调用顺序发生了改变：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useState(<span class="string">"Mary"</span>); <span class="comment">// 1. 读取变量名为 name 的 state（参数被忽略）</span></span><br><span class="line"><span class="comment">// useEffect(persistForm)  // 🔴 此 Hook 被忽略！</span></span><br><span class="line">useState(<span class="string">"Poppins"</span>); <span class="comment">// 🔴 2 （之前为 3）。读取变量名为 surname 的 state 失败</span></span><br><span class="line">useEffect(updateTitle); <span class="comment">// 🔴 3 （之前为 4）。替换更新标题的 effect 失败</span></span><br></pre></td></tr></table></figure>
+
+<p>React 不知道第二个 <code>useState</code> 的 Hook 应该返回什么。React 会以为在该组件中第二个 Hook 的调用像上次的渲染一样，对应的是 <code>persistForm</code> 的 effect，但并非如此。从这里开始，后面的 Hook 调用都被提前执行，导致 bug 的产生。</p>
+<p><strong>这就是为什么 Hook 需要在我们组件的最顶层调用。</strong>如果我们想要有条件地执行一个 effect，可以将判断放到 Hook 的<em>内部</em>：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="keyword">function</span> <span class="title">persistForm</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 👍 将条件判断放置在 effect 中</span></span><br><span class="line">  <span class="keyword">if</span> (name !== <span class="string">""</span>) &#123;</span><br><span class="line">    localStorage.setItem(<span class="string">"formData"</span>, name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：如果使用了<a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener">提供的 lint 插件</a>，就无需担心此问题。</strong> 不过你现在知道了为什么 Hook 会这样工作，也知道了这个规则是为了避免什么问题。</p>
+<h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>最后，接下来会学习<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">如何编写自定义 Hook</a>！自定义 Hook 可以将 React 中提供的 Hook 组合到定制的 Hook 中，以复用不同组件之间常见的状态逻辑。下一页](<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">https://zh-hans.reactjs.org/docs/hooks-custom.html</a>) 中学习这个。)</p>
+<p>遵循此规则，确保组件的状态逻辑在代码中清晰可见。</p>
+<h2 id="ESLint-插件"><a href="#ESLint-插件" class="headerlink" title="ESLint 插件"></a>ESLint 插件</h2><p>我们发布了一个名为 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks" target="_blank" rel="noopener"><code>eslint-plugin-react-hooks</code></a> 的 ESLint 插件来强制执行这两条规则。如果你想尝试一下，可以将此插件添加到你的项目中：</p>
+<p>我们打算后续版本默认添加此插件到 <a href="https://zh-hans.reactjs.org/docs/create-a-new-react-app.html#create-react-app" target="_blank" rel="noopener">Create React App</a> 及其他类似的工具包中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint-plugin-react-hooks --save-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你的 ESLint 配置</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">"react-hooks"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"rules"</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">"react-hooks/rules-of-hooks"</span>: <span class="string">"error"</span>, <span class="comment">// 检查 Hook 的规则</span></span><br><span class="line">    <span class="string">"react-hooks/exhaustive-deps"</span>: <span class="string">"warn"</span> <span class="comment">// 检查 effect 的依赖</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>现在你可以跳转到下一章节学习如何编写<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">你自己的 Hook</a>。</strong>在本章节中，我们将继续解释这些规则背后的原因。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>正如我们<a href="https://zh-hans.reactjs.org/docs/hooks-state.html#tip-using-multiple-state-variables" target="_blank" rel="noopener">之前学到</a>的，我们可以在单个组件中使用多个 State Hook 或 Effect Hook</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Form</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. Use the name state variable</span></span><br><span class="line">  <span class="keyword">const</span> [name[</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/23/websocket/" rel="prev" title="websocket 一些小脚本">
+      <i class="fa fa-chevron-left"></i> websocket 一些小脚本
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#只在最顶层使用-Hook"><span class="nav-number">1.</span> <span class="nav-text">只在最顶层使用 Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只在-React-函数中调用-Hook"><span class="nav-number">2.</span> <span class="nav-text">只在 React 函数中调用 Hook</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下一步"><span class="nav-number"></span> <span class="nav-text">下一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESLint-插件"><span class="nav-number"></span> <span class="nav-text">ESLint 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number"></span> <span class="nav-text">说明</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-2 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-jzy"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jing</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '3fd3324f8518ce5ba445',
+      clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : '5abe4df76def862c318d3d26f7f8c828',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
