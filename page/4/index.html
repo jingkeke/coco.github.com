@@ -163,6 +163,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/NativeBase_theme/" class="post-title-link" itemprop="url">NativeBase 主题配置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/" itemprop="url" rel="index"><span itemprop="name">react-native</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://docs.nativebase.io/Components.html#toast-with-duration-headref" target="_blank" rel="noopener">NativeBase</a> 个人感觉资料等在开源的react-native组件库中算是比较出色的,官网还提供了不少集成其他状态管理,路由的demo.查资料没有看到过关于他V2版本的主题相关的中文说明,他官网感觉说的也不直白.大概按我的理解说一下他的<a href="https://docs.nativebase.io/Customize.html#Customize" target="_blank" rel="noopener">自定义主题配置</a></p>
+<h4 id="NativeBase-Customizer"><a href="#NativeBase-Customizer" class="headerlink" title="NativeBase Customizer"></a>NativeBase Customizer</h4><p>官网有提供<a href="https://nativebase.io/customizer/#" target="_blank" rel="noopener">可视化主题颜色配置页面</a>,设置完颜色后,下载variables.js .可以下载单个组件的,也可以设置全部的.</p>
+<h4 id="Theme-and-Variables"><a href="#Theme-and-Variables" class="headerlink" title="Theme and Variables"></a>Theme and Variables</h4><p>运行 <code>node node_modules/native-base/ejectTheme.js</code> 将nb的主题配置暴露到<strong>native-base-theme</strong>,包含俩个目录</p>
+<blockquote>
+<p><strong>components</strong>: Theme styling files for all the NativeBase components. This is where you would change the style properties of the components if you need to.</p>
+</blockquote>
+<blockquote>
+<p>Example, if you need to change the height of Button component, you’ll need to change height in native-base-theme/components/Button.js.</p>
+</blockquote>
+<blockquote>
+<p><strong>variables</strong>: Contains three preset theme variable files, namely Platform, material, commonColor. You can change the variables (for color, fontFamily, iconFamily etc) for a uniform look and feel throughout your app.</p>
+</blockquote>
+<h4 id="Set-Up"><a href="#Set-Up" class="headerlink" title="Set Up"></a>Set Up</h4><p>官网提供的下面的这个例子,Platform,Material,CommonColor,从variables目录里面选择一个官方提供了默认三套主题,可以修改一下对应js的变量,参考<a href="https://docs.nativebase.io/docs/ThemeVariables.html" target="_blank" rel="noopener">Theme variables Cheat sheet</a>设置.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="keyword">import</span> getTheme <span class="keyword">from</span> <span class="string">'./native-base-theme/components'</span>;</span><br><span class="line"><span class="keyword">import</span> material <span class="keyword">from</span> <span class="string">'./native-base-theme/variables/material'</span>;</span><br><span class="line">​<span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt;</span><br><span class="line">        &lt;Container&gt;</span><br><span class="line">          &lt;Content&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">              I have changed the text color.</span><br><span class="line">            &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>Content&gt;</span><br><span class="line">        &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>StyleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Theme-Color"><a href="#Theme-Color" class="headerlink" title="Theme Color"></a>Theme Color</h4><h4 id="Theme-Font"><a href="#Theme-Font" class="headerlink" title="Theme Font"></a>Theme Font</h4><p>可选择字体</p>
+<h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><ul>
+<li>With Variables<br>比如修改Button样式,可以从可视化修改页面下载variable.js,然后结合下面配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Container, Content, Button, Text, getTheme, StyleProvider &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="comment">//  从可视化网站下载</span></span><br><span class="line"><span class="keyword">import</span> customVariables <span class="keyword">from</span> <span class="string">'./Themes/variable'</span>;</span><br><span class="line">​<span class="comment">// buttonTheme is the customized theme of Button Component​,</span></span><br><span class="line"><span class="comment">// 我理解就是native-base-theme/components下面找对应的js</span></span><br><span class="line"><span class="keyword">import</span> buttonTheme <span class="keyword">from</span> <span class="string">'./Themes/buttonTheme'</span>;</span><br><span class="line">​<span class="comment">// getTheme is default theme of NativeBase Components</span></span><br><span class="line"><span class="comment">// customVariables is customized variables used in the components theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeButtonExample</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Content&gt;</span><br><span class="line">          &lt;StyleProvider style=&#123;buttonTheme(customVariables)&#125;&gt;</span><br><span class="line">            &lt;Button primary&gt;</span><br><span class="line">              &lt;Text&gt; Primary &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button success&gt;</span><br><span class="line">              &lt;Text&gt; Success &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button info&gt;</span><br><span class="line">              &lt;Text&gt; Info &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button warning&gt;</span><br><span class="line">              &lt;Text&gt; Warning &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button danger&gt;</span><br><span class="line">              &lt;Text&gt; Danger &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button small&gt;</span><br><span class="line">              &lt;Text&gt; Small &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button&gt;</span><br><span class="line">              &lt;Text&gt; Default &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">            &lt;Button large&gt;</span><br><span class="line">              &lt;Text&gt; Large &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Button&gt;</span><br><span class="line">          &lt;<span class="regexp">/StyleProvider&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Content&gt;</span><br><span class="line">      &lt;<span class="regexp">/Container&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Theme-Your-Custom-Component"><a href="#Theme-Your-Custom-Component" class="headerlink" title="Theme Your Custom Component"></a>Theme Your Custom Component</h4><p>可是结合官方的 StyleSheet 提供的styles ,可以覆盖,如果冲突? 这个有覆盖这个还没具体测试,yourTheme感觉也是可以随便写,<br>CustomComponent就是你写的这个组件的给的命名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; View, Text, StyleSheet &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connectStyle &#125; <span class="keyword">from</span> <span class="string">'native-base'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// connect styles to props.style defined by the theme</span></span><br><span class="line">    <span class="keyword">const</span> styles = <span class="keyword">this</span>.props.style;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.textContent&#125;&gt;</span><br><span class="line">          Your Component <span class="keyword">with</span> <span class="keyword">static</span> style</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> styles = &#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'green'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  textContent: &#123;</span><br><span class="line">    fontSize: <span class="number">20</span>,</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// connect the component to the theme</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connectStyle(<span class="string">'yourTheme.CustomComponent'</span>, styles)(CustomComponent);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2020/09/22/yourName/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -931,81 +1023,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2016/11/24/%E6%8F%90%E9%AB%98Linux%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87%E7%9A%84bash%E6%8A%80%E5%B7%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/24/%E6%8F%90%E9%AB%98Linux%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87%E7%9A%84bash%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">提高Linux工作效率的bash技巧</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-11-24 16:20:53" itemprop="dateCreated datePublished" datetime="2016-11-24T16:20:53+08:00">2016-11-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:05:48" itemprop="dateModified" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>看的<a href="https://www.shiyanlou.com/questions/4297" target="_blank" rel="noopener">这篇文章</a>，感觉有效果的是下面几个。</p>
-<h2 id="帮你保持历史操作，跳回到你经常使用的目录。"><a href="#帮你保持历史操作，跳回到你经常使用的目录。" class="headerlink" title="帮你保持历史操作，跳回到你经常使用的目录。"></a>帮你保持历史操作，跳回到你经常使用的目录。</h2><p>下面是我的配置文件里脚本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># USAGE:</span><br><span class="line"># s bookmarkname - saves the curr dir as bookmarkname</span><br><span class="line"># g bookmarkname - jumps to the that bookmark</span><br><span class="line"># g b[TAB] - tab completion is available</span><br><span class="line"># l - list all bookmarks</span><br><span class="line"></span><br><span class="line"># save current directory to bookmarks</span><br><span class="line">touch ~&#x2F;.sdirs</span><br><span class="line">function s &#123;</span><br><span class="line">  cat ~&#x2F;.sdirs | grep -v &quot;export DIR_$1&#x3D;&quot; &gt; ~&#x2F;.sdirs1</span><br><span class="line">  mv ~&#x2F;.sdirs1 ~&#x2F;.sdirs</span><br><span class="line">  echo &quot;export DIR_$1&#x3D;$PWD&quot; &gt;&gt; ~&#x2F;.sdirs</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># jump to bookmark</span><br><span class="line">function g &#123;</span><br><span class="line">  source ~&#x2F;.sdirs</span><br><span class="line">  cd $(eval $(echo echo $(echo \$DIR_$1)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># list bookmarks with dirnam</span><br><span class="line">function l &#123;</span><br><span class="line">  source ~&#x2F;.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*&#x3D;&quot;</span><br><span class="line">&#125;</span><br><span class="line"># list bookmarks without dirname</span><br><span class="line">function _l &#123;</span><br><span class="line">  source ~&#x2F;.sdirs</span><br><span class="line">  env | grep &quot;^DIR_&quot; | cut -c5- | grep &quot;^.*&#x3D;&quot; | cut -f1 -d &quot;&#x3D;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># completion command for g</span><br><span class="line">function _gcomp &#123;</span><br><span class="line">    local curw</span><br><span class="line">    COMPREPLY&#x3D;()</span><br><span class="line">    curw&#x3D;$&#123;COMP_WORDS[COMP_CWORD]&#125;</span><br><span class="line">    COMPREPLY&#x3D;($(compgen -W &#39;&#96;_l&#96;&#39; -- $curw))</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># bind completion command for g to _gcomp</span><br><span class="line">complete -F _gcomp g</span><br></pre></td></tr></table></figure>
-
-<p>##创建自己的命令包.<br>通过脚本，我可以将ssh key拷贝到任何网站服务器——只需要键入dur keyuser@somehost.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">function dur &#123;</span><br><span class="line">  case $1 in</span><br><span class="line">  clone|cl)</span><br><span class="line">    git clone git@bitbucket.org:nicolapaolucci&#x2F;$2.git</span><br><span class="line">    ;;</span><br><span class="line">  move|mv)</span><br><span class="line">    git remote add bitbucket git@bitbucket.org:nicolapaolucci&#x2F;$(basename $(pwd)).git</span><br><span class="line">    git push --all bitbucket</span><br><span class="line">    ;;</span><br><span class="line">  trackall|tr)</span><br><span class="line">    #track all remote branches of a project</span><br><span class="line">    for remote in $(git branch -r | grep -v master ); do git checkout --track $remote ; done</span><br><span class="line">    ;;</span><br><span class="line">  key|k)</span><br><span class="line">    #track all remote branches of a project</span><br><span class="line">    ssh $2 &#39;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh&#x2F;authorized_keys&#39; &lt; ~&#x2F;.ssh&#x2F;id_rsa.pub</span><br><span class="line">    ;;</span><br><span class="line">  fun|f)</span><br><span class="line">    #list all custom bash functions defined</span><br><span class="line">    typeset -F | col 3 | grep -v _ | xargs | fold -sw 60</span><br><span class="line">    ;;</span><br><span class="line">  def|d)</span><br><span class="line">    #show definition of function $1</span><br><span class="line">    typeset -f $2</span><br><span class="line">    ;;</span><br><span class="line">  help|h|*)</span><br><span class="line">    echo &quot;[dur]dn shell automation tools&quot;</span><br><span class="line">    echo &quot;commands available:&quot;</span><br><span class="line">    echo &quot; [cl]one, [mv|move]&quot;</span><br><span class="line">    echo &quot; [f]fun lists all bash functions defined in .bashrc&quot;</span><br><span class="line">    echo &quot; [def] &lt;fun&gt; lists definition of function defined in .bashrc&quot;</span><br><span class="line">    echo &quot; [k]ey &lt;host&gt; copies ssh key to target host&quot;</span><br><span class="line">    echo &quot; [tr]ackall], [h]elp&quot;</span><br><span class="line">    ;;</span><br><span class="line">  esac</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1071,19 +1093,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
