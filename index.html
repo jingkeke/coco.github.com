@@ -163,6 +163,222 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/06/13/postcss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/13/postcss/" class="post-title-link" itemprop="url">postcss</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-13 18:21:00" itemprop="dateCreated datePublished" datetime="2021-06-13T18:21:00+08:00">2021-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-14 07:43:01" itemprop="dateModified" datetime="2021-06-14T07:43:01+08:00">2021-06-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>练习可以用 <a href="http://plnkr.co/" target="_blank" rel="noopener">http://plnkr.co/</a> 感觉还挺好<br>原文 :<a href="https://github.com/postcss/postcss/blob/main/docs/README-cn.md" target="_blank" rel="noopener">https://github.com/postcss/postcss/blob/main/docs/README-cn.md</a></p>
+</blockquote>
+<h1 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS "></a>PostCSS <a href="https://gitter.im/postcss/postcss" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg" alt="Gitter"></a></h1><p><img align="right" width="95" height="95"
+     alt="哲学家的石头 - PostCSS 的 logo"
+     src="https://postcss.org/logo.svg"></p>
+<p>PostCSS 是一个允许使用 JS 插件转换样式的工具。<br>这些插件可以检查（lint）你的 CSS，支持 CSS Variables 和 Mixins，<br>编译尚未被浏览器广泛支持的先进的 CSS 语法，内联图片，以及其它很多优秀的功能。</p>
+<p>PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，<br>JetBrains。PostCSS 的 <a href="https://github.com/postcss/autoprefixer" target="_blank" rel="noopener">Autoprefixer</a> 插件是最流行的 CSS 处理工具之一。</p>
+<p>PostCSS 接收一个 CSS 文件并提供了一个 API 来分析、修改它的规则（通过把 CSS 规则转换成一个<a href="https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9" target="_blank" rel="noopener">抽象语法树</a>的方式）。在这之后，这个 API 便可被许多<a href="https://github.com/postcss/postcss/blob/main/README-cn.md#%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">插件</a>利用来做有用的事情，比如寻错或自动添加 CSS vendor 前缀。</p>
+<p><strong>Twitter 账号:</strong> <a href="https://twitter.com/postcss" target="_blank" rel="noopener">@postcss</a><br><br><strong>支持 / 讨论:</strong> <a href="https://gitter.im/postcss/postcss" target="_blank" rel="noopener">Gitter</a><br></p>
+<p>如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，<br>PostCSS 插件），请联系 <a href="https://evilmartians.com/?utm_source=postcss" target="_blank" rel="noopener">Evil Martians</a><br>邮箱 <a href="mailto:&#x73;&#117;&#x72;&#x72;&#x65;&#110;&#x64;&#101;&#114;&#x40;&#x65;&#x76;&#105;&#108;&#x6d;&#97;&#x72;&#116;&#105;&#x61;&#110;&#115;&#x2e;&#x63;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x73;&#117;&#x72;&#x72;&#x65;&#110;&#x64;&#101;&#114;&#x40;&#x65;&#x76;&#105;&#108;&#x6d;&#97;&#x72;&#116;&#105;&#x61;&#110;&#115;&#x2e;&#x63;&#x6f;&#x6d;</a>。</p>
+<a href="https://evilmartians.com/?utm_source=postcss" target="_blank" rel="noopener">
+  <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
+       alt="由 Evil Martians 赞助" width="236" height="54">
+</a>
+
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>截止到目前，PostCSS 有 200 多个插件。你可以在 <a href="https://github.com/postcss/postcss/blob/main/docs/plugins.md" target="_blank" rel="noopener">插件列表</a> 或 <a href="http://postcss.parts" target="_blank" rel="noopener">搜索目录</a> 找到它们。<br>下方的列表是我们最喜欢的插件 - 它们很好地演示了我们可以用 PostCSS 做些什么。</p>
+<p>如果你有任何新的想法，<a href="https://github.com/postcss/postcss/blob/main/docs/writing-a-plugin.md" target="_blank" rel="noopener">开发 PostCSS 插件</a> 非常简单易上手。</p>
+<h3 id="解决全局-CSS-的问题"><a href="#解决全局-CSS-的问题" class="headerlink" title="解决全局 CSS 的问题"></a>解决全局 CSS 的问题</h3><ul>
+<li><a href="https://github.com/postcss/postcss-use" target="_blank" rel="noopener"><code>postcss-use</code></a> 允许你在 CSS 里明确地设置 PostCSS 插件，并且只在当前文件执行它们。</li>
+<li><a href="https://github.com/outpunk/postcss-modules" target="_blank" rel="noopener"><code>postcss-modules</code></a> 和 <a href="https://github.com/gajus/react-css-modules" target="_blank" rel="noopener"><code>react-css-modules</code></a> 可以自动以组件为单位隔绝 CSS 选择器。</li>
+<li><a href="https://github.com/maximkoretskiy/postcss-autoreset" target="_blank" rel="noopener"><code>postcss-autoreset</code></a> 是全局样式重置的又一个选择，它更适用于分离的组件。</li>
+<li><a href="https://github.com/maximkoretskiy/postcss-initial" target="_blank" rel="noopener"><code>postcss-initial</code></a> 添加了 <code>all: initial</code> 的支持，重置了所有继承的样式。</li>
+<li><a href="https://github.com/ausi/cq-prolyfill" target="_blank" rel="noopener"><code>cq-prolyfill</code></a> 添加了容器查询的支持，允许添加响应于父元素宽度的样式.</li>
+</ul>
+<h3 id="提前使用先进的-CSS-特性"><a href="#提前使用先进的-CSS-特性" class="headerlink" title="提前使用先进的 CSS 特性"></a>提前使用先进的 CSS 特性</h3><ul>
+<li><a href="https://github.com/postcss/autoprefixer" target="_blank" rel="noopener"><code>autoprefixer</code></a> 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。</li>
+<li><a href="https://github.com/jonathantneal/postcss-preset-env" target="_blank" rel="noopener"><code>postcss-preset-env</code></a> 允许你使用未来的 CSS 特性。</li>
+</ul>
+<h3 id="更佳的-CSS-可读性"><a href="#更佳的-CSS-可读性" class="headerlink" title="更佳的 CSS 可读性"></a>更佳的 CSS 可读性</h3><ul>
+<li><a href="https://github.com/jonathantneal/precss" target="_blank" rel="noopener"><code>precss</code></a> 囊括了许多插件来支持类似 Sass 的特性，比如 CSS 变量，套嵌，mixins 等。</li>
+<li><a href="https://github.com/hudochenkov/postcss-sorting" target="_blank" rel="noopener"><code>postcss-sorting</code></a> 给规则的内容以及@规则排序。</li>
+<li><a href="https://github.com/ismamz/postcss-utilities" target="_blank" rel="noopener"><code>postcss-utilities</code></a> 囊括了最常用的简写方式和书写帮助。</li>
+<li><a href="https://github.com/jonathantneal/postcss-short" target="_blank" rel="noopener"><code>short</code></a> 添加并拓展了大量的缩写属性。</li>
+</ul>
+<h3 id="图片和字体"><a href="#图片和字体" class="headerlink" title="图片和字体"></a>图片和字体</h3><ul>
+<li><a href="https://github.com/assetsjs/postcss-assets" target="_blank" rel="noopener"><code>postcss-assets</code></a> 可以插入图片尺寸和内联文件。</li>
+<li><a href="https://github.com/2createStudio/postcss-sprites" target="_blank" rel="noopener"><code>postcss-sprites</code></a> 能生成雪碧图。</li>
+<li><a href="https://github.com/jonathantneal/postcss-font-magician" target="_blank" rel="noopener"><code>font-magician</code></a> 生成所有在 CSS 里需要的 <code>@font-face</code> 规则。</li>
+<li><a href="https://github.com/TrySound/postcss-inline-svg" target="_blank" rel="noopener"><code>postcss-inline-svg</code></a> 允许你内联 SVG 并定制它的样式。</li>
+<li><a href="https://github.com/jonathantneal/postcss-write-svg" target="_blank" rel="noopener"><code>postcss-write-svg</code></a> 允许你在 CSS 里写简单的 SVG。</li>
+</ul>
+<h3 id="提示器（Linters）"><a href="#提示器（Linters）" class="headerlink" title="提示器（Linters）"></a>提示器（Linters）</h3><ul>
+<li><a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener"><code>stylelint</code></a> 是一个模块化的样式提示器。</li>
+<li><a href="https://github.com/morishitter/stylefmt" target="_blank" rel="noopener"><code>stylefmt</code></a> 是一个能根据 <code>stylelint</code> 规则自动优化 CSS 格式的工具。</li>
+<li><a href="https://github.com/anandthakker/doiuse" target="_blank" rel="noopener"><code>doiuse</code></a> 提示 CSS 的浏览器支持性，使用的数据来自于 Can I Use。</li>
+<li><a href="https://github.com/SlexAxton/css-colorguard" target="_blank" rel="noopener"><code>colorguard</code></a> 帮助你保持一个始终如一的调色板。</li>
+</ul>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><ul>
+<li><a href="https://github.com/vkalinichev/postcss-rtl" target="_blank" rel="noopener"><code>postcss-rtl</code></a> 在单个 CSS 文件里组合了两个方向（左到右，右到左）的样式。</li>
+<li><a href="http://cssnano.co" target="_blank" rel="noopener"><code>cssnano</code></a> 是一个模块化的 CSS 压缩器。</li>
+<li><a href="https://github.com/peterramsing/lost" target="_blank" rel="noopener"><code>lost</code></a> 是一个功能强大的 <code>calc()</code> 栅格系统。</li>
+<li><a href="https://github.com/MohammadYounes/rtlcss" target="_blank" rel="noopener"><code>rtlcss</code></a> 镜像翻转 CSS 样式，适用于 right-to-left 的应用场景。</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>PostCSS 可以转化样式到任意语法，不仅仅是 CSS。<br>如果还没有支持你最喜欢的语法，你可以编写一个解释器以及（或者）一个 stringifier 来拓展 PostCSS。</p>
+<ul>
+<li><a href="https://github.com/postcss/sugarss" target="_blank" rel="noopener"><code>sugarss</code></a> 是一个以缩进为基础的语法，类似于 Sass 和 Stylus。</li>
+<li><a href="https://github.com/gucong3000/postcss-syntax" target="_blank" rel="noopener"><code>postcss-syntax</code></a> 通过文件扩展名自动切换语法。</li>
+<li><a href="https://github.com/gucong3000/postcss-html" target="_blank" rel="noopener"><code>postcss-html</code></a> 解析类 HTML 文件里<code>&lt;style&gt;</code>标签中的样式。</li>
+<li><a href="https://github.com/gucong3000/postcss-markdown" target="_blank" rel="noopener"><code>postcss-markdown</code></a> 解析 Markdown 文件里代码块中的样式。</li>
+<li><a href="https://github.com/gucong3000/postcss-jsx" target="_blank" rel="noopener"><code>postcss-jsx</code></a> 解析源文件里模板或对象字面量中的 CSS。</li>
+<li><a href="https://github.com/gucong3000/postcss-styled" target="_blank" rel="noopener"><code>postcss-styled</code></a> 解析源文件里模板字面量中的 CSS。</li>
+<li><a href="https://github.com/postcss/postcss-scss" target="_blank" rel="noopener"><code>postcss-scss</code></a> 允许你使用 SCSS _(但并没有将 SCSS 编译到 CSS)_。</li>
+<li><a href="https://github.com/AleshaOleg/postcss-sass" target="_blank" rel="noopener"><code>postcss-sass</code></a> 允许你使用 Sass _(但并没有将 Sass 编译到 CSS)_。</li>
+<li><a href="https://github.com/webschik/postcss-less" target="_blank" rel="noopener"><code>postcss-less</code></a> 允许你使用 Less _(但并没有将 LESS 编译到 CSS)_。</li>
+<li><a href="https://github.com/Crunch/postcss-less" target="_blank" rel="noopener"><code>postcss-less-engine</code></a> 允许你使用 Less _(并且使用真正的 Less.js 把 LESS 编译到 CSS)_。</li>
+<li><a href="https://github.com/postcss/postcss-js" target="_blank" rel="noopener"><code>postcss-js</code></a> 允许你在 JS 里编写样式，或者转换成 React 的内联样式／Radium／JSS。</li>
+<li><a href="https://github.com/postcss/postcss-safe-parser" target="_blank" rel="noopener"><code>postcss-safe-parser</code></a> 查找并修复 CSS 语法错误。</li>
+<li><a href="https://github.com/ben-eb/midas" target="_blank" rel="noopener"><code>midas</code></a> 将 CSS 字符串转化成高亮的 HTML。</li>
+</ul>
+<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
+<li><a href="http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong" target="_blank" rel="noopener">一些你对 PostCSS 可能产生的误解</a></li>
+<li><a href="http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss" target="_blank" rel="noopener">PostCSS 究竟是什么，是做什么的</a></li>
+<li><a href="http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889" target="_blank" rel="noopener">PostCSS 指南</a></li>
+</ul>
+<p>你可以在 <a href="https://github.com/jjaderg/awesome-postcss" target="_blank" rel="noopener">awesome-postcss</a> 列表里找到更多优秀的文章和视频。</p>
+<h2 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h2><ul>
+<li>Alex Libby, Packt 的 <a href="https://www.packtpub.com/web-development/mastering-postcss-web-design" target="_blank" rel="noopener">网页设计之精通 PostCSS</a> (2016 年 6 月)</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>你可以通过简单的两步便开始使用 PostCSS：</p>
+<ol>
+<li>在你的构建工具中查找并添加 PostCSS 拓展。</li>
+<li><a href="http://postcss.parts" target="_blank" rel="noopener">选择插件</a>并将它们添加到你的 PostCSS 处理队列中。</li>
+</ol>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>在 <code>webpack.config.js</code> 里使用 <a href="https://github.com/postcss/postcss-loader" target="_blank" rel="noopener"><code>postcss-loader</code></a> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"style-loader"</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"css-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              importLoaders: <span class="number">1</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"postcss-loader"</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后创建 <code>postcss.config.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [<span class="built_in">require</span>(<span class="string">"precss"</span>), <span class="built_in">require</span>(<span class="string">"autoprefixer"</span>)],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><p>使用 <a href="https://github.com/postcss/gulp-postcss" target="_blank" rel="noopener"><code>gulp-postcss</code></a> 和 <a href="https://github.com/floridoo/gulp-sourcemaps" target="_blank" rel="noopener"><code>gulp-sourcemaps</code></a>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">"css"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> postcss = <span class="built_in">require</span>(<span class="string">"gulp-postcss"</span>);</span><br><span class="line">  <span class="keyword">const</span> sourcemaps = <span class="built_in">require</span>(<span class="string">"gulp-sourcemaps"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> gulp</span><br><span class="line">    .src(<span class="string">"src/**/*.css"</span>)</span><br><span class="line">    .pipe(sourcemaps.init())</span><br><span class="line">    .pipe(postcss([<span class="built_in">require</span>(<span class="string">"precss"</span>), <span class="built_in">require</span>(<span class="string">"autoprefixer"</span>)]))</span><br><span class="line">    .pipe(sourcemaps.write(<span class="string">"."</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">"build/"</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="npm-run-CLI"><a href="#npm-run-CLI" class="headerlink" title="npm run / CLI"></a>npm run / CLI</h3><p>如果需要在你的命令行界面或 npm 脚本里使用 PostCSS，你可以使用 <a href="https://github.com/postcss/postcss-cli" target="_blank" rel="noopener"><code>postcss-cli</code></a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postcss --use autoprefixer -c options.json -o main.css css/*.css</span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><p>如果你想编译浏览器里的 CSS 字符串（例如像 CodePen 一样的在线编辑器），<br>只需使用 <a href="http://browserify.org/" target="_blank" rel="noopener">Browserify</a> 或 <a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a>。它们会把 PostCSS 和插件文件打包进一个独立文件。</p>
+<p>如果想要在 React 内联样式／JSS／Radium／其它 <a href="https://github.com/MicheleBertoli/css-in-js" target="_blank" rel="noopener">CSS-in-JS</a> 里使用 PostCSS，<br>你可以用 <a href="https://github.com/postcss/postcss-js" target="_blank" rel="noopener"><code>postcss-js</code></a> 然后转换样式对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> postcss = <span class="built_in">require</span>(<span class="string">"postcss-js"</span>);</span><br><span class="line"><span class="keyword">var</span> prefixer = postcss.sync([<span class="built_in">require</span>(<span class="string">"autoprefixer"</span>)]);</span><br><span class="line"></span><br><span class="line">prefixer(&#123; <span class="attr">display</span>: <span class="string">"flex"</span> &#125;); <span class="comment">//=&gt; &#123; display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="运行器"><a href="#运行器" class="headerlink" title="运行器"></a>运行器</h3><ul>
+<li><strong>Grunt</strong>: <a href="https://github.com/nDmitry/grunt-postcss" target="_blank" rel="noopener"><code>grunt-postcss</code></a></li>
+<li><strong>HTML</strong>: <a href="https://github.com/posthtml/posthtml-postcss" target="_blank" rel="noopener"><code>posthtml-postcss</code></a></li>
+<li><strong>Stylus</strong>: <a href="https://github.com/seaneking/poststylus" target="_blank" rel="noopener"><code>poststylus</code></a></li>
+<li><strong>Rollup</strong>: <a href="https://github.com/egoist/rollup-plugin-postcss" target="_blank" rel="noopener"><code>rollup-plugin-postcss</code></a></li>
+<li><strong>Brunch</strong>: <a href="https://github.com/brunch/postcss-brunch" target="_blank" rel="noopener"><code>postcss-brunch</code></a></li>
+<li><strong>Broccoli</strong>: <a href="https://github.com/jeffjewiss/broccoli-postcss" target="_blank" rel="noopener"><code>broccoli-postcss</code></a></li>
+<li><strong>Meteor</strong>: <a href="https://atmospherejs.com/juliancwirko/postcss" target="_blank" rel="noopener"><code>postcss</code></a></li>
+<li><strong>ENB</strong>: <a href="https://github.com/awinogradov/enb-postcss" target="_blank" rel="noopener"><code>enb-postcss</code></a></li>
+<li><strong>Taskr</strong>: <a href="https://github.com/lukeed/taskr/tree/master/packages/postcss" target="_blank" rel="noopener"><code>taskr-postcss</code></a></li>
+<li><strong>Start</strong>: <a href="https://github.com/start-runner/postcss" target="_blank" rel="noopener"><code>start-postcss</code></a></li>
+<li><strong>Connect/Express</strong>: <a href="https://github.com/jedmao/postcss-middleware" target="_blank" rel="noopener"><code>postcss-middleware</code></a></li>
+</ul>
+<h3 id="JS-API"><a href="#JS-API" class="headerlink" title="JS API"></a>JS API</h3><p>对于其它的应用环境，你可以使用 JS API：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">"autoprefixer"</span>);</span><br><span class="line"><span class="keyword">const</span> postcss = <span class="built_in">require</span>(<span class="string">"postcss"</span>);</span><br><span class="line"><span class="keyword">const</span> precss = <span class="built_in">require</span>(<span class="string">"precss"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">"src/app.css"</span>, (err, css) =&gt; &#123;</span><br><span class="line">  postcss([precss, autoprefixer])</span><br><span class="line">    .process(css, &#123; <span class="attr">from</span>: <span class="string">"src/app.css"</span>, <span class="attr">to</span>: <span class="string">"dest/app.css"</span> &#125;)</span><br><span class="line">    .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">      fs.writeFile(<span class="string">"dest/app.css"</span>, result.css);</span><br><span class="line">      <span class="keyword">if</span> (result.map) fs.writeFile(<span class="string">"dest/app.css.map"</span>, result.map);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>阅读 <a href="https://postcss.org/api/" target="_blank" rel="noopener">PostCSS API 文档</a> 获取更多有关 JS API 的信息.</p>
+<p>所有的 PostCSS 运行器应当通过 <a href="https://github.com/postcss/postcss/blob/main/docs/guidelines/runner.md" target="_blank" rel="noopener">PostCSS 运行器指南</a>。</p>
+<h3 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h3><p>绝大多数 PostCSS 运行器接受两个参数：</p>
+<ul>
+<li>一个包含所需插件的数组</li>
+<li>一个配置选项的对象</li>
+</ul>
+<p>常见的选项：</p>
+<ul>
+<li><code>syntax</code>: 一个提供了语法解释器和 stringifier 的对象。</li>
+<li><code>parser</code>: 一个特殊的语法解释器（例如 <a href="https://github.com/postcss/postcss-scss" target="_blank" rel="noopener">SCSS</a>）。</li>
+<li><code>stringifier</code>: 一个特殊的语法 output 生成器（例如 <a href="https://github.com/ben-eb/midas" target="_blank" rel="noopener">Midas</a>）。</li>
+<li><code>map</code>: <a href="https://postcss.org/api/#sourcemapoptions" target="_blank" rel="noopener">source map 选项</a>.</li>
+<li><code>from</code>: input 文件名称（大多数运行器自动设置了这个）。</li>
+<li><code>to</code>: output 文件名称（大多数运行器自动设置了这个）。</li>
+</ul>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><ul>
+<li><a href="https://atom.io/packages/language-postcss" target="_blank" rel="noopener"><code>language-postcss</code></a> 添加了 PostCSS 和 <a href="https://github.com/postcss/sugarss" target="_blank" rel="noopener">SugarSS</a> 代码高亮。</li>
+<li><a href="https://atom.io/packages/source-preview-postcss" target="_blank" rel="noopener"><code>source-preview-postcss</code></a> 在一个独立窗口里实时预览生成的 CSS。</li>
+</ul>
+<h3 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h3><ul>
+<li><a href="https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS" target="_blank" rel="noopener"><code>Syntax-highlighting-for-PostCSS</code></a> 添加了 PostCSS 代码高亮。</li>
+</ul>
+<h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><ul>
+<li><a href="https://github.com/stephenway/postcss.vim" target="_blank" rel="noopener"><code>postcss.vim</code></a> 添加了 PostCSS 代码高亮。</li>
+</ul>
+<h3 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h3><p>自 WebStorm 2016.3 开始，<a href="https://blog.jetbrains.com/webstorm/2016/08/webstorm-2016-3-early-access-preview/" target="_blank" rel="noopener">提供了</a> 内建的 PostCSS 支持。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/06/07/qiankun/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1066,160 +1282,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/05/freebootcamps/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/05/freebootcamps/" class="post-title-link" itemprop="url">不用花钱在教学网站进厂的方案</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-05 05:49:00 / 修改时间：06:30:23" itemprop="dateCreated datePublished" datetime="2021-04-05T05:49:00+08:00">2021-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learn/" itemprop="url" rel="index"><span itemprop="name">learn</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如今，公司要求开发人员毕业的速度比他们毕业的速度还要快，而想要转行的人们已经让一种新的编程教育形式占据了主导地位: 编程训练营。</p>
-<p>直截了当地说，编程训练营为有抱负的开发人员提供了一个合适的空间，他们希望获得全面的教育，而不必花费大量的金钱和时间。编码训练营已经变得很流行，因为它们帮助开发人员学习受欢迎的技术，并成为熟练的程序员，可以在不到一年的时间里找到工作。</p>
-<p>然而，编码训练营并不是没有缺点的。随着价格接近数万元(美国标准)，以及学员找公司不尽如意的坏名声，所谓的“完美解决方案”的训练营现在正受到质疑。</p>
-<p>作为一个在大学里学习软件开发的人，我总是从怀疑的角度来看待编程训练营。在回顾了顶级编程训练营的几个学习课程之后，我开始质疑一个训练营除了让学生付出巨额代价，并让他们声称自己完成了一个特定的大名鼎鼎的训练营之外，还能为他们带来什么。</p>
-<p>当你仔细分析的时候，所有在训练营里学到的技能都是你可以通过在线资源免费自学的技能。</p>
-<p>我意识到训练营有某些优势，包括面授(取决于你选择的教学方式)、人际交往机会、毕业后工作安排的支持可能性，以及学费延期支付，直到你有一份不错的薪水。但是—在一个堪比集训营的时代—存点钱，把课程中的所有知识都免费教给自己，这难道不是明智之举吗？为什么你必须在 16 周的时间里花费数万元来学习特定的技能？为什么不强迫自己在同样的 16 周内免费学习这些技能呢？</p>
-<p>在完成了一个短暂的成本-收益分析之后，回答下面这个问题就变得更加困难了: 编写训练营值得吗？虽然你可以在短时间内学到即时需要的技能、社交机会和职业咨询，但这些并不一定比学费、生活费用和社会成本更重要。</p>
-<p>编写训练营的文章，发表关于是否值得参加他们的课程的文章，往往掩盖了这样一个事实: 在今天这个时代，自学与每周坐在教室里 40 个小时，为基本相同的知识分发数万元一样有效。</p>
-<p>我明白，<em>他们能提供一个底线的担保</em>。</p>
-<p>然而，这样做的问题在于，它们提供了令人信服的论据，说明为什么有抱负的开发者不能以其他任何方式进入就业市场。这让人们感到无助，因为他们要权衡把数万元和几个月的失业时间投入到一些没有可靠保证的事情中的后果。</p>
-<p>虽然我同意自我教学并不是适合每个人的方法，但我认为，对于那些自律、有动力、有成为开发人员的坚定目标的人来说，自我教学路线和参加编程训练营一样有效。</p>
-<p>自学的好处是，你不必为了同样的知识而辞去工作并支付数万元。然而，对于每一个优点，都有一个缺点。在这种情况下，你不会因为完成了一个著名的训练营而得到恶名。此外，如果你不是一个积极主动的人，你将会失去社交活动和职业咨询的好处，而这些都是你在训练营里得到的。然而，有一些方法可以避免这些陷阱，这些方法可以帮助你像一个训练营毕业生一样具有竞争力。</p>
-<p>当你把它分解开来，就有可能开发出一个有效的学习课程，类似于编程训练营，遵循类似的时间表，提供给你许多相同的机会。</p>
-<p>为什么不在做出最终决定之前探索一下你的选择呢？</p>
-<h2 id="如何破解编程训练营模式，免费学习你需要的一切"><a href="#如何破解编程训练营模式，免费学习你需要的一切" class="headerlink" title="如何破解编程训练营模式，免费学习你需要的一切?"></a>如何破解编程训练营模式，免费学习你需要的一切?</h2><ol>
-<li>设定你的参数<br>在我们开发一个编码训练营式的课程之前，一些参数必须先到位。这些因人而异，因人而异，所以在开始之前了解这些问题的答案很重要。</li>
-</ol>
-<ul>
-<li>“我愿意在这个课程上花多长时间?” 你需要回答这个问题，根据你愿意花多少周来学习这些概念，以及你每周可以留出多少小时来学习这些概念</li>
-<li>“在这次经历之后，我想做什么?” 全套网页开发人员才能学到的东西，但是通过构建自己的课程，你可以学到任何你想学的技能。所以，问问你自己，你觉得哪个科技行业的工作你会感兴趣，然后调整你的课程来教你自己这些概念</li>
-<li>“我愿意花多少钱?” 这个问题只有在你确实有一点额外的钱并且有兴趣完成一些 MOOCs 的时候才需要回答。许多大学都提供价格合理的 mooc 课程，如果你想学习后台开发或数据科学概念，这些课程可以成为很好的资源 </li>
-</ul>
-<ol start="2">
-<li>评估你现有的技能<br>是时候通过创建一个技能目录来评估你目前拥有的技能了。这将帮助你避免在你已经掌握的技能上花费不必要的时间，并确保你正在设置你的课程来获得你需要的技能。此外，这个技能清单将帮助你了解你从哪里开始，并提供一个伟大的方式来回顾，看看你有多少进步，到你的课程结束。</li>
-</ol>
-<p>首先创建以下三个列表:</p>
-<ul>
-<li>技术能力(编码经验，技术知识等)</li>
-<li>个人技能(面试技巧、简历撰写、人际关系等)</li>
-<li>商业技能(行业经验和知识，商业沟通技能，管理技能等) </li>
-</ul>
-<ol start="3">
-<li>决定你需要从这个训练营中学到哪些技能<br>在确定完成课程并发现自己已经掌握了哪些技能之后，你就可以开始拼凑你需要学习的技能。</li>
-</ol>
-<p>首先，对你想要进入的特定领域的编程语言和概念进行一些研究。最好的方法就是看一下招聘广告，找到你想要得到的职位。雇主们列出了他们希望开发人员拥有的所有必需的技术，所以这是一个很好的方法来确定你需要学习的具体技能。另一种方法是阅读趋势指南，这些指南将概述哪些语言和概念最受开发人员欢迎。</p>
-<p>一旦你发现了一个全堆栈 web 开发人员需要知道的所有东西，你就可以开始收集你需要学习这些技能的在线材料。</p>
-<ol start="4">
-<li>理解编码训练营模式<br>编写训练营的学习课程通常都是以项目为基础的，这迫使学生立即使用他们的新技能。此外，训练营确保毕业生离开时带着作品集、在线展示和其他商业技能，以帮助他们找工作。</li>
-</ol>
-<p>因此，你需要确保你经常建立可以添加到你的简历的项目，确保你在你的课程期间为自己建立一个在线存在，确保你没有忽视你的软技能的学习。</p>
-<p>计划这些事情将帮助你创建一个学习计划，而不用花费数万块钱在编码训练营。</p>
-<ol start="5">
-<li>构建你的课程<br>让我们构建一个涵盖全堆栈 web 开发的示例课程，同时触及一些软技能，如面试和简历撰写。</li>
-</ol>
-<p>课程将分为三个部分，每个部分学到的技术将与当前的全堆栈 web 开发人员职位相关。列出的大多数在线资源都是免费的，尽管有些可能需要支付费用，或者只能通过小额订阅费或组织凭证获得。</p>
-<p>一个小小的警告: <em>这个课程只是举例来说，只是给你一个关于你的课程看起来如何和你可能想要包括的技术的想法。某些学习领域可能会花费你更长或更短的时间</em>.</p>
-<h3 id="前端开发-第-1-5-周"><a href="#前端开发-第-1-5-周" class="headerlink" title="前端开发: 第 1-5 周"></a><strong>前端开发: 第 1-5 周</strong></h3><h4 id="课程"><a href="#课程" class="headerlink" title="课程:"></a>课程:</h4><ul>
-<li><p>响应式网页设计/盖蒂图片社 freeCodeCamp</p>
-</li>
-<li><p>前端开发库 |freeCodeCamp</p>
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目:"></a>项目:</h4></li>
-<li><p>搭建项目 ー 使用 HTML、 CSS 和 JavaScript (Vanilla JavaScript 或者 Angular、 React 或 Vue 等框架)建立一个网站</p>
-</li>
-</ul>
-<h3 id="后端开发-第-6-14-周"><a href="#后端开发-第-6-14-周" class="headerlink" title="后端开发: 第 6-14 周"></a>后端开发: 第 6-14 周</h3><h4 id="课程-1"><a href="#课程-1" class="headerlink" title="课程:"></a>课程:</h4><ul>
-<li>完全初学者的 Java 教程 | LinkedIn Learning</li>
-<li>用 PHP 构建 Web 应用 | 密歇根大学 <a href="https://www.coursera.org/learn/web-applications-php#faq" target="_blank" rel="noopener">Coursera</a></li>
-<li>SQL 教程ー面向初学者的全数据库课程 |<a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" rel="noopener">freeCodeCamp</a></li>
-<li>全堆栈 JavaScript 教程 |<a href="https://www.youtube.com/watch?v=lauywdXKEXI&t=178s" target="_blank" rel="noopener">freeCodeCamp</a><h4 id="项目-1"><a href="#项目-1" class="headerlink" title="项目:"></a>项目:</h4>搭建项目ーー继续开发为你的第一个 项目建立的网站，但是要提供后端功能，比如让 CRUD 功能链接到数据库</li>
-</ul>
-<h3 id="软技能-第-15-16-周"><a href="#软技能-第-15-16-周" class="headerlink" title="软技能: 第 15-16 周"></a>软技能: 第 15-16 周</h3><h4 id="课程-2"><a href="#课程-2" class="headerlink" title="课程:"></a>课程:</h4><ul>
-<li><p>简历写作 |LinkedIn Learning</p>
-</li>
-<li><p>掌握常见面试问题 |LinkedIn Learning</p>
-</li>
-<li><p>职业战略家找工作指南 |LinkedIn Learning</p>
-</li>
-<li><p>如何制定你的职业生涯规划 LinkedIn Learning</p>
-<h4 id="任务-活动"><a href="#任务-活动" class="headerlink" title="任务/活动:"></a>任务/活动:</h4></li>
-<li><p>创建/更新你的简历和 LinkedIn 个人资料</p>
-</li>
-<li><p>参加一个社交活动</p>
-</li>
-<li><p>与技术招聘人员见面，他们可以帮助你安排工作</p>
-</li>
-<li><p>申请工作</p>
-<h4 id="项目-2"><a href="#项目-2" class="headerlink" title="项目:"></a>项目:</h4><p>项目成果ー把你的专业作品集放在一起，包括你在课程中完成的项目和你最新的简历 </p>
-</li>
-</ul>
-<h3 id="6-运用你学到的技能"><a href="#6-运用你学到的技能" class="headerlink" title="6. 运用你学到的技能"></a>6. 运用你学到的技能</h3><p>编写训练营的优势之一是，它允许你与业内专业人士建立联系，并获得职业咨询。虽然我提到做一些特定的活动，比如参加社交活动，在示例课程的最后一部分会见技术招聘人员，但我强烈建议你在整个学习过程中做这些事情。</p>
-<p>一旦你已经完成或者即将完成你的课程，是时候开始申请工作，并且把自己放在那里，作为一个自学成才的全栈网络开发人员！</p>
-<h2 id="最后的想法"><a href="#最后的想法" class="headerlink" title="最后的想法"></a>最后的想法</h2><p>我不是说编程训练营没有价值。我认为，如果他们能够兑现对学生的承诺，那么他们就是很好的工具。此外，对于那些需要那种学习环境来保持专注和实现目标的学生来说，训练营已经被证明可以提供他们在科技行业找到工作所需要的技能，或者在他们目前的工作岗位上获得大幅提升。</p>
-<p>然而，我并不认为编码训练营是那些想成为开发人员的人的唯一选择。</p>
-<p>编程训练营在时间和金钱上都很昂贵，对于那些需要继续全职工作来获得收入或者有不能被搁置半年的社会承诺的人来说，这些训练营是很差劲的选择。</p>
-<p>因此，我希望你从本文中了解到，成为一名开发人员并不是一个要么全部要么一无所有的过程。你不必投资数万和数月的时间去接受一个可能会也可能不会让你被雇佣 的教育。</p>
-<p>相反，通过建立你自己的课程，你可以获得你通过训练营学到的知识，并且让你继续以适合你需要的方式生活，你仍然可以成为一个有竞争力的开发者。</p>
-<p><a href="%https://betterprogramming.pub/why-you-should-stop-paying-for-coding-bootcamps-in-2021-42ba215e43fc%" title="原文">原文 </a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1290,7 +1352,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
