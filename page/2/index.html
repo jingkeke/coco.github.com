@@ -163,6 +163,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/11/esmodule/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/11/esmodule/" class="post-title-link" itemprop="url">esmodule 在浏览器和node端使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-11 10:47:00" itemprop="dateCreated datePublished" datetime="2021-04-11T10:47:00+08:00">2021-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-18 23:03:18" itemprop="dateModified" datetime="2021-04-18T23:03:18+08:00">2021-04-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/esmodule/" itemprop="url" rel="index"><span itemprop="name">esmodule</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>esmodule 在我 2016 年刚开始学 react 时候就开始用了,虽然用的理所当然,但是其实在 js 发展的历史中,早期好多项目其实是不支持的,包括浏览器, 这个淘汰过程需要很长的时间.最近感觉在 ie 逐步历史舞台的时期,去了解一下 node 浏览器里如何直接用 esmodule 还是很需要的.<br>翻了一些资料,总结一下如何使用.</p>
+</blockquote>
+<h2 id="NODE-里用-ESModules"><a href="#NODE-里用-ESModules" class="headerlink" title="NODE 里用 ESModules"></a>NODE 里用 ESModules</h2><p>主流的 node js 现在都支持 ESmodules</p>
+<p>到 2021 年 4 月 20 号, Node v10 版本将停止维护 (更多参考 <a href="https://nodejs.org/en/about/releases/" target="_blank" rel="noopener">Node Releases</a> ).这很令人振奋因为这意味着每个在维护的 node 版本都官方支持 EcmaScript Modules! 可能有些人还是挺喜欢以前的 CommonJS 但是 EcmaScript Modules 是大势所趋.</p>
+<p>First, we need the JavaScript we want to run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; get-files.js</span><br><span class="line"></span><br><span class="line">	import path from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">	import fs from &#39;fs&#x2F;promises&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	const isDir \&#x3D; async d \&#x3D;&gt; (await fs.lstat(d)).isDirectory()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	async function getFiles(dir) &#123;</span><br><span class="line"></span><br><span class="line">	const list \&#x3D; await fs.readdir(dir)</span><br><span class="line"></span><br><span class="line">	const filePromises \&#x3D; list.map(async filename \&#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">	const filepath \&#x3D; path.join(dir, filename)</span><br><span class="line"></span><br><span class="line">	if (await isDir(filepath)) &#123;</span><br><span class="line"></span><br><span class="line">	return &#123;type: &#39;dir&#39;, filepath&#125;</span><br><span class="line"></span><br><span class="line">	&#125; else &#123;</span><br><span class="line"></span><br><span class="line">	const content \&#x3D; String(await fs.readFile(filepath))</span><br><span class="line"></span><br><span class="line">	return &#123;type: &#39;file&#39;, filepath, content&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	return Promise.all(filePromises)</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	export &#123;getFiles&#125;</span><br><span class="line"></span><br><span class="line">	Next, let&#39;s make a JavaScript file that imports this and runs it:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; index.js</span><br><span class="line"></span><br><span class="line">	import &#123;getFiles&#125; from &#39;.&#x2F;get-files.js&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	console.log(await getFiles(&#39;.&#39;))</span><br></pre></td></tr></table></figure>
+
+<p>运行一下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">node .</span><br><span class="line"></span><br><span class="line">(node:5369) Warning: To load an ES module, set &quot;type&quot;: &quot;module&quot; in the package.json or use the .mjs extension.</span><br><span class="line"></span><br><span class="line">(Use \&#96;node --trace-warnings ...\&#96; to show where the warning was created)</span><br><span class="line"></span><br><span class="line">&#x2F;Users&#x2F;kentcdodds&#x2F;Desktop&#x2F;super-simple-start-to-esm-in-node&#x2F;index.js:1</span><br><span class="line"></span><br><span class="line">import &#123;getFiles&#125; from &#39;.&#x2F;get-files.js&#39;</span><br><span class="line"></span><br><span class="line">^^^^^^</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SyntaxError: Cannot use import statement outside a module</span><br><span class="line"></span><br><span class="line"> at wrapSafe (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:979:16)</span><br><span class="line"></span><br><span class="line"> at Module.\_compile (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1027:27)</span><br><span class="line"></span><br><span class="line"> at Object.Module.\_extensions..js (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:1092:10)</span><br><span class="line"></span><br><span class="line"> at Module.load (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:928:32)</span><br><span class="line"></span><br><span class="line"> at Function.Module.\_load (internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:769:14)</span><br><span class="line"></span><br><span class="line"> at Function.executeUserEntryPoint \[as runMain\] (internal&#x2F;modules&#x2F;run\_main.js:72:12)</span><br><span class="line"></span><br><span class="line"> at internal&#x2F;main&#x2F;run\_main\_module.js:17:47</span><br></pre></td></tr></table></figure>
+
+<p>nodejs 运行 esmodule 不是默认项. 你有两个选择:</p>
+<ul>
+<li>把 <code>.js</code> 改成 to <code>.mjs</code></li>
+<li>修改<code>package.json</code>,添加 <code>&quot;type&quot;: &quot;module&quot;</code>.</li>
+</ul>
+<p>以下是修改 package.json 后 再次运行 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">node .</span><br><span class="line"></span><br><span class="line">\[</span><br><span class="line"></span><br><span class="line"> &#123;</span><br><span class="line"></span><br><span class="line"> type: &#39;file&#39;,</span><br><span class="line"></span><br><span class="line"> filepath: &#39;get-files.js&#39;,</span><br><span class="line"></span><br><span class="line"> content: &quot;import path from &#39;path&#39;\\n&quot; +</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; clipped for brevity</span><br><span class="line"></span><br><span class="line"> &#39;export &#123;getFiles&#125;\\n&#39;</span><br><span class="line"></span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> &#123;</span><br><span class="line"></span><br><span class="line"> type: &#39;file&#39;,</span><br><span class="line"></span><br><span class="line"> filepath: &#39;index.js&#39;,</span><br><span class="line"></span><br><span class="line"> content: &quot;import &#123;getFiles&#125; from &#39;.&#x2F;get-files.js&#39;\\n&quot; +</span><br><span class="line"></span><br><span class="line"> &#39;\\n&#39; +</span><br><span class="line"></span><br><span class="line"> &quot;console.log(await getFiles(&#39;.&#39;))\\n&quot;</span><br><span class="line"></span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> &#123;</span><br><span class="line"></span><br><span class="line"> type: &#39;file&#39;,</span><br><span class="line"></span><br><span class="line"> filepath: &#39;package.json&#39;,</span><br><span class="line"></span><br><span class="line"> content: &#39;&#123;\\n  &quot;type&quot;: &quot;module&quot;\\n&#125;\\n&#39;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">\]</span><br></pre></td></tr></table></figure>
+
+<p>参考:</p>
+<ul>
+<li><a href="https://nodejs.medium.com/announcing-core-node-js-support-for-ecmascript-modules-c5d6dc29b663" target="_blank" rel="noopener">the official initial announcement of ESM support</a>.</li>
+<li><a href="https://kentcdodds.com/blog/super-simple-start-to-es-modules-in-node-js/" target="_blank" rel="noopener">esm by Kent C</a></li>
+</ul>
+<h2 id="在浏览器里用-ESModules"><a href="#在浏览器里用-ESModules" class="headerlink" title="在浏览器里用 ESModules"></a>在浏览器里用 ESModules</h2><p>_所有的主流浏览器现在都支持 ESModuels!!!!,demo 如下:</p>
+<ul>
+<li>先写一个想要运行的 js module:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; append-div.js</span><br><span class="line"></span><br><span class="line">function appendDiv(message) &#123;</span><br><span class="line"></span><br><span class="line"> const div \&#x3D; document.createElement(&#39;div&#39;)</span><br><span class="line"></span><br><span class="line"> div.textContent \&#x3D; message</span><br><span class="line"></span><br><span class="line"> document.body.appendChild(div)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export &#123;appendDiv&#125;</span><br><span class="line"></span><br><span class="line">Next, let&#39;s make an HTML file to load that file:</span><br><span class="line"></span><br><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type\&#x3D;&quot;module&quot;\&gt;</span><br><span class="line"></span><br><span class="line"> import &#123;appendDiv&#125; from &#39;.&#x2F;append-div.js&#39;</span><br><span class="line"></span><br><span class="line"> appendDiv(&#39;Hello from inline script&#39;)</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;script\&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意 <code>type=&quot;module&quot;</code> 属性. 这是所有我们需要修改的地方 ,用”module” 代替 “script”, 你可以参考<a href="https://usefulangle.com/post/256/script-type-module-vs-script-javascript" target="_blank" rel="noopener">several differences</a> 看看浏览器运行模块化 js 的原理.</p>
+<p>我们需要 启动一个静态服务器来测试 ,推荐用<code>npx server .</code> 这个 npm 包 来做这个事情, 默认启动的是 <a href="http://localhost:5000/" target="_blank" rel="noopener">localhost:5000</a> 这个地址. 🎉</p>
+<p>从另一个 js 文件来引用 module js 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; script-src.js</span><br><span class="line"></span><br><span class="line">import &#123;appendDiv&#125; from &#39;.&#x2F;append-div.js&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">appendDiv(&#39;Hello from external script&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>修改 html 文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type\&#x3D;&quot;module&quot;\&gt;</span><br><span class="line"></span><br><span class="line"> import &#123;appendDiv&#125; from &#39;.&#x2F;append-div.js&#39;</span><br><span class="line"></span><br><span class="line"> appendDiv(&#39;Hello from inline script&#39;)</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;script\&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type\&#x3D;&quot;module&quot; src\&#x3D;&quot;.&#x2F;script-src.js&quot;\&gt;&lt;&#x2F;script\&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下一个知识点,<strong>动态引用</strong>module js 文件::</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; async-script.js</span><br><span class="line"></span><br><span class="line">import &#123;appendDiv&#125; from &#39;.&#x2F;append-div.js&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function go() &#123;</span><br><span class="line"></span><br><span class="line"> appendDiv(&#39;Hello from async script&#39;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export &#123;go&#125;</span><br><span class="line"></span><br><span class="line">Then we can load that using a dynamic import statement:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; script-src.js</span><br><span class="line"></span><br><span class="line">import &#123;appendDiv&#125; from &#39;.&#x2F;append-div.js&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">appendDiv(&#39;Hello from external script&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import(&#39;.&#x2F;async-script.js&#39;).then(</span><br><span class="line"></span><br><span class="line"> moduleExports \&#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line"> moduleExports.go()</span><br><span class="line"></span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> error \&#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line"> console.error(&#39;there was an error loading the script&#39;)</span><br><span class="line"></span><br><span class="line"> throw error</span><br><span class="line"></span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>你甚至可以这样来引用这个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;import \* as d3 from &#39;https:&#x2F;&#x2F;unpkg.com&#x2F;d3?module&#39;&#96;</span><br></pre></td></tr></table></figure>
+
+<p>The point is, the thing you put in the quotes in your import statements has to point to a JavaScript resource on some server somewhere. <a href="https://unpkg.com/" target="_blank" rel="noopener">Learn more about unpkg.com</a>.</p>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul>
+<li><strong><a href="https://egghead.io/lessons/egghead-use-javascript-modules-in-the-browser?pl=kent-s-blog-posts-as-screencasts-eefa540c&af=5236ad" target="_blank" rel="noopener">Watch “Use JavaScript Modules in the browser” on egghead.io</a></strong></li>
+<li><a href="https://gist.github.com/kentcdodds/48c069462a9ab4223eb93b5e19acee31" target="_blank" rel="noopener">the code for this</a></li>
+<li><a href="https://v8.dev/features/modules" target="_blank" rel="noopener">v8.dev/features/modules</a></li>
+<li><a href="https://www.sitepoint.com/using-es-modules/" target="_blank" rel="noopener">Using ES Modules in the Browser Today</a> by <a href="https://twitter.com/markbrown4" target="_blank" rel="noopener">Mark Brown</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/04/05/freebootcamps/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1105,113 +1233,6 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2019/05/07/npm_publish/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/07/npm_publish/" class="post-title-link" itemprop="url">npm发布自己的ramda工具包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-07 12:32:05" itemprop="dateCreated datePublished" datetime="2019-05-07T12:32:05+08:00">2019-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-22 10:27:18" itemprop="dateModified" datetime="2021-01-22T10:27:18+08:00">2021-01-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/npm/" itemprop="url" rel="index"><span itemprop="name">npm</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/npm/package/" itemprop="url" rel="index"><span itemprop="name">package</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="npm-发布"><a href="#npm-发布" class="headerlink" title="npm 发布"></a>npm 发布</h3><p>ps <a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">最近看了个结合Bit.dev复用组件的文章</a><br>学习函数式编程,用的是<a href="https://adispring.coding.me/2017/10/21/What-Function-Should-I-Use/" target="_blank" rel="noopener">ramda函数库</a>,然后之前做项目都是把自己写的ramda的utils复制一份.近期总结时候发现,每个项目用到的函数都不一样,这么来回拷贝还挺麻烦的..就想到把自己的给发布出去,写项目的时候引用一下,就能保证是最新的了.稍微查了一下资料,还挺简单,步骤如下</p>
-<ul>
-<li><p>初始化<br>因为可能要用到ES6,<code>npm init</code>后,需要填入babel包.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">yarn add babel-cli babel-core babel-preset-es2015  ramda</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目架构</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tree -a -I <span class="string">"dist|node_modules|.git"</span> -L  2 12</span><br><span class="line">ramda_util</span><br><span class="line">├── .babelrc</span><br><span class="line">├── .gitignore</span><br><span class="line">├── .npmignore</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── lib                <span class="comment"># 打包目录</span></span><br><span class="line">├── package.json</span><br><span class="line">├── src                  <span class="comment">#我的代码</span></span><br><span class="line">│   ├── ArrayUtils.js</span><br><span class="line">│   ├── ObjUtils.js</span><br><span class="line">│   ├── domOper.js</span><br><span class="line">│   └── index.js</span><br></pre></td></tr></table></figure></li>
-<li><p>package.json<br>需要注意 尽量把依赖写在devdependies 里面,要不容易造成依赖两份,如react,导致错误.比如用户是react15,你用了react16里面的特性,那用户就启动不了了.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"compile"</span>: <span class="string">"babel -d lib/ src/"</span>,</span><br><span class="line">  "prepublish": "npm run compile",       ## 发布之前执行一下?</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-<li><p>npm 添加用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure></li>
-<li><p>发布</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure></li>
-<li><p>验证<br>打包组件，只需要运行 npm run build 就可以了。<br>接下来可以通过 npm link 把打包之后的组件引入到 global node_modules 中，然后在验证 demo 中再通过 npm link react-tiny-autosuggest 引入这个组件，并验证是否符合预期。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; At development directory</span><br><span class="line">npm run build</span><br><span class="line">npm link</span><br><span class="line"></span><br><span class="line">cd [test project folder]</span><br><span class="line">npm link react-tiny-autosuggest</span><br></pre></td></tr></table></figure>
-<p>接下下 demo 里面就可以直接 import AutoSuggest from ‘react-tiny-autosuggest’ 了。</p>
-</li>
-<li><p>技巧<br>修改代码和readme.md后,执行 <code>npm  version patch</code> 就不用手工改版本号了.</p>
-</li>
-</ul>
-<h3 id="我的工具"><a href="#我的工具" class="headerlink" title="我的工具"></a>我的工具</h3><p><a href="https://github.com/jingkeke/ramda_utils" target="_blank" rel="noopener">github地址</a></p>
-<ul>
-<li>使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ArrayUtils &#125; from &#39;ramda_util&#x2F;lib&#39;</span><br><span class="line">const result &#x3D; ArrayUtils.mergeWith([1,2,3],[2,3,4])</span><br><span class="line">console.log(&#96; $&#123;JSON.stringify(result,null,4)&#125;&#96;)</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3></li>
-<li><a href="https://github.com/jingkeke/jzy-vue-utils" target="_blank" rel="noopener">我写的vue组件库</a></li>
-<li><a href="https://juejin.im/post/5b95c2ed6fb9a05cd67699d1" target="_blank" rel="noopener">如何发布自己的NPM包（模块)</a></li>
-<li><a href="https://blog.bitsrc.io/sharing-and-reusing-vue-mixins-in-the-cloud-with-bit-dev-830104a48d0b" target="_blank" rel="noopener">结合Bit.dev复用vue组件</a></li>
-<li><a href="https://www.jianshu.com/p/db6113c94dbc" target="_blank" rel="noopener">如何创建一个前端 React 组件并发布到 NPM</a></li>
-<li><a href="https://www.jianshu.com/p/aa4d99d76245" target="_blank" rel="noopener">发布react组件到npm总结</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1282,7 +1303,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1294,7 +1315,7 @@ PS:自己的域名又到期了,然后愤与续费太贵,又买了一个域名(ww
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
