@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.jingzhengyi.top/2021/06/27/game_kaboomJs/</loc>
+    
+    <lastmod>2021-06-27T10:08:25.858Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/06/27/skillList/</loc>
+    
+    <lastmod>2021-06-27T10:08:25.858Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.jingzhengyi.top/2021/06/20/webstormConfig/</loc>
     
     <lastmod>2021-06-20T12:01:22.254Z</lastmod>
@@ -177,14 +191,14 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591ECS%25E5%2585%258D%25E5%25AF%2586%25E7%25A0%2581%25E7%2599%25BB%25E9%2599%2586/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/win10Linux%25E5%25AD%2590%25E7%25B3%25BB%25E7%25BB%259F/</loc>
     
     <lastmod>2021-01-22T02:05:48.755Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/win10Linux%25E5%25AD%2590%25E7%25B3%25BB%25E7%25BB%259F/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591ECS%25E5%2585%258D%25E5%25AF%2586%25E7%25A0%2581%25E7%2599%25BB%25E9%2599%2586/</loc>
     
     <lastmod>2021-01-22T02:05:48.755Z</lastmod>
     
@@ -205,14 +219,14 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/umi%25E9%2580%2582%25E9%2585%258D%25E5%258D%258E%25E4%25B8%25BA%25E8%2587%25AA%25E5%25B8%25A6%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8%25E5%2592%258CQQ%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/socket-io/</loc>
     
     <lastmod>2021-01-22T02:05:48.754Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/tailwindcss/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/umi%25E9%2580%2582%25E9%2585%258D%25E5%258D%258E%25E4%25B8%25BA%25E8%2587%25AA%25E5%25B8%25A6%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8%25E5%2592%258CQQ%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8/</loc>
     
     <lastmod>2021-01-22T02:05:48.754Z</lastmod>
     
@@ -226,23 +240,9 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/socket-io/</loc>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/tailwindcss/</loc>
     
     <lastmod>2021-01-22T02:05:48.754Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/</loc>
-    
-    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.jingzhengyi.top/2016/11/26/puzzle_HTML5%25E5%25AE%259E%25E7%258E%25B0%25EF%25BC%258C%25E4%25B8%258A%25E6%2589%258B%25E8%25B6%2585%25E8%25B5%259E%25E7%25BB%2583%25E4%25B9%25A0/</loc>
-    
-    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
   </url>
   
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/</loc>
+    <loc>https://blog.jingzhengyi.top/2016/11/26/puzzle_HTML5%25E5%25AE%259E%25E7%258E%25B0%25EF%25BC%258C%25E4%25B8%258A%25E6%2589%258B%25E8%25B6%2585%25E8%25B5%259E%25E7%25BB%2583%25E4%25B9%25A0/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
@@ -269,6 +269,20 @@
   
   <url>
     <loc>https://blog.jingzhengyi.top/2021/01/22/djangoreact/</loc>
+    
+    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/NativeBase_theme/</loc>
+    
+    <lastmod>2021-01-22T02:05:48.753Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/</loc>
     
     <lastmod>2021-01-22T02:05:48.753Z</lastmod>
     
