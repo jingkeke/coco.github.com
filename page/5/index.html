@@ -163,6 +163,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2019/02/07/react_ts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/07/react_ts/" class="post-title-link" itemprop="url">typescript2.8下React组件模式学习笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-07 15:32:05" itemprop="dateCreated datePublished" datetime="2019-02-07T15:32:05+08:00">2019-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-22 10:27:18" itemprop="dateModified" datetime="2021-01-22T10:27:18+08:00">2021-01-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>看<a href="https://github.com/ProtoTeam/blog/blob/master/201805/4.md" target="_blank" rel="noopener">ts 2.8下React组件模式</a>,结合typesscript 和react.这个看了好几遍,感觉挺经典,之前ts不熟,做下笔记.</p>
+<h5 id="知识点一-泛型的默认值"><a href="#知识点一-泛型的默认值" class="headerlink" title="知识点一 泛型的默认值"></a>知识点一 泛型的默认值</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> ToggleableComponentProps&lt;P <span class="keyword">extends</span> object = &#123;<span class="string">'length'</span>:<span class="built_in">number</span> &#125;&gt; = &#123;</span><br><span class="line">  show: <span class="built_in">string</span></span><br><span class="line">  toggle: <span class="built_in">string</span></span><br><span class="line">&#125; &amp; P</span><br><span class="line"><span class="keyword">const</span> he = &#123; name: <span class="string">'jing'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> aaa: ToggleableComponentProps = &#123;</span><br><span class="line">  show: <span class="string">'ff'</span>,</span><br><span class="line">  toggle: <span class="string">'length'</span>,</span><br><span class="line">  length: <span class="number">12</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><P extends object =object > 这块后面的object=object 是什么意思?</strong><br><code>P extends object</code> 连在一起读，P 必须是继承自 object 的泛型。后面的等于号，例如 interface Example&lt; T&gt; ，在使用时如果编译器没办法根据上下文推测 T，就必须手动指定，例如 <code>class MyClass implement Example&lt;string&gt;</code> ，等于号在这里的作用和ES6 的默认值是一样的用法，例如 T = number 如果外界没有指定泛型，编译器又无法根据上下文推测出结果时，就会采用这个默认类型 {‘length’:12 }</p>
+<h5 id="知识点二-高阶组件包裹的话-static属性会消失"><a href="#知识点二-高阶组件包裹的话-static属性会消失" class="headerlink" title="知识点二 高阶组件包裹的话,static属性会消失"></a>知识点二 高阶组件包裹的话,static属性会消失</h5><ul>
+<li><a href="https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over" target="_blank" rel="noopener">官网解释</a></li>
+<li>解决方案<ul>
+<li><a href="https://www.npmjs.com/package/hoist-non-react-statics" target="_blank" rel="noopener">hoist-non-react-statics </a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2017/10/07/hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,13 +728,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

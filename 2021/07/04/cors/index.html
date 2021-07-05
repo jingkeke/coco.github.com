@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.jingzhengyi.top","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="浏览器 跨域问题console 报错    No ‘Access-Control-Allow-Origin’ header is present on the requested resource.Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource athttps:&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cors跨域问题">
+<meta property="og:url" content="https://blog.jingzhengyi.top/2021/07/04/cors/index.html">
+<meta property="og:site_name" content="个人代码知识记录">
+<meta property="og:description" content="浏览器 跨域问题console 报错    No ‘Access-Control-Allow-Origin’ header is present on the requested resource.Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource athttps:&#x2F;&#x2F;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-07-05T02:50:56.035Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.jingzhengyi.top/2021/07/04/cors/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>cors跨域问题 | 个人代码知识记录</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88049197-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88049197-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="个人代码知识记录" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人代码知识记录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/07/04/cors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cors跨域问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-04 19:23:00" itemprop="dateCreated datePublished" datetime="2021-07-04T19:23:00+08:00">2021-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-05 10:50:56" itemprop="dateModified" datetime="2021-07-05T10:50:56+08:00">2021-07-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>浏览器 跨域问题console 报错  </p>
+<blockquote>
+<p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at<a href="https://example.com/" target="_blank" rel="noopener">https://example.com/</a><br>Access to fetch at ‘<a href="https://example.com’" target="_blank" rel="noopener">https://example.com’</a> from origin ‘<a href="http://localhost:3000’" target="_blank" rel="noopener">http://localhost:3000’</a> has been blocked by CORS policy.</p>
+</blockquote>
+<p>如果你遇到这些报错，就是跨域问题。</p>
+<h2 id="Origin-amp-Cross-origin"><a href="#Origin-amp-Cross-origin" class="headerlink" title="Origin &amp; Cross-origin"></a>Origin &amp; Cross-origin</h2><p>判断是否跨域 看三个指标：scheme，host，和port 。例如，<a href="https://example.com" target="_blank" rel="noopener">https://example.com</a>  <a href="http://example.com" target="_blank" rel="noopener">http://example.com</a> 是不用域的，因为前者是http scheme 后者是https. </p>
+<h2 id="跨域的风险"><a href="#跨域的风险" class="headerlink" title="跨域的风险"></a>跨域的风险</h2><p>如果 CORS 不存在，网络浏览器允许各种各样的跨源请求。<br>想象一下，我在我的网站 evil. com 上有一个带有 &lt;script&gt; 的页面。表面上它看起来像一个简单的页面，在那里你可以读到一些有用的信息。但是在 &lt;script&gt; 中，我特别编写了一些代码，它们将向银行的 DELETE / 帐户端点发送一个特殊编写的请求。加载页面后，执行 JavaScript，然后一个 AJAX 调用访问银行的 API。 </p>
+<p>想象一下，当你在网页上阅读一些信息时，你收到一封来自你银行的电子邮件，你已经成功地删除了你的帐户。我知道我知道… … 如果银行真的那么容易。我跑题了。<br>为了让我邪恶的 &lt;script&gt; 工作，作为请求的一部分，你的浏览器还必须从银行网站上发送你的证书 (cookies)。这样银行的服务器就能识别你的身份，并知道该删除哪个账户。 </p>
+<ul>
+<li>让我们看看一个不同的，不那么邪恶的场景。<br>我想找到那些为 Awesome Corp 工作的人，他们的内部网站在 intra.Awesome-Corp.com 上。在我的网站上，dangerous.com i got an &lt;img src = “<a href="https://intra.awesome-corp" target="_blank" rel="noopener">https://intra.awesome-corp</a>. com/avatars/john-doe.png”&gt; 。<br>对于那些没有使用 intra.awesome-corp.com 的会话活动的用户，虚拟化身不会渲染 - 它会产生一个错误。但是，如果你登录了 Awesome 公司的内部网，一旦你打开了 dangerous.com 网站，我就知道你有权限访问。<br>这意味着我将能够得到一些关于你的信息。虽然对我来说制造一个攻击绝对是很困难的，但是你可以访问 Awesome 公司的 仍然是一个潜在的攻击风险。 </li>
+</ul>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略 规则集<br>标签     Cross-origin     注意<br>&lt;iframe&gt;     允许  embeds     看情况X-Frame-Options<br>&lt;link&gt;     允许  embeds     适当的 可能需要<br>&lt;form&gt;     允许  write    Cross-origin write 是很常见的<br>&lt;img&gt;     允许  embeds     通过 JavaScript 进行跨源读取，并将其加载到 是被禁止的<br>&lt;audio&gt; / &lt;video&gt;     允许  embeds<br>&lt;script&gt;     允许  embeds     可能会禁止访问某些 api </p>
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>CORS（cross origin resource sharing ） 诞生的目标是放宽同源政策和微调跨源接入。 该机制将子资源访问分为三类：</p>
+<ul>
+<li>cross-origin write<br>指连接，重定向，表单提交。 还有一种是preflight请求的东西，可以微调cross -origin write 。</li>
+<li>cross-origin embeds<br>通过 &lt;script&gt; ,&lt;link&gt;,img,video,audio ,iframe, embed 等标签加载的子资源。 </li>
+<li>cross-orgin reads<br>通过ajax/fetch加载的子资源。通常情况下，这些在浏览器中事被blocked的。</li>
+</ul>
+<h3 id="prefilght-request"><a href="#prefilght-request" class="headerlink" title="prefilght request"></a>prefilght request</h3><p> 复杂请求 即是 options 请求通过了也会拦截。<br>现代浏览器定义的 <strong>复杂请求</strong></p>
+<ul>
+<li>一个使用GET、POST或HEAD以外的方法的请求</li>
+<li>请求中包含除Accept、Accept-Language或Content-Language以外的头信息。</li>
+<li>请求中的Content-Type头值不是application/x-www-form-urlencoded, multipart/form-data, 或text/plain。</li>
+</ul>
+<h2 id="nginx-配置cookie"><a href="#nginx-配置cookie" class="headerlink" title="nginx 配置cookie"></a>nginx 配置cookie</h2><p>正常的跨域解决就是网上搜的，然后有一点就是允许转发携带cookie，这个应该是现代浏览器加了校验，解决方案网上看了三个：</p>
+<ol>
+<li>客户端解决方案 （测试可以）<br>主要是 SameSite=None; Secure，具体cookie 设置<br>document.cookie = ‘cookie2=value2; SameSite=None; Secure’;</li>
+<li>服务器端<br>模式是一样的，只是写入cookie的模式不一样,以下是node 的参考<br>response.setHeader(‘set-cookie’, <a href="">
+</a>  ‘cookie1=value1; SameSite=Lax’,<br>‘cookie2=value2; SameSite=None; Secure’,<br>]);</li>
+<li>改用https 方式<br>注意 ：对于SameSite=None 同时也需要设置Secure，同时我们需要改用https，而且注意测试的时候不要使用无痕模式，chrome无痕模式默认是阻止三方cookie的<br>所以也是不能测试的，（<a href="https://samesite-sandbox.glitch.me/" target="_blank" rel="noopener">https://samesite-sandbox.glitch.me/</a> 是一个好工具，方便测试是否生效）对于web 推荐使用js-cookie 包装的比较完整，使用上简单<br>2，3方式可能有些重叠，需要验证。。。。。。</li>
+</ol>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>W3C标准规定，http请求头的origin(源地址)与目的地址在协议（http1.1,https等），端口，域名（ip）任何一个不一致就会触发跨域拦截机制。<br>为什么只有ajax会触发跨域？<br>其实这个问题问的并不好，回答这个问题前，我们要了解跨域可以简单的分为两种：简单请求和复杂请求</p>
+<ol>
+<li>简单请求 ：</li>
+<li>http请求方法的值限于三者之一：get,put,post;</li>
+<li>Content-Type的值仅限于三者之一:text/plain，multipart/form-data，application/x-www-form-urlencoded；<br>除了被用户代理自动设置的首部字段（例如 Connection ，User-Agent）和在 Fetch 规范中定义为 禁用首部名称 的其他首部，允许人为设置的字段为 Fetch 规范定义的 对 CORS 安全的首部字段集合。该集合为：<br>Accept Accept-Language Content-Language Content-Type （需要注意额外的限制） DPR Downlink Save-Data Viewport-Width Width 123456789</li>
+<li>复杂请求<br>除了简单请求都是复杂请求，我们大多数时候都是 ajax请求的Content-Type：application/json 这样的复杂请求导致的。<br>简单请求如果设置了Authentication认证header也会让请求“升级”为复杂请。<br>简单请求相比于复杂请求少了一步 预检请求，也就是http的OPTIONS请求<br>这些规则在现代浏览器都是有实现的。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/27/game_kaboomJs/" rel="prev" title="kaboomJs 做网页游戏">
+      <i class="fa fa-chevron-left"></i> kaboomJs 做网页游戏
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Origin-amp-Cross-origin"><span class="nav-number">1.</span> <span class="nav-text">Origin &amp; Cross-origin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域的风险"><span class="nav-number">2.</span> <span class="nav-text">跨域的风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同源策略"><span class="nav-number">3.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS"><span class="nav-number">4.</span> <span class="nav-text">CORS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prefilght-request"><span class="nav-number">4.1.</span> <span class="nav-text">prefilght request</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-配置cookie"><span class="nav-number">5.</span> <span class="nav-text">nginx 配置cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">6.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jingkeke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jingkeke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhengyi.jing@163.com" title="E-Mail → mailto:zhengyi.jing@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jingzhengyi" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jingzhengyi" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备20007351号-2 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20007351" rel="noopener" target="_blank">20007351 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-jzy"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jing</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '3fd3324f8518ce5ba445',
+      clientSecret: 'b941b5477af6b377620ad49a0540ea7e3824c61a',
+      repo        : 'jingkeke.github.io',
+      owner       : 'jingkeke',
+      admin       : ['jingkeke'],
+      id          : '2ba889c41e65e7fbb37d72f8dbc15a71',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
