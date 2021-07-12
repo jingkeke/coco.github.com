@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/tailwindcss/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/sso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/tailwindcss/" class="post-title-link" itemprop="url">tailwindcss</a>
+            <a href="/2021/01/22/sso/" class="post-title-link" itemprop="url">单点登陆方案</a>
         </h1>
 
         <div class="post-meta">
@@ -195,7 +195,19 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                  <a href="/categories/sso/" itemprop="url" rel="index"><span itemprop="name">sso</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/" itemprop="url" rel="index"><span itemprop="name">cas</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sso/cas/django/drf/" itemprop="url" rel="index"><span itemprop="name">drf</span></a>
                 </span>
             </span>
 
@@ -210,8 +222,212 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="tailWindCss"><a href="#tailWindCss" class="headerlink" title="tailWindCss"></a>tailWindCss</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>  写React 项目 有个痛点,有时候想拷贝个已有的js文件,因为有样式,但是现在基本主流都是cssModule ,所以还得拷贝个xx.less文件之类.做Vue开发也是,如果写.vue文件,本来文件就挺长,代码要用鼠标滚轮一直滚看,还要写style部分,又是一坨代码.看着文件一长个人就有点不舒服.</p>
-<h3 id="救星"><a href="#救星" class="headerlink" title="救星"></a>救星</h3><p>  最近看到<a href="https://tailwindcss.com/docs/" target="_blank" rel="noopener">tailwincss</a>,感觉基本解决了这个痛点.可以参考这篇<a href="http://zhaima.tech/post/tailwindcss%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">文章</a></p>
+          <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>CAS<ul>
+<li>多个应用共用一个登陆设置.</li>
+<li>我现在做的前后端分离的,不用关注权限问题,最后部署时候统一设置单点登陆就可以</li>
+</ul>
+</li>
+<li>手机端不适合基于session的场景,看了jwt方案.<ul>
+<li>现在好像auth2.0的方案也挺流行,之前工作中主要是用这个实现客户权限控制,最近感觉主要是感觉想微博登陆账号这种不用直接提过密码就可以授权的方案中.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>注意以下实现主要是基于python django drf.</strong></p>
+<h3 id="CAS方案"><a href="#CAS方案" class="headerlink" title="CAS方案"></a>CAS方案</h3><h5 id="单点登陆服务端-server-django-mama-cas"><a href="#单点登陆服务端-server-django-mama-cas" class="headerlink" title="单点登陆服务端:server django-mama-cas"></a>单点登陆服务端:<a href="https://github.com/jbittel/django-mama-cas" target="_blank" rel="noopener">server django-mama-cas</a></h5><h5 id="客户端-django-cas-ng"><a href="#客户端-django-cas-ng" class="headerlink" title="客户端:django-cas-ng"></a>客户端:<a href="https://github.com/mingchen/django-cas-ng" target="_blank" rel="noopener">django-cas-ng</a></h5><ul>
+<li>看cas_ng代码 默认admin开头的,匹配<code>CAS_ADMIN_PREFIX</code>这个配置更改,但是感觉这个不够灵活吧<ul>
+<li><a href="https://stackoverflow.com/questions/51652452/using-django-cas-ng-to-authenticate-on-admin-site" target="_blank" rel="noopener">django-cas-ng authenticate on admin site</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><ul>
+<li>如果不加<code>CAS_ADMIN_PREFIX</code>,登陆/admin/会跳转,加上就/auth/test/ 这个测试</li>
+</ul>
+<h3 id="非session方案"><a href="#非session方案" class="headerlink" title="非session方案"></a>非session方案</h3><h5 id="sso-rest风格"><a href="#sso-rest风格" class="headerlink" title="sso rest风格"></a>sso rest风格</h5><ul>
+<li><a href="https://django-rest-auth.readthedocs.io/en/latest/configuration.html" target="_blank" rel="noopener">django-rest-auth</a> demo 也是在rest-framework-tutorial ,然后放在了gitte上面.</li>
+<li>测试<br>官方代码自己集成了swagger测试</li>
+</ul>
+<h4 id="REST-framework-JWT-Auth"><a href="#REST-framework-JWT-Auth" class="headerlink" title="REST framework JWT Auth"></a><a href="https://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="noopener">REST framework JWT Auth</a></h4><ul>
+<li>测试<br>参考官网</li>
+<li><a href="https://www.jianshu.com/p/f00b3873f6f1" target="_blank" rel="noopener">JWT 配置</a><br>比如 <code>JWT_RESPONSE_PAYLOAD_HANDLER</code> 可以重写然后配置<pre><code class="python"><span class="comment"># urls.py</span>
+<span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token
+urlpatterns = [
+url(<span class="string">r'^authorizations/&gt;, obtain_jwt_token),</span>
+<span class="string">]</span>
+<span class="string"># utils.py</span>
+<span class="string">def jwt_response_payload_handler(token, user=None, request=None):</span>
+<span class="string">"""</span>
+<span class="string">自定义jwt认证成功返回数据</span>
+<span class="string">"""</span>
+<span class="string">return {</span>
+<span class="string">'</span>token<span class="string">': token,</span>
+<span class="string">'</span>user_id<span class="string">': user.id,</span>
+<span class="string">'</span>username<span class="string">': user.username</span>
+<span class="string">}</span>
+<span class="string"># 修改配置 # JWT</span>
+<span class="string">JWT_AUTH = {</span>
+<span class="string">'</span>JWT_EXPIRATION_DELTA<span class="string">': datetime.timedelta(days=1),    '</span>JWT_RESPONSE_PAYLOAD_HANDLER<span class="string">':'</span>users.utils.jwt_response_payload_handle<span class="string">r',</span>
+<span class="string">}</span></code></pre>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://stackoverflow.com/questions/47591102/making-sso-with-django-rest-framework" target="_blank" rel="noopener">Making SSO with django rest framework</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/umi%E9%80%82%E9%85%8D%E5%8D%8E%E4%B8%BA%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CQQ%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">umi适配华为自带浏览器和QQ浏览器</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/umi/" itemprop="url" rel="index"><span itemprop="name">umi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/umi/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近准备面试一个H5的工作,然后准备了用umi+Django写一个H5前端页面练练手.写了一个<a href="http://www.jingzy.top:8002" target="_blank" rel="noopener">几个页面</a>,在UC,chrome浏览器和微信里面都正常,然后发现在华为自带浏览器,后来发现qq浏览器,都是感觉没调用webpack 打包生成的js……查了一下资料,说是华为自带的浏览器内核很老(我的是华为M5 android8),umi的GitHub也有人提,但是回复都没怎么看到希望. 折腾了半天后,用一下配置可行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets: &#123;</span><br><span class="line">chrome: <span class="number">58</span>,</span><br><span class="line">ie: <span class="number">9</span>,</span><br><span class="line">&#125;,</span><br><span class="line">exportStatic:&#123;&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>参考:<br><a href="https://github.com/umijs/umi/issues/304" target="_blank" rel="noopener">使用 umi 在华为手机上不渲染页面,加载出空白页 #304</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人代码知识记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/codewar/" itemprop="url" rel="index"><span itemprop="name">codewar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p>
+<ul>
+<li>要求<blockquote>
+<p>前者是否包含后者的每个字符,</p>
+</blockquote>
+</li>
+<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
+<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -422,7 +638,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/codewar-Scramblies/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -436,7 +652,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/22/codewar-Scramblies/" class="post-title-link" itemprop="url">codewar-Scramblies</a>
+            <a href="/2021/01/22/redux-sega/" class="post-title-link" itemprop="url">redux-sega</a>
         </h1>
 
         <div class="post-meta">
@@ -454,11 +670,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/codewar/" itemprop="url" rel="index"><span itemprop="name">codewar</span></a>
+                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
                 </span>
             </span>
 
@@ -473,15 +689,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python" target="_blank" rel="noopener">Scramblies</a></p>
+          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
+<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
+<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
+<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
+<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
+<li>产生原因改进最早的: 最早的地域回调写法</li>
+<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最新的是 async await</li>
+</ol>
 <ul>
-<li>要求<blockquote>
-<p>前者是否包含后者的每个字符,</p>
-</blockquote>
-</li>
-<li>我的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 集合运算,相减看是否包含 刷code war 题目 优化 看的</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span>  Counter</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">  <span class="comment"># Counter basically creates a dictionary of counts and letters</span></span><br><span class="line">  <span class="comment"># Using set subtraction, we know that if anything is left over,</span></span><br><span class="line">  <span class="comment"># something exists in s2 that doesn't exist in s1</span></span><br><span class="line">  <span class="keyword">return</span> len(Counter(s2)- Counter(s1)) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(scramble(<span class="string">'rkqodlw'</span>, <span class="string">'world'</span>),)</span><br></pre></td></tr></table></figure></li>
-<li>别人的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> set(s2):</span><br><span class="line">        <span class="keyword">if</span> s1.count(c) &lt; s2.count(c):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 2 多用库</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> sub</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scramble</span><span class="params">(s1,s2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> sub(*map(Counter, (s2,s1)))</span><br><span class="line"><span class="comment"># 2 特别的语法</span></span><br><span class="line">scramble=<span class="keyword">lambda</span> a,b,c=__import__(<span class="string">'collections'</span>).Counter:<span class="keyword">not</span> c(b)-c(a)</span><br></pre></td></tr></table></figure>
-</li>
+<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
+</ul>
+<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
+<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
 </ul>
 
       
@@ -588,92 +810,6 @@
 <h5 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h5><p>利用 github 的 Webhooks 同步发布到 greasyfork<br>初始化 import 脚本 <a href="https://greasyfork.org/en/import" target="_blank" rel="noopener">https://greasyfork.org/en/import</a><br>2. 开启 webhook 并应用 <a href="https://greasyfork.org/en/users/webhook-info" target="_blank" rel="noopener">https://greasyfork.org/en/users/webhook-info</a></p>
 <p>按提示在 github 仓库的settings -&gt; webhooks创建 hook, 每次仓库更新就会同步更新到 greasyfork </p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://betacat.online/posts/2019-02-25/tampermonkey-user-script-with-vuejs/" target="_blank" rel="noopener">使用 VueJS 开发油猴（TamperMonkey）脚本</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2021/01/22/redux-sega/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/22/redux-sega/" class="post-title-link" itemprop="url">redux-sega</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-22 10:05:48" itemprop="dateCreated datePublished" datetime="2021-01-22T10:05:48+08:00">2021-01-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/" itemprop="url" rel="index"><span itemprop="name">dva</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dva/generator/" itemprop="url" rel="index"><span itemprop="name">generator</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>工作中用的是云谦大神封装的dva框架,其中集成了redux-sega .其特点是effect 中写带星号的方法处理异步事件.其中涉及的js的generator等知识点.之前看过原理.好久只是用,有点忘记了..最近感觉这个年纪还是多去想想其中的原理,要不心里还是挺慌张的.</p>
-<h4 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h4><p>dva 里面处理异步的是放在effect 里面,然后里面都是 <code>function * {yield ....}</code><strong>这种generator</strong>,然后sega 能够驱动他去执行所有的yield.一口气执行完.感觉整个过程<a href="https://mp.weixin.qq.com/s?__biz=MzA4NjcyMDYzMg==&mid=2451805550&idx=1&sn=84c84d73789b960f845515d701a6e0d2&chksm=88135c79bf64d56fb27009192ec3d724645a1d375b9006b7c09bad0a2aa1a3446f823e90d928&scene=0&xtrack=1" target="_blank" rel="noopener" title="redux-saga，化异步为同步">redux-saga，化异步为同步</a>讲得很详细</p>
-<h4 id="sega-名称由来"><a href="#sega-名称由来" class="headerlink" title="sega 名称由来"></a>sega 名称由来</h4><p>把多个事情分成小份,并串联起来</p>
-<h4 id="副作用-名词解释"><a href="#副作用-名词解释" class="headerlink" title="副作用 名词解释"></a>副作用 名词解释</h4><p>会对外部产生影响,或结果不定的.与之相对的是纯函数.</p>
-<h4 id="ES6-generator"><a href="#ES6-generator" class="headerlink" title="ES6 generator"></a>ES6 generator</h4><ol>
-<li>产生原因改进最早的: 最早的地域回调写法</li>
-<li>一开始Promise ,然后ES6 是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* function()  &#123;</span><br><span class="line">  value &#x3D; yield step1()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>最新的是 async await</li>
-</ol>
-<ul>
-<li>参考<br><a href="https://www.jianshu.com/p/e0778b004596" target="_blank" rel="noopener">理解 ES6 Generator 函数</a></li>
-</ul>
-<h4 id="sega-详解"><a href="#sega-详解" class="headerlink" title="sega 详解"></a>sega 详解</h4><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
-<li><a href="https://www.jianshu.com/p/05b73d826425" target="_blank" rel="noopener" title="Redux-Saga入门">Redux-Saga入门</a></li>
-<li><a href="https://segmentfault.com/a/1190000016570727" target="_blank" rel="noopener" title="redux-saga实现与原理">redux-saga实现与原理</a></li>
-</ul>
 
       
     </div>
@@ -944,94 +1080,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jingzhengyi.top/2019/06/07/fabric/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人代码知识记录">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/07/fabric/" class="post-title-link" itemprop="url">fabric</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-07 12:32:05" itemprop="dateCreated datePublished" datetime="2019-06-07T12:32:05+08:00">2019-06-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-23 23:47:36" itemprop="dateModified" datetime="2021-05-23T23:47:36+08:00">2021-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fabric3</span><br></pre></td></tr></table></figure>
-
-<p>写在了 pythonlearn 里</p>
-<blockquote>
-<p>fabic 这个包主要是用在服务器交互里面,比如发布项目到 git 后,本机运行一个脚本,会连接服务器执行一堆下载,编译的事情</p>
-</blockquote>
-<h3 id="写了一个方便写模板的-fabric"><a href="#写了一个方便写模板的-fabric" class="headerlink" title="写了一个方便写模板的 fabric"></a>写了一个方便写模板的 fabric</h3><ul>
-<li>场景<br>敲一个 fab new:test 生成一个 test.md 的文件 ,并把 hexo 模板写入进去,模板把文件名”test”<br>写入到模板里面.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># will generate a test.md  file</span><br><span class="line">fab new:test</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>config file<br>fabfile.py</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">自动化添加文件头</span></span><br><span class="line"><span class="string">参考  https://www.solarck.com/using-netlify-auto-deployed-pelican.html</span></span><br><span class="line"><span class="string">- 新建</span></span><br><span class="line"><span class="string">fab new:test,tag</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> fabric.contrib.console <span class="keyword">import</span> confirm</span><br><span class="line"><span class="keyword">from</span> fabric.utils <span class="keyword">import</span> abort</span><br><span class="line"><span class="keyword">from</span> fabric.colors <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">env.hosts = [<span class="string">''</span>]</span><br><span class="line">env.port = <span class="number">22</span></span><br><span class="line">env.user = <span class="string">''</span></span><br><span class="line">env.password = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local path configuration (can be absolute or relative to fabfile)</span></span><br><span class="line">env.deploy_path = <span class="string">'./'</span></span><br><span class="line">env.content_path = <span class="string">'./'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">META = <span class="string">"""---</span></span><br><span class="line"><span class="string">title: &#123;:20&#125;</span></span><br><span class="line"><span class="string">Date: &#123;:%Y-%m-%d %H:%M&#125;</span></span><br><span class="line"><span class="string">categories: # 这里写的分类会自动汇集到 categories 页面上，分类可以多级</span></span><br><span class="line"><span class="string">- mac</span></span><br><span class="line"><span class="string">tags:</span></span><br><span class="line"><span class="string">- &#123;:10&#125;</span></span><br><span class="line"><span class="string">Authors: Jingzy</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(title=<span class="string">'new'</span>,tag=<span class="string">''</span>)</span>:</span></span><br><span class="line">    os.chdir(env.content_path)</span><br><span class="line">    file_name=title+<span class="string">'.md'</span></span><br><span class="line">    <span class="keyword">with</span> open(file_name, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(META.format(title,datetime.now(),tag))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preview</span><span class="params">()</span>:</span></span><br><span class="line">    local(<span class="string">'pelican -d -s pelicanconf.py'</span>)</span><br><span class="line">    os.chdir(env.deploy_path)</span><br><span class="line">    local(<span class="string">'python -m http.server 8000 -b 127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">github</span><span class="params">(comMsg =<span class="string">''</span> )</span>:</span></span><br><span class="line">    local(<span class="string">'git add --all'</span>)</span><br><span class="line">    local(<span class="string">'git commit -m "&#123;&#125;  update at &#123;:%Y-%m-%d %H:%M&#125;"'</span>.format(comMsg,datetime.now()))</span><br><span class="line">    local(<span class="string">'git push origin master'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#  fab  hexo_deploy</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hexo_deploy</span><span class="params">()</span>:</span></span><br><span class="line">	run(<span class="string">'jg posthexo'</span>)</span><br><span class="line">	<span class="comment"># run("git pull origin master")</span></span><br><span class="line">	result =run(<span class="string">"pwd"</span>)</span><br><span class="line">	<span class="keyword">with</span> cd(<span class="string">'/home/_posts'</span>):</span><br><span class="line">		run(<span class="string">'pwd'</span>)  <span class="comment"># /tmp</span></span><br><span class="line">		run(<span class="string">'git pull origin master '</span>)  <span class="comment"># /tmp</span></span><br><span class="line">	<span class="keyword">with</span> cd(<span class="string">'/home/hexo'</span>):</span><br><span class="line">		run(<span class="string">'pwd'</span>)</span><br><span class="line">		run(<span class="string">'hexo g'</span>)</span><br><span class="line">	run(<span class="string">'pwd'</span>)  <span class="comment"># /root</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1102,13 +1150,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
