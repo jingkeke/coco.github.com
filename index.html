@@ -194,7 +194,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-25 11:31:29" itemprop="dateModified" datetime="2021-07-25T11:31:29+08:00">2021-07-25</time>
+                <time title="修改时间：2022-06-12 20:27:29" itemprop="dateModified" datetime="2022-06-12T20:27:29+08:00">2022-06-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +220,13 @@
           <p>有个程序员喝醉酒,然后分享的自己的经验 ,从 <a href="http://www.ruanyifeng.com/blog/2021/06/drunk-post-of-a-programmer.html" target="_blank" rel="noopener">阮一峰博客看的</a></p>
 <p><img src="pics/advi.png" alt=""></p>
 <p><img src="pics/adv2.png" alt=""></p>
-<p>最近又看了 jebrain 的程序员调查结果 2021 版(话说我这个是年初填了一下,感觉出结果都半年之后了,估计可能我做的比较早?)</p>
-<p><a href="https://www.jetbrains.com/lp/devecosystem-2021/" target="_blank" rel="noopener">https://www.jetbrains.com/lp/devecosystem-2021/</a> ,感觉可能限于用 jetbrain 软件的人群,做 web 开发的人占很大比例.可以看看<br>里面的收入统计…………中国虽然跟美国差距大,但是还是在 14 位上,中位数 21000 美元</p>
+<p>最近又看了 jebrain 的程序员调查结果 2021 版(话说我这个是年初填了一下,感觉出结果都半年之后了,估计可能我做的比较早?)<br>比较有意思的:</p>
+<ul>
+<li><p><a href="https://www.jetbrains.com/lp/devecosystem-2021/" target="_blank" rel="noopener">https://www.jetbrains.com/lp/devecosystem-2021/</a> ,感觉可能限于用 jetbrain 软件的人群,做 web 开发的人占很大比例.可以看看<br>里面的收入统计…………中国虽然跟美国差距大,但是还是在 14 位上,中位数 21000 美元</p>
+</li>
+<li><p>男女比例<br>女性还是少数群体,起码参与调查积极性不高…不逛社区也能反应些问题,总得来看感觉女性还是少数的.<br>中国是 5%;</p>
+</li>
+</ul>
 
       
     </div>
@@ -272,7 +277,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-05 10:50:56" itemprop="dateModified" datetime="2021-07-05T10:50:56+08:00">2021-07-05</time>
+                <time title="修改时间：2022-06-12 20:22:36" itemprop="dateModified" datetime="2022-06-12T20:22:36+08:00">2022-06-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -300,40 +305,14 @@
 <p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at<a href="https://example.com/" target="_blank" rel="noopener">https://example.com/</a><br>Access to fetch at ‘<a href="https://example.com’" target="_blank" rel="noopener">https://example.com’</a> from origin ‘<a href="http://localhost:3000’" target="_blank" rel="noopener">http://localhost:3000’</a> has been blocked by CORS policy.</p>
 </blockquote>
 <p>如果你遇到这些报错，就是跨域问题。</p>
-<h2 id="Origin-amp-Cross-origin"><a href="#Origin-amp-Cross-origin" class="headerlink" title="Origin &amp; Cross-origin"></a>Origin &amp; Cross-origin</h2><p>判断是否跨域 看三个指标：scheme，host，和port 。例如，<a href="https://example.com" target="_blank" rel="noopener">https://example.com</a>  <a href="http://example.com" target="_blank" rel="noopener">http://example.com</a> 是不用域的，因为前者是http scheme 后者是https. </p>
-<h2 id="跨域的风险"><a href="#跨域的风险" class="headerlink" title="跨域的风险"></a>跨域的风险</h2><p>如果 CORS 不存在，网络浏览器允许各种各样的跨源请求。<br>想象一下，我在我的网站 evil. com 上有一个带有 &lt;script&gt; 的页面。表面上它看起来像一个简单的页面，在那里你可以读到一些有用的信息。但是在 &lt;script&gt; 中，我特别编写了一些代码，它们将向银行的 DELETE / 帐户端点发送一个特殊编写的请求。加载页面后，执行 JavaScript，然后一个 AJAX 调用访问银行的 API。 </p>
-<p>想象一下，当你在网页上阅读一些信息时，你收到一封来自你银行的电子邮件，你已经成功地删除了你的帐户。我知道我知道… … 如果银行真的那么容易。我跑题了。<br>为了让我邪恶的 &lt;script&gt; 工作，作为请求的一部分，你的浏览器还必须从银行网站上发送你的证书 (cookies)。这样银行的服务器就能识别你的身份，并知道该删除哪个账户。 </p>
-<ul>
-<li>让我们看看一个不同的，不那么邪恶的场景。<br>我想找到那些为 Awesome Corp 工作的人，他们的内部网站在 intra.Awesome-Corp.com 上。在我的网站上，dangerous.com i got an &lt;img src = “<a href="https://intra.awesome-corp" target="_blank" rel="noopener">https://intra.awesome-corp</a>. com/avatars/john-doe.png”&gt; 。<br>对于那些没有使用 intra.awesome-corp.com 的会话活动的用户，虚拟化身不会渲染 - 它会产生一个错误。但是，如果你登录了 Awesome 公司的内部网，一旦你打开了 dangerous.com 网站，我就知道你有权限访问。<br>这意味着我将能够得到一些关于你的信息。虽然对我来说制造一个攻击绝对是很困难的，但是你可以访问 Awesome 公司的 仍然是一个潜在的攻击风险。 </li>
-</ul>
-<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略 规则集<br>标签     Cross-origin     注意<br>&lt;iframe&gt;     允许  embeds     看情况X-Frame-Options<br>&lt;link&gt;     允许  embeds     适当的 可能需要<br>&lt;form&gt;     允许  write    Cross-origin write 是很常见的<br>&lt;img&gt;     允许  embeds     通过 JavaScript 进行跨源读取，并将其加载到 是被禁止的<br>&lt;audio&gt; / &lt;video&gt;     允许  embeds<br>&lt;script&gt;     允许  embeds     可能会禁止访问某些 api </p>
-<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>CORS（cross origin resource sharing ） 诞生的目标是放宽同源政策和微调跨源接入。 该机制将子资源访问分为三类：</p>
-<ul>
-<li>cross-origin write<br>指连接，重定向，表单提交。 还有一种是preflight请求的东西，可以微调cross -origin write 。</li>
-<li>cross-origin embeds<br>通过 &lt;script&gt; ,&lt;link&gt;,img,video,audio ,iframe, embed 等标签加载的子资源。 </li>
-<li>cross-orgin reads<br>通过ajax/fetch加载的子资源。通常情况下，这些在浏览器中事被blocked的。</li>
-</ul>
-<h3 id="prefilght-request"><a href="#prefilght-request" class="headerlink" title="prefilght request"></a>prefilght request</h3><p> 复杂请求 即是 options 请求通过了也会拦截。<br>现代浏览器定义的 <strong>复杂请求</strong></p>
-<ul>
-<li>一个使用GET、POST或HEAD以外的方法的请求</li>
-<li>请求中包含除Accept、Accept-Language或Content-Language以外的头信息。</li>
-<li>请求中的Content-Type头值不是application/x-www-form-urlencoded, multipart/form-data, 或text/plain。</li>
-</ul>
-<h2 id="nginx-配置cookie"><a href="#nginx-配置cookie" class="headerlink" title="nginx 配置cookie"></a>nginx 配置cookie</h2><p>正常的跨域解决就是网上搜的，然后有一点就是允许转发携带cookie，这个应该是现代浏览器加了校验，解决方案网上看了三个：</p>
-<ol>
-<li>客户端解决方案 （测试可以）<br>主要是 SameSite=None; Secure，具体cookie 设置<br>document.cookie = ‘cookie2=value2; SameSite=None; Secure’;</li>
-<li>服务器端<br>模式是一样的，只是写入cookie的模式不一样,以下是node 的参考<br>response.setHeader(‘set-cookie’, <a href="">
-</a>  ‘cookie1=value1; SameSite=Lax’,<br>‘cookie2=value2; SameSite=None; Secure’,<br>]);</li>
-<li>改用https 方式<br>注意 ：对于SameSite=None 同时也需要设置Secure，同时我们需要改用https，而且注意测试的时候不要使用无痕模式，chrome无痕模式默认是阻止三方cookie的<br>所以也是不能测试的，（<a href="https://samesite-sandbox.glitch.me/" target="_blank" rel="noopener">https://samesite-sandbox.glitch.me/</a> 是一个好工具，方便测试是否生效）对于web 推荐使用js-cookie 包装的比较完整，使用上简单<br>2，3方式可能有些重叠，需要验证。。。。。。</li>
-</ol>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>W3C标准规定，http请求头的origin(源地址)与目的地址在协议（http1.1,https等），端口，域名（ip）任何一个不一致就会触发跨域拦截机制。<br>为什么只有ajax会触发跨域？<br>其实这个问题问的并不好，回答这个问题前，我们要了解跨域可以简单的分为两种：简单请求和复杂请求</p>
-<ol>
-<li>简单请求 ：</li>
-<li>http请求方法的值限于三者之一：get,put,post;</li>
-<li>Content-Type的值仅限于三者之一:text/plain，multipart/form-data，application/x-www-form-urlencoded；<br>除了被用户代理自动设置的首部字段（例如 Connection ，User-Agent）和在 Fetch 规范中定义为 禁用首部名称 的其他首部，允许人为设置的字段为 Fetch 规范定义的 对 CORS 安全的首部字段集合。该集合为：<br>Accept Accept-Language Content-Language Content-Type （需要注意额外的限制） DPR Downlink Save-Data Viewport-Width Width 123456789</li>
-<li>复杂请求<br>除了简单请求都是复杂请求，我们大多数时候都是 ajax请求的Content-Type：application/json 这样的复杂请求导致的。<br>简单请求如果设置了Authentication认证header也会让请求“升级”为复杂请。<br>简单请求相比于复杂请求少了一步 预检请求，也就是http的OPTIONS请求<br>这些规则在现代浏览器都是有实现的。</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/04/cors/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -541,10 +520,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-20 19:58:00 / 修改时间：20:01:22" itemprop="dateCreated datePublished" datetime="2021-06-20T19:58:00+08:00">2021-06-20</time>
+              <time title="创建时间：2021-06-20 19:58:00" itemprop="dateCreated datePublished" datetime="2021-06-20T19:58:00+08:00">2021-06-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-12 20:23:09" itemprop="dateModified" datetime="2022-06-12T20:23:09+08:00">2022-06-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -577,362 +562,14 @@
 <p><img src="https://miro.medium.com/max/4936/1*duAiXryh-Gh1xNkDrrrzdA.png" alt=""></p>
 <p>…that will show us notifications with the action name and shortcuts for iOS/Win/Linux:</p>
 <p><img src="https://miro.medium.com/max/5144/1*tpbbOA4ffWme_ktFiWeGww.jpeg" alt=""></p>
-<h2 id="2-Find-in-files"><a href="#2-Find-in-files" class="headerlink" title="2. Find in files"></a>2. Find in files</h2><p>We will start with a simple <code>Find in files</code> feature [<code>**Shift+Command+F**</code>]. It allows you to search any text fragments everywhere in your Project:</p>
-<p><img src="https://miro.medium.com/max/4372/1*Y05WGNfE4M_qViXQYdUbZQ.png" alt=""></p>
-<h2 id="3-Replace-in-files"><a href="#3-Replace-in-files" class="headerlink" title="3. Replace in files"></a>3. Replace in files</h2><p>[<code>Shift+Command+R</code>]</p>
-<p>This feature allows you to rename all fragments that match the search.</p>
-<p>You can just click <code>Replace All</code> and IDE will rename each and every variable that will be in the list. You need to be careful with using <code>Replace All</code> especially if you’re not using Git.</p>
-<p><img src="https://miro.medium.com/max/5752/1*MejFRtLtzpWQ3jg4Kf8PQw.jpeg" alt=""></p>
-<h2 id="4-Find-usages"><a href="#4-Find-usages" class="headerlink" title="4. Find usages"></a>4. Find usages</h2><p>[<code>Option+F7</code>]</p>
-<p>Find usages will show you places where current function/class/variable is used:</p>
-<p><img src="https://miro.medium.com/max/4372/1*7ZTw3H_5akHurZZy87YLxg.png" alt=""></p>
-<h2 id="5-Find-usage-in-File"><a href="#5-Find-usage-in-File" class="headerlink" title="5. Find usage in File"></a>5. Find usage in File</h2><p>[<code>Shift+F7</code>]</p>
-<p>IDE will highlight all appearances in the current file and highlights will remain until you press <code>**ESC**</code> key:</p>
-<p><img src="https://miro.medium.com/max/4372/1*7dxrhaf5EZt-Z8rFM0Ig1A.png" alt=""></p>
-<h2 id="6-Find-next-Move-to-next-Occurrence"><a href="#6-Find-next-Move-to-next-Occurrence" class="headerlink" title="6. Find next / Move to next Occurrence"></a>6. Find next / Move to next Occurrence</h2><p>You can move to the next occurrence with <code>Find Next/Move to next occurrence</code> action by selecting what you need to search and pressing <code>**Command+G**</code> hotkey:</p>
-<p><img src="https://miro.medium.com/max/2152/1*hu8_1yudJecIww_B9YiuJw.gif" alt=""></p>
-<h2 id="7-Go-to-declaration-or-usages"><a href="#7-Go-to-declaration-or-usages" class="headerlink" title="7. Go to declaration or usages"></a>7. Go to declaration or usages</h2><p>You don’t need to use your mouse for finding Usages, just use [<code>Command+B</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/2152/1*hv60Wiu9hvG5Ctml0HENyQ.gif" alt=""></p>
-<h2 id="8-Go-to-Class"><a href="#8-Go-to-Class" class="headerlink" title="8. Go to Class:"></a>8. Go to Class:</h2><p>If you are looking for a class in your project you can use [<code>Command+O</code>] hotkey</p>
-<p><img src="https://miro.medium.com/max/4316/1*kMygtDn_A8YJ7qwsaiQa7w.png" alt=""></p>
-<p>If you don’t remember the name of your class, you can try to search by Name fragments:</p>
-<p><img src="https://miro.medium.com/max/4316/1*ryuo0qYZtKJF4NOlqmVfNg.png" alt=""></p>
-<p>If you know the specific code line you need to check you can use a dots <code>:</code> notation → <code>&lt;file name&gt;:&lt;codeline number&gt;</code> and IDE will redirect you directly there:</p>
-<p><img src="https://miro.medium.com/max/4316/1*Zcgo-w_uNd76lBJHll_gew.png" alt=""></p>
-<p>If you are at the <code>Classes navigation</code> press <code>Commad + O</code> again to search everywhere, including Project’s libraries/packages folders, I will look for types and interfaces too:</p>
-<p><img src="https://miro.medium.com/max/4316/1*hkmB8SdZS9jY16mkHdV_qg.png" alt=""></p>
-<h2 id="9-Go-to-File"><a href="#9-Go-to-File" class="headerlink" title="9. Go to File"></a>9. Go to File</h2><p>[<code>Shift+Command+O</code>]</p>
-<p>This option will search for a files, in this case it doesn’t matter what is in there:</p>
-<p><img src="https://miro.medium.com/max/4316/1*XGPZKjVc9hctu0XVDOgtHw.png" alt=""></p>
-<h2 id="10-Go-to-Folder"><a href="#10-Go-to-Folder" class="headerlink" title="10. Go to Folder"></a>10. Go to Folder</h2><p>[<code>Shift+Command+O</code>]</p>
-<p>If you will type a slash symbol before the searched name <code>/SomeFolderName</code>. IDE will search only folders, files will be excluded from a search result list:</p>
-<p><img src="https://miro.medium.com/max/4316/1*N3lRt-WjyAJvfKkNhURq0A.png" alt=""></p>
-<h2 id="11-Go-to-Symbol"><a href="#11-Go-to-Symbol" class="headerlink" title="11. Go to Symbol"></a>11. Go to Symbol</h2><p>[<code>Option+Command+O</code>]</p>
-<p>This feature allows your search for functions and fields that are declared in a specific class name <code>&lt;ClassName&gt;.&lt;FunctionName&gt;</code>. It will show all <code>hello</code> <strong>functions</strong> and <strong>fields</strong> of a FirstClass or FirstClass TS files:</p>
-<p><img src="https://miro.medium.com/max/4372/1*lmPPknfr9g7mExMArrlZDQ.png" alt=""></p>
-<h2 id="12-Search-everywhere-anything"><a href="#12-Search-everywhere-anything" class="headerlink" title="12. Search everywhere anything"></a>12. Search everywhere anything</h2><p>[Double Shift]</p>
-<p>This is the most powerful feature of JetBrains IDEs. It allows a developer to do almost anything:</p>
-<ul>
-<li>search class/files/folders;</li>
-<li>run scripts (<em>will show later in this story</em>);</li>
-<li>open preferences tabs;</li>
-<li>change theme;</li>
-<li>open menus/popups (<em>will show later in this story</em>)</li>
-<li>etc…</li>
-</ul>
-<p>Functionality is almost limitless.</p>
-<p><img src="https://miro.medium.com/max/4372/1*Pqk1yJgI5dqaOpMqwy-MfQ.png" alt=""></p>
-<h2 id="13-Navigate-through-search-history"><a href="#13-Navigate-through-search-history" class="headerlink" title="13. Navigate through search history"></a>13. Navigate through search history</h2><p>If you press [<code>Option+Up/Down</code>] keys inside “Search everywhere” you can navigate through your search history:</p>
-<h2 id="14-Problems-window-Highlighted-Errors-navigation"><a href="#14-Problems-window-Highlighted-Errors-navigation" class="headerlink" title="14. Problems window. Highlighted Errors navigation"></a>14. Problems window. Highlighted Errors navigation</h2><p>You don’t need scroll down when you are looking for errors in your code. Just use the [ <code>**F2**</code> ] key and IDE will scroll to the Next Highlighted Error:</p>
-<p><img src="https://miro.medium.com/max/4648/1*ktSFPxeMBgP238_oq_wy1Q.jpeg" alt=""></p>
-<p>Previous Highlighted Error → [ <code>**Shift+F2**</code> ]</p>
-<p><img src="https://miro.medium.com/max/60/1*Sb3XtREM55hffNi2i_Vj4Q.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4648/1*Sb3XtREM55hffNi2i_Vj4Q.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: IDE will only navigate you through <strong><em>errors</em></strong>, not formatting issues. You can click at the top-right icon…</p>
-<p><img src="https://miro.medium.com/max/60/1*VOY6D1Ib6zvbdgeYN0hItw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3924/1*VOY6D1Ib6zvbdgeYN0hItw.jpeg" alt=""></p>
-<p>… or press [ <code>**Command+6**</code> ] for showing the “Problems” window:</p>
-<p><img src="https://miro.medium.com/max/60/1*Z7Kq7pElzLBZ4HyiinZFvg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4648/1*Z7Kq7pElzLBZ4HyiinZFvg.jpeg" alt=""></p>
-<h2 id="15-Run-scripts-after-search"><a href="#15-Run-scripts-after-search" class="headerlink" title="15. Run scripts after search"></a>15. Run scripts after search</h2><p>You can even run commands from a search bar, <code>**npm start**</code> for example. Or maybe you have a test you want to run, you can do that without opening your tests file. <em>But you must remember</em> that you can run only that files/tests/scripts that were previously added to the IDE configuration scripts:</p>
-<p><img src="https://miro.medium.com/max/4092/1*Pt0BAO_6oUT3lXQS7rbXnw.png" alt=""></p>
-<p><img src="https://miro.medium.com/max/3412/1*R8JQVxyOK-7uXyLOeBYtiw.png" alt=""></p>
-<p>Take a look at how it works:</p>
-<p>You can even commit your changes by typing <code>commit</code>:</p>
-<p><img src="https://miro.medium.com/max/60/1*YG-S1QZC9vBkCLLUsFkhhg.png?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4372/1*YG-S1QZC9vBkCLLUsFkhhg.png" alt=""></p>
-<p>👍 So, as you can see “Search Everywhere” action allows you to not just find something, but <strong>execute</strong> as well.</p>
-<h2 id="16-Commit-without-“add”"><a href="#16-Commit-without-“add”" class="headerlink" title="16. Commit without “add”"></a>16. Commit without “add”</h2><p>IDE is smart enough to tell you that you have “Unversioned files” and you need to add them first before the commit, but…</p>
-<p><img src="https://miro.medium.com/max/4096/1*Lmd-pTYm5NGjBuXn2RHnrg.jpeg" alt=""></p>
-<p>… you can add “Unversioned files” you can add them in the “Commit changes” window by clicking the checkbox:</p>
-<p><img src="https://miro.medium.com/max/60/1*zTLGb_2OZA_GgRwQumxtdg.jpeg?q=20" alt=""></p>
-<p>!]can just click [<code>**Control+Option+O**</code> / ⌃⌥O] and IDE will do that for you</p>
-<p><img src="https://miro.medium.com/max/60/1*N8H7ezyLd9iYIC_vzXtF3A.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4416/1*N8H7ezyLd9iYIC_vzXtF3A.jpeg" alt=""></p>
-<h2 id="19-VCS-Operations"><a href="#19-VCS-Operations" class="headerlink" title="19. VCS Operations"></a>19. VCS Operations</h2><p>You can open the VCS (Version Control System) menu by pressing [<code>**Control+V**</code> ], so you don’t have to remember all VCS commands like <code>commit</code> , <code>push</code> , etc…</p>
-<p><img src="https://miro.medium.com/max/4556/1*CdgYnWK99qiDACwHlgRsow.jpeg" alt=""></p>
-<h2 id="20-Open-in-a-split-tab"><a href="#20-Open-in-a-split-tab" class="headerlink" title="20. Open in a split tab"></a>20. Open in a split tab</h2><p>You can open the searched file in a new Tab by clicking <code>**Enter**</code>, or you can open the searched file in a split tab if you press <code>**Shift+Enter**</code> <strong>:</strong></p>
-<h2 id="21-Evaluate-mathematical-expressions"><a href="#21-Evaluate-mathematical-expressions" class="headerlink" title="21. Evaluate mathematical expressions"></a>21. Evaluate mathematical expressions</h2><p>In the “Search everywhere” window you can quickly type and evaluate simple mathematical expressions.</p>
-<p><img src="https://miro.medium.com/max/3412/1*bWVrNCvwBF__3Q3FwrYRpw.png" alt=""></p>
-<p>You can use basic arithmetic operators — <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, as well as <code>^</code> for power — and basic math functions: <code>sqrt()</code>, <code>sin()</code>, <code>cos()</code>, <code>tan()</code>.</p>
-<h2 id="22-File-structure"><a href="#22-File-structure" class="headerlink" title="22. File structure"></a>22. File structure</h2><p>Probably you noticed <code>Structure</code> window that you can show/hide by clicking on it or by pressing [ <code>**Command+7**</code> ] keys:</p>
-<p><img src="https://miro.medium.com/max/4648/1*7jdlSs3_j-UdmxTQiWiKYw.jpeg" alt=""></p>
-<p>But the cool thing is that you can open it without messing with your editor tabs in a popup window by pressing [ <code>**Command+F12**</code> ] hotkey:</p>
-<p><img src="https://miro.medium.com/max/4648/1*wkpdTFkN6PTVVbTt7mTdnw.jpeg" alt=""></p>
-<h2 id="23-See-recent-files"><a href="#23-See-recent-files" class="headerlink" title="23. See recent files"></a>23. See recent files</h2><p>If your search input field is empty, “Search everywhere” will show your recent files:</p>
-<p><img src="https://miro.medium.com/max/3424/1*TsFm6wtnln7lCxMtMqPJpQ.png" alt=""></p>
-<p>You can see exactly the same list by using [ <code>**Command+E**</code>/ ⌘E] hotkey → Recent Files window will show up.</p>
-<p><img src="https://miro.medium.com/max/60/1*_OX50T3N1YlykXVxuqTQGw.png?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4372/1*_OX50T3N1YlykXVxuqTQGw.png" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: If you delete recent files from this list, they will be gone from the recent list of a <code>**Search Everywhere**</code> too</p>
-<p>Recent Files will show you only changed files if you press [ <code>Command+E</code> / ⌘E ] hotkey:</p>
-<p><img src="https://miro.medium.com/max/60/1*YjBugvPmDC0FqbnGZIsPYA.png?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4372/1*YjBugvPmDC0FqbnGZIsPYA.png" alt=""></p>
-<h2 id="24-Structural-search-and-replace"><a href="#24-Structural-search-and-replace" class="headerlink" title="24. Structural search and replace"></a>24. Structural search and replace</h2><p>WebStorm treats your code as regular text. The <strong>structural search and replace</strong> (<strong>SSR</strong>) actions let you search for a particular code pattern</p>
-<p>WebStorm finds and replaces fragments of source code, based on the <strong>search templates</strong> that you create and conditions you apply.</p>
-<p>This feature is very useful when you need to refactor the code <strong>structure.</strong></p>
-<p>Select <code>Edit &gt; Find &gt; **Search Structurally**</code> from the main menu, or just type the required name in the “Search everywhere” window:</p>
-<p><img src="https://miro.medium.com/max/3392/1*DLoQ4nidJ17zgkJvSf2kQg.jpeg" alt=""></p>
-<p>It will open the <strong>Structural Search</strong> window:</p>
-<p><img src="https://miro.medium.com/max/60/1*unGcnLRRYxA0xz0wDsvMdQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3780/1*unGcnLRRYxA0xz0wDsvMdQ.jpeg" alt=""></p>
-<p>You can use Existing Templates predefined in IDE by clicking on settings icon:</p>
-<p><img src="https://miro.medium.com/max/60/1*WR0hxARMhnpXHDX3tK-DtQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2244/1*WR0hxARMhnpXHDX3tK-DtQ.jpeg" alt=""></p>
-<p>You can edit those templates and save them as your own:</p>
-<p><img src="https://miro.medium.com/max/60/1*Cw7tMZfPRoG_hUZiUd1SQQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3780/1*Cw7tMZfPRoG_hUZiUd1SQQ.jpeg" alt=""></p>
-<p>You can check the history of your changes by clicking the <code>**search**</code> icon:</p>
-<p><img src="https://miro.medium.com/max/60/1*3wbcdQN0ysCjVYb7zDtnkA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2508/1*3wbcdQN0ysCjVYb7zDtnkA.jpeg" alt=""></p>
-<p>Here I will show you a simple example because Structural Search uses its own syntax (I will tell more about it next time).</p>
-<p>Let’s imaging that we have empty functions defined in our code, and search by text will not help you find all of them:</p>
-<p><img src="https://miro.medium.com/max/60/1*a0oY78lEd2BMbYbLaq3-PA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3588/1*a0oY78lEd2BMbYbLaq3-PA.jpeg" alt=""></p>
-<p>We can define our search template…</p>
-<p>const $name$ = ($parameter$) =&gt; {</p>
-<pre><code>}</code></pre><p>…and replace template:</p>
-<p>const $name$ = ($parameter$) =&gt; {<br>// <strong>TODO</strong>: This should be fixed, or removed<br>}</p>
-<p>IDE will highlight elements that match this pattern. Click “Find”:</p>
-<p><img src="https://miro.medium.com/max/3808/1*pvNYKMwvBp52UinelPAtzA.jpeg" alt=""></p>
-<p>‘Find Window’ will be shown after the ‘Find’ click. You can check if all results are correct. After that, you can click <code>Replace All</code> (<strong>don’t recommend</strong> this approach, especially if you are not using VCS) or <code>Replace Selected</code>:</p>
-<p><img src="https://miro.medium.com/max/4196/1*rlyECLV66JNbjiXdlkrKjA.jpeg" alt=""></p>
-<p>Also, you can ‘<strong>Preview Replacement</strong>’ that will show you what your code fragment will look like after replacement:</p>
-<p><img src="https://miro.medium.com/max/60/1*0qo2JZ1u3mzF4kKCE3GYVw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4196/1*0qo2JZ1u3mzF4kKCE3GYVw.jpeg" alt=""></p>
-<p>You probably noticed that we made a mistake when we specified replace template. It will use only use parameter <strong><em>name</em></strong> but will exclude the parameter’s <strong><em>type</em></strong>.</p>
-<p>But for educational purposes, I will click “<code>Replace All</code>” 🙂. Let’s see what we will get:</p>
-<p><img src="https://miro.medium.com/max/60/1*wqYW4iNSoC85tmI5ayV9NQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3072/1*wqYW4iNSoC85tmI5ayV9NQ.jpeg" alt=""></p>
-<p>Now at least we have TODO markers in our Project that say to us that we should do something about it.</p>
-<h2 id="25-Adding-a-custom-hotkey"><a href="#25-Adding-a-custom-hotkey" class="headerlink" title="25. Adding a custom hotkey"></a>25. Adding a custom hotkey</h2><p>As you noticed there are no hotkeys assigned to the “S<strong>tructural search and replace”</strong>, let’s change that. Open IDE preferences <code>Command+,</code> and type structural in the preference’s search field, find <code>Search Structurally…</code>and click the Right button:</p>
-<p><img src="https://miro.medium.com/max/4548/1*kPvkeAtRKpr8Wy6sz5-Q2A.jpeg" alt=""></p>
-<p>Just type keys you want to use and press <code>**Ok**</code>.</p>
-<p><img src="https://miro.medium.com/max/1648/1*hFaC7wMJMtROYCjh0i2AQA.jpeg" alt=""></p>
-<p>If there will be collisions with some other hotkeys, don’t worry, IDE will tell you about it:</p>
-<p><img src="https://miro.medium.com/max/60/1*wjiCsseOKKXMNIJPJirTZg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/1648/1*wjiCsseOKKXMNIJPJirTZg.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: Don’t try to type keys <strong>separately</strong> from each other like <code>Control</code>, <code>Option</code>, <code>S</code>. It will not work that way. Just use a combination like you are trying to use it already, like [<code>Control+Option+S</code> ] hotkey.</p>
-<h2 id="26-Macros"><a href="#26-Macros" class="headerlink" title="26. Macros"></a>26. Macros</h2><p>Macros provide a convenient way to automate repetitive procedures you do frequently while writing code. You can <strong>record</strong>, <strong>edit,</strong> and <strong>playback</strong> macros, assign a <strong>shortcut</strong> to them, and <strong>share</strong> them.</p>
-<p>You can start recording by clicking <code>**Edit&gt;Macros&gt;Start Macro Recording**</code>, but I will do it by typing <em>start macro</em> in <code>Search everything</code></p>
-<p><img src="https://miro.medium.com/max/3392/1*TZncJf2NmG26i-07fSjNSA.jpeg" alt=""></p>
-<p>You will see a pop-up with a <code>**STOP**</code> button:</p>
-<p><img src="https://miro.medium.com/max/60/1*27BhRUFyLgAd1Tmv9_l4rg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2708/1*27BhRUFyLgAd1Tmv9_l4rg.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: When you are creating Macros, IDE will record only <strong>your</strong> actions, but it will not record autocompletion and auto imports. So before you Record a really big code fragment (which I don’t recommend, use templates instead), try it with something simple and by adding features step-by-step.</p>
-<p>Let’s create something awesome… When you finished, click <code>**STOP**</code> icon and select a name for your <strong>Macro.</strong></p>
-<p>export const sum = <em>(</em>a: string, b: string<em>)</em> =&gt; <em>{</em> return a + b;<br><em>}</em></p>
-<p>I will delete all I have created in the file and click on <code>**Play Back Last Macro**</code>:</p>
-<p><img src="https://miro.medium.com/max/60/1*MnXqpVIKo6p6ABYuU_EJ9Q.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4032/1*MnXqpVIKo6p6ABYuU_EJ9Q.jpeg" alt=""></p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*8ySJEqk1cRAXi6jldzPGDw.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3248/1*8ySJEqk1cRAXi6jldzPGDw.gif" alt=""></p>
-<h2 id="27-Language-injection"><a href="#27-Language-injection" class="headerlink" title="27. Language injection"></a>27. Language injection</h2><p>We all had such cases when we need to type a simple text that should represent JSON, RegEx, HTML, SQL, etc. You don’t need to create those files so that IDE would help you. You can use Language Injection so that IDE would handle those Language fragments in a simple string:</p>
-<p><img src="https://miro.medium.com/max/4916/1*gWqYIXXpC3KAQgA-SXjOlg.jpeg" alt=""></p>
-<p>In ES6 JavaScript you can use template literals <code>`{“name”: “John”}`</code>, but in this example, we will pretend that we are still using ES5 🙂</p>
-<p><img src="https://miro.medium.com/max/3724/1*wyG45pJlJ3BCXuMyrkVI3w.jpeg" alt=""></p>
-<p>Now IDE will highlight our JSON props and will notify us if we made a mistake:</p>
-<p><img src="https://miro.medium.com/max/60/1*QuQaD6WIhEZCN-3WoaJWAw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2440/1*QuQaD6WIhEZCN-3WoaJWAw.jpeg" alt=""></p>
-<p>‘Edit JSON fragment’ action will open a JSON editor:</p>
-<p><img src="https://miro.medium.com/max/60/1*EOBF2uuqbkOHGcRFLCKYeQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3296/1*EOBF2uuqbkOHGcRFLCKYeQ.jpeg" alt=""></p>
-<p>Now let’s take a look at how it works in IDE:</p>
-<p><img src="https://miro.medium.com/max/2960/1*TT01qmkyUeZSs7ODTXwlDg.gif" alt=""></p>
-<p>⚠️ NOTE: If you don’t see <code>**Edit JSON Fragment**</code> in Context Actions — make sure that you have <code>Editor</code> &gt; <code>Intensions</code> &gt;<code>Edit injected fragment</code> enabled:</p>
-<p><img src="https://miro.medium.com/max/2876/1*k0rbV_m_ryPqVMa9yRWldQ.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: All previous examples were <em>temporary</em> injections, they will reset if you restart the IDE, if you want to set this injection permanently you will need to add a comment above the string:</p>
-<p>// language=JSON</p>
-<p>… or you can just answer “Yes” when IDE will ask you 🙂</p>
-<p><img src="https://miro.medium.com/max/60/1*9J9Wt_oYVy8-n_U-fg8D-A.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3328/1*9J9Wt_oYVy8-n_U-fg8D-A.jpeg" alt=""></p>
-<p>Same with RegExp:</p>
-<p><img src="https://miro.medium.com/max/60/1*LxzJw3bddBVQsj3XYFSKhw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3584/1*LxzJw3bddBVQsj3XYFSKhw.jpeg" alt=""></p>
-<p>Now you will be able to test your regex in the popup window:</p>
-<p><img src="https://miro.medium.com/max/60/1*JS2hOi8pNBAHIDaxxOMEvQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2316/1*JS2hOi8pNBAHIDaxxOMEvQ.jpeg" alt=""></p>
-<h2 id="28-Live-Templates"><a href="#28-Live-Templates" class="headerlink" title="28. Live Templates"></a>28. Live Templates</h2><p>Just like with Macros Live Templates provide a powerful feature of creating your own templates of any code you like, variable/ function/ class/ component/ package declarations.</p>
-<p>You can see available predefined templates by using [ <code>Command+J</code> / ⌘J] hotkey:</p>
-<p><img src="https://miro.medium.com/max/3988/1*pztoEVQ3DKaDtRjiJtk_4g.jpeg" alt=""></p>
-<p>You can create your own templates, just search ‘Live Templates’ in IDE preferences:</p>
-<p><img src="https://miro.medium.com/max/60/1*Po6ohD3E1Wg9bhepMNwaug.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4548/1*Po6ohD3E1Wg9bhepMNwaug.jpeg" alt=""></p>
-<p>Let’s take o look at some simple example:</p>
-<p><img src="https://miro.medium.com/max/60/1*0EYwLHZQKjSJYvitG_P73Q.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4548/1*0EYwLHZQKjSJYvitG_P73Q.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: Don’t forget to set the Applicable context so that your templates were shown by IDE only in files that can use those templates (I don’t think that the Jest test fragment should be shown in SQL 🙂):</p>
-<p><img src="https://miro.medium.com/max/60/1*TOBVGAtrk2d8fWzEmpKrpw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3228/1*TOBVGAtrk2d8fWzEmpKrpw.jpeg" alt=""></p>
-<p>After applying new templates you can use them by typing your custom abbreviation:</p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*-WNwjz8FENPt4W9se64Fyw.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/1972/1*-WNwjz8FENPt4W9se64Fyw.gif" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: You can edit IDE’s predefined templates as well.</p>
-<h2 id="29-Enable-preview-tab"><a href="#29-Enable-preview-tab" class="headerlink" title="29. Enable preview tab"></a>29. Enable preview tab</h2><p>The preview tab allows you to view files in a single tab one by one without opening each file in a new tab. Any other file that you select will replace the previous one in this tab.</p>
-<p>You can enable this feature in the IDE Preferences:</p>
-<p><img src="https://miro.medium.com/max/4536/1*XiCmUSB_LSmyFicnKMJKLA.png" alt=""></p>
-<p>Or here in the Project window settings:</p>
-<p><img src="https://miro.medium.com/max/60/1*RR6AvyU8VgLFcM03H14G5g.png?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2724/1*RR6AvyU8VgLFcM03H14G5g.png" alt=""></p>
-<p>Now you can preview files without opening them in a new tab by just clicking <strong>one</strong> time on a file, if you click twice — file will be opened in an old-fashioned way.</p>
-<h2 id="30-Quick-preview"><a href="#30-Quick-preview" class="headerlink" title="30. Quick preview"></a>30. Quick preview</h2><p>If you don’t want to enable the ‘Preview Tab’ feature you can just press <code>Space</code> key and IDE will show you the content of the file in a pop-up window without opening any tabs:</p>
-<p><img src="https://miro.medium.com/max/4372/1*Al8xEmoTOKnpiT3GHQv0Cg.png" alt=""></p>
-<h2 id="31-Always-select-opened-file"><a href="#31-Always-select-opened-file" class="headerlink" title="31. Always select opened file"></a>31. Always select opened file</h2><p>If this option is on, WebStorm automatically locates documents that you open in the editor in the current view of this window.</p>
-<p><img src="https://miro.medium.com/max/4372/1*rHs9DHt-HfFL5JJ0DTJd8w.png" alt=""></p>
-<h2 id="32-Jump-to-Navigation-bar"><a href="#32-Jump-to-Navigation-bar" class="headerlink" title="32. Jump to Navigation bar"></a>32. Jump to Navigation bar</h2><p>This feature is useful when you don’t use the NavBar at the top of the IDE:</p>
-<p><img src="https://miro.medium.com/max/4648/1*1JIgoSA2dvyI1PtfHvW8xg.jpeg" alt=""></p>
-<p>You can disable it in <code>View &gt; Appearance &gt; ✔︎ Navigation Bar</code>, but note that the toolbar will disappear too:</p>
-<p><img src="https://miro.medium.com/max/3596/1*4_r52oY3e6A7nq2rN1NsSg.jpeg" alt=""></p>
-<p>You just need to enable it after disabling the Navigation Bar:</p>
-<p><img src="https://miro.medium.com/max/60/1*F-C1YdfRJ3oyPZAn2_yqeg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3224/1*F-C1YdfRJ3oyPZAn2_yqeg.jpeg" alt=""></p>
-<p>The point is that your workplace will become cleaner and you could just invoke it only when you needed by using [ <code>Command+Up</code> / ⌘↑] hotkeys “Jump to Navigation Bar” action:</p>
-<p><img src="https://miro.medium.com/max/60/1*zyw8g-bPCYDhPW-ciLHu0g.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4648/1*zyw8g-bPCYDhPW-ciLHu0g.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: You can use the ‘Show Source’ action by pressing [ <code>Command+Enter</code> ] hotkey that will show you selected folder in the Project window or create a new File/Folder inside of selected folder by pressing [<code>Command+N</code>] hotkey</p>
-<p><img src="https://miro.medium.com/max/60/1*WTpOMpUrSk4vP9hLUPtQtw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3904/1*WTpOMpUrSk4vP9hLUPtQtw.jpeg" alt=""></p>
-<p><img src="https://miro.medium.com/max/60/1*_C8_-TfSplCXSArxFKUJVA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3360/1*_C8_-TfSplCXSArxFKUJVA.jpeg" alt=""></p>
-<h2 id="33-Editor-tabs"><a href="#33-Editor-tabs" class="headerlink" title="33. Editor tabs"></a>33. Editor tabs</h2><p>If you like working with Tabs enabled, you can place your tab in the Top/ Left/ Bottom/ Right or None. Let’s set the placement to the <strong>Left</strong>:</p>
-<p><img src="https://miro.medium.com/max/3440/1*0iFGM1zsu3kRe-1J-0XXog.jpeg" alt=""></p>
-<p>It will have some benefits, now your tabs will not mess up with names and you will see the whole list with the full names:</p>
-<p><img src="https://miro.medium.com/max/60/1*59NPsVQfgBQNL3a4Y4pluw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4372/1*59NPsVQfgBQNL3a4Y4pluw.jpeg" alt=""></p>
-<p>Or you can just disable them and use “Recent files” -&gt; [ <code>Command+E</code> ] hotkey…</p>
-<p><img src="https://miro.medium.com/max/60/1*_OX50T3N1YlykXVxuqTQGw.png?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4372/1*_OX50T3N1YlykXVxuqTQGw.png" alt=""></p>
-<p>… and navigating through the Project window only. You can hide/show it by using [<code>Command+1</code> / ⌘1] hotkey:</p>
-<p><img src="https://miro.medium.com/max/60/1*ggUKxxGUSZz-K6xlXqGnDg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4348/1*ggUKxxGUSZz-K6xlXqGnDg.jpeg" alt=""></p>
-<p>You can switch between the Project and Editor tab only with ⌘1 and ESC, let’s take a look how it works:</p>
-<h2 id="34-Create-a-new-file"><a href="#34-Create-a-new-file" class="headerlink" title="34. Create a new file"></a>34. Create a new file</h2><p>If you want to create a new file inside a folder you can just select a folder in which you want to create a file or select a file in that folder and press [<code>Command+N</code> / ⌘N] hotkey:</p>
-<p><img src="https://miro.medium.com/max/4556/1*Zj7FS46uhNFbXz8tXztW5Q.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: If you want to create a file inside folders you can create it by separate folders with use of a a slash: <code>folder1/folder2/folder3/**File.ts**</code>:</p>
-<p><img src="https://miro.medium.com/max/4968/1*bK7PyRxJNpV970PK6ybNDg.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: If you open a file for editing, and you want to create a new file inside of a current folder you can use the ‘<strong><em>New in This Directory</em></strong>’ action [<code>Control+Option+N</code> / ⌃⌥N] hotkey:</p>
-<p><img src="https://miro.medium.com/max/4236/1*PD24YU9rPULkQPCBjEWUmw.jpeg" alt=""></p>
-<h2 id="35-Create-file-template"><a href="#35-Create-file-template" class="headerlink" title="35. Create file template"></a>35. Create file template</h2><p>You can create your own File Templates so that when you ‘Create new file’ your own template will be in that list.</p>
-<p>Search for the <code>file and code templates</code> in ‘Search everywhere’ window:</p>
-<p><img src="https://miro.medium.com/max/4556/1*GJnFc6n9mbzPtHvRBMx-6Q.jpeg" alt=""></p>
-<p>Or find it in IDE’s Preferences window:</p>
-<p><img src="https://miro.medium.com/max/4540/1*5rhShZVVrzHNLSzNb7Vrbw.jpeg" alt=""></p>
-<p>After creating your template, when you use “New in this directory” you will see your own template, and you can specify additional props values:</p>
-<p><img src="https://miro.medium.com/max/3972/1*FKLx6Fso_oYIpy487FsRNA.jpeg" alt=""></p>
-<p><img src="https://miro.medium.com/max/3972/1*CPQ_vMBMCqnG61_Leu895A.jpeg" alt=""></p>
-<p>🎉 Awesome.</p>
-<h2 id="36-Hide-all-windows"><a href="#36-Hide-all-windows" class="headerlink" title="36. Hide all windows"></a>36. Hide all windows</h2><p>If you use [ <code>Shift+Command+F12</code> / ⇧⌘F12] hotkey → it will hide all opened windows except the editor window, if you press the hotkey again → it will restore all hidden windows:</p>
-<p><img src="https://miro.medium.com/max/1968/1*7-0Y9PpaU5zoMaLTdoGT-A.gif" alt=""></p>
-<h2 id="37-Resize-active-window"><a href="#37-Resize-active-window" class="headerlink" title="37. Resize active window"></a>37. Resize active window</h2><p>You can resize the active window without using a mouse: Stretch to Right/Letf by using [<code>Shift+Command+Left/Right</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/1968/1*bHHcANLAvnd4sgpb_K0bag.gif" alt=""></p>
-<h2 id="38-Select-and-move-lines"><a href="#38-Select-and-move-lines" class="headerlink" title="38. Select and move lines"></a>38. Select and move lines</h2><p>Most of the time we need to move lines from one place in code to another. Stop using copy-paste actions. You can select lines by pressing [<code>Shift+Up/Down</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/2536/1*el95GoiyBCTNzmjoQts2Tw.gif" alt=""></p>
-<p>… and after that press <code>Option</code>, so your combination would become [<code>Shift+Option+Up/Down</code>] and move lines in the current file:</p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*CQynRP04oWXRET1S9zgp6A.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2536/1*CQynRP04oWXRET1S9zgp6A.gif" alt=""></p>
-<h2 id="39-Move-statement"><a href="#39-Move-statement" class="headerlink" title="39. Move statement"></a>39. Move statement</h2><p>If you want to move a function you can just use “Move statement” action by pressing Shift + Command + Up/Down. In that case IDE will move a function without selecting it:</p>
-<p><img src="https://miro.medium.com/max/2596/1*yAE2H0a02PoA4nRcLKvcMA.gif" alt=""></p>
-<h2 id="40-Select-line-fragment-function-class-package"><a href="#40-Select-line-fragment-function-class-package" class="headerlink" title="40. Select line, fragment, function, class, package"></a>40. Select line, fragment, function, class, package</h2><p>What if you want to select a specific code fragment, maybe a part of a function, or some props or a class or entire package? You can do that by using “Extend/Shrink Selection” action by pressing Option + Up/Down:</p>
-<h2 id="41-Clipboard-history"><a href="#41-Clipboard-history" class="headerlink" title="41. Clipboard history"></a>41. Clipboard history</h2><p>How many times you missed your keys and instead of using [<code>Command+V</code>] (copy) after [<code>Command+X</code>] (cut), you used [<code>Command+X</code>] again? 🤦‍♂</p>
-<p>In that case, you will lose your Clipboard history, but not if you are using JetBrains IDEs 🙂.</p>
-<p>If you used [<code>Command+X</code>] twice you can press [<code>Shift+Command+V</code>] and IDE will show you all your Copy/Cut history you used:</p>
-<p><img src="https://miro.medium.com/max/5108/1*GA6BkL53Lmw354s1xsRVsw.jpeg" alt=""></p>
-<h2 id="42-Duplicate-a-line-selection"><a href="#42-Duplicate-a-line-selection" class="headerlink" title="42. Duplicate a line/selection"></a>42. Duplicate a line/selection</h2><p>If you want to create a copy of a code fragment you don’t need to use Copy/Paste functionality, you can just use the “Duplicate Line” action by [<code>Command+D</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/2536/1*2yMwu-pbYLgJbvsEmdr0jQ.gif" alt=""></p>
-<p>If will perfectly work for selections too:</p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*Wd2kJvkwkHmgK_PprU3Oyg.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2536/1*Wd2kJvkwkHmgK_PprU3Oyg.gif" alt=""></p>
-<h2 id="43-Multiple-cursors-by-mouse-click"><a href="#43-Multiple-cursors-by-mouse-click" class="headerlink" title="43. Multiple cursors by mouse click"></a>43. Multiple cursors by mouse click</h2><p>You can set multiple cursors by pressing <code>Option</code>/<code>Alt</code> key with the <em>Mouse</em> click:</p>
-<p><img src="https://miro.medium.com/max/2536/1*wUhTKb5BJW4gUkhgVaI7Ig.gif" alt=""></p>
-<h2 id="44-Multiple-cursors-by-next-Occurrence"><a href="#44-Multiple-cursors-by-next-Occurrence" class="headerlink" title="44. Multiple cursors by next Occurrence"></a>44. Multiple cursors by next Occurrence</h2><p>[<code>Control+Command+G</code>] hotkey will select only <strong><em>next</em></strong> Occurrence. This is definitely will be in handy:</p>
-<p><img src="https://miro.medium.com/max/5516/1*q3a6l0gZqEg_o6CKDSG0Cg.jpeg" alt=""></p>
-<p>Check this out:</p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*Rj_RkNyZ4SVtiPkbLcowhQ.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2016/1*Rj_RkNyZ4SVtiPkbLcowhQ.gif" alt=""></p>
-<h2 id="45-Multiple-cursors-Select-All-Occurrences"><a href="#45-Multiple-cursors-Select-All-Occurrences" class="headerlink" title="45. Multiple cursors. Select All Occurrences"></a>45. Multiple cursors. Select All Occurrences</h2><p>[<code>Control+Command+G</code>] hotkey will set multiple cursors at every occurrence in the code:</p>
-<p><img src="https://miro.medium.com/max/6068/1*ihiUXooE9wo6goXF4T8bqw.jpeg" alt=""></p>
-<h2 id="46-Parameter-info"><a href="#46-Parameter-info" class="headerlink" title="46. Parameter info"></a>46. Parameter info</h2><p>If you forgot what params you need to pass to the function, you don’t need to delete brackets and set them again.</p>
-<p>You can just use the [<code>Command+P</code>] hotkey</p>
-<p><img src="https://miro.medium.com/max/4032/1*7RgicV1nUfNU4iDHgOIpuw.jpeg" alt=""></p>
-<h2 id="47-Reformat-code"><a href="#47-Reformat-code" class="headerlink" title="47. Reformat code"></a>47. Reformat code</h2><p>You can reformat all file by using the “Reformat code” action via [<code>Option+Command+L</code>] hotkey.</p>
-<p><img src="https://miro.medium.com/max/2880/1*uC90zOA6q7aGnVBb1TOB8w.gif" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: If you want to reformat only specific lines you can select required lines and use the “Auto-Indent lines” action via [Control+Option+I] hotkey:</p>
-<p>You can open ‘Code cleanup’ preferences by searching code cleanup in the <em>Search everywhere</em>:</p>
-<p><img src="https://miro.medium.com/max/60/1*CKEHIriS9bNYjQqsLuW6oQ.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3392/1*CKEHIriS9bNYjQqsLuW6oQ.jpeg" alt=""></p>
-<p><img src="https://miro.medium.com/max/60/1*9nNZEwlOHG-WSc4ATTphpQ.jpeg?q=20" alt=""></p>
-<p>!Bog`, and IDE will suggest with a completion list:</p>
-<p><img src="https://miro.medium.com/max/2552/1*RKvztfihm_mt__kieo7mUw.gif" alt=""></p>
-<h2 id="52-Surround-with"><a href="#52-Surround-with" class="headerlink" title="52. Surround with"></a>52. Surround with</h2><p>‘Surround With’ popup will appear when you use [<code>Option+Command+T</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/3988/1*PrWDOw4CIG4C3V0YNVb5gA.jpeg" alt=""></p>
-<h2 id="53-Create-constructor-getters-setters-override-methods"><a href="#53-Create-constructor-getters-setters-override-methods" class="headerlink" title="53. Create constructor, getters, setters, override methods"></a>53. Create constructor, getters, setters, override methods</h2><p>If you created a class with some fields, you don’t need to create constructors, getters, setters, override methods manually → IDE could do that for you:</p>
-<p>[ <code>Command+N</code> ] or [ <code>Control+Enter</code> ]:</p>
-<p><img src="https://miro.medium.com/max/2144/1*gGZV0T2ZfaIHLOFs0Gf2Fw.jpeg" alt=""></p>
-<p>All this is generated:</p>
-<h2 id="54-Postfix-code-completion"><a href="#54-Postfix-code-completion" class="headerlink" title="54. Postfix code completion"></a>54. Postfix code completion</h2><p>Postfix code completion helps you reduce backward caret jumps as you write code. You can transform an already-typed expression to a different one based on a postfix you type after the dot, the type of expression, and its context.</p>
-<p><img src="https://miro.medium.com/max/2864/1*bLz2zGRg3lc8aFy6F8bYNA.jpeg" alt=""></p>
-<p>List of available completions for user prop:</p>
-<p><img src="https://miro.medium.com/max/52/1*-6X29gQ-oXSTdsS2g7JQtA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2552/1*-6X29gQ-oXSTdsS2g7JQtA.jpeg" alt=""></p>
-<p>You can create your own completions in the IDE Preferences:</p>
-<p><img src="https://miro.medium.com/max/60/1*gWJD_ay_aWvCSY1iqNiacw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2900/1*gWJD_ay_aWvCSY1iqNiacw.jpeg" alt=""></p>
-<h2 id="55-Show-quick-documentation"><a href="#55-Show-quick-documentation" class="headerlink" title="55. Show quick documentation"></a>55. Show quick documentation</h2><p>You can see the documentation in the popup window by using <code>F1</code> key:</p>
-<p><img src="https://miro.medium.com/max/4884/1*wrKEf9Z_HDZHsFKFNmW5hg.jpeg" alt=""></p>
-<p>Quick Documentation action screenshot</p>
-<h2 id="56-Refactor-this"><a href="#56-Refactor-this" class="headerlink" title="56. Refactor this"></a>56. Refactor this</h2><p>You don’t need to remember all IDE Refactor hotkeys, you can just use [<code>Control+T</code>] hotkey for showing all available refactor actions, and you can use them right away:</p>
-<p><img src="https://miro.medium.com/max/4884/1*ks-08Qu07TI4MUJQ1MmXaQ.jpeg" alt=""></p>
-<h2 id="57-Run-the-current-file"><a href="#57-Run-the-current-file" class="headerlink" title="57. Run the current file"></a>57. Run the current file</h2><p>If you have a test file, you can run all tests in it by using [<code>Control+Shift+R</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/4884/1*E4UlCGRP_GaFuFZ1_JKWTA.jpeg" alt=""></p>
-<h2 id="58-Scratch-files"><a href="#58-Scratch-files" class="headerlink" title="58. Scratch files"></a>58. Scratch files</h2><p>Sometimes you may need to create temporary notes or draft up some code outside of the project context. Instead of switching to a different application for this purpose, you can use <em>scratch files</em> and <em>scratch buffers</em>.</p>
-<p>You can run them just like if they were included in the Project:</p>
-<p><img src="https://miro.medium.com/max/4012/1*svJkLRtuTYViyueP4-gYeA.jpeg" alt=""></p>
-<h2 id="59-Creating-your-own-menu-list"><a href="#59-Creating-your-own-menu-list" class="headerlink" title="59. Creating your own menu list"></a>59. Creating your own menu list</h2><p>If you navigate to IDE’s <code>Preferences</code> &gt; <code>Quick Lists</code>, you could add your own menu with actions you like the most:</p>
-<p><img src="https://miro.medium.com/max/3864/1*7UozXQg9XYLlq8JLixcKwA.jpeg" alt=""></p>
-<p>After creating you list, navigate to the <code>Keymap</code>, search for your list name, and assign a new Keyboard Shortcut:</p>
-<p><img src="https://miro.medium.com/max/60/1*OKCHoCpvlPROzgQjr7SEJg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4548/1*OKCHoCpvlPROzgQjr7SEJg.jpeg" alt=""></p>
-<p>Now you will be able to invoke your list by using your shortcut:</p>
-<p><img src="https://miro.medium.com/max/60/1*yAmi_mJ745-6ngT-VWszMw.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/1756/1*yAmi_mJ745-6ngT-VWszMw.jpeg" alt=""></p>
-<h2 id="60-Keymap-reference"><a href="#60-Keymap-reference" class="headerlink" title="60. Keymap reference"></a>60. Keymap reference</h2><p>If you want to see all available hotkey in your IDE, or you forgot some of them, you can search for Keymap reference in the ‘Search everywhere’:</p>
-<p><img src="https://miro.medium.com/max/3432/1*rqh8-rM0ANHVDMHJaCBZHA.jpeg" alt=""></p>
-<p>It will open a PDF file with all available hotkeys and actions:</p>
-<p><img src="https://miro.medium.com/max/60/1*Xqn9QIduQ5xZjt-pM_86Kg.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3524/1*Xqn9QIduQ5xZjt-pM_86Kg.jpeg" alt=""></p>
-<h2 id="Related-storiesasic-Code-Completion’-at-it-will-provide-you-a-list-of-a-proper-variable-name-Control-Space-hotkey"><a href="#Related-storiesasic-Code-Completion’-at-it-will-provide-you-a-list-of-a-proper-variable-name-Control-Space-hotkey" class="headerlink" title="Related storiesasic Code Completion’ at it will provide you a list of a proper variable name, [ Control+Space ] hotkey:"></a>Related storiesasic Code Completion’ at it will provide you a list of a proper variable name, [ <code>Control+Space</code> ] hotkey:</h2><p><img src="https://miro.medium.com/max/4368/1*QANlqjYMPT8Y-rD4xpsooA.jpeg" alt=""></p>
-<h2 id="49-Code-completion-Basic-completion"><a href="#49-Code-completion-Basic-completion" class="headerlink" title="49. Code completion. Basic completion"></a>49. Code completion. Basic completion</h2><p>‘Basic Completion’ will show you all available functions and variables you can use for completion, [ <code>Control+Space</code> ] hotkey:</p>
-<p><img src="https://miro.medium.com/max/5824/1*JNMl9IfO1HyULSMDFDDEQA.jpeg" alt=""></p>
-<h2 id="50-Code-completion-Smart-completion"><a href="#50-Code-completion-Smart-completion" class="headerlink" title="50. Code completion. Smart completion"></a>50. Code completion. Smart completion</h2><p>Smart Completion will analyze your code and will narrow down the suggestion list to what makes sense, [ <code>Control+Shift+Space</code> ] hotkey:</p>
-<p><img src="https://miro.medium.com/max/6400/1*k3vm-szBseBGJYYoGv4w_Q.jpeg" alt=""></p>
-<h2 id="51-Code-completion-without-a-ref"><a href="#51-Code-completion-without-a-ref" class="headerlink" title="51. Code completion without a ref"></a>51. Code completion without a ref</h2><p>If you want to type a <code>console.log</code> you can just type `l](<a href="https://miro.medium.com/max/2528/1*9nNZEwlOHG-WSc4ATTphpQ.jpeg" target="_blank" rel="noopener">https://miro.medium.com/max/2528/1*9nNZEwlOHG-WSc4ATTphpQ.jpeg</a>)</p>
-<p>You can change code style in those Preferences:</p>
-<p><img src="https://miro.medium.com/max/4548/1*pBzFVFf6wKisp3fUOiQhLw.jpeg" alt=""></p>
-<p>⚠️ <strong>NOTE</strong>: You can adjust code styles interactively by selecting your code fragment and select ‘_Adjust code style setting_’ in the ‘_Show Context Actions_’, [<code>Option+Enter</code>] hotkey:</p>
-<p><img src="https://miro.medium.com/max/4556/1*W0c5CiHh-J1rl0P2dxV10A.jpeg" alt=""></p>
-<p>Let’s have a look at how it works in the IDE:</p>
-<p><img src="https://miro.medium.com/freeze/max/60/1*HLwutLBLw9GJGGYNHK6k9A.gif?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/2256/1*HLwutLBLw9GJGGYNHK6k9A.gif" alt=""></p>
-<p>GIF. Adjust Code Style Settings dynamically</p>
-<h2 id="48-Code-completion-Variable-name"><a href="#48-Code-completion-Variable-name" class="headerlink" title="48. Code completion. Variable name"></a>48. Code completion. Variable name</h2><p>If you want to rename a variable you can use a ‘[(<a href="https://miro.medium.com/max/4408/1*zTLGb_2OZA_GgRwQumxtdg.jpeg" target="_blank" rel="noopener">https://miro.medium.com/max/4408/1*zTLGb_2OZA_GgRwQumxtdg.jpeg</a>)</p>
-<p>If you click a file in a “Commit changes” window, IDE will open a Compare Changelist window, where you can review changes and even exclude parts of code that should not be committed:</p>
-<p><img src="https://miro.medium.com/max/60/1*gepMempOih7CBu98E9CIWA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4220/1*gepMempOih7CBu98E9CIWA.jpeg" alt=""></p>
-<p>IDE will show you the <code>changed</code> checkbox icon with the number of committed changes:</p>
-<p><img src="https://miro.medium.com/max/60/1*9ugU-kx4whv5wljXgNgtrA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/4408/1*9ugU-kx4whv5wljXgNgtrA.jpeg" alt=""></p>
-<h2 id="17-Run-menu"><a href="#17-Run-menu" class="headerlink" title="17. Run menu"></a>17. Run menu</h2><p>Every file, test, script you run IDE adds those into its configurations (if you saved those they will be available after IDE restart):</p>
-<p><img src="https://miro.medium.com/max/3432/1*2nHTncwVt9bl56v5ZwX7ew.jpeg" alt=""></p>
-<p>… for saving configuration use <code>Edit Configuration</code> &gt; <code>Save Configuration</code> icon:</p>
-<p><img src="https://miro.medium.com/max/60/1*CxQrFUPsE0LQ74tRpiDlqA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3760/1*CxQrFUPsE0LQ74tRpiDlqA.jpeg" alt=""></p>
-<p>But the cool thing is that you can open a pop-up window with all your saved configurations by pressing <code>Control+Option+R</code> and run them without navigating elsewhere:</p>
-<p><img src="https://miro.medium.com/max/60/1*jDk3gwisR-z_yOmnLfzXaA.jpeg?q=20" alt=""></p>
-<p><img src="https://miro.medium.com/max/3432/1*jDk3gwisR-z_yOmnLfzXaA.jpeg" alt=""></p>
-<h2 id="18-Optimize-imports"><a href="#18-Optimize-imports" class="headerlink" title="18. Optimize imports"></a>18. Optimize imports</h2><p>You don’t have to manually delete unused imports from your file:</p>
-<p><img src="https://miro.medium.com/max/4416/1*uCFCnNId61y5kggym_yngw.jpeg" alt=""></p>
-<p>You [</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/20/webstormConfig/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1015,7 +652,7 @@
 <p>PostCSS 在工业界被广泛地应用，其中不乏很多有名的行业领导者，如：维基百科，Twitter，阿里巴巴，<br>JetBrains。PostCSS 的 <a href="https://github.com/postcss/autoprefixer" target="_blank" rel="noopener">Autoprefixer</a> 插件是最流行的 CSS 处理工具之一。</p>
 <p>PostCSS 接收一个 CSS 文件并提供了一个 API 来分析、修改它的规则（通过把 CSS 规则转换成一个<a href="https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9" target="_blank" rel="noopener">抽象语法树</a>的方式）。在这之后，这个 API 便可被许多<a href="https://github.com/postcss/postcss/blob/main/README-cn.md#%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener">插件</a>利用来做有用的事情，比如寻错或自动添加 CSS vendor 前缀。</p>
 <p><strong>Twitter 账号:</strong> <a href="https://twitter.com/postcss" target="_blank" rel="noopener">@postcss</a><br><br><strong>支持 / 讨论:</strong> <a href="https://gitter.im/postcss/postcss" target="_blank" rel="noopener">Gitter</a><br></p>
-<p>如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，<br>PostCSS 插件），请联系 <a href="https://evilmartians.com/?utm_source=postcss" target="_blank" rel="noopener">Evil Martians</a><br>邮箱 <a href="mailto:&#x73;&#117;&#114;&#x72;&#101;&#110;&#x64;&#x65;&#x72;&#x40;&#x65;&#118;&#105;&#x6c;&#x6d;&#97;&#114;&#x74;&#x69;&#x61;&#x6e;&#115;&#x2e;&#x63;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x73;&#117;&#114;&#x72;&#101;&#110;&#x64;&#x65;&#x72;&#x40;&#x65;&#118;&#105;&#x6c;&#x6d;&#97;&#114;&#x74;&#x69;&#x61;&#x6e;&#115;&#x2e;&#x63;&#x6f;&#x6d;</a>。</p>
+<p>如果需要 PostCSS 商业支持（如咨询，提升公司的前端文化，<br>PostCSS 插件），请联系 <a href="https://evilmartians.com/?utm_source=postcss" target="_blank" rel="noopener">Evil Martians</a><br>邮箱 <a href="mailto:&#115;&#x75;&#x72;&#114;&#x65;&#x6e;&#x64;&#x65;&#x72;&#64;&#x65;&#118;&#105;&#108;&#109;&#x61;&#x72;&#116;&#105;&#x61;&#110;&#115;&#x2e;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#115;&#x75;&#x72;&#114;&#x65;&#x6e;&#x64;&#x65;&#x72;&#64;&#x65;&#118;&#105;&#108;&#109;&#x61;&#x72;&#116;&#105;&#x61;&#110;&#115;&#x2e;&#99;&#x6f;&#109;</a>。</p>
 <a href="https://evilmartians.com/?utm_source=postcss" target="_blank" rel="noopener">
   <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
        alt="由 Evil Martians 赞助" width="236" height="54">
@@ -1190,10 +827,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-07 06:13:00 / 修改时间：06:52:17" itemprop="dateCreated datePublished" datetime="2021-06-07T06:13:00+08:00">2021-06-07</time>
+              <time title="创建时间：2021-06-07 06:13:00" itemprop="dateCreated datePublished" datetime="2021-06-07T06:13:00+08:00">2021-06-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-12 20:27:29" itemprop="dateModified" datetime="2022-06-12T20:27:29+08:00">2022-06-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -1218,7 +861,7 @@
           <blockquote>
 <p>乾坤一个项目 node_modules 包就 8 个 G……虽然知道是好几个子项目的事…..但是还是挺不爽的…….</p>
 </blockquote>
-<h2 id="一些相关名词"><a href="#一些相关名词" class="headerlink" title="一些相关名词"></a>一些相关名词</h2><p>|–|–|<br>|SSI|server side includes|<br>|BFF|Backend For Frontend |</p>
+<h2 id="一些相关名词"><a href="#一些相关名词" class="headerlink" title="一些相关名词"></a>一些相关名词</h2><p>| – |– |<br>|SSI|server side includes|<br>|BFF|Backend For Frontend |</p>
 <h2 id="一些知识点"><a href="#一些知识点" class="headerlink" title="一些知识点"></a>一些知识点</h2><ul>
 <li>ReactDOM.unmountComponentAtNode(container) - <a href="https://zh-hans.reactjs.org/docs/react-dom.html#unmountcomponentatnode" target="_blank" rel="noopener">ref</a><br>从 Dom 中卸载组件,会将其事件处理器(event handlers) 和 state 一并清楚.如果指定容器上没有对应已挂载的组件,这函数什么也不做,如果组件被移除将会返回 True</li>
 </ul>
@@ -1625,7 +1268,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>

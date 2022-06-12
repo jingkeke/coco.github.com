@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="个人代码知识记录">
 <meta property="og:description" content="浏览器 跨域问题console 报错    No ‘Access-Control-Allow-Origin’ header is present on the requested resource.Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource athttps:&#x2F;&#x2F;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-07-05T02:50:56.035Z">
+<meta property="og:updated_time" content="2022-06-12T12:22:36.032Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://blog.jingzhengyi.top/2021/07/04/cors/">
@@ -196,7 +196,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-05 10:50:56" itemprop="dateModified" datetime="2021-07-05T10:50:56+08:00">2021-07-05</time>
+                <time title="修改时间：2022-06-12 20:22:36" itemprop="dateModified" datetime="2022-06-12T20:22:36+08:00">2022-06-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,6 +224,7 @@
 <p>No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at<a href="https://example.com/" target="_blank" rel="noopener">https://example.com/</a><br>Access to fetch at ‘<a href="https://example.com’" target="_blank" rel="noopener">https://example.com’</a> from origin ‘<a href="http://localhost:3000’" target="_blank" rel="noopener">http://localhost:3000’</a> has been blocked by CORS policy.</p>
 </blockquote>
 <p>如果你遇到这些报错，就是跨域问题。</p>
+<a id="more"></a>
 <h2 id="Origin-amp-Cross-origin"><a href="#Origin-amp-Cross-origin" class="headerlink" title="Origin &amp; Cross-origin"></a>Origin &amp; Cross-origin</h2><p>判断是否跨域 看三个指标：scheme，host，和port 。例如，<a href="https://example.com" target="_blank" rel="noopener">https://example.com</a>  <a href="http://example.com" target="_blank" rel="noopener">http://example.com</a> 是不用域的，因为前者是http scheme 后者是https. </p>
 <h2 id="跨域的风险"><a href="#跨域的风险" class="headerlink" title="跨域的风险"></a>跨域的风险</h2><p>如果 CORS 不存在，网络浏览器允许各种各样的跨源请求。<br>想象一下，我在我的网站 evil. com 上有一个带有 &lt;script&gt; 的页面。表面上它看起来像一个简单的页面，在那里你可以读到一些有用的信息。但是在 &lt;script&gt; 中，我特别编写了一些代码，它们将向银行的 DELETE / 帐户端点发送一个特殊编写的请求。加载页面后，执行 JavaScript，然后一个 AJAX 调用访问银行的 API。 </p>
 <p>想象一下，当你在网页上阅读一些信息时，你收到一封来自你银行的电子邮件，你已经成功地删除了你的帐户。我知道我知道… … 如果银行真的那么容易。我跑题了。<br>为了让我邪恶的 &lt;script&gt; 工作，作为请求的一部分，你的浏览器还必须从银行网站上发送你的证书 (cookies)。这样银行的服务器就能识别你的身份，并知道该删除哪个账户。 </p>
@@ -403,7 +404,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-jzy"></i>
   </span>
